@@ -1,0 +1,15 @@
+{
+  "name": "feishu-file-send",
+  "version": "1.0.0",
+  "description": "直接调用飞书 API 发送文件,绕过 Clawdbot 飞书插件的 bug。",
+  "main": "send-file.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "form-data": "^4.0.5"
+  }
+}
