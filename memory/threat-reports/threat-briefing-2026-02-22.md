@@ -1,5 +1,5 @@
 # 🔒 Threat Intelligence Briefing
-**Generated:** 2026-02-22T07:57:00.130Z
+**Generated:** 2026-02-22T14:51:23.116Z
 **Risk Level:** CRITICAL | **Insights:** 17 | **CVEs Tracked:** 4
 
 ---
