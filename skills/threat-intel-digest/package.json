@@ -1,0 +1,8 @@
+{
+  "name": "threat-intel-digest",
+  "version": "1.0.0",
+  "description": "Parse MEMORY.md insights, fetch latest threat intelligence, and generate structured briefings",
+  "main": "index.js",
+  "keywords": ["security", "threat-intelligence", "insights", "briefing"],
+  "license": "MIT"
+}
