@@ -156,6 +156,46 @@
         "eligible_to_broadcast": false
       },
       "asset_id": "sha256:bef1a6a8a679958382f6eacf7fe669d50b3df11f76ba2a419b2cf60075c4f9c7"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1771789444749",
+      "trigger": [
+        "high_tool_usage:exec",
+        "evolution_saturation"
+      ],
+      "gene": "gene_auto_a46bf5e7",
+      "summary": "固化：gene_auto_a46bf5e7 命中信号 high_tool_usage:exec, evolution_saturation，变更 0 文件 / 0 行。",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 1,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "generated",
+      "reused_asset_id": null,
+      "a2a": {
+        "eligible_to_broadcast": false
+      },
+      "asset_id": "sha256:81ba213103b328e8002d3df6cfe0ee30b77e7b49ed05ca18e84a7b8c529358a2"
     }
   ]
 }
