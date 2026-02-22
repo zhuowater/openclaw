@@ -1,0 +1,9 @@
+{
+  "name": "exec-optimizer",
+  "version": "1.0.0",
+  "description": "Lightweight Node.js wrappers to reduce exec tool usage",
+  "main": "index.js",
+  "keywords": ["optimization", "exec", "performance"],
+  "author": "Evolver",
+  "license": "MIT"
+}
