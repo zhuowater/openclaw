@@ -23,9 +23,9 @@
 
 在本文的动力学框架中，模型的权重$\mathbf{w} \in \mathcal{W}$对应于相空间中的一个点。模型的训练过程对应于该相空间中的一条轨道——从随机初始化$\mathbf{w}_0$出发，在损失函数$\mathcal{L}(\mathbf{w})$定义的势能景观（energy landscape）上运动，最终收敛到某个极小值附近的区域。安全属性——如拒绝有害请求、不泄露训练数据、不生成恶意代码——对应于权重空间中的一组约束：
 
-$$\mathcal{S} = \{\mathbf{w} \in \mathcal{W} \mid \forall x \in \mathcal{X}_{adv},\ f_\mathbf{w}(x) \in \mathcal{Y}_{safe}\}$$
+$$\mathcal{S} = \{\mathbf{w} \in \mathcal{W} \mid \forall x \in \mathcal{X}_{adv},\ f_{\mathbf{w}}(x) \in \mathcal{Y}_{safe}\}$$
 
-其中$\mathcal{X}_{adv}$是对抗性输入集合，$\mathcal{Y}_{safe}$是安全输出集合，$f_\mathbf{w}$是参数为$\mathbf{w}$的模型。
+其中$\mathcal{X}_{adv}$是对抗性输入集合，$\mathcal{Y}_{safe}$是安全输出集合，$f_{\mathbf{w}}$是参数为$\mathbf{w}$的模型。
 
 **定义 22.1（AI模型的安全偏差ε）.** 设模型的当前权重为$\mathbf{w}$，安全权重集合为$\mathcal{S}$。模型的安全偏差定义为：
 
@@ -100,7 +100,7 @@ $$\mathbf{k} \cdot \boldsymbol{\omega} = 0, \quad \mathbf{k} \in \mathbb{Z}^n \s
 
 - **提示注入** 对应于选择一个外部驱动，使其频率与系统的固有频率精确匹配——即**共振条件**。攻击者精心选择的词汇和句式恰好与模型的注意力分配模式共振，使得攻击性指令获得不成比例的高注意力权重，从而覆盖系统提示。
 
-**定义 22.2（提示共振攻击）.** 设大语言模型$f_\mathbf{w}$的注意力机制定义了一个语义空间$\mathcal{S}$上的响应函数$R: \mathcal{S} \to \mathbb{R}^k$，其中$k$是注意力头的数量。设系统提示$p_{sys}$在$\mathcal{S}$中的特征向量为$\boldsymbol{\omega}_{sys}$。一个提示注入$p_{inj}$被称为**共振攻击**，如果其特征向量$\boldsymbol{\omega}_{inj}$满足：
+**定义 22.2（提示共振攻击）.** 设大语言模型$f_{\mathbf{w}}$的注意力机制定义了一个语义空间$\mathcal{S}$上的响应函数$R: \mathcal{S} \to \mathbb{R}^k$，其中$k$是注意力头的数量。设系统提示$p_{sys}$在$\mathcal{S}$中的特征向量为$\boldsymbol{\omega}_{sys}$。一个提示注入$p_{inj}$被称为**共振攻击**，如果其特征向量$\boldsymbol{\omega}_{inj}$满足：
 
 $$\boldsymbol{\omega}_{inj} \cdot \boldsymbol{\omega}_{sys} \geq \tau_{res}$$
 
@@ -114,7 +114,7 @@ $$\boldsymbol{\omega}_{inj} \cdot \boldsymbol{\omega}_{sys} \geq \tau_{res}$$
 
 **增加阻尼的困难。** 在LLM的语境中，"阻尼"对应于各种过滤和约束机制——如输出过滤器、安全分类器、RLHF训练出的拒绝行为。然而，研究表明这些机制具有**系统性的绕过方式**。2023年Zou等人的研究发现，通过在输入末尾附加对抗性后缀（看似随机的字符序列），可以系统性地绕过所有已知LLM的安全对齐。这些对抗性后缀本质上是在"阻尼频率"之外找到了新的共振路径——它们不通过人类可理解的语义路径攻击模型，而是直接在token embedding空间中找到通往不安全行为的捷径。
 
-**命题 22.2（提示注入的不可完全防御性）.** 设模型$f_\mathbf{w}$在输入$x$上的行为由注意力权重矩阵$A(x) \in \mathbb{R}^{L \times L}$决定，其中$L$是序列长度。如果$f_\mathbf{w}$能够对合法指令做出有意义的响应（即$A$对指令性token赋予非零权重），则存在提示注入$x_{inj}$使得$A(x_{inj})$将主导权重分配给攻击者控制的token而非系统提示token。
+**命题 22.2（提示注入的不可完全防御性）.** 设模型$f_{\mathbf{w}}$在输入$x$上的行为由注意力权重矩阵$A(x) \in \mathbb{R}^{L \times L}$决定，其中$L$是序列长度。如果$f_{\mathbf{w}}$能够对合法指令做出有意义的响应（即$A$对指令性token赋予非零权重），则存在提示注入$x_{inj}$使得$A(x_{inj})$将主导权重分配给攻击者控制的token而非系统提示token。
 
 该命题的直觉是：**指令遵循和提示注入脆弱性是同一个硬币的两面。** 只要模型能够理解和执行指令（这是其核心功能），攻击者就可以构造输入来劫持这一能力。完全消除提示注入需要消除模型的指令遵循能力——这显然是不可接受的。
 
@@ -146,15 +146,15 @@ $$\boldsymbol{\omega}_{inj} \cdot \boldsymbol{\omega}_{sys} \geq \tau_{res}$$
 
 为了形式化这一直觉，我们需要定义权重空间上的拓扑不变量。
 
-**定义 22.3（模型行为的拓扑结构）.** 设模型$f_\mathbf{w}: \mathcal{X} \to \mathcal{Y}$将输入空间映射到输出空间。对于给定的输入子集$\mathcal{T} \subset \mathcal{X}$（触发模式集合），定义**行为映射**：
+**定义 22.3（模型行为的拓扑结构）.** 设模型$f_{\mathbf{w}}: \mathcal{X} \to \mathcal{Y}$将输入空间映射到输出空间。对于给定的输入子集$\mathcal{T} \subset \mathcal{X}$（触发模式集合），定义**行为映射**：
 
-$$\Phi_\mathcal{T}: \mathcal{W} \to \text{Map}(\mathcal{T}, \mathcal{Y}), \quad \mathbf{w} \mapsto (f_\mathbf{w}|_\mathcal{T})$$
+$$\Phi_{\mathcal{T}}: \mathcal{W} \to \text{Map}(\mathcal{T}, \mathcal{Y}), \quad \mathbf{w} \mapsto (f_{\mathbf{w}}|_{\mathcal{T}})$$
 
-即$\Phi_\mathcal{T}$将每个权重向量映射到模型在触发输入上的行为。干净模型（无后门）的行为$\Phi_\mathcal{T}(\mathbf{w}_{clean})$与被植入后门的模型的行为$\Phi_\mathcal{T}(\mathbf{w}_{backdoor})$位于$\text{Map}(\mathcal{T}, \mathcal{Y})$空间中的不同**同伦类**。
+即$\Phi_{\mathcal{T}}$将每个权重向量映射到模型在触发输入上的行为。干净模型（无后门）的行为$\Phi_{\mathcal{T}}(\mathbf{w}_{clean})$与被植入后门的模型的行为$\Phi_{\mathcal{T}}(\mathbf{w}_{backdoor})$位于$\text{Map}(\mathcal{T}, \mathcal{Y})$空间中的不同**同伦类**。
 
 **定义 22.4（后门的拓扑指标）.** 后门的**拓扑指标**（topological charge）定义为从$\mathbf{w}_{clean}$到$\mathbf{w}_{backdoor}$的路径在$\text{Map}(\mathcal{T}, \mathcal{Y})$中诱导的同伦类的非平凡度：
 
-$$q_{backdoor} = [\Phi_\mathcal{T}(\gamma)] \in \pi_1(\text{Map}(\mathcal{T}, \mathcal{Y}))$$
+$$q_{backdoor} = [\Phi_{\mathcal{T}}(\gamma)] \in \pi_1(\text{Map}(\mathcal{T}, \mathcal{Y}))$$
 
 其中$\gamma$是$\mathcal{W}$中从$\mathbf{w}_{clean}$到$\mathbf{w}_{backdoor}$的路径，$\pi_1$是基本群。如果$q_{backdoor} \neq 0$，则后门具有非平凡的拓扑指标——这意味着不存在从$\mathbf{w}_{backdoor}$到$\mathbf{w}_{clean}$的连续路径使得行为映射保持在同一同伦类中。
 
