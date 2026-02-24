@@ -1,0 +1,6 @@
+{
+  "name": "code-stats",
+  "version": "1.0.0",
+  "description": "Visualize repository complexity and code statistics",
+  "main": "index.js"
+}
