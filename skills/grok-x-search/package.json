@@ -1,0 +1,7 @@
+{
+  "name": "grok-x-search",
+  "version": "2.0.0",
+  "description": "X/Twitter real-time search via xAI Responses API + x_search",
+  "main": "index.js",
+  "bin": { "grok-x": "index.js" }
+}
