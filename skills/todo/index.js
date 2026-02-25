@@ -115,6 +115,65 @@ function generateMarkdownReport(todos) {
 }
 
 /**
+ * Sync TODOs to GitHub Issues
+ * @param {Array} todos - Array of TODOs
+ * @param {Object} options - { repo, token, dryRun }
+ * @returns {Array} - Created/updated issue URLs
+ */
+async function syncToGitHub(todos, options = {}) {
+  const { repo, token, dryRun = true } = options;
+  
+  if (!repo || !token) {
+    throw new Error('GitHub repo and token required (e.g., { repo: "owner/repo", token: "ghp_..." })');
+  }
+  
+  const results = [];
+  
+  for (const todo of todos) {
+    const title = `[${todo.type}] ${todo.text.substring(0, 60)}${todo.text.length > 60 ? '...' : ''}`;
+    const body = `**File:** \`${todo.file}\`\n**Line:** ${todo.line}\n\n${todo.text}\n\n---\n*Auto-generated from code TODO comment*`;
+    
+    const issueData = {
+      title,
+      body,
+      labels: [todo.type.toLowerCase()]
+    };
+    
+    if (dryRun) {
+      console.log(`[DRY RUN] Would create issue: ${title}`);
+      results.push({ status: 'dry_run', title });
+    } else {
+      try {
+        const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify(issueData)
+        });
+        
+        if (response.ok) {
+          const issue = await response.json();
+          console.log(`✓ Created issue #${issue.number}: ${issue.html_url}`);
+          results.push({ status: 'created', url: issue.html_url, number: issue.number });
+        } else {
+          const error = await response.text();
+          console.error(`✗ Failed to create issue: ${error}`);
+          results.push({ status: 'failed', title, error });
+        }
+      } catch (err) {
+        console.error(`✗ Error creating issue: ${err.message}`);
+        results.push({ status: 'error', title, error: err.message });
+      }
+    }
+  }
+  
+  return results;
+}
+
+/**
  * Main entry point
  */
 function main() {
@@ -147,6 +206,7 @@ module.exports = {
   scanDirectory,
   saveTodos,
   generateMarkdownReport,
+  syncToGitHub,
   main
 };
 
