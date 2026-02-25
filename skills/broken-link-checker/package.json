@@ -1,0 +1,16 @@
+{
+  "name": "broken-link-checker",
+  "version": "1.0.0",
+  "description": "检查文档中的失效链接（HTTP 和本地文件）",
+  "main": "index.js",
+  "scripts": {
+    "check": "node scripts/check.js"
+  },
+  "keywords": ["docs", "links", "validation"],
+  "author": "evolver",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^11.0.0",
+    "node-fetch": "^2.7.0"
+  }
+}
