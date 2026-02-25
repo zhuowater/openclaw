@@ -1,0 +1,6 @@
+{
+  "name": "skill-health-monitor",
+  "version": "1.0.0",
+  "description": "Monitor installed skills health and detect broken skills",
+  "main": "index.js"
+}
