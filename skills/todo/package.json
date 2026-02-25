@@ -1,0 +1,12 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "Sync code TODOs/FIXMEs to task system",
+  "main": "index.js",
+  "bin": {
+    "todo-sync": "./index.js"
+  },
+  "keywords": ["todo", "task", "code-todos", "fixme"],
+  "author": "Evolver",
+  "license": "MIT"
+}
