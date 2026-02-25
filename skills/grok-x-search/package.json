@@ -1,0 +1,9 @@
+{
+  "name": "grok-x-search",
+  "version": "1.0.0",
+  "description": "Search and analyze X/Twitter content via Grok-4",
+  "main": "index.js",
+  "bin": {
+    "grok-x": "index.js"
+  }
+}
