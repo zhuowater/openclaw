@@ -1,8 +1,8 @@
 {
   "last_run": {
-    "run_id": "run_1772002549011",
-    "created_at": "2026-02-25T06:55:49.020Z",
-    "parent_event_id": "evt_1771980886353",
+    "run_id": "run_1772024324901",
+    "created_at": "2026-02-25T12:58:44.912Z",
+    "parent_event_id": "evt_1772002664952",
     "selected_gene_id": "gene_gep_innovate_from_opportunity",
     "selected_capsule_id": null,
     "selector": {
@@ -10,7 +10,7 @@
       "reason": [
         "signals match gene.signals_match",
         "signals: evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected",
-        "memory_graph: memory_prefer:gene_auto_a46bf5e7 | gene_prior:0.657",
+        "memory_graph: memory_prefer:gene_auto_a46bf5e7 | gene_prior:0.654",
         "drift_intensity: 0.500"
       ],
       "alternatives": []
@@ -22,7 +22,7 @@
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772002549009",
+      "id": "mut_1772024324899",
       "category": "innovate",
       "trigger_signals": [
         "evolution_stagnation_detected",
@@ -33,7 +33,7 @@
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1772002549009",
+    "mutation_id": "mut_1772024324899",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -51,16 +51,8 @@
     "reused_asset_id": null,
     "reused_source_node": null,
     "reused_chain_id": null,
-    "baseline_untracked": [
-      "assets/gep/a2a/outbox/hello.jsonl",
-      "assets/gep/a2a/outbox/publish.jsonl",
-      "evolver.pid",
-      "heartbeat-daemon.js",
-      "logs/github-issue-draft.md",
-      "scripts/test-bundle-publish.js",
-      "scripts/test-publish.js"
-    ],
-    "baseline_git_head": "32cee8064c46558ca60cf54099dfb4a5256214af",
+    "baseline_untracked": [],
+    "baseline_git_head": "480c48f40e02cb2b2bd369cf97806ac047c139c9",
     "blast_radius_estimate": {
       "files": 25,
       "lines": 2000
@@ -69,13 +61,13 @@
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1772002549011",
-    "at": "2026-02-25T06:57:44.952Z",
-    "event_id": "evt_1772002664952",
-    "capsule_id": null,
+    "run_id": "run_1772024324901",
+    "at": "2026-02-25T13:00:30.697Z",
+    "event_id": "evt_1772024430697",
+    "capsule_id": "capsule_1772024430697",
     "outcome": {
-      "status": "failed",
-      "score": 0.2
+      "status": "success",
+      "score": 0.85
     }
   }
 }

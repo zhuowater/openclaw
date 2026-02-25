@@ -196,6 +196,47 @@
         "eligible_to_broadcast": false
       },
       "asset_id": "sha256:81ba213103b328e8002d3df6cfe0ee30b77e7b49ed05ca18e84a7b8c529358a2"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1772024430697",
+      "trigger": [
+        "evolution_stagnation_detected",
+        "stable_success_plateau",
+        "empty_cycle_loop_detected"
+      ],
+      "gene": "gene_gep_innovate_from_opportunity",
+      "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 1,
+        "lines": 60
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 1,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "generated",
+      "reused_asset_id": null,
+      "a2a": {
+        "eligible_to_broadcast": false
+      },
+      "asset_id": "sha256:8d0ab1232292f5180f61b3f97ad8cdced38b2ce06562c1217f96da3e9d149c9b"
     }
   ]
 }
