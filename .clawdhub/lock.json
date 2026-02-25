@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "skills": {
+    "security-monitor": {
+      "version": "1.0.0",
+      "installedAt": 1769939721256
+    },
+    "news-summary": {
+      "version": "1.0.1",
+      "installedAt": 1769939730217
+    },
+    "hn": {
+      "version": "1.0.0",
+      "installedAt": 1769939737531
+    },
+    "topic-monitor": {
+      "version": "1.1.0",
+      "installedAt": 1769939749347
+    },
+    "secret-scanner": {
+      "version": "1.0.1",
+      "installedAt": 1769939774399
+    },
+    "skill-scanner": {
+      "version": "0.1.2",
+      "installedAt": 1769939803098
+    },
+    "creative-thought-partner": {
+      "version": "1.0.1",
+      "installedAt": 1769940572156
+    },
+    "youtube-transcript": {
+      "version": "1.0.1",
+      "installedAt": 1769940588821
+    },
+    "research": {
+      "version": "1.0.1",
+      "installedAt": 1769940645597
+    },
+    "chess": {
+      "version": "1.0.1",
+      "installedAt": 1769940682940
+    },
+    "reflect-learn": {
+      "version": "2.0.0",
+      "installedAt": 1769940721292
+    },
+    "mindfulness-meditation": {
+      "version": "1.0.0",
+      "installedAt": 1769940757307
+    },
+    "antigravity-image-gen": {
+      "version": "1.0.0",
+      "installedAt": 1769941554870
+    },
+    "imagemagick": {
+      "version": "1.0.0",
+      "installedAt": 1769941564531
+    },
+    "openai-whisper": {
+      "version": "1.0.0",
+      "installedAt": 1769941575715
+    },
+    "audio-gen": {
+      "version": "1.0.0",
+      "installedAt": 1769941588172
+    },
+    "vap-media": {
+      "version": "1.0.4",
+      "installedAt": 1769941603853
+    },
+    "n8n-workflow-automation": {
+      "version": "1.0.0",
+      "installedAt": 1769941623610
+    },
+    "coding-agent": {
+      "version": "1.0.1",
+      "installedAt": 1769959048035
+    },
+    "ai-explain": {
+      "version": "1.0.1",
+      "installedAt": 1769959056870
+    },
+    "ai-codemod": {
+      "version": "1.0.1",
+      "installedAt": 1769959062680
+    },
+    "git-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1769959082061
+    },
+    "github-action-gen": {
+      "version": "1.0.2",
+      "installedAt": 1769959094154
+    },
+    "deep-research": {
+      "version": "1.0.1",
+      "installedAt": 1769960275341
+    },
+    "research-tracker": {
+      "version": "0.1.0",
+      "installedAt": 1769960323718
+    },
+    "moltresearch": {
+      "version": "1.1.0",
+      "installedAt": 1769960335021
+    },
+    "reddit-insights": {
+      "version": "1.2.0",
+      "installedAt": 1769960345780
+    },
+    "voice-wake-say": {
+      "version": "1.0.1",
+      "installedAt": 1769962788631
+    },
+    "local-whisper": {
+      "version": "1.0.0",
+      "installedAt": 1769962835428
+    },
+    "elevenlabs-stt": {
+      "version": "1.0.0",
+      "installedAt": 1769962852584
+    },
+    "prompt-guard": {
+      "version": "2.5.2",
+      "installedAt": 1769963953505
+    },
+    "clawdbot-security-suite": {
+      "version": "1.0.0",
+      "installedAt": 1769963965799
+    },
+    "security-audit": {
+      "version": "1.0.0",
+      "installedAt": 1769963979272
+    },
+    "pre-mortem-analyst": {
+      "version": "1.0.0",
+      "installedAt": 1769964000162
+    },
+    "focus-deep-work": {
+      "version": "1.0.0",
+      "installedAt": 1769964025155
+    },
+    "database": {
+      "version": "1.1.0",
+      "installedAt": 1769964087459
+    },
+    "task-status": {
+      "version": "1.0.0",
+      "installedAt": 1769964324323
+    },
+    "pokemon-red": {
+      "version": "1.2.0",
+      "installedAt": 1769965305265
+    },
+    "todo": {
+      "version": "1.1.0",
+      "installedAt": 1769965377683
+    },
+    "flomo-notes": {
+      "version": "0.1.0",
+      "installedAt": 1769965400749
+    },
+    "japanese-translation-and-tutor": {
+      "version": "1.0.0",
+      "installedAt": 1769965417529
+    },
+    "roast-gen": {
+      "version": "1.0.0",
+      "installedAt": 1769965491845
+    },
+    "gifhorse": {
+      "version": "1.0.1",
+      "installedAt": 1769965518164
+    },
+    "timer": {
+      "version": "1.0.0",
+      "installedAt": 1769965547690
+    },
+    "nano-banana": {
+      "version": "1.0.1",
+      "installedAt": 1770386871910
+    },
+    "nano-banana-pro": {
+      "version": "1.0.1",
+      "installedAt": 1770387597903
+    }
+  }
+}

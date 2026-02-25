@@ -1,0 +1,27 @@
+{
+  "name": "@clawd/feishu-voice-transcribe",
+  "version": "1.0.0",
+  "description": "Auto-transcribe Feishu voice messages using ElevenLabs STT",
+  "main": "plugin.js",
+  "type": "commonjs",
+  "keywords": [
+    "clawdbot",
+    "openclaw",
+    "plugin",
+    "feishu",
+    "voice",
+    "transcription",
+    "stt"
+  ],
+  "author": "Qianxin AI",
+  "license": "MIT",
+  "clawdbot": {
+    "emoji": "🎙️",
+    "requires": {
+      "env": ["ELEVENLABS_API_KEY"]
+    },
+    "extensions": [
+      "./plugin.js"
+    ]
+  }
+}

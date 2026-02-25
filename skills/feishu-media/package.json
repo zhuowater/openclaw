@@ -1,0 +1,16 @@
+{
+  "name": "feishu-media",
+  "version": "2.0.0",
+  "description": "飞书媒体发送工具 - 使用 Lark SDK 可靠发送图片",
+  "type": "module",
+  "main": "send-image.js",
+  "scripts": {
+    "test": "node send-image.js"
+  },
+  "keywords": ["feishu", "lark", "media", "image", "upload", "sdk"],
+  "author": "奇安信机器人",
+  "license": "MIT",
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.30.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "twilio-voice-call",
+  "version": "0.1.0",
+  "description": "Twilio real-time voice call integration with AI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "call": "node make-call.js"
+  },
+  "dependencies": {
+    "twilio": "^5.3.5",
+    "express": "^4.21.2",
+    "ws": "^8.18.0",
+    "openai": "^4.77.3",
+    "dotenv": "^16.4.7"
+  }
+}

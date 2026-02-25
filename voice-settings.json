@@ -1,0 +1,13 @@
+{
+  "voice_id": "W8lBaQb9YIoddhxfQNLP",
+  "voice_name": "Siqi Liu",
+  "model": "eleven_v3",
+  "settings": {
+    "stability": 0.3,
+    "similarity_boost": 0.5,
+    "style": 0.6,
+    "use_speaker_boost": true
+  },
+  "notes": "用户偏好：起伏变化 + 自然风格",
+  "updated": "2026-02-02 21:05"
+}

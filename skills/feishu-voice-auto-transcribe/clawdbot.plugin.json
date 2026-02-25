@@ -1,0 +1,20 @@
+{
+  "id": "feishu-voice-transcribe",
+  "name": "Feishu Voice Auto-Transcribe",
+  "version": "1.0.0",
+  "description": "Automatically transcribe Feishu voice messages using ElevenLabs STT",
+  "author": "Qianxin AI",
+  "emoji": "🎙️",
+  "homepage": "https://github.com/qianxin/feishu-voice-transcribe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qianxin/feishu-voice-transcribe.git"
+  },
+  "requires": {
+    "env": ["ELEVENLABS_API_KEY"]
+  },
+  "capabilities": {
+    "hooks": ["before_agent_start"],
+    "channels": ["feishu"]
+  }
+}
