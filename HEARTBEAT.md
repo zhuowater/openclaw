@@ -7,6 +7,12 @@
 - 地缘政治：重大事件和局势变化
 - 技术突破：AI、量子、芯片等领域进展
 - 金融市场：加密货币、股市异常
+- **X/Twitter 社交媒体情报**（新增）：使用 grok-x-search 搜索 X 上热点讨论
+  ```bash
+  SKYEYE_API_KEY="sk-89XhzQp0oA4mj2fxBcC295C6DeFa4303A70e0f116250A468" \
+  node /root/openclaw/skills/grok-x-search/index.js search "关键词" --lang zh
+  ```
+  重点搜索：网安圈讨论、新漏洞披露、AI安全争议、行业动态
 
 **输出要求：**
 - 事实描述 + 影响评估 + 趋势预判 + 行动建议 + 深层洞见
