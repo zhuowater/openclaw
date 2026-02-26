@@ -1,0 +1,6 @@
+{
+  "name": "meeting-prep",
+  "version": "1.0.0",
+  "description": "Automatic meeting context preparation from calendar and memory",
+  "type": "module"
+}
