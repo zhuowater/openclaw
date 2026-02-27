@@ -495,6 +495,9 @@ const CRITICAL_PROTECTED_FILES = [
 function isCriticalProtectedPath(relPath) {
   const rel = normalizeRelPath(relPath);
   if (!rel) return false;
+  // Allow evolver's own GEP asset files (events.jsonl, genes.json, capsules.json, etc.)
+  // These are necessarily modified during the evolution process itself.
+  if (rel.startsWith('skills/evolver/assets/gep/') || rel.startsWith('skills/evolver/memory/') || rel.startsWith('skills/evolver/logs/')) return false;
   // Check protected prefixes (skill directories)
   for (const prefix of CRITICAL_PROTECTED_PREFIXES) {
     const p = prefix.replace(/\/+$/, '');
