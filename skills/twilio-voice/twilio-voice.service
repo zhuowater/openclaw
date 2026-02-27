@@ -1,0 +1,19 @@
+[Unit]
+Description=Twilio Voice AI Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/openclaw/skills/twilio-voice
+Environment="SKYEYE_API_KEY=sk-89XhzQp0oA4mj2fxBcC295C6DeFa4303A70e0f116250A468"
+Environment="PORT=8765"
+ExecStart=/root/openclaw/skills/twilio-voice/start.sh
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=twilio-voice
+
+[Install]
+WantedBy=multi-user.target

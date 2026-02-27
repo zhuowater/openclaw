@@ -1,0 +1,30 @@
+{
+  "description": "每日洞见发布计划 — 每天10:00发一篇analysis到X",
+  "published": [
+    {
+      "date": "2026-02-27",
+      "file": "hairy-ball-theorem-security-insight.md",
+      "title": "毛球定理与网络安全",
+      "tweetId": "2027312094736204095",
+      "tweets": 8
+    }
+  ],
+  "queue": [
+    "security-operations-evolution.md",
+    "cap-theorem-security.md",
+    "entropy-security-degradation.md",
+    "arrow-impossibility-security.md",
+    "shannon-entropy-cryptography.md",
+    "brouwer-fixed-point-security.md",
+    "godel-incompleteness-security.md",
+    "halting-kolmogorov-malware.md",
+    "poincare-hopf-architecture.md",
+    "heisenberg-monitoring.md",
+    "three-hop-attack-deep-analysis.md",
+    "game-theory-ai-security.md",
+    "renormalization-security.md",
+    "emergent-security-threats.md",
+    "insight-13-ai-security-trinity.md",
+    "insight-18-three-hop-supply-chain.md"
+  ]
+}
