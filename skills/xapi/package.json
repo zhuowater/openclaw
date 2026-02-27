@@ -1,0 +1,21 @@
+{
+  "name": "@openclaw/xapi",
+  "version": "1.0.0",
+  "description": "X (Twitter) API v2 Skill for OpenClaw - Search, post, read, and engage",
+  "main": "index.js",
+  "scripts": {
+    "cli": "node scripts/xapi.js"
+  },
+  "keywords": [
+    "twitter",
+    "x",
+    "api",
+    "oauth",
+    "social-media"
+  ],
+  "dependencies": {
+    "socks-proxy-agent": "^8.0.4"
+  },
+  "author": "OpenClaw",
+  "license": "MIT"
+}

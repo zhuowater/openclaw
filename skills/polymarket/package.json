@@ -1,0 +1,15 @@
+{
+  "name": "polymarket-skill",
+  "version": "1.0.0",
+  "description": "Polymarket trading skill for OpenClaw — market queries, auth, and trading via REST API with SOCKS5 proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"const p = require('.'); console.log('Exports:', Object.keys(p))\"",
+    "markets": "node scripts/polymarket.js markets --limit 3"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "socks-proxy-agent": "^8.0.2",
+    "node-fetch": "^2.7.0"
+  }
+}

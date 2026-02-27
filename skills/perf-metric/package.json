@@ -1,0 +1,5 @@
+{
+  "name": "perf-metric",
+  "version": "1.0.0",
+  "description": "Evolution performance dashboard — analyzes GEP events, genes, and capsules to produce actionable metrics"
+}
