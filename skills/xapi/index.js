@@ -1,5 +1,5 @@
 const { searchTweets } = require('./lib/search');
-const { postTweet, deleteTweet, getTweet } = require('./lib/tweet');
+const { postTweet, postThread, postArticle, deleteTweet, getTweet, bookmarkTweet, getBookmarks, followUser, unfollowUser, getFollowers, getFollowing } = require('./lib/tweet');
 const { getUserByUsername, getUserTimeline } = require('./lib/timeline');
 const { likeTweet, unlikeTweet, retweet, undoRetweet, getMe } = require('./lib/engage');
 
@@ -7,8 +7,10 @@ module.exports = {
   // Search
   searchTweets,
   
-  // Tweet operations
+  // Tweet operations (Premium: long tweets up to 25K chars)
   postTweet,
+  postThread,
+  postArticle,
   deleteTweet,
   getTweet,
   
@@ -21,5 +23,15 @@ module.exports = {
   unlikeTweet,
   retweet,
   undoRetweet,
-  getMe
+  getMe,
+  
+  // Premium features
+  bookmarkTweet,
+  getBookmarks,
+  
+  // Social graph
+  followUser,
+  unfollowUser,
+  getFollowers,
+  getFollowing
 };
