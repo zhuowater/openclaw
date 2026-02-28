@@ -23,7 +23,7 @@ skills/polymarket/
 ├── scripts/
 │   └── polymarket.js # CLI tool
 └── lib/
-    ├── client.js     # HTTP client with SOCKS5 proxy
+    ├── client.js     # HTTP client with SOCKS5 proxy (Gamma + CLOB + Data APIs)
     ├── auth.js       # L1 (EIP-712) & L2 (HMAC) auth
     └── trading.js    # Orders, positions, balance
 ```
@@ -140,8 +140,24 @@ node scripts/polymarket.js create-key
 
 ## Key Details
 
-- **Gamma API**: `https://gamma-api.polymarket.com` — public market data
-- **CLOB API**: `https://clob.polymarket.com` — trading endpoints
+- **CLOB API**: `https://clob.polymarket.com` — trading, orders, balance, authentication. Requires HMAC auth for most endpoints.
+- **Data API**: `https://data-api.polymarket.com` — positions, market history, profile data. **No auth needed.** This is where `/positions` lives.
+- **Gamma API**: `https://gamma-api.polymarket.com` — market metadata, events, market browsing. No auth needed.
 - **Chain**: Polygon (chainId 137)
 - **Token amounts**: USDC with 6 decimals
 - **Order signing**: EIP-712 via Polymarket CTF Exchange contract
+
+### ⚠️ API Endpoint Mapping (Important!)
+
+| Endpoint | API | Auth? | Notes |
+|---|---|---|---|
+| `/positions` | **Data API** | No | Use `?user=<funder_address>` |
+| `/balance-allowance` | CLOB API | Yes (HMAC) | Use `?signature_type=1` for proxy wallets |
+| `/order` | CLOB API | Yes (HMAC) | Place orders |
+| `/data/orders` | CLOB API | Yes (HMAC) | List open orders |
+| `/trades` | CLOB API | Yes (HMAC) | Trade history |
+| `/book` | CLOB API | No | Order book (public) |
+| `/midpoint`, `/price` | CLOB API | No | Price data (public) |
+| `/markets`, `/events` | Gamma API | No | Market metadata |
+
+**Common mistake**: Do NOT request `/positions` on CLOB API — it doesn't exist there and will return 404.

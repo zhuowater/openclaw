@@ -8,6 +8,7 @@ const { SocksProxyAgent } = require('socks-proxy-agent');
 
 const GAMMA_API = 'https://gamma-api.polymarket.com';
 const CLOB_API  = 'https://clob.polymarket.com';
+const DATA_API  = 'https://data-api.polymarket.com';
 
 function getProxyAgent() {
   const proxy = process.env.SOCKS5_PROXY || 'socks5://127.0.0.1:7880';
@@ -155,9 +156,25 @@ async function getLastTradePrice(tokenId) {
   return clobGet(`/last-trade-price?token_id=${encodeURIComponent(tokenId)}`);
 }
 
+// ── Data API (public, no auth) ───────────────────────────────
+
+/**
+ * Data API GET — for positions, market history, profile data.
+ * No authentication required.
+ */
+async function dataGet(path, params = {}) {
+  const qs = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) {
+    if (v !== undefined && v !== null) qs.set(k, String(v));
+  }
+  const query = qs.toString();
+  return request(`${DATA_API}${path}${query ? '?' + query : ''}`);
+}
+
 module.exports = {
   GAMMA_API,
   CLOB_API,
+  DATA_API,
   getProxyAgent,
   request,
   // Gamma
@@ -170,6 +187,8 @@ module.exports = {
   getMidpoint,
   getPrice,
   getLastTradePrice,
+  // Data API
+  dataGet,
   // Low-level CLOB
   clobGet,
   clobPost,

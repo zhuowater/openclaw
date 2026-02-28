@@ -3,7 +3,7 @@
  * All authenticated endpoints use L2 HMAC auth.
  */
 
-const { clobGet, clobPost, clobDelete } = require('./client');
+const { clobGet, clobPost, clobDelete, dataGet } = require('./client');
 const { getWallet, getCredentials, buildL2Headers, buildL1Headers } = require('./auth');
 
 // ── Authenticated request helpers ───────────────────────────
@@ -194,11 +194,13 @@ async function getOrder(orderId, privateKey) {
 // ── Positions & Account ─────────────────────────────────────
 
 /**
- * Get current positions.
+ * Get current positions via Data API (no auth needed).
+ * The /positions endpoint is on the Data API, NOT the CLOB API.
+ * Uses funder address (proxy wallet) as the user identifier.
  */
 async function getPositions(privateKey) {
-  const { address, funder, creds } = await initTrading(privateKey);
-  return authedGet('/positions', creds, address);
+  const { funder } = await initTrading(privateKey);
+  return dataGet('/positions', { user: funder });
 }
 
 /**

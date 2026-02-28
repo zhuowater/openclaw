@@ -56,6 +56,21 @@ node /root/openclaw/skills/feishu-file-send/send-file.js \
 - 文件大小: 最大 30MB
 - 目标: 仅支持用户 open_id (ou_xxx),不支持群组
 
+### Polymarket
+- **凭据**: 用 gateway env 里的原始凭据，**不要自行创建/替换 key**
+- **持仓查询**: 用 Data API `https://data-api.polymarket.com/positions?user=<funder>` (无需认证)
+- **交易/余额**: 用 CLOB API (`clob.polymarket.com`) + 原始 HMAC 凭据
+- **API 区分** ⚠️: `/positions` **从来不在 CLOB API 上**，它属于 Data API (`data-api.polymarket.com`)。CLOB API 只处理交易/订单/余额。之前报 404 是调错了域名，不是端点被移除。
+- **教训 (2026-02-28)**:
+  1. 端点 404 ≠ key 过期，先用 balance 验证 key 再判断
+  2. 搞清楚端点属于哪个 API（CLOB vs Data vs Gamma），不要盲猜域名
+  3. 用户给的凭据不要自作主张替换/重建
+- **Polymarket API 三件套**:
+  - CLOB API (`clob.polymarket.com`): 交易/订单/余额，需 HMAC 认证
+  - Data API (`data-api.polymarket.com`): 持仓/市场数据/历史，无需认证
+  - Gamma API (`gamma-api.polymarket.com`): 市场元数据/事件信息，无需认证
+- Proxy: 所有请求走 `socks5h://127.0.0.1:7880`
+
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
