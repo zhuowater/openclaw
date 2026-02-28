@@ -1,0 +1,8 @@
+{
+  "last_scan": null,
+  "action_items": [],
+  "watch_list": [],
+  "baseline": {
+    "note": "Persistent state across intel scans. Updated by each cron run."
+  }
+}
