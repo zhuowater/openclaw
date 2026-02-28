@@ -77,6 +77,20 @@ node /root/openclaw/skills/feishu-file-send/send-file.js \
   4. **读完整市场描述**，不只看标题（"US or Israel" 不只是 "US"）
   5. 设止损：单仓亏损 >30% 减仓
   6. 地缘政治高波动 → 只用彩票策略（小注大赔率）
+  7. **先查 order book 再下单** — 显示 46% 不代表能 46% 买到，spread 1%-99% 的市场等于没流动性
+  8. **X 搜索验证交易假设** — 实时情报比模型推理靠谱
+- **交易技术教训** (2026-02-28):
+  - HMAC 签名: path 不含 query string（`path.split('?')[0]`）
+  - Order owner: API key 字符串（uuid），不是钱包地址（0x...）
+  - EIP-712 签名: 用 Python `py_order_utils`，Node ethers 不兼容
+  - 合约地址: Regular `0x4bFb41d5...`，negRisk `0xC5d563A3...`，不要搞反
+  - negRisk 市场无独立 order book，需要 adapter 交易
+  - 最小订单量: 5 shares
+
+### Evolver / EvoMap
+- **Heartbeat daemon**: 不能对 timer 调用 `unref()`，否则 Node 进程直接退出
+- **Cron 调度**: 关键任务用 cron 表达式，不用 `everyMs`（gateway 重启后 anchor 漂移）
+- **当前配置**: heartbeat 每 5 分钟, evolution 每天 02/08/14/20 点
 
 ---
 
