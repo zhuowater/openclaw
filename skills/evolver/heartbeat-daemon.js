@@ -31,7 +31,9 @@ startHeartbeat();
 // Keep process alive with a ref'ed timer
 console.log('[Heartbeat Daemon] Running. Press Ctrl+C to stop.');
 
-// Prevent process from exiting
-setInterval(() => {
+// Prevent process from exiting — use a ref'ed timer
+const keepAlive = setInterval(() => {
   // Just keep alive, heartbeat is handled by startHeartbeat()
 }, 60000);
+// Ensure this timer keeps the event loop alive (do NOT unref)
+if (keepAlive.ref) keepAlive.ref();

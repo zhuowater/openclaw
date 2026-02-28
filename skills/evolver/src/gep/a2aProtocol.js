@@ -360,8 +360,8 @@ function startHeartbeat(intervalMs) {
     sendHeartbeat().catch(function () {});
   }, interval);
 
-  // Don't let the heartbeat timer prevent process exit
-  if (_heartbeatTimer.unref) _heartbeatTimer.unref();
+  // Keep the heartbeat timer ref'd so daemon mode works
+  // if (_heartbeatTimer.unref) _heartbeatTimer.unref();
 }
 
 function stopHeartbeat() {
