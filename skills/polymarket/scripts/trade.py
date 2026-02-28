@@ -188,9 +188,10 @@ def place_order(token_id, side, price, size):
     signed = builder.build_signed_order(order_data)
     order_dict = signed.dict()
 
+    # CRITICAL: owner = API key string (not wallet address!)
     body = {
         "order": order_dict,
-        "owner": maker,
+        "owner": api_key,
         "orderType": "GTC",
     }
 

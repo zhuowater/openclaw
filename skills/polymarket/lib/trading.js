@@ -88,7 +88,7 @@ async function placeOrder(opts, privateKey) {
   }
 
   // Sign the order with EIP-712 (proxy wallet aware)
-  const orderPayload = await signOrder(wallet, order, funder, sigType, { negRisk });
+  const orderPayload = await signOrder(wallet, order, funder, sigType, { negRisk, creds });
 
   return authedPost('/order', orderPayload, creds, address);
 }
@@ -101,6 +101,7 @@ async function signOrder(wallet, order, funder, sigType, opts) {
   // Choose contract based on negRisk flag
   // negRisk markets use NegRiskCTFExchange, regular markets use CTFExchange
   const isNegRisk = opts && opts.negRisk !== undefined ? opts.negRisk : true; // default true for backward compat
+  const creds = opts && opts.creds;
   const verifyingContract = isNegRisk
     ? '0xC5d563A36AE78145C45a50134d48A1215220f80a'  // Neg Risk CTF Exchange (Polygon)
     : '0x4bFb41d5B3570DeFd03C39a9A4D8dE6Bd8B8982E'; // CTF Exchange (regular, Polygon)
@@ -165,8 +166,9 @@ async function signOrder(wallet, order, funder, sigType, opts) {
 
   const signature = await wallet._signTypedData(domain, types, orderData);
 
-  // Build the POST payload — note: side must be string "BUY"/"SELL" for API
-  // (signing uses numeric 0/1, but the POST body uses string)
+  // Build the POST payload
+  // CRITICAL: owner = API key string (not wallet address!)
+  // side must be string "BUY"/"SELL" for the API
   const postOrder = {
     ...orderData,
     side:          order.side === 'BUY' ? 'BUY' : 'SELL',
@@ -181,7 +183,7 @@ async function signOrder(wallet, order, funder, sigType, opts) {
 
   return {
     order:     postOrder,
-    owner:     makerAddress,
+    owner:     creds.apiKey || creds.key || process.env.POLYMARKET_API_KEY,
     orderType: order.type || 'GTC',
   };
 }
