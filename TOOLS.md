@@ -70,6 +70,13 @@ node /root/openclaw/skills/feishu-file-send/send-file.js \
   - Data API (`data-api.polymarket.com`): 持仓/市场数据/历史，无需认证
   - Gamma API (`gamma-api.polymarket.com`): 市场元数据/事件信息，无需认证
 - Proxy: 所有请求走 `socks5h://127.0.0.1:7880`
+- **交易纪律** ⚠️ (2026-02-28 血的教训):
+  1. 单一主题仓位上限 15%（伊朗踩了 31% 全亏）
+  2. 同方向不重复建仓——一个论点只下一注
+  3. 不买价格 >$0.85 的 NO（赔率 1:6+ 太差）
+  4. **读完整市场描述**，不只看标题（"US or Israel" 不只是 "US"）
+  5. 设止损：单仓亏损 >30% 减仓
+  6. 地缘政治高波动 → 只用彩票策略（小注大赔率）
 
 ---
 
