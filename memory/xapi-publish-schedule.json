@@ -7,10 +7,16 @@
       "title": "毛球定理与网络安全",
       "tweetId": "2027312094736204095",
       "tweets": 8
+    },
+    {
+      "date": "2026-02-28",
+      "file": "security-operations-evolution.md",
+      "title": "安全运营的拓扑进化：从'梳毛球'到'可控失败'",
+      "tweetId": "2027564867121779145",
+      "tweets": 8
     }
   ],
   "queue": [
-    "security-operations-evolution.md",
     "cap-theorem-security.md",
     "entropy-security-degradation.md",
     "arrow-impossibility-security.md",
