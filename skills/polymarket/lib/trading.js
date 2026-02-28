@@ -60,37 +60,43 @@ async function initTrading(privateKey) {
  * @param {string} [privateKey]
  */
 async function placeOrder(opts, privateKey) {
-  const { wallet, address, funder, sigType, creds } = await initTrading(privateKey);
-
-  const order = {
-    tokenID:    opts.tokenId,
-    side:       opts.side.toUpperCase(),
-    price:      opts.price,
-    size:       opts.size,
-    type:       opts.type || 'GTC',
-    feeRateBps: opts.feeRateBps || 0,
-  };
-
-  if (opts.expiration) {
-    order.expiration = opts.expiration;
-  }
-
-  // Auto-detect negRisk from market data if not explicitly set
-  let negRisk = opts.negRisk;
-  if (negRisk === undefined) {
-    try {
-      const { request } = require('./client');
-      const markets = await request('https://gamma-api.polymarket.com/markets?clob_token_ids=' + opts.tokenId);
-      negRisk = markets[0]?.negRisk === true;
-    } catch (e) {
-      negRisk = true; // fallback to negRisk for safety
+  // Use Python trade.py for order signing (py_order_utils produces correct EIP-712 signatures)
+  // Node's ethers _signTypedData produces signatures that CLOB rejects as "Invalid order payload"
+  const { execSync } = require('child_process');
+  const path = require('path');
+  const scriptPath = path.join(__dirname, '..', 'scripts', 'trade.py');
+  
+  const side = opts.side.toUpperCase();
+  const cmd = `python3 ${scriptPath} ${side.toLowerCase()} "${opts.tokenId}" --price ${opts.price} --size ${opts.size}`;
+  
+  try {
+    const output = execSync(cmd, {
+      encoding: 'utf-8',
+      timeout: 30000,
+      env: { ...process.env },
+    });
+    
+    // Parse the response from trade.py output
+    const lines = output.trim().split('\n');
+    const responseLine = lines.find(l => l.startsWith('Response:'));
+    if (responseLine) {
+      const jsonStr = responseLine.replace('Response:', '').trim();
+      return JSON.parse(jsonStr);
     }
+    
+    // Check for status line
+    const statusLine = lines.find(l => l.startsWith('Status:'));
+    if (statusLine && statusLine.includes('200')) {
+      return { success: true, output };
+    }
+    
+    throw new Error('Trade failed: ' + output);
+  } catch (e) {
+    if (e.stdout) {
+      throw new Error('Trade failed: ' + e.stdout + (e.stderr || ''));
+    }
+    throw e;
   }
-
-  // Sign the order with EIP-712 (proxy wallet aware)
-  const orderPayload = await signOrder(wallet, order, funder, sigType, { negRisk, creds });
-
-  return authedPost('/order', orderPayload, creds, address);
 }
 
 /**
