@@ -69,6 +69,13 @@ const commands = {
     console.log(JSON.stringify(result, null, 2));
   },
 
+  feed: async (args) => {
+    const limit = args.includes('--limit') ? parseInt(args[args.indexOf('--limit') + 1]) : 20;
+    const me = await xapi.getMe();
+    const result = await xapi.getHomeTimeline(me.data.id, { limit });
+    console.log(JSON.stringify(result, null, 2));
+  },
+
   like: async (args) => {
     const tweetId = args[0];
     if (!tweetId) { console.error('Usage: xapi.js like <tweet_id>'); process.exit(1); }

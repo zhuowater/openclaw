@@ -31,7 +31,6 @@ async function getUserTimeline(username, options = {}) {
   // First, get user ID
   let userId;
   if (username.match(/^\d+$/)) {
-    // Already a user ID
     userId = username;
   } else {
     const userResult = await getUserByUsername(username);
@@ -53,4 +52,28 @@ async function getUserTimeline(username, options = {}) {
   }
 }
 
-module.exports = { getUserByUsername, getUserTimeline };
+/**
+ * Get home timeline (For You / Following feed).
+ * Requires user context auth (OAuth 1.0a).
+ * This is what X recommends to the authenticated user.
+ */
+async function getHomeTimeline(userId, options = {}) {
+  const client = new XAPIClient();
+  const { limit = 20 } = options;
+
+  const queryParams = {
+    max_results: Math.min(limit, 100),
+    'tweet.fields': 'created_at,public_metrics,entities,author_id',
+    'user.fields': 'name,username,verified',
+    expansions: 'author_id'
+  };
+
+  try {
+    const result = await client.request('GET', `/2/users/${userId}/timelines/reverse_chronological`, { queryParams });
+    return result;
+  } catch (error) {
+    throw new Error(`Get home timeline failed: ${JSON.stringify(error)}`);
+  }
+}
+
+module.exports = { getUserByUsername, getUserTimeline, getHomeTimeline };
