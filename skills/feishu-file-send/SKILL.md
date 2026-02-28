@@ -1,3 +1,8 @@
+---
+name: feishu-file-send
+description: 绕过飞书插件 bug，直接调用飞书 API 发送文件。当需要发送 .md/.txt/.json 等文件，或 message tool 报 400 错误时使用。
+---
+
 # Feishu File Send Skill
 
 **触发场景**: 当需要通过飞书发送文件给用户时使用此技能

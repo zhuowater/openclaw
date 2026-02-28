@@ -1,46 +1,36 @@
 {
   "last_run": {
-    "run_id": "run_1772290269634",
-    "created_at": "2026-02-28T14:51:09.646Z",
-    "parent_event_id": "evt_1772165508807",
-    "selected_gene_id": "gene_gep_innovate_from_opportunity",
+    "run_id": "run_1772301608954",
+    "created_at": "2026-02-28T18:00:08.965Z",
+    "parent_event_id": "evt_1772290347297",
+    "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
     "selected_capsule_id": "capsule_1771747065506",
     "selector": {
-      "selected": "gene_gep_innovate_from_opportunity",
+      "selected": "gene_gep_optimize_prompt_and_assets",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: protocol_drift, repeated_tool_usage:exec, high_tool_usage:process, empty_cycle_loop_detected, stable_success_plateau",
-        "memory_graph: memory_prefer:gene_auto_a46bf5e7 | gene_prior:0.750",
+        "signals: protocol_drift",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | memory_ban:gene_gep_repair_from_errors | gene_prior:0.800",
         "drift_intensity: 0.500"
       ],
-      "alternatives": [
-        "gene_gep_optimize_prompt_and_assets"
-      ]
+      "alternatives": []
     },
     "signals": [
-      "protocol_drift",
-      "repeated_tool_usage:exec",
-      "high_tool_usage:process",
-      "empty_cycle_loop_detected",
-      "stable_success_plateau"
+      "protocol_drift"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772290269632",
+      "id": "mut_1772301608951",
       "category": "innovate",
       "trigger_signals": [
-        "protocol_drift",
-        "repeated_tool_usage:exec",
-        "high_tool_usage:process",
-        "empty_cycle_loop_detected",
-        "stable_success_plateau"
+        "protocol_drift"
       ],
-      "target": "gene:gene_gep_innovate_from_opportunity",
+      "target": "gene:gene_gep_optimize_prompt_and_assets",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1772290269632",
+    "mutation_id": "mut_1772301608951",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -54,23 +44,23 @@
     "personality_mutations": [],
     "drift": false,
     "selected_by": "memory_graph+selector",
-    "source_type": "generated",
-    "reused_asset_id": null,
-    "reused_source_node": null,
+    "source_type": "reference",
+    "reused_asset_id": "sha256:8b87775359eb40ac60f8b8fb8bd72ee4a025b6532f60077d2a43c3ffce228264",
+    "reused_source_node": "node_43729c7e22ed9fc6",
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "6248ff8a1f5889a2b0810df1673762158f388acd",
+    "baseline_git_head": "610783ef4c35192e8f618dcd1926ec5dc52c2cdc",
     "blast_radius_estimate": {
-      "files": 25,
-      "lines": 2000
+      "files": 20,
+      "lines": 1600
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1772290269634",
-    "at": "2026-02-28T14:52:27.297Z",
-    "event_id": "evt_1772290347297",
+    "run_id": "run_1772301608954",
+    "at": "2026-02-28T18:04:15.967Z",
+    "event_id": "evt_1772301855967",
     "capsule_id": "capsule_1771747065506",
     "outcome": {
       "status": "success",

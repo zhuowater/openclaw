@@ -31,7 +31,7 @@ function checkSkillMd(skillPath) {
   }
   
   const content = fs.readFileSync(skillMdPath, 'utf8');
-  const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---/);
+  const frontmatterMatch = content.match(/^---\r?\n([\s\S]+?)\r?\n---/);
   
   if (!frontmatterMatch) {
     return { valid: false, reason: 'YAML frontmatter missing' };
@@ -66,35 +66,86 @@ function checkPackageJson(skillPath) {
 }
 
 /**
+ * Classify skill type: 'code' (has index.js), 'doc-only' (SKILL.md only), or 'empty'
+ */
+function classifySkill(skillPath) {
+  const hasIndex = fs.existsSync(path.join(skillPath, 'index.js'));
+  const hasSkillMd = fs.existsSync(path.join(skillPath, 'SKILL.md'));
+  const hasScripts = fs.existsSync(path.join(skillPath, 'scripts'));
+  if (hasIndex) return 'code';
+  if (hasSkillMd || hasScripts) return 'doc-only';
+  return 'empty';
+}
+
+/**
+ * Check SKILL.md content quality (word count, section structure)
+ */
+function checkSkillMdQuality(skillPath) {
+  const skillMdPath = path.join(skillPath, 'SKILL.md');
+  if (!fs.existsSync(skillMdPath)) return null;
+  const content = fs.readFileSync(skillMdPath, 'utf8');
+  const bodyStart = content.indexOf('---', 4);
+  const body = bodyStart > 0 ? content.slice(bodyStart + 3).trim() : content;
+  const wordCount = body.split(/\s+/).filter(Boolean).length;
+  const lineCount = body.split('\n').length;
+  const hasHeaders = /^##?\s/m.test(body);
+  const hasCodeBlock = /```/.test(body);
+  const warnings = [];
+  if (wordCount < 20) warnings.push('Very short SKILL.md body (< 20 words)');
+  if (lineCount > 500) warnings.push('SKILL.md exceeds 500 lines (protocol recommends concise docs)');
+  if (!hasHeaders && wordCount > 50) warnings.push('No section headers in SKILL.md');
+  return { wordCount, lineCount, hasHeaders, hasCodeBlock, warnings };
+}
+
+/**
  * Scan a single skill
  */
 function scanSkill(skillName, skillPath) {
+  const skillType = classifySkill(skillPath);
   const result = {
     name: skillName,
     path: skillPath,
+    type: skillType,
     healthy: true,
-    issues: []
+    issues: [],
+    warnings: []
   };
-  
-  // Check structure
-  const loadCheck = checkLoadability(skillPath);
-  if (!loadCheck.loadable) {
-    result.healthy = false;
-    result.issues.push(`Loadability: ${loadCheck.reason}`);
-  }
-  
+
+  // All skills must have SKILL.md
   const skillMdCheck = checkSkillMd(skillPath);
   if (!skillMdCheck.valid) {
-    result.healthy = false;
-    result.issues.push(`SKILL.md: ${skillMdCheck.reason}`);
+    // Missing SKILL.md is an issue for all types
+    if (skillType === 'empty') {
+      result.healthy = false;
+      result.issues.push(`Empty skill directory (no SKILL.md, no index.js)`);
+    } else {
+      result.issues.push(`SKILL.md: ${skillMdCheck.reason}`);
+      // For doc-only, missing SKILL.md is critical; for code, it's a warning
+      if (skillType === 'doc-only') result.healthy = false;
+      else result.warnings.push(`SKILL.md: ${skillMdCheck.reason}`);
+    }
   }
-  
-  const pkgCheck = checkPackageJson(skillPath);
-  if (!pkgCheck.valid) {
-    result.healthy = false;
-    result.issues.push(`package.json: ${pkgCheck.reason}`);
+
+  // SKILL.md quality check
+  const quality = checkSkillMdQuality(skillPath);
+  if (quality && quality.warnings.length > 0) {
+    result.warnings.push(...quality.warnings);
   }
-  
+
+  // Code skills must be loadable and have package.json
+  if (skillType === 'code') {
+    const loadCheck = checkLoadability(skillPath);
+    if (!loadCheck.loadable) {
+      result.healthy = false;
+      result.issues.push(`Loadability: ${loadCheck.reason}`);
+    }
+
+    const pkgCheck = checkPackageJson(skillPath);
+    if (!pkgCheck.valid) {
+      result.warnings.push(`package.json: ${pkgCheck.reason}`);
+    }
+  }
+
   return result;
 }
 
@@ -122,15 +173,25 @@ function scanAllSkills() {
   
   const healthy = results.filter(r => r.healthy);
   const broken = results.filter(r => !r.healthy);
-  
+  const withWarnings = results.filter(r => r.healthy && r.warnings && r.warnings.length > 0);
+  const codeSkills = results.filter(r => r.type === 'code');
+  const docOnlySkills = results.filter(r => r.type === 'doc-only');
+
   return {
     timestamp: new Date().toISOString(),
     total: results.length,
     healthy: healthy.length,
     broken: broken.length,
+    withWarnings: withWarnings.length,
+    byType: {
+      code: codeSkills.length,
+      docOnly: docOnlySkills.length,
+      empty: results.filter(r => r.type === 'empty').length
+    },
     details: {
       healthy: healthy.map(r => r.name),
-      broken: broken.map(r => ({ name: r.name, issues: r.issues }))
+      broken: broken.map(r => ({ name: r.name, type: r.type, issues: r.issues })),
+      warnings: withWarnings.map(r => ({ name: r.name, warnings: r.warnings }))
     }
   };
 }
@@ -139,13 +200,16 @@ function scanAllSkills() {
 if (require.main === module) {
   const report = scanAllSkills();
   console.log(JSON.stringify(report, null, 2));
-  
+
   if (report.broken > 0) {
     console.error(`\n⚠️  ${report.broken} broken skills detected`);
-    process.exit(1);
-  } else {
-    console.log(`\n✅ All ${report.healthy} skills are healthy`);
   }
+  if (report.withWarnings > 0) {
+    console.error(`\n⚡ ${report.withWarnings} skills with warnings`);
+  }
+  console.log(`\n📊 ${report.byType.code} code | ${report.byType.docOnly} doc-only | ${report.total} total`);
+  if (report.broken > 0) process.exit(1);
+  else console.log(`✅ All ${report.healthy} skills are healthy`);
 }
 
-module.exports = { scanAllSkills, scanSkill };
+module.exports = { scanAllSkills, scanSkill, classifySkill, checkSkillMdQuality };

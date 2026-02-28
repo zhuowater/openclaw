@@ -1,6 +1,8 @@
-const { scanAllSkills, scanSkill } = require('./scripts/scan');
+const { scanAllSkills, scanSkill, classifySkill, checkSkillMdQuality } = require('./scripts/scan');
 
 module.exports = {
   scanAllSkills,
-  scanSkill
+  scanSkill,
+  classifySkill,
+  checkSkillMdQuality
 };

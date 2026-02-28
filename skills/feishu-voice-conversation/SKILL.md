@@ -1,3 +1,8 @@
+---
+name: feishu-voice-conversation
+description: 飞书语音对话技能 - 完整的语音输入输出循环。支持语音消息转录和语音回复。
+---
+
 # 飞书语音对话技能
 
 **完整的语音输入输出循环**
