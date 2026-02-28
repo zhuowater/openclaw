@@ -75,8 +75,20 @@ async function placeOrder(opts, privateKey) {
     order.expiration = opts.expiration;
   }
 
+  // Auto-detect negRisk from market data if not explicitly set
+  let negRisk = opts.negRisk;
+  if (negRisk === undefined) {
+    try {
+      const { request } = require('./client');
+      const markets = await request('https://gamma-api.polymarket.com/markets?clob_token_ids=' + opts.tokenId);
+      negRisk = markets[0]?.negRisk === true;
+    } catch (e) {
+      negRisk = true; // fallback to negRisk for safety
+    }
+  }
+
   // Sign the order with EIP-712 (proxy wallet aware)
-  const orderPayload = await signOrder(wallet, order, funder, sigType);
+  const orderPayload = await signOrder(wallet, order, funder, sigType, { negRisk });
 
   return authedPost('/order', orderPayload, creds, address);
 }
@@ -85,13 +97,19 @@ async function placeOrder(opts, privateKey) {
  * Sign a CLOB order using EIP-712 typed data.
  * The CLOB expects a signed order object.
  */
-async function signOrder(wallet, order, funder, sigType) {
-  // The CLOB order signing domain
+async function signOrder(wallet, order, funder, sigType, opts) {
+  // Choose contract based on negRisk flag
+  // negRisk markets use NegRiskCTFExchange, regular markets use CTFExchange
+  const isNegRisk = opts && opts.negRisk !== undefined ? opts.negRisk : true; // default true for backward compat
+  const verifyingContract = isNegRisk
+    ? '0xC5d563A36AE78145C45a50134d48A1215220f80a'  // Neg Risk CTF Exchange (Polygon)
+    : '0x4bFb41d5B3570DeFd03C39a9A4D8dE6Bd8B8982E'; // CTF Exchange (regular, Polygon)
+
   const domain = {
     name:              'Polymarket CTF Exchange',
     version:           '1',
     chainId:           137,
-    verifyingContract:  '0x4bFb41d5B3570DeFd03C39a9A4D8dE6Bd8B8982E', // Neg Risk CTF Exchange
+    verifyingContract,
   };
 
   const types = {
@@ -147,11 +165,22 @@ async function signOrder(wallet, order, funder, sigType) {
 
   const signature = await wallet._signTypedData(domain, types, orderData);
 
+  // Build the POST payload — note: side must be string "BUY"/"SELL" for API
+  // (signing uses numeric 0/1, but the POST body uses string)
+  const postOrder = {
+    ...orderData,
+    side:          order.side === 'BUY' ? 'BUY' : 'SELL',
+    makerAmount:   makerAmount.toString(),
+    takerAmount:   takerAmount.toString(),
+    expiration:    (order.expiration || '0').toString(),
+    nonce:         '0',
+    feeRateBps:    (order.feeRateBps || 0).toString(),
+    tokenId:       order.tokenID.toString(),
+    signature,
+  };
+
   return {
-    order: {
-      ...orderData,
-      signature,
-    },
+    order:     postOrder,
     owner:     makerAddress,
     orderType: order.type || 'GTC',
   };
