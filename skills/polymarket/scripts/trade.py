@@ -4,6 +4,7 @@ Polymarket order placement via requests + py_order_utils.
 Bypasses py_clob_client's httpx (which doesn't work with SOCKS proxy).
 
 Usage:
+  python3 trade.py lookup <market-slug>
   python3 trade.py derive-key
   python3 trade.py sell <token_id> --price 0.54 --size 8
   python3 trade.py buy <token_id> --price 0.05 --size 100
@@ -92,9 +93,54 @@ def get_market_info(token_id):
     """Get market metadata from Gamma API."""
     r = requests.get(f"{GAMMA_HOST}/markets?clob_token_ids={token_id}", proxies=PROXIES, timeout=15)
     markets = r.json()
-    if markets:
+    if isinstance(markets, list) and markets:
         return markets[0]
+    if isinstance(markets, dict):
+        return markets
     return None
+
+
+def lookup_market(slug):
+    """Lookup market by slug. Returns structured info with token IDs.
+
+    Handles both list and dict responses from Gamma API, preventing the
+    'TypeError: list indices must be integers or slices, not str' error.
+    """
+    # Try direct slug endpoint first (returns single object)
+    r = requests.get(f"{GAMMA_HOST}/markets/{slug}", proxies=PROXIES, timeout=15)
+    if r.status_code == 200:
+        data = r.json()
+        market = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
+        if market:
+            return _format_market_lookup(market)
+
+    # Fallback: query parameter (returns list)
+    r = requests.get(f"{GAMMA_HOST}/markets?slug={slug}", proxies=PROXIES, timeout=15)
+    if r.status_code == 200:
+        data = r.json()
+        market = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
+        if market:
+            return _format_market_lookup(market)
+
+    return None
+
+
+def _format_market_lookup(market):
+    """Extract key fields from a market object."""
+    tokens = market.get("clobTokenIds", [])
+    outcomes = market.get("outcomes", [])
+    result = {
+        "question": market.get("question", ""),
+        "condition_id": market.get("conditionId", ""),
+        "neg_risk": market.get("negRisk", False),
+        "active": market.get("active", False),
+        "tokens": {},
+    }
+    for i, outcome in enumerate(outcomes):
+        if i < len(tokens):
+            result["tokens"][outcome] = tokens[i]
+    return result
+
 
 def get_tick_size(token_id):
     """Get minimum tick size from CLOB API."""
@@ -212,6 +258,9 @@ def main():
     sub.add_parser("derive-key")
     sub.add_parser("create-key")
 
+    lookup_p = sub.add_parser("lookup", help="Lookup market by slug, returns token IDs")
+    lookup_p.add_argument("slug", help="Market slug (from URL)")
+
     buy_p = sub.add_parser("buy")
     buy_p.add_argument("token_id")
     buy_p.add_argument("--price", type=float, required=True)
@@ -228,6 +277,13 @@ def main():
         derive_key()
     elif args.cmd == "create-key":
         create_key()
+    elif args.cmd == "lookup":
+        info = lookup_market(args.slug)
+        if info:
+            print(json.dumps(info, indent=2, ensure_ascii=False))
+        else:
+            print(f"Market not found: {args.slug}", file=sys.stderr)
+            sys.exit(1)
     elif args.cmd == "buy":
         place_order(args.token_id, "BUY", args.price, args.size)
     elif args.cmd == "sell":

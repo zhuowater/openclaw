@@ -130,6 +130,11 @@ node scripts/polymarket.js cancel-all
 # Key management
 node scripts/polymarket.js derive-key
 node scripts/polymarket.js create-key
+
+# Python trade CLI (SOCKS5 proxy, HMAC auth)
+python3 scripts/trade.py lookup <market-slug>   # Get token IDs by slug (safe list handling)
+python3 scripts/trade.py buy <tokenId> --price 0.55 --size 10
+python3 scripts/trade.py sell <tokenId> --price 0.65 --size 10
 ```
 
 ## Auth Flow
