@@ -1,0 +1,6 @@
+{
+  "name": "sysinfo",
+  "version": "1.0.0",
+  "description": "Lightweight system info snapshot — replaces multiple exec calls with a single Node.js invocation",
+  "main": "index.js"
+}
