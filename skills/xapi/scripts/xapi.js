@@ -176,6 +176,66 @@ const commands = {
   me: async () => {
     const result = await xapi.getMe();
     console.log(JSON.stringify(result, null, 2));
+  },
+
+  'grab-media': async (args) => {
+    const tweetId = args[0];
+    const outDir = args.includes('--out') ? args[args.indexOf('--out') + 1] : '/tmp/xapi-media';
+    if (!tweetId) { console.error('Usage: xapi.js grab-media <tweet_id> [--out DIR]'); process.exit(1); }
+    
+    // Fetch tweet with media expansions
+    const XAPIClient = require('../lib/client');
+    const client = new XAPIClient();
+    const result = await client.request('GET', `/2/tweets/${tweetId}`, {
+      queryParams: {
+        'tweet.fields': 'attachments,entities',
+        'media.fields': 'url,preview_image_url,type,width,height,alt_text,variants',
+        expansions: 'attachments.media_keys'
+      }
+    });
+    
+    const mediaMap = {};
+    if (result.includes?.media) {
+      for (const m of result.includes.media) mediaMap[m.media_key] = m;
+    }
+    
+    const keys = result.data?.attachments?.media_keys || [];
+    if (keys.length === 0) {
+      console.log(JSON.stringify({ error: 'No media found in tweet', tweet_id: tweetId }));
+      return;
+    }
+    
+    const fs = require('fs');
+    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+    
+    const downloaded = [];
+    for (let i = 0; i < keys.length; i++) {
+      const m = mediaMap[keys[i]];
+      if (!m) continue;
+      
+      // For photos: use url field. For videos: use preview_image_url (thumbnail)
+      const url = m.url || m.preview_image_url;
+      if (!url) continue;
+      
+      const ext = url.match(/\.(\w+)(?:\?|$)/)?.[1] || 'jpg';
+      const outPath = `${outDir}/${tweetId}_${i}.${ext}`;
+      
+      try {
+        const result = await client.downloadMedia(url, outPath);
+        downloaded.push({ 
+          type: m.type, 
+          path: result.path, 
+          size: result.size,
+          width: m.width,
+          height: m.height,
+          url: url
+        });
+      } catch (e) {
+        console.error(`Failed to download media ${i}: ${e.message}`);
+      }
+    }
+    
+    console.log(JSON.stringify({ tweet_id: tweetId, media_count: downloaded.length, files: downloaded }, null, 2));
   }
 };
 
@@ -197,8 +257,12 @@ async function main() {
     console.error('  read <tweet_id>                            Get tweet details');
     console.error('');
     console.error('Search & Timeline:');
-    console.error('  search "<query>" [--limit N]               Search tweets');
-    console.error('  timeline <@username> [--limit N]           User timeline');
+    console.error('  search "<query>" [--limit N]               Search tweets (with media)');
+    console.error('  timeline <@username> [--limit N]           User timeline (with media)');
+    console.error('  feed [--limit N]                           Home timeline (with media)');
+    console.error('');
+    console.error('Media:');
+    console.error('  grab-media <tweet_id> [--out DIR]          Download media from tweet');
     console.error('');
     console.error('Engagement:');
     console.error('  like/unlike <tweet_id>                     Like/unlike');

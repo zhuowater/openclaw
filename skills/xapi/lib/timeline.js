@@ -1,6 +1,31 @@
 const XAPIClient = require('./client');
 
 /**
+ * Attach media includes to tweet objects for easier access.
+ * X API v2 returns media in a separate `includes.media` array,
+ * linked by `attachments.media_keys`. This merges them into each tweet.
+ */
+function attachMediaToTweets(apiResult) {
+  if (!apiResult || !apiResult.includes || !apiResult.includes.media) return apiResult;
+  
+  const mediaMap = {};
+  for (const m of apiResult.includes.media) {
+    mediaMap[m.media_key] = m;
+  }
+  
+  if (apiResult.data) {
+    for (const tweet of apiResult.data) {
+      const keys = tweet.attachments?.media_keys || [];
+      if (keys.length > 0) {
+        tweet.media = keys.map(k => mediaMap[k]).filter(Boolean);
+      }
+    }
+  }
+  
+  return apiResult;
+}
+
+/**
  * Get user ID by username
  */
 async function getUserByUsername(username) {
@@ -39,14 +64,15 @@ async function getUserTimeline(username, options = {}) {
 
   const queryParams = {
     max_results: Math.min(limit, 100),
-    'tweet.fields': 'created_at,public_metrics,entities,referenced_tweets',
+    'tweet.fields': 'created_at,public_metrics,entities,referenced_tweets,attachments',
     'user.fields': 'name,username,verified',
-    expansions: 'author_id'
+    'media.fields': 'url,preview_image_url,type,width,height,alt_text',
+    expansions: 'author_id,attachments.media_keys'
   };
 
   try {
     const result = await client.request('GET', `/2/users/${userId}/tweets`, { queryParams });
-    return result;
+    return attachMediaToTweets(result);
   } catch (error) {
     throw new Error(`Get timeline failed: ${JSON.stringify(error)}`);
   }
@@ -63,14 +89,15 @@ async function getHomeTimeline(userId, options = {}) {
 
   const queryParams = {
     max_results: Math.min(limit, 100),
-    'tweet.fields': 'created_at,public_metrics,entities,author_id',
+    'tweet.fields': 'created_at,public_metrics,entities,author_id,attachments',
     'user.fields': 'name,username,verified',
-    expansions: 'author_id'
+    'media.fields': 'url,preview_image_url,type,width,height,alt_text',
+    expansions: 'author_id,attachments.media_keys'
   };
 
   try {
     const result = await client.request('GET', `/2/users/${userId}/timelines/reverse_chronological`, { queryParams });
-    return result;
+    return attachMediaToTweets(result);
   } catch (error) {
     throw new Error(`Get home timeline failed: ${JSON.stringify(error)}`);
   }

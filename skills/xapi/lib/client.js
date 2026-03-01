@@ -258,6 +258,38 @@ class XAPIClient {
       req.end();
     });
   }
+  /**
+   * Download media from a URL and save to local file
+   */
+  async downloadMedia(mediaUrl, outputPath) {
+    const fs = require('fs');
+    const pathLib = require('path');
+    const http = mediaUrl.startsWith('https') ? https : require('http');
+    
+    // Ensure output directory exists
+    const dir = pathLib.dirname(outputPath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    
+    return new Promise((resolve, reject) => {
+      const req = http.get(mediaUrl, { agent: this.proxyAgent }, (res) => {
+        // Follow redirects
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          return this.downloadMedia(res.headers.location, outputPath).then(resolve).catch(reject);
+        }
+        if (res.statusCode !== 200) {
+          return reject(new Error(`Download failed: HTTP ${res.statusCode}`));
+        }
+        const stream = fs.createWriteStream(outputPath);
+        res.pipe(stream);
+        stream.on('finish', () => {
+          stream.close();
+          resolve({ path: outputPath, size: fs.statSync(outputPath).size });
+        });
+        stream.on('error', reject);
+      });
+      req.on('error', reject);
+    });
+  }
 }
 
 module.exports = XAPIClient;
