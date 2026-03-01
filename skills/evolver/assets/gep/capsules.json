@@ -88,18 +88,18 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_gep_innovate_from_opportunity",
+      "gene": "gene_gep_optimize_prompt_and_assets",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
         "files": 2,
-        "lines": 61
+        "lines": 120
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 2,
+      "success_streak": 3,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -113,12 +113,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:8b87775359eb40ac60f8b8fb8bd72ee4a025b6532f60077d2a43c3ffce228264",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:e12a7f459b886897822bca3dc83a347d9c833467a35abbb15d3387680b6fdd90"
+      "asset_id": "sha256:c89895a4e0681b42329ce43deeef9522b55b1b0ba8f4562c1b9b1b00105af463"
     },
     {
       "type": "Capsule",
@@ -208,18 +208,18 @@
         "stable_success_plateau",
         "empty_cycle_loop_detected"
       ],
-      "gene": "gene_auto_a46bf5e7",
+      "gene": "gene_gep_innovate_from_opportunity",
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 1,
+        "lines": 4
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 2,
+      "success_streak": 3,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -234,11 +234,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:486d2be7ffe89a824c15e7c988222f3ed9f12344ea042a4e4e76919052ef9f28",
+      "reused_asset_id": "sha256:a944ae2de568bb4d807d837010c18855714b96bc27e7f88cf560ba2046468792",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:523ef1464d0842ae0d9bd7f22b221078b5473dcc46e6334cfd4ea611756aedb1"
+      "asset_id": "sha256:1d52a2d743bf206772e67efb492e59e0822130698e1be215ffffc762c15f0f9a"
     }
   ]
 }

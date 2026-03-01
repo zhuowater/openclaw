@@ -1,7 +1,36 @@
 {
   "generated_by": "market_scan",
-  "generated_at": null,
-  "collection_requirements": [],
-  "priority_questions": [],
-  "hypotheses_to_verify": []
+  "generated_at": "2026-03-01 09:40 AM (Asia/Shanghai)",
+  "context": "Iranian regime fall 价格从 35.4% → 36.1%，战争进入第三天，Khamenei 死讯传闻持续，市场情绪仍极度 FOMO（11.1x vol spike）",
+  "collection_requirements": [
+    "🔴🔴🔴 URGENT: 搜索 X 关键词 'Khamenei public appearance video March 1 2026' — 验证是否有 Khamenei 3/1 公开露面证据",
+    "🔴🔴🔴 URGENT: 搜索 X 关键词 'Iran official statement Khamenei alive health' — 伊朗德黑兰是否发布 Khamenei 健康状况官方声明",
+    "🔴🔴 CRITICAL: 搜索 X 关键词 'Israel evidence Khamenei death confirmation' — 以色列媒体宣称的'证据'是什么（卫星图像/SIGINT/内部消息？）",
+    "🔴🔴 CRITICAL: 搜索 X 关键词 'Iran IRGC leadership meeting Khamenei successor' — IRGC 是否召开紧急会议（如果 Khamenei 已死，必然有继任程序启动）",
+    "🔴 HIGH: 搜索 X 关键词 'Hormuz strait oil tanker March 1 shipping' — 霍尔木兹海峡封锁是否持续（油轮是否恢复通行）",
+    "🔴 HIGH: 搜索 X 关键词 'US fifth fleet Hormuz breakthrough operation' — 美国海军第五舰队是否试图突破封锁",
+    "🟡 MEDIUM: 运行 NASA FIRMS 卫星火点扫描（第五次归零验证）— 空袭静默期是否继续",
+    "🟡 MEDIUM: 搜索 X 关键词 'Saudi UAE Iran war declaration retaliation' — 沙特/阿联酋是否对伊朗 2/28 攻击做出军事回应"
+  ],
+  "priority_questions": [
+    "❓ Khamenei 是否真的已死？如果已死，为何伊朗德黑兰 48 小时无官方声明？（正常情况下应该立即澄清或宣布）",
+    "❓ 以色列媒体宣称的'证据'可信度多高？是否是心理战/认知战的一部分（类似 WMD 情报造假）？",
+    "❓ 如果 Khamenei 真的已死，市场价格 36.1% 是否严重低估？（历史上强人政权失去领导人后倒台概率 >70%：Saddam、Gaddafi、Assad 等）",
+    "❓ 如果 Khamenei 没死，为何伊朗不立即发布公开露面视频驳斥谣言？（沉默 = 默认？还是无法发布？）",
+    "❓ 霍尔木兹海峡封锁能维持多久？伊朗 IRGC 海军是否有能力对抗美国第五舰队？（历史上从未有国家成功长期封锁霍尔木兹）",
+    "❓ 当前战争是否已进入'斩首行动'阶段？（2/28 以色列攻击可能就是斩首 Khamenei 的行动）"
+  ],
+  "hypotheses_to_verify": [
+    "假设 E（Khamenei 已死，市场严重低估）: 如果 Khamenei 真的在 2/28 以色列攻击中身亡，但伊朗 IRGC 秘密权力交接（对外不宣布，避免政权立即崩溃） → Iranian regime fall 应该暴涨至 >60%，当前 36.1% 是巨大套利机会。验证方式：等待伊朗官方回应（48 小时内无 Khamenei 公开露面 = 死讯概率 >70%）",
+    "假设 F（Khamenei 未死，死讯是心理战）: 以色列媒体故意放出'有证据确认 Khamenei 已死'的假消息，目的是制造伊朗内部恐慌+市场波动 → 如果 Khamenei 公开露面驳斥，Iranian regime fall 应该暴跌至 <25%（战时团结 + 市场误判）。验证方式：监控伊朗官媒/Khamenei 官方社交媒体账号",
+    "假设 G（市场正在'定价'死讯不确定性）: 当前 36.1% = 市场认为 Khamenei 死讯有 ~50% 概率属实（如果属实倒台概率 ~70%，如果不实倒台概率 ~10%，加权平均 = 0.5×0.7 + 0.5×0.1 = 40%，接近 36.1%）。这意味着市场在等待更多信息，不是误判。验证方式：如果有确凿证据（Khamenei 公开露面或死亡确认），价格将剧烈变动（>20%）",
+    "假设 H（霍尔木兹封锁不可持续）: 伊朗 IRGC 海军力量远弱于美国第五舰队（两艘航母 + 多艘驱逐舰），封锁最多维持 3-7 天就会被突破 → 油价短期暴涨（已涨至 $71 布伦特），但 1-2 周内回落。Iran Hormuz 市场当前 47.5% 可能高估了封锁成功概率。验证方式：监控美国海军动向 + 油轮 AIS 数据（是否有船只开始尝试通过）",
+    "假设 I（IRGC 内部分裂风险上升）: 如果 Khamenei 已死但 IRGC 秘密交接，内部必然有权力斗争（Soleimani 派 vs 保守派 vs 温和派） → 未来 2-4 周可能出现军事政变或内部混乱。这是 Iranian regime fall 的二阶风险（不是立即倒台，而是内部瓦解）。验证方式：搜索 IRGC 高层异常调动/紧急会议/公开声明"
+  ],
+  "risk_alerts": [
+    "⚠️ 当前持仓 Iranian regime fall YES $1.805（成本 $0.278，+30%浮盈）— 如果 Khamenei 公开露面驳斥死讯，价格可能暴跌至 <$0.25（-30% → -10%），建议设置心理止损线",
+    "⚠️ 市场情绪仍极度 FOMO（11.1x vol spike）— 情绪峰值通常预示反转（勒庞第二定律：情绪传染 → 情绪消退），如果无新重大消息（Khamenei 死亡确认），价格可能回落",
+    "⚠️ 对立假设（E vs F）风险极高 — 如果判断错误，损失可能 >50%。建议等待更多确凿证据（Khamenei 公开露面或死亡确认）再决定是否加仓/清仓"
+  ],
+  "next_scan_frequency": "🔴 战时模式 — 每 2 小时扫描一次（Khamenei 状态是高度时效性信息，等待时间过长可能错过交易窗口）"
 }
