@@ -1,50 +1,21 @@
 {
-  "generated_at": "2026-03-01 13:15 PM (Asia/Shanghai)",
-  "priority_intel": [
-    "🔴🔴🔴🔴🔴 CRITICAL: IRGC 继任者宣布 - 监控关键窗口 3/2 06:00（周日黎明前，距今 ~17h）。如仍未宣布 = 内部争权激烈，倒台概率飙升至 >80%。搜索: 'Iran IRGC successor announced Mojtaba Hassan Khamenei Arafi'",
-    "🔴🔴🔴🔴 CRITICAL: Khamenei 视频真伪最终确认 - 搜索: 'Khamenei video metadata analysis verified authentic fake Israel Pentagon confirm'",
-    "🔴🔴🔴 CRITICAL: 以色列/五角大楼官方声明 - 搜索: 'Israel Pentagon official statement confirm Khamenei killed death'",
-    "🔴🔴🔴 CRITICAL: 霍尔木兹海峡航运状态 - 搜索: 'Hormuz strait oil tanker shipping AIS tracking March 1'",
-    "🔴🔴 以色列轰炸恢复 - 搜索: 'Israel bombing Iran resumed March 1 satellite'",
-    "🟡 伊朗国内抗议规模 - 搜索: 'Iran protests Tehran regime streets million IRGC Mojtaba'"
+  "generated": "2026-03-01 14:22 PM (Asia/Shanghai)",
+  "context": "已建仓 Iranian regime fall $4.92 (15 shares @ $0.33)，关键窗口 3/2 06:00 IRGC 继任者宣布",
+  "critical_questions": [
+    "搜索 X: 'Iran IRGC successor announced Mojtaba Hassan Arafi Khamenei' — IRGC 是否在 3/2 06:00 前宣布继任者？候选人是谁（硬线派 vs. 温和派）？",
+    "搜索 X: 'Khamenei alive video real-time metadata verified' — 是否有新的 Khamenei 实时视频证明其存活？元数据是否被验证为真实？",
+    "搜索 X: 'Israel Pentagon official statement Khamenei killed confirmed' — 以色列或五角大楼是否发布官方声明确认 Khamenei 死讯？",
+    "搜索 X: 'Iran war update breaking March 1 regime collapse IRGC coup' — 战争最新动态，是否有 IRGC 内部政变或政权崩溃迹象？",
+    "检查 NASA FIRMS 卫星火点 — 验证以色列轰炸是否恢复（如果 IRGC 宣布硬线派继任者，以色列可能恢复空袭）",
+    "检查 ADS-B 伊朗空域飞机数量 — 验证伊朗空军是否恢复升空（IRGC 指挥能力恢复的标志）",
+    "检查 AIS 霍尔木兹海峡航运 — 验证封锁状态是否变化（IRGC 重新掌控或完全放弃）"
   ],
-  "hypothesis_to_verify": [
-    "假设 J（IRGC 24-48h 内宣布继任者）目前未成立（已过 >30h）。如到 3/2 06:00 仍无宣布 = 假设证伪，倒台概率飙升至 >80%",
-    "假设 K（IRGC 持续沉默 >48h → 内部争权激烈）尚未验证（需等待 3/2 14:00）",
-    "假设 M（霍尔木兹封锁已解除）部分成立（AIS 追踪显示航运部分恢复，但航运公司因军方警告自主绕道）",
-    "假设 O（卫星火点连续归零 → 以色列暂停轰炸）完全成立（连续七次归零，>5h 静默）"
+  "secondary_questions": [
+    "搜索 X: 'Iran regime fall odds betting prediction markets' — 其他预测市场（如 PredictIt, Manifold）对伊朗政权倒台的定价，验证 Polymarket 价格是否滞后或领先",
+    "搜索 X: 'Khamenei health condition hospital coma Iran' — Khamenei 健康状况最新报道，是否有医院消息泄露？",
+    "搜索 X: 'Iran protests demonstrations anti-regime March 2026' — 伊朗国内是否爆发大规模抗议/示威（政权倒台的前兆）"
   ],
-  "markets_to_monitor": [
-    {
-      "market": "Iranian regime fall by March 31",
-      "current_price": "$0.327 (已部分止盈 50%)",
-      "target_action": "继续持有剩余 50%，等待 IRGC 继任者宣布。如到 3/2 06:00 仍无宣布 → 加仓至 15%",
-      "watch_for": "IRGC 继任者宣布时间和人选（Mojtaba 世袭 vs. Hassan/Arafi 温和派）"
-    },
-    {
-      "market": "Khamenei out by Feb 28",
-      "current_price": "$0.9975 (即将到期)",
-      "target_action": "监控，可能立即 resolve YES",
-      "watch_for": "2/28 到期前是否有官方确认"
-    },
-    {
-      "market": "Khamenei out by March 31",
-      "current_price": "$0.9965",
-      "target_action": "监控，如 IRGC 继任者拖延至 >48h 可考虑建仓",
-      "watch_for": "IRGC 继任者宣布时间"
-    },
-    {
-      "market": "Iran Hormuz strait by March 31",
-      "current_price": "$0.60",
-      "target_action": "AIS 追踪显示航运部分恢复 → 价格应下跌至 <40%，监控价格变化",
-      "watch_for": "海峡航运 AIS 追踪数据"
-    }
-  ],
-  "data_sources": [
-    "NASA FIRMS 卫星火点（每 67 分钟）",
-    "X 搜索伊朗战争相关关键词",
-    "Grok AI 伊朗情报查询",
-    "AIS 船舶追踪（霍尔木兹海峡）",
-    "Polymarket 市场价格和交易量"
-  ]
+  "next_scan_priority": "HIGH — 关键窗口 3/2 06:00（距今 ~16h），IRGC 继任者宣布直接影响仓位止盈/止损",
+  "stop_loss_trigger": "如果 3/2 06:00 后 IRGC 宣布硬线派继任者（Mojtaba Khamenei）且市场价格跌破 $0.20 → 止损卖出",
+  "take_profit_trigger": "如果 3/2 06:00 后 IRGC 仍未宣布继任者 OR 以色列/五角大楼发布官方声明确认 Khamenei 死讯 → 市场价格预计飙升至 >$0.60 → 半仓止盈"
 }
