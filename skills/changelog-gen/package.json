@@ -1,0 +1,6 @@
+{
+  "name": "changelog-gen",
+  "version": "1.0.0",
+  "description": "Generate structured changelogs from git history",
+  "main": "index.js"
+}
