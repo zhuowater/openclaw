@@ -90,13 +90,17 @@ def l1_headers_via_node(pk):
 # ── Market Info ──────────────────────────────────────────────
 
 def get_market_info(token_id):
-    """Get market metadata from Gamma API."""
+    """Get market metadata from Gamma API.
+
+    Returns a formatted dict with 'tokens', 'question', 'neg_risk' etc.
+    Always returns a dict with 'tokens' key (may be empty) or None.
+    """
     r = requests.get(f"{GAMMA_HOST}/markets?clob_token_ids={token_id}", proxies=PROXIES, timeout=15)
     markets = r.json()
     if isinstance(markets, list) and markets:
-        return markets[0]
-    if isinstance(markets, dict):
-        return markets
+        return _format_market_lookup(markets[0])
+    if isinstance(markets, dict) and markets.get("question"):
+        return _format_market_lookup(markets)
     return None
 
 
@@ -126,9 +130,28 @@ def lookup_market(slug):
 
 
 def _format_market_lookup(market):
-    """Extract key fields from a market object."""
+    """Extract key fields from a market object.
+
+    Handles both list and JSON-string formats for clobTokenIds/outcomes,
+    ensuring a consistent dict with 'tokens' key is always returned.
+    """
     tokens = market.get("clobTokenIds", [])
     outcomes = market.get("outcomes", [])
+    # Handle JSON-encoded strings (some API responses return strings)
+    if isinstance(tokens, str):
+        try:
+            tokens = json.loads(tokens)
+        except (json.JSONDecodeError, TypeError):
+            tokens = []
+    if isinstance(outcomes, str):
+        try:
+            outcomes = json.loads(outcomes)
+        except (json.JSONDecodeError, TypeError):
+            outcomes = []
+    if not isinstance(tokens, list):
+        tokens = []
+    if not isinstance(outcomes, list):
+        outcomes = []
     result = {
         "question": market.get("question", ""),
         "condition_id": market.get("conditionId", ""),
@@ -185,10 +208,10 @@ def place_order(token_id, side, price, size):
 
     # Determine negRisk from market metadata
     market = get_market_info(token_id)
-    neg_risk = market.get("negRisk", False) if market else False
+    neg_risk = market.get("neg_risk", False) if market else False
     exchange_addr = NEG_RISK_EXCHANGE if neg_risk else EXCHANGE
     
-    print(f"Market: {market['question'][:60] if market else 'unknown'}")
+    print(f"Market: {market.get('question', 'unknown')[:60] if market else 'unknown'}")
     print(f"negRisk: {neg_risk} → exchange: {exchange_addr[:10]}...")
     print(f"Signer: {signer_addr}")
     print(f"Maker: {maker}")
