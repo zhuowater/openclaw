@@ -214,14 +214,14 @@
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 4
+        "files": 0,
+        "lines": 0
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 4,
+      "success_streak": 5,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -235,12 +235,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:1ff857f306e282a8ae6672f174c7cced8a1dfa1a5c4c18fead46092d35e76233"
+      "asset_id": "sha256:71f4ab54e215310ec8952dab0d71c78e893260f6a77909411dcf90ae73586afa"
     }
   ]
 }

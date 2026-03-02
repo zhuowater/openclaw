@@ -1,0 +1,6 @@
+{
+  "name": "cron-health",
+  "version": "1.0.0",
+  "description": "Monitor and audit OpenClaw cron job health",
+  "main": "index.js"
+}

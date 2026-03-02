@@ -1,8 +1,8 @@
 {
   "last_run": {
-    "run_id": "run_1772409607906",
-    "created_at": "2026-03-02T00:00:07.918Z",
-    "parent_event_id": "evt_1772388289323",
+    "run_id": "run_1772431208708",
+    "created_at": "2026-03-02T06:00:08.724Z",
+    "parent_event_id": "evt_1772409729077",
     "selected_gene_id": "gene_gep_innovate_from_opportunity",
     "selected_capsule_id": "capsule_1772024430697",
     "selector": {
@@ -11,7 +11,7 @@
         "signals match gene.signals_match",
         "capsule trigger matches signals",
         "signals: evolution_stagnation_detected, stable_success_plateau",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.857",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.875",
         "drift_intensity: 0.500"
       ],
       "alternatives": []
@@ -22,7 +22,7 @@
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772409607901",
+      "id": "mut_1772431208706",
       "category": "innovate",
       "trigger_signals": [
         "evolution_stagnation_detected",
@@ -32,7 +32,7 @@
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1772409607901",
+    "mutation_id": "mut_1772431208706",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -46,12 +46,12 @@
     "personality_mutations": [],
     "drift": false,
     "selected_by": "memory_graph+selector",
-    "source_type": "generated",
-    "reused_asset_id": null,
-    "reused_source_node": null,
+    "source_type": "reference",
+    "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
+    "reused_source_node": "node_5440aa37f3b9b74f",
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "de78f9d3efced73fee4e3ca52523f80bdde83738",
+    "baseline_git_head": "6ee95cebf00ef093d9790945a5d8195f38cbb399",
     "blast_radius_estimate": {
       "files": 25,
       "lines": 2000
@@ -60,9 +60,9 @@
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1772409607906",
-    "at": "2026-03-02T00:02:09.077Z",
-    "event_id": "evt_1772409729077",
+    "run_id": "run_1772431208708",
+    "at": "2026-03-02T06:02:26.424Z",
+    "event_id": "evt_1772431346424",
     "capsule_id": "capsule_1772024430697",
     "outcome": {
       "status": "success",
