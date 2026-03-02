@@ -1,0 +1,6 @@
+{
+  "name": "memory-janitor",
+  "version": "1.0.0",
+  "description": "Automated cleanup and compaction of memory directory",
+  "main": "index.js"
+}
