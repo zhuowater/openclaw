@@ -18,6 +18,28 @@ This skill provides optimized alternatives using Node.js built-ins (`fs`, `child
 
 ## Key Functions
 
+### Batch Operations (NEW - reduces repeated exec calls)
+
+```javascript
+const { batchExec, systemHealth, skillHealth } = require('./skills/exec-optimizer');
+
+// Run multiple commands in one call (replaces 3-5 separate exec calls)
+const batch = await batchExec([
+  'git status --porcelain',
+  'wc -l memory/2026-03-02.md',
+  { cmd: 'node -v', label: 'node_version' }
+], { stopOnError: false });
+// Returns: { results: [{label, cmd, ok, stdout, stderr, exitCode}], summary: "3 commands: 3 ok, 0 failed" }
+
+// Quick system health check (replaces 5 exec calls with 1)
+const health = await systemHealth();
+// Returns: { uptime, memory, disk, nodeProcesses, gitDirtyFiles }
+
+// Check skill integrity
+const check = await skillHealth('exec-optimizer');
+// Returns: { name, hasIndex, hasSkillMd, hasPkg, importable, issues }
+```
+
 ### Git Operations
 
 ```javascript

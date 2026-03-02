@@ -200,11 +200,143 @@ async function processInfo(pattern) {
 }
 
 /**
+ * Batch Exec - Run multiple independent commands in a single call
+ * Reduces repeated exec tool usage by combining commands.
+ * @param {Array<string|{cmd:string,cwd?:string,label?:string}>} commands
+ * @param {Object} options - { cwd: string, timeout: number, stopOnError: boolean }
+ * @returns {Promise<Object>} - { results: Array<{label,cmd,ok,stdout,stderr,exitCode}>, summary: string }
+ */
+async function batchExec(commands, options = {}) {
+  const { cwd = '/root/openclaw', timeout = 30000, stopOnError = false } = options;
+  const results = [];
+  let failed = 0;
+
+  for (let i = 0; i < commands.length; i++) {
+    const entry = typeof commands[i] === 'string'
+      ? { cmd: commands[i], cwd, label: `cmd_${i}` }
+      : { cwd, label: `cmd_${i}`, ...commands[i] };
+
+    try {
+      const { stdout, stderr } = await execFileAsync('sh', ['-c', entry.cmd], {
+        cwd: entry.cwd,
+        timeout,
+        maxBuffer: 1024 * 1024
+      });
+      results.push({
+        label: entry.label,
+        cmd: entry.cmd,
+        ok: true,
+        stdout: stdout.trim(),
+        stderr: stderr.trim(),
+        exitCode: 0
+      });
+    } catch (err) {
+      failed++;
+      results.push({
+        label: entry.label,
+        cmd: entry.cmd,
+        ok: false,
+        stdout: (err.stdout || '').trim(),
+        stderr: (err.stderr || err.message || '').trim(),
+        exitCode: err.code || 1
+      });
+      if (stopOnError) break;
+    }
+  }
+
+  return {
+    results,
+    summary: `${results.length} commands: ${results.length - failed} ok, ${failed} failed`
+  };
+}
+
+/**
+ * System Health - Quick health check combining multiple diagnostics
+ * Replaces 4-5 separate exec calls for system status.
+ * @returns {Promise<Object>} - { uptime, memory, disk, nodeProcesses, gitStatus }
+ */
+async function systemHealth() {
+  const checks = await batchExec([
+    { cmd: 'cat /proc/uptime | cut -d" " -f1', label: 'uptime' },
+    { cmd: 'free -m | awk \'NR==2{printf "%d/%dMB (%.1f%%)", $3, $2, $3*100/$2}\'', label: 'memory' },
+    { cmd: 'df -h / | awk \'NR==2{printf "%s/%s (%s used)", $3, $2, $5}\'', label: 'disk' },
+    { cmd: 'pgrep -c node 2>/dev/null || echo 0', label: 'nodeProcs' },
+    { cmd: 'cd /root/openclaw && git status --porcelain | wc -l', label: 'gitDirty' }
+  ]);
+
+  const get = (label) => {
+    const r = checks.results.find(r => r.label === label);
+    return r && r.ok ? r.stdout : 'N/A';
+  };
+
+  const uptimeSec = parseFloat(get('uptime')) || 0;
+  const uptimeHours = (uptimeSec / 3600).toFixed(1);
+
+  return {
+    uptime: `${uptimeHours}h`,
+    memory: get('memory'),
+    disk: get('disk'),
+    nodeProcesses: parseInt(get('nodeProcs')) || 0,
+    gitDirtyFiles: parseInt(get('gitDirty')) || 0
+  };
+}
+
+/**
+ * Skill Health - Check if a skill directory has required files
+ * @param {string} skillName - Skill directory name
+ * @returns {Promise<Object>} - { name, hasIndex, hasSkillMd, hasPkg, importable, issues }
+ */
+async function skillHealth(skillName) {
+  const skillDir = path.join('/root/openclaw/skills', skillName);
+  const result = {
+    name: skillName,
+    hasIndex: false,
+    hasSkillMd: false,
+    hasPkg: false,
+    importable: false,
+    issues: []
+  };
+
+  try {
+    await fs.access(path.join(skillDir, 'index.js'));
+    result.hasIndex = true;
+  } catch { result.issues.push('missing index.js'); }
+
+  try {
+    await fs.access(path.join(skillDir, 'SKILL.md'));
+    result.hasSkillMd = true;
+  } catch { result.issues.push('missing SKILL.md'); }
+
+  try {
+    await fs.access(path.join(skillDir, 'package.json'));
+    result.hasPkg = true;
+  } catch { /* optional */ }
+
+  if (result.hasIndex) {
+    try {
+      const { stdout } = await execFileAsync('node', [
+        '-e', `try { require('${skillDir}'); console.log('ok') } catch(e) { console.error(e.message); process.exit(1) }`
+      ], { timeout: 5000 });
+      result.importable = stdout.trim() === 'ok';
+    } catch (err) {
+      result.importable = false;
+      result.issues.push(`import error: ${(err.stderr || err.message).trim().slice(0, 100)}`);
+    }
+  }
+
+  return result;
+}
+
+/**
  * Main entry point (for testing)
  */
 async function main() {
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
+
+  // Demo batchExec
+  const health = await systemHealth();
+  console.log('System health:', JSON.stringify(health, null, 2));
 }
 
 module.exports = {
@@ -216,5 +348,8 @@ module.exports = {
   findFiles,
   readLines,
   processInfo,
+  batchExec,
+  systemHealth,
+  skillHealth,
   main
 };
