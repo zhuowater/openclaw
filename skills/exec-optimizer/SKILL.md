@@ -90,6 +90,44 @@ const procs = await processInfo('node');
 await killByName('node.*index.js');
 ```
 
+### CLI Mode (single-exec access to all functions)
+
+```bash
+# Evolver preflight - replaces 5-7 exec calls with 1
+node skills/exec-optimizer/index.js preflight
+# Returns JSON: { system, git, recentCommits, diff, diskWarning, assetsSize, eventCount, ready, summary }
+
+# System health check
+node skills/exec-optimizer/index.js health
+
+# Skill integrity check
+node skills/exec-optimizer/index.js skill exec-optimizer
+```
+
+### Evolver Preflight (NEW - addresses repeated_tool_usage:exec)
+
+```javascript
+const { evolverPreflight } = require('./skills/exec-optimizer');
+
+// Single call replaces: gitStatus + systemHealth + gitLog + gitDiff + dirSize + fileRead
+const preflight = await evolverPreflight();
+// Returns: { system, git, recentCommits, diff, diskWarning, assetsSize, eventCount, ready, summary }
+```
+
+### Batch File Check
+
+```javascript
+const { batchFileCheck } = require('./skills/exec-optimizer');
+
+// Check multiple files in one call
+const check = await batchFileCheck([
+  '/root/openclaw/MEMORY.md',
+  '/root/openclaw/skills/evolver/index.js',
+  '/root/openclaw/skills/missing-skill/index.js'
+]);
+// Returns: { results: {path: bool}, allExist: false, missing: ['...missing-skill...'] }
+```
+
 ## When to Use
 
 ✅ **Use exec-optimizer when**:

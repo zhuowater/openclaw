@@ -90,18 +90,18 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_gep_repair_from_errors",
+      "gene": "gene_auto_7f294d19",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 6
+        "files": 3,
+        "lines": 170
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 5,
+      "success_streak": 7,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -116,11 +116,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:4292bde8c97698757dd308c3c41661d98646e343e1272c33acd5b3d89fe399f1",
+      "reused_asset_id": "sha256:4e0bc278bca8160c7bec6267e78e6cfa96e1fb0f9c415552a996e20bac1421b5",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:5a211dc8b2b4f10fcbb8ea75b5eea6e73f39b7029fe850c35a98b5c1327230c2"
+      "asset_id": "sha256:8ddc6cb6aed32ed3f4c888698dff8f9ed4c4be692207d54a39d8f437ce220cff"
     },
     {
       "type": "Capsule",
@@ -214,14 +214,14 @@
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 1,
+        "lines": 4
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 5,
+      "success_streak": 6,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -236,11 +236,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
+      "reused_asset_id": "sha256:474edbe62a98e0cb9058584cc27708b204a5cd31b720783fd788b2f0ae8f5923",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:71f4ab54e215310ec8952dab0d71c78e893260f6a77909411dcf90ae73586afa"
+      "asset_id": "sha256:28ffc8fc6204c419165d4e9e608a1deed7f6b1bf2376f5d7bb17391edc52e143"
     }
   ]
 }

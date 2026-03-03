@@ -1,47 +1,36 @@
 {
   "last_run": {
-    "run_id": "run_1772474408872",
-    "created_at": "2026-03-02T18:00:08.884Z",
-    "parent_event_id": "evt_1772452961430",
-    "selected_gene_id": "gene_gep_repair_from_errors",
+    "run_id": "run_1772539217817",
+    "created_at": "2026-03-03T12:00:17.833Z",
+    "parent_event_id": "evt_1772517750058",
+    "selected_gene_id": null,
     "selected_capsule_id": "capsule_1771747065506",
     "selector": {
-      "selected": "gene_gep_repair_from_errors",
+      "selected": null,
       "reason": [
-        "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Traceback (most recent call last):\\n File \\\"<string>\\\", line 1, in <module>\\nKeyError: 'tokens'\\nDescription: If Iran halts or severely restricts international maritime traffic through the Strait o, protocol_drift, high_tool_usage:exec, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | memory_ban:gene_gep_repair_from_errors | gene_prior:0.885",
+        "no matching gene found; new gene may be required",
+        "signals: repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.900",
         "drift_intensity: 0.500"
       ],
-      "alternatives": [
-        "gene_gep_optimize_prompt_and_assets",
-        "gene_auto_a46bf5e7"
-      ]
+      "alternatives": []
     },
     "signals": [
-      "log_error",
-      "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Traceback (most recent call last):\\n File \\\"<string>\\\", line 1, in <module>\\nKeyError: 'tokens'\\nDescription: If Iran halts or severely restricts international maritime traffic through the Strait o",
-      "protocol_drift",
-      "high_tool_usage:exec",
       "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772474408867",
-      "category": "repair",
+      "id": "mut_1772539217813",
+      "category": "innovate",
       "trigger_signals": [
-        "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Traceback (most recent call last):\\n File \\\"<string>\\\", line 1, in <module>\\nKeyError: 'tokens'\\nDescription: If Iran halts or severely restricts international maritime traffic through the Strait o",
-        "protocol_drift",
-        "high_tool_usage:exec",
         "repeated_tool_usage:exec"
       ],
-      "target": "gene:gene_gep_repair_from_errors",
-      "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
-      "risk_level": "low"
+      "target": "behavior:protocol",
+      "expected_effect": "explore new strategy combinations to escape local optimum",
+      "risk_level": "medium"
     },
-    "mutation_id": "mut_1772474408867",
+    "mutation_id": "mut_1772539217813",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -56,22 +45,22 @@
     "drift": false,
     "selected_by": "memory_graph+selector",
     "source_type": "reference",
-    "reused_asset_id": "sha256:4292bde8c97698757dd308c3c41661d98646e343e1272c33acd5b3d89fe399f1",
-    "reused_source_node": "node_c3cc1d0b1615326f",
+    "reused_asset_id": "sha256:4e0bc278bca8160c7bec6267e78e6cfa96e1fb0f9c415552a996e20bac1421b5",
+    "reused_source_node": "node_b2771aa1ba9a",
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "52a8c8f38549d744db89b7ce4837c3911b295b1a",
+    "baseline_git_head": "8880ca91688fe5aaa7a15f95da8921adcb46f8c8",
     "blast_radius_estimate": {
-      "files": 20,
-      "lines": 1600
+      "files": 12,
+      "lines": 960
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1772474408872",
-    "at": "2026-03-02T18:05:15.141Z",
-    "event_id": "evt_1772474715141",
+    "run_id": "run_1772539217817",
+    "at": "2026-03-03T12:03:39.178Z",
+    "event_id": "evt_1772539419178",
     "capsule_id": "capsule_1771747065506",
     "outcome": {
       "status": "success",

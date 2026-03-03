@@ -328,15 +328,117 @@ async function skillHealth(skillName) {
 }
 
 /**
- * Main entry point (for testing)
+ * Evolver Preflight - Single-call pre-check for GEP evolution cycles.
+ * Replaces 5-7 separate exec calls that evolver sessions typically make.
+ * @returns {Promise<Object>} - Combined pre-flight report
+ */
+async function evolverPreflight() {
+  const results = {};
+
+  // 1. System health
+  results.system = await systemHealth();
+
+  // 2. Git status
+  results.git = await gitStatus();
+
+  // 3. Recent commits (last 3)
+  results.recentCommits = await gitLog(3);
+
+  // 4. Diff stats (if dirty)
+  if (!results.git.clean) {
+    results.diff = await gitDiff();
+  }
+
+  // 5. Disk space warning
+  const diskMatch = results.system.disk.match(/([\d.]+)%/);
+  const diskPct = diskMatch ? parseFloat(diskMatch[1]) : 0;
+  results.diskWarning = diskPct > 80 ? `⚠️ Disk at ${diskPct}%` : null;
+
+  // 6. Evolution assets size
+  const evolverAssetsDir = '/root/openclaw/skills/evolver/assets/gep';
+  try {
+    results.assetsSize = await dirSize(evolverAssetsDir);
+  } catch {
+    results.assetsSize = { human: 'N/A' };
+  }
+
+  // 7. Events count
+  try {
+    const eventsContent = await fs.readFile(
+      path.join(evolverAssetsDir, 'events.jsonl'), 'utf8'
+    );
+    results.eventCount = eventsContent.trim().split('\n').filter(Boolean).length;
+  } catch {
+    results.eventCount = 0;
+  }
+
+  // Summary
+  results.ready = !results.diskWarning && results.system.nodeProcesses > 0;
+  results.summary = results.ready
+    ? `✅ Ready: ${results.eventCount} events, ${results.assetsSize.human} assets, ${results.system.uptime} uptime`
+    : `⚠️ Issues detected: ${results.diskWarning || 'check details'}`;
+
+  return results;
+}
+
+/**
+ * Batch File Check - Check existence of multiple files in one call.
+ * Replaces repeated fileExists calls.
+ * @param {Array<string>} paths - File paths to check
+ * @returns {Promise<Object>} - { results: {path: boolean}, allExist: boolean, missing: string[] }
+ */
+async function batchFileCheck(paths) {
+  const results = {};
+  const missing = [];
+
+  for (const p of paths) {
+    const exists = await fileExists(p);
+    results[p] = exists;
+    if (!exists) missing.push(p);
+  }
+
+  return {
+    results,
+    allExist: missing.length === 0,
+    missing
+  };
+}
+
+/**
+ * Main entry point (for testing and CLI usage)
+ * Usage:
+ *   node index.js preflight    - Run evolver preflight checks
+ *   node index.js health       - System health check
+ *   node index.js skill <name> - Check skill health
  */
 async function main() {
+  const cmd = process.argv[2];
+
+  if (cmd === 'preflight') {
+    const report = await evolverPreflight();
+    console.log(JSON.stringify(report, null, 2));
+    return;
+  }
+
+  if (cmd === 'health') {
+    const health = await systemHealth();
+    console.log(JSON.stringify(health, null, 2));
+    return;
+  }
+
+  if (cmd === 'skill' && process.argv[3]) {
+    const report = await skillHealth(process.argv[3]);
+    console.log(JSON.stringify(report, null, 2));
+    return;
+  }
+
+  // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
-
-  // Demo batchExec
-  const health = await systemHealth();
-  console.log('System health:', JSON.stringify(health, null, 2));
+  console.log('\nCLI commands:');
+  console.log('  node index.js preflight  - Evolver pre-flight (replaces 5-7 exec calls)');
+  console.log('  node index.js health     - System health summary');
+  console.log('  node index.js skill <n>  - Check skill integrity');
 }
 
 module.exports = {
@@ -351,5 +453,12 @@ module.exports = {
   batchExec,
   systemHealth,
   skillHealth,
+  evolverPreflight,
+  batchFileCheck,
   main
 };
+
+// CLI entry point
+if (require.main === module) {
+  main().catch(err => { console.error(err.message); process.exit(1); });
+}

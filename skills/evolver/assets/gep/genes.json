@@ -36,9 +36,9 @@
       "epigenetic_marks": [
         {
           "context": "linux/x64/v22.22.0",
-          "boost": 0.05,
+          "boost": 0.1,
           "reason": "reinforced_by_success",
-          "created_at": "2026-03-02T18:05:15.143Z"
+          "created_at": "2026-03-03T00:02:29.107Z"
         }
       ],
       "schema_version": "1.5.0",
@@ -126,9 +126,9 @@
       "epigenetic_marks": [
         {
           "context": "linux/x64/v22.22.0",
-          "boost": -0.05000000000000007,
+          "boost": -6.938893903907228e-17,
           "reason": "reinforced_by_success",
-          "created_at": "2026-03-02T06:02:26.426Z"
+          "created_at": "2026-03-03T06:02:30.060Z"
         }
       ],
       "schema_version": "1.6.0",
@@ -182,6 +182,54 @@
         }
       ],
       "asset_id": "sha256:d355a3fef3b557d34d12808e626b9fc86c50f9ea596a596c74a5e947a05bcac4"
+    },
+    {
+      "type": "Gene",
+      "schema_version": "1.6.0",
+      "id": "gene_auto_7f294d19",
+      "category": "optimize",
+      "signals_match": [
+        "repeated_tool_usage:exec"
+      ],
+      "preconditions": [
+        "signals_key == repeated_tool_usage:exec"
+      ],
+      "strategy": [
+        "Extract structured signals from logs and user instructions",
+        "Select an existing Gene by signals match (no improvisation)",
+        "Estimate blast radius (files, lines) before editing and record it",
+        "Apply smallest reversible patch",
+        "Validate using declared validation steps; rollback on failure",
+        "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
+      ],
+      "constraints": {
+        "max_files": 12,
+        "forbidden_paths": [
+          ".git",
+          "node_modules",
+          "skills/feishu-evolver-wrapper",
+          "skills/feishu-common",
+          "skills/feishu-post",
+          "skills/feishu-card",
+          "skills/feishu-doc",
+          "skills/skill-tools",
+          "skills/clawhub",
+          "skills/clawhub-batch-undelete",
+          "skills/git-sync"
+        ]
+      },
+      "validation": [
+        "node -e \"require('./src/gep/solidify'); console.log('ok')\""
+      ],
+      "epigenetic_marks": [
+        {
+          "context": "linux/x64/v22.22.0",
+          "boost": 0.1,
+          "reason": "success_in_environment",
+          "created_at": "2026-03-03T12:03:39.180Z"
+        }
+      ],
+      "asset_id": "sha256:729008ae48aeb0cee4c6a6db845793e617e50e3b005e3870d2f69f4e8cca9bd5"
     }
   ]
 }
