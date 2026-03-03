@@ -1,0 +1,6 @@
+{
+  "name": "activity-digest",
+  "version": "1.0.0",
+  "description": "Generate structured activity digests from daily memory logs and evolution events",
+  "main": "index.js"
+}
