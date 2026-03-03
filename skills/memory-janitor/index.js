@@ -9,8 +9,10 @@ const MEMORY_DIR = process.env.MEMORY_DIR || path.resolve(__dirname, '../../memo
 const EVOLUTION_DIR = path.join(MEMORY_DIR, 'evolution');
 const KEEP_PROMPTS = parseInt(process.env.JANITOR_KEEP_PROMPTS || '3', 10);
 const KEEP_GRAPH_LINES = parseInt(process.env.JANITOR_KEEP_GRAPH_LINES || '500', 10);
+const ARCHIVE_DAYS = parseInt(process.env.JANITOR_ARCHIVE_DAYS || '14', 10);
 const DRY_RUN = process.env.JANITOR_DRY_RUN === 'true' || process.argv.includes('--dry-run');
 const STATS_ONLY = process.argv.includes('--stats-only');
+const ARCHIVE_ONLY = process.argv.includes('--archive-daily');
 
 // Protected files that must never be deleted
 const PROTECTED_ROOTS = new Set([
@@ -190,6 +192,105 @@ function compactMemoryGraph() {
   };
 }
 
+// --- Cleanup: Archive Old Daily Notes ---
+function archiveDailyNotes() {
+  const DAILY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})(?:-.*)?\.md$/;
+  const now = Date.now();
+  const cutoff = now - ARCHIVE_DAYS * 86400000;
+
+  let files;
+  try {
+    files = fs.readdirSync(MEMORY_DIR, { withFileTypes: true })
+      .filter(e => e.isFile() && DAILY_PATTERN.test(e.name))
+      .map(e => {
+        const m = e.name.match(DAILY_PATTERN);
+        const dateStr = `${m[1]}-${m[2]}-${m[3]}`;
+        const month = `${m[1]}-${m[2]}`;
+        const fp = path.join(MEMORY_DIR, e.name);
+        const stat = fs.statSync(fp);
+        return { name: e.name, path: fp, dateStr, month, stat, ts: new Date(dateStr).getTime() };
+      })
+      .filter(f => !isNaN(f.ts) && f.ts < cutoff)
+      .sort((a, b) => a.ts - b.ts);
+  } catch (e) {
+    return { skipped: true, reason: e.message };
+  }
+
+  if (files.length === 0) {
+    return { skipped: true, reason: `no daily notes older than ${ARCHIVE_DAYS} days` };
+  }
+
+  // Group by month
+  const byMonth = {};
+  for (const f of files) {
+    (byMonth[f.month] = byMonth[f.month] || []).push(f);
+  }
+
+  const archived = [];
+  let freedBytes = 0;
+
+  for (const [month, monthFiles] of Object.entries(byMonth)) {
+    const archivePath = path.join(MEMORY_DIR, `archive-daily-${month}.md`);
+    const header = `# Daily Notes Archive: ${month}\n\n*Archived by memory-janitor on ${new Date().toISOString().slice(0, 10)}*\n\n---\n\n`;
+
+    let body = '';
+    for (const f of monthFiles) {
+      const content = fs.readFileSync(f.path, 'utf8');
+      body += `## ${f.dateStr} (${f.name})\n\n${content}\n\n---\n\n`;
+    }
+
+    if (!DRY_RUN) {
+      // Append to existing archive or create new one
+      if (fs.existsSync(archivePath)) {
+        fs.appendFileSync(archivePath, '\n' + body);
+      } else {
+        fs.writeFileSync(archivePath, header + body);
+      }
+      // Remove originals
+      for (const f of monthFiles) {
+        freedBytes += f.stat.size;
+        fs.unlinkSync(f.path);
+      }
+    } else {
+      for (const f of monthFiles) {
+        freedBytes += f.stat.size;
+      }
+    }
+
+    archived.push({ month, files: monthFiles.map(f => f.name), archivePath: path.basename(archivePath) });
+  }
+
+  return {
+    skipped: false,
+    totalFiles: files.length,
+    months: Object.keys(byMonth).length,
+    archived,
+    freedBytes
+  };
+}
+
+// --- Cleanup: GEP Prompt JSON artifacts ---
+function cleanGepPromptJsons() {
+  const jsonPrompts = getFilesByPattern(EVOLUTION_DIR, /^gep_prompt_.*\.json$/);
+  const toDelete = jsonPrompts.slice(KEEP_PROMPTS);
+  let freedBytes = 0;
+
+  for (const file of toDelete) {
+    freedBytes += file.stat.size;
+    if (!DRY_RUN) {
+      fs.unlinkSync(file.path);
+    }
+  }
+
+  return {
+    total: jsonPrompts.length,
+    deleted: toDelete.length,
+    kept: Math.min(jsonPrompts.length, KEEP_PROMPTS),
+    freedBytes,
+    deletedFiles: toDelete.map(f => f.name)
+  };
+}
+
 // --- Main ---
 function main() {
   console.log('=== Memory Janitor ===');
@@ -213,11 +314,27 @@ function main() {
 
   const actions = [];
 
-  // 1. Clean GEP prompts
+  // Handle --archive-daily shortcut
+  if (ARCHIVE_ONLY) {
+    console.log(`📦 Archive Daily Notes (older than ${ARCHIVE_DAYS} days):`);
+    const archResult = archiveDailyNotes();
+    if (archResult.skipped) {
+      console.log(`  Skipped: ${archResult.reason}`);
+    } else {
+      console.log(`  Archived ${archResult.totalFiles} files into ${archResult.months} monthly archives`);
+      for (const a of archResult.archived) {
+        console.log(`  ${a.month}: ${a.files.length} files → ${a.archivePath}`);
+      }
+      console.log(`  Freed: ${formatBytes(archResult.freedBytes)}`);
+    }
+    return { stats, actions: [{ action: 'archive_daily', ...archResult }] };
+  }
+
+  // 1. Clean GEP prompt .txt files
   console.log(`🧹 GEP Prompts (keep latest ${KEEP_PROMPTS}):`);
   const promptResult = cleanGepPrompts();
   if (promptResult.deleted > 0) {
-    console.log(`  Deleted ${promptResult.deleted} of ${promptResult.total} files (freed ${formatBytes(promptResult.freedBytes)})`);
+    console.log(`  Deleted ${promptResult.deleted} of ${promptResult.total} .txt files (freed ${formatBytes(promptResult.freedBytes)})`);
     for (const f of promptResult.deletedFiles) {
       console.log(`    - ${f}`);
     }
@@ -227,7 +344,18 @@ function main() {
   }
   console.log('');
 
-  // 2. Compact memory graph
+  // 2. Clean GEP prompt .json artifacts
+  console.log(`🧹 GEP Prompt JSONs (keep latest ${KEEP_PROMPTS}):`);
+  const jsonResult = cleanGepPromptJsons();
+  if (jsonResult.deleted > 0) {
+    console.log(`  Deleted ${jsonResult.deleted} of ${jsonResult.total} .json files (freed ${formatBytes(jsonResult.freedBytes)})`);
+    actions.push({ action: 'clean_gep_prompt_jsons', ...jsonResult });
+  } else {
+    console.log(`  Nothing to clean (${jsonResult.total} files)`);
+  }
+  console.log('');
+
+  // 3. Compact memory graph
   console.log(`📦 Memory Graph (limit ${KEEP_GRAPH_LINES} lines):`);
   const graphResult = compactMemoryGraph();
   if (graphResult.skipped) {
@@ -239,6 +367,21 @@ function main() {
   }
   console.log('');
 
+  // 4. Archive old daily notes
+  console.log(`📦 Daily Notes Archive (older than ${ARCHIVE_DAYS} days):`);
+  const archResult = archiveDailyNotes();
+  if (archResult.skipped) {
+    console.log(`  Skipped: ${archResult.reason}`);
+  } else {
+    console.log(`  Archived ${archResult.totalFiles} files into ${archResult.months} monthly archives`);
+    for (const a of archResult.archived) {
+      console.log(`  ${a.month}: ${a.files.length} files → ${a.archivePath}`);
+    }
+    console.log(`  Freed: ${formatBytes(archResult.freedBytes)}`);
+    actions.push({ action: 'archive_daily', ...archResult });
+  }
+  console.log('');
+
   // Summary
   const totalFreed = actions.reduce((sum, a) => sum + (a.freedBytes || 0), 0);
   console.log(`✅ Done. ${DRY_RUN ? '[DRY RUN] Would free' : 'Freed'}: ${formatBytes(totalFreed)}`);
@@ -247,7 +390,7 @@ function main() {
 }
 
 // Export for require() and run if executed directly
-module.exports = { main, collectStats, cleanGepPrompts, compactMemoryGraph };
+module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes };
 
 if (require.main === module) {
   main();

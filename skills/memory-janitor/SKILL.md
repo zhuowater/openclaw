@@ -1,6 +1,6 @@
 ---
 name: memory-janitor
-description: Automated cleanup and compaction of memory directory. Use when memory files grow too large, GEP prompt files accumulate, or memory_graph.jsonl needs trimming. Triggers on "clean memory", "compact memory", "memory health", "memory stats".
+description: Automated cleanup and compaction of memory directory. Cleans GEP prompts, compacts memory_graph.jsonl, and archives old daily notes into monthly files. Triggers on "clean memory", "compact memory", "memory health", "memory stats", "archive notes".
 ---
 
 # Memory Janitor
@@ -10,7 +10,7 @@ Keeps the `memory/` directory lean and healthy.
 ## Usage
 
 ```bash
-# Full cleanup report + actions
+# Full cleanup (prompts + graph + daily note archive)
 node /root/openclaw/skills/memory-janitor/index.js
 
 # Dry-run (report only, no changes)
@@ -18,17 +18,25 @@ node /root/openclaw/skills/memory-janitor/index.js --dry-run
 
 # Only show stats
 node /root/openclaw/skills/memory-janitor/index.js --stats-only
+
+# Only archive old daily notes
+node /root/openclaw/skills/memory-janitor/index.js --archive-daily
 ```
 
 ## What It Does
 
-1. **GEP Prompt Cleanup**: Removes old `gep_prompt_*.txt` files, keeping the latest N (default: 3)
+1. **GEP Prompt Cleanup**: Removes old `gep_prompt_*.txt` and `.json` files, keeping the latest N (default: 3)
 2. **Memory Graph Compaction**: Trims `memory_graph.jsonl` to the most recent N entries (default: 500)
-3. **Stats Report**: Shows memory directory size breakdown by category
-4. **Safety**: Never touches MEMORY.md, SOUL.md, IDENTITY.md, AGENTS.md, or daily notes from the last 7 days
+3. **Daily Notes Archive**: Archives daily notes older than N days (default: 14) into monthly files (`archive-daily-YYYY-MM.md`)
+4. **Stats Report**: Shows memory directory size breakdown by category
 
 ## Configuration (Environment Variables)
 
 - `JANITOR_KEEP_PROMPTS`: Number of GEP prompt files to keep (default: 3)
 - `JANITOR_KEEP_GRAPH_LINES`: Max lines in memory_graph.jsonl (default: 500)
+- `JANITOR_ARCHIVE_DAYS`: Archive daily notes older than this many days (default: 14)
 - `JANITOR_DRY_RUN`: Set to "true" for dry-run mode
+
+## Safety
+
+Never touches MEMORY.md, SOUL.md, IDENTITY.md, AGENTS.md, or other protected root files. Archived daily notes are preserved in monthly archive files before originals are removed.
