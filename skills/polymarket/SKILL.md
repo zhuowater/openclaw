@@ -18,6 +18,12 @@ const markets = await poly.getMarkets({ limit: 5, active: true });
 ```
 skills/polymarket/
 ├── index.js          # Main entry — re-exports everything
+├── scripts/
+│   ├── polymarket.js # Node.js CLI tool
+│   ├── trade.py      # Python trading CLI (buy/sell/lookup/derive-key)
+│   ├── market_info.py # Python market info lookup (by token ID or slug)
+│   ├── balance.py    # Python balance & positions checker
+│   └── sentiment_scan.py # Python sentiment/volume scanner
 ├── SKILL.md          # This file
 ├── package.json
 ├── scripts/
