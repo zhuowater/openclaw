@@ -14,7 +14,9 @@ const DRY_RUN = process.env.JANITOR_DRY_RUN === 'true' || process.argv.includes(
 const STATS_ONLY = process.argv.includes('--stats-only');
 const ARCHIVE_ONLY = process.argv.includes('--archive-daily');
 const DISK_CLEAN = process.argv.includes('--disk');
+const DEDUP_CANDIDATES = process.argv.includes('--dedup-candidates');
 const WORKSPACE = process.env.WORKSPACE || path.resolve(__dirname, '../..');
+const EVOLVER_ASSETS = path.join(WORKSPACE, 'skills', 'evolver', 'assets', 'gep');
 
 // Protected files that must never be deleted
 const PROTECTED_ROOTS = new Set([
@@ -293,6 +295,69 @@ function cleanGepPromptJsons() {
   };
 }
 
+// --- Cleanup: GEP candidates.jsonl Deduplication ---
+function deduplicateCandidates() {
+  const candidatesPath = path.join(EVOLVER_ASSETS, 'candidates.jsonl');
+  if (!fs.existsSync(candidatesPath)) {
+    return { skipped: true, reason: 'candidates.jsonl not found' };
+  }
+
+  const content = fs.readFileSync(candidatesPath, 'utf8');
+  const originalSize = Buffer.byteLength(content);
+  const lines = content.split('\n').filter(l => l.trim());
+  const originalCount = lines.length;
+
+  if (originalCount <= 100) {
+    return { skipped: true, reason: `only ${originalCount} entries, no dedup needed`, originalCount, originalSize };
+  }
+
+  // Deduplicate by id, keeping the LATEST entry for each id
+  const seen = new Map(); // id → { line, index }
+  for (let i = 0; i < lines.length; i++) {
+    try {
+      const obj = JSON.parse(lines[i]);
+      const id = obj.id || `anon_${i}`;
+      seen.set(id, { line: lines[i], index: i });
+    } catch (e) {
+      // Keep unparseable lines (append at end)
+      seen.set(`_unparseable_${i}`, { line: lines[i], index: i });
+    }
+  }
+
+  const deduped = Array.from(seen.values())
+    .sort((a, b) => a.index - b.index)
+    .map(v => v.line);
+
+  const newCount = deduped.length;
+  const removedCount = originalCount - newCount;
+
+  if (removedCount === 0) {
+    return { skipped: true, reason: 'no duplicates found', originalCount, originalSize };
+  }
+
+  const newContent = deduped.join('\n') + '\n';
+  const newSize = Buffer.byteLength(newContent);
+  const freedBytes = originalSize - newSize;
+
+  if (!DRY_RUN) {
+    // Write backup first
+    const backupPath = candidatesPath + '.bak';
+    fs.writeFileSync(backupPath, content);
+    fs.writeFileSync(candidatesPath, newContent);
+  }
+
+  return {
+    skipped: false,
+    originalCount,
+    newCount,
+    removedCount,
+    originalSize,
+    newSize,
+    freedBytes,
+    compressionRatio: ((1 - newSize / originalSize) * 100).toFixed(1) + '%'
+  };
+}
+
 // --- Disk Cleanup ---
 const { execSync } = require('child_process');
 
@@ -480,6 +545,19 @@ function main() {
     return { stats, actions: diskResult.actions, totalFreed: diskResult.totalFreed, dryRun: DRY_RUN };
   }
 
+  // Handle --dedup-candidates shortcut
+  if (DEDUP_CANDIDATES) {
+    console.log('🔧 GEP Candidates Deduplication:');
+    const dedupResult = deduplicateCandidates();
+    if (dedupResult.skipped) {
+      console.log(`  Skipped: ${dedupResult.reason}`);
+    } else {
+      console.log(`  Deduped: ${dedupResult.originalCount} → ${dedupResult.newCount} entries (${dedupResult.compressionRatio} reduction)`);
+      console.log(`  Freed: ${formatBytes(dedupResult.freedBytes)} (${formatBytes(dedupResult.originalSize)} → ${formatBytes(dedupResult.newSize)})`);
+    }
+    return { stats, actions: [{ action: 'dedup_candidates', ...dedupResult }], dryRun: DRY_RUN };
+  }
+
   // 1. Clean GEP prompt .txt files
   console.log(`🧹 GEP Prompts (keep latest ${KEEP_PROMPTS}):`);
   const promptResult = cleanGepPrompts();
@@ -532,6 +610,18 @@ function main() {
   }
   console.log('');
 
+  // 5. Deduplicate GEP candidates.jsonl
+  console.log('🔧 GEP Candidates Deduplication:');
+  const dedupResult = deduplicateCandidates();
+  if (dedupResult.skipped) {
+    console.log(`  Skipped: ${dedupResult.reason}`);
+  } else {
+    console.log(`  Deduped: ${dedupResult.originalCount} → ${dedupResult.newCount} entries (${dedupResult.compressionRatio} reduction)`);
+    console.log(`  Freed: ${formatBytes(dedupResult.freedBytes)} (${formatBytes(dedupResult.originalSize)} → ${formatBytes(dedupResult.newSize)})`);
+    actions.push({ action: 'dedup_candidates', ...dedupResult });
+  }
+  console.log('');
+
   // Summary
   const totalFreed = actions.reduce((sum, a) => sum + (a.freedBytes || 0), 0);
   console.log(`✅ Done. ${DRY_RUN ? '[DRY RUN] Would free' : 'Freed'}: ${formatBytes(totalFreed)}`);
@@ -540,7 +630,7 @@ function main() {
 }
 
 // Export for require() and run if executed directly
-module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes, diskCleanup, cleanNpmCache, cleanPycache, cleanJournalLogs, cleanStaleLogs };
+module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes, deduplicateCandidates, diskCleanup, cleanNpmCache, cleanPycache, cleanJournalLogs, cleanStaleLogs };
 
 if (require.main === module) {
   main();
