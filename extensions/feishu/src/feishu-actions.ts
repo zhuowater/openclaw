@@ -3,7 +3,6 @@ import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../.
 import { readStringParam } from "../../../src/agents/tools/common.js";
 import { resolveFeishuAccount, listFeishuAccountIds } from "./accounts.js";
 import { addReactionFeishu, listReactionsFeishu, removeReactionFeishu, FeishuEmoji } from "./reactions.js";
-import { sendMessageFeishu } from "./send.js";
 
 /**
  * Feishu channel message action adapter.
@@ -11,11 +10,16 @@ import { sendMessageFeishu } from "./send.js";
  * Wires up the existing reactions.ts functions (addReactionFeishu, listReactionsFeishu,
  * removeReactionFeishu) to the message tool's `react` and `reactions` actions.
  *
+ * Note: The `send` action is intentionally NOT handled here — it is already handled
+ * by the core outbound adapter (feishuOutbound in outbound.ts), which supports media,
+ * reply-to, streaming cards, and other features. Duplicating send here would lose those
+ * capabilities.
+ *
  * Resolves: https://github.com/openclaw/openclaw/issues/33948
  */
 export const feishuMessageActions: ChannelMessageActionAdapter = {
   listActions: ({ cfg }: { cfg: ClawdbotConfig }): ChannelMessageActionName[] => {
-    // Check if any feishu account is configured
+    // Check if any feishu account is configured and enabled
     const accountIds = listFeishuAccountIds(cfg);
     const hasConfigured = accountIds.some((id) => {
       const account = resolveFeishuAccount({ cfg, accountId: id });
@@ -24,24 +28,13 @@ export const feishuMessageActions: ChannelMessageActionAdapter = {
 
     if (!hasConfigured) return [];
 
-    const actions: ChannelMessageActionName[] = ["send", "react", "reactions"];
-    return actions;
+    // Only expose reaction actions; send is handled by core outbound adapter
+    return ["react", "reactions"];
   },
 
   handleAction: async (ctx) => {
     const { action, params, cfg } = ctx;
     const accountId = ctx.accountId ?? undefined;
-
-    if (action === "send") {
-      const to = readStringParam(params, "to", { required: true });
-      const message = readStringParam(params, "message", { required: true, allowEmpty: true });
-      const result = await sendMessageFeishu({ cfg, to, text: message, accountId });
-      return {
-        channel: "feishu",
-        messageId: result?.message_id || "unknown",
-        chatId: to,
-      };
-    }
 
     if (action === "react") {
       const messageId = readStringParam(params, "messageId", { required: true });
@@ -49,19 +42,36 @@ export const feishuMessageActions: ChannelMessageActionAdapter = {
       const remove = typeof params.remove === "boolean" ? params.remove : false;
 
       // Normalize emoji: support both uppercase Feishu names ("THUMBSUP") and
-      // common lowercase/coloned forms (":thumbsup:", "thumbsup")
+      // common lowercase/coloned forms (":thumbsup:", "thumbsup") and Unicode
       const normalizedEmoji = normalizeFeishuEmoji(emoji);
 
       if (remove) {
-        // To remove, we need to find the reaction ID first
+        // To remove, we need to find the reaction ID first.
+        // We scope the search to the current bot's appId to avoid removing
+        // another bot's reaction in multi-bot environments.
         const reactions = await listReactionsFeishu({
           cfg,
           messageId,
           emojiType: normalizedEmoji,
           accountId,
         });
-        // Find the bot's own reaction
-        const botReaction = reactions.find((r) => r.operatorType === "app");
+
+        // Resolve the current bot's app open_id for identity matching.
+        // Feishu reaction operatorId is the bot's open_id when operatorType is "app".
+        const account = resolveFeishuAccount({ cfg, accountId });
+        const botAppId = account.appId;
+
+        // Find the current bot's own reaction by checking both operatorType and operatorId.
+        // If we can't determine our own appId, fall back to first app reaction (best effort).
+        const botReaction = reactions.find((r) => {
+          if (r.operatorType !== "app") return false;
+          // If we know our appId, verify it matches; otherwise accept any app reaction
+          if (botAppId && r.operatorId) {
+            return r.operatorId === botAppId;
+          }
+          return true;
+        });
+
         if (botReaction) {
           await removeReactionFeishu({
             cfg,
@@ -106,6 +116,7 @@ export const feishuMessageActions: ChannelMessageActionAdapter = {
       };
     }
 
+    // Unknown action — return null to let the framework handle it
     return null;
   },
 };
@@ -118,8 +129,10 @@ export const feishuMessageActions: ChannelMessageActionAdapter = {
  * - Lowercase: "thumbsup", "heart"
  * - Coloned (Slack-style): ":thumbsup:", ":heart:"
  * - Common aliases: "👍" → "THUMBSUP", "❤️" → "HEART", "🔥" → "FIRE"
+ *
+ * Exported for testability.
  */
-function normalizeFeishuEmoji(input: string): string {
+export function normalizeFeishuEmoji(input: string): string {
   // Strip colons (Slack-style :emoji:)
   let cleaned = input.replace(/^:|:$/g, "").trim();
 
@@ -158,7 +171,6 @@ function normalizeFeishuEmoji(input: string): string {
     return upper;
   }
 
-  // If it's already a valid Feishu emoji type (case-insensitive match), return uppercase
-  // Otherwise return as-is (Feishu will reject invalid types with an error)
+  // Return uppercase — Feishu will reject invalid types with an error
   return upper || "THUMBSUP";
 }
