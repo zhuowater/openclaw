@@ -13,6 +13,8 @@ const ARCHIVE_DAYS = parseInt(process.env.JANITOR_ARCHIVE_DAYS || '14', 10);
 const DRY_RUN = process.env.JANITOR_DRY_RUN === 'true' || process.argv.includes('--dry-run');
 const STATS_ONLY = process.argv.includes('--stats-only');
 const ARCHIVE_ONLY = process.argv.includes('--archive-daily');
+const DISK_CLEAN = process.argv.includes('--disk');
+const WORKSPACE = process.env.WORKSPACE || path.resolve(__dirname, '../..');
 
 // Protected files that must never be deleted
 const PROTECTED_ROOTS = new Set([
@@ -291,6 +293,148 @@ function cleanGepPromptJsons() {
   };
 }
 
+// --- Disk Cleanup ---
+const { execSync } = require('child_process');
+
+function cleanNpmCache() {
+  const npmDir = path.join(process.env.HOME || '/root', '.npm');
+  if (!fs.existsSync(npmDir)) return { skipped: true, reason: 'no .npm directory' };
+
+  let size = 0;
+  try {
+    const output = execSync(`du -sb ${npmDir} 2>/dev/null`, { encoding: 'utf8' }).trim();
+    size = parseInt(output.split('\t')[0], 10) || 0;
+  } catch (e) { /* ignore */ }
+
+  if (size < 1024 * 1024) return { skipped: true, reason: `cache only ${formatBytes(size)}` };
+
+  if (!DRY_RUN) {
+    try { execSync('npm cache clean --force 2>/dev/null'); } catch (e) { /* ignore */ }
+  }
+
+  return { skipped: false, freedBytes: size, description: `npm cache (${formatBytes(size)})` };
+}
+
+function cleanPycache() {
+  const skillsDir = path.join(WORKSPACE, 'skills');
+  if (!fs.existsSync(skillsDir)) return { skipped: true, reason: 'no skills directory' };
+
+  let freedBytes = 0;
+  let count = 0;
+
+  function removePycache(dir) {
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const e of entries) {
+        const full = path.join(dir, e.name);
+        if (e.isDirectory()) {
+          if (e.name === '__pycache__') {
+            const size = getDirSize(full);
+            freedBytes += size;
+            count++;
+            if (!DRY_RUN) {
+              fs.rmSync(full, { recursive: true, force: true });
+            }
+          } else if (e.name !== 'node_modules' && e.name !== '.git' && e.name !== 'venv') {
+            removePycache(full);
+          }
+        }
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  removePycache(skillsDir);
+  if (count === 0) return { skipped: true, reason: 'no __pycache__ found' };
+  return { skipped: false, freedBytes, count, description: `${count} __pycache__ dirs (${formatBytes(freedBytes)})` };
+}
+
+function cleanJournalLogs() {
+  let currentSize = 0;
+  try {
+    const output = execSync('journalctl --disk-usage 2>/dev/null', { encoding: 'utf8' });
+    const m = output.match(/([\d.]+)([KMGT])/i);
+    if (m) {
+      const val = parseFloat(m[1]);
+      const unit = m[2].toUpperCase();
+      const mult = { K: 1024, M: 1024**2, G: 1024**3, T: 1024**4 };
+      currentSize = val * (mult[unit] || 1);
+    }
+  } catch (e) { return { skipped: true, reason: 'journalctl not available' }; }
+
+  const targetSize = 50 * 1024 * 1024; // keep 50MB
+  if (currentSize <= targetSize) return { skipped: true, reason: `journal only ${formatBytes(currentSize)}` };
+
+  const freedEstimate = currentSize - targetSize;
+  if (!DRY_RUN) {
+    try { execSync('journalctl --vacuum-size=50M 2>/dev/null'); } catch (e) { /* ignore */ }
+  }
+
+  return { skipped: false, freedBytes: freedEstimate, description: `journal logs (${formatBytes(freedEstimate)} est.)` };
+}
+
+function cleanStaleLogs() {
+  const logDirs = [
+    path.join(WORKSPACE, 'skills/intelligence/logs'),
+  ];
+  let freedBytes = 0;
+  let count = 0;
+  const maxAge = 7 * 86400000; // 7 days
+
+  for (const dir of logDirs) {
+    if (!fs.existsSync(dir)) continue;
+    try {
+      const files = fs.readdirSync(dir).filter(f => f.endsWith('.log'));
+      for (const f of files) {
+        const fp = path.join(dir, f);
+        const st = fs.statSync(fp);
+        if (Date.now() - st.mtimeMs > maxAge) {
+          freedBytes += st.size;
+          count++;
+          if (!DRY_RUN) fs.unlinkSync(fp);
+        }
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  if (count === 0) return { skipped: true, reason: 'no stale logs' };
+  return { skipped: false, freedBytes, count, description: `${count} stale log files (${formatBytes(freedBytes)})` };
+}
+
+function diskCleanup() {
+  console.log('🧹 Disk Cleanup:');
+  console.log('');
+  const results = [];
+
+  // 1. npm cache
+  console.log('  [npm cache]');
+  const npm = cleanNpmCache();
+  if (npm.skipped) console.log(`    Skipped: ${npm.reason}`);
+  else { console.log(`    ${DRY_RUN ? 'Would clean' : 'Cleaned'}: ${npm.description}`); results.push(npm); }
+
+  // 2. __pycache__ (outside venvs)
+  console.log('  [__pycache__]');
+  const pyc = cleanPycache();
+  if (pyc.skipped) console.log(`    Skipped: ${pyc.reason}`);
+  else { console.log(`    ${DRY_RUN ? 'Would clean' : 'Cleaned'}: ${pyc.description}`); results.push(pyc); }
+
+  // 3. journal logs
+  console.log('  [journal logs]');
+  const journal = cleanJournalLogs();
+  if (journal.skipped) console.log(`    Skipped: ${journal.reason}`);
+  else { console.log(`    ${DRY_RUN ? 'Would clean' : 'Cleaned'}: ${journal.description}`); results.push(journal); }
+
+  // 4. stale skill logs
+  console.log('  [stale skill logs]');
+  const logs = cleanStaleLogs();
+  if (logs.skipped) console.log(`    Skipped: ${logs.reason}`);
+  else { console.log(`    ${DRY_RUN ? 'Would clean' : 'Cleaned'}: ${logs.description}`); results.push(logs); }
+
+  const totalFreed = results.reduce((s, r) => s + (r.freedBytes || 0), 0);
+  console.log('');
+  console.log(`  ${DRY_RUN ? 'Would free' : 'Freed'} total: ${formatBytes(totalFreed)}`);
+  return { actions: results, totalFreed };
+}
+
 // --- Main ---
 function main() {
   console.log('=== Memory Janitor ===');
@@ -328,6 +472,12 @@ function main() {
       console.log(`  Freed: ${formatBytes(archResult.freedBytes)}`);
     }
     return { stats, actions: [{ action: 'archive_daily', ...archResult }] };
+  }
+
+  // Handle --disk mode
+  if (DISK_CLEAN) {
+    const diskResult = diskCleanup();
+    return { stats, actions: diskResult.actions, totalFreed: diskResult.totalFreed, dryRun: DRY_RUN };
   }
 
   // 1. Clean GEP prompt .txt files
@@ -390,7 +540,7 @@ function main() {
 }
 
 // Export for require() and run if executed directly
-module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes };
+module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes, diskCleanup, cleanNpmCache, cleanPycache, cleanJournalLogs, cleanStaleLogs };
 
 if (require.main === module) {
   main();
