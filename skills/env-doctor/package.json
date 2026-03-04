@@ -1,0 +1,6 @@
+{
+  "name": "env-doctor",
+  "version": "1.0.0",
+  "description": "Environment health diagnostic for OpenClaw agents",
+  "main": "index.js"
+}
