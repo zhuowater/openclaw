@@ -1,0 +1,6 @@
+{
+  "name": "workspace-health",
+  "version": "1.0.0",
+  "description": "Unified workspace health diagnostic — replaces 8+ exec calls with one invocation",
+  "main": "index.js"
+}
