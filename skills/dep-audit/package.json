@@ -1,0 +1,7 @@
+{
+  "name": "dep-audit",
+  "version": "1.0.0",
+  "description": "Lightweight Node.js dependency auditor: outdated packages, vulnerabilities, and license check",
+  "main": "index.js",
+  "license": "MIT"
+}
