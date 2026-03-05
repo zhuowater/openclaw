@@ -1,0 +1,6 @@
+{
+  "name": "uptime-monitor",
+  "version": "1.0.0",
+  "description": "Lightweight endpoint health checker with response time measurement and status reporting",
+  "main": "index.js"
+}
