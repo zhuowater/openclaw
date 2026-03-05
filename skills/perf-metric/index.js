@@ -128,6 +128,56 @@ function analyze(assetsDir) {
     lines: e.blast_radius ? e.blast_radius.lines : 0
   }));
 
+  // Hollow cycle detection: success with ≤4 lines changed is likely a no-op
+  const HOLLOW_THRESHOLD = 4;
+  const hollowCycles = events.filter(e =>
+    e.outcome && e.outcome.status === 'success' &&
+    e.blast_radius && e.blast_radius.lines <= HOLLOW_THRESHOLD
+  );
+  const hollowCount = hollowCycles.length;
+  const hollowRate = total > 0 ? +(hollowCount / total).toFixed(3) : 0;
+  const substantiveCycles = successes - hollowCount;
+  const effectiveSuccessRate = total > 0 ? +(substantiveCycles / total).toFixed(3) : 0;
+
+  // Recent hollow streak (consecutive hollow cycles at the end)
+  let recentHollowStreak = 0;
+  for (let i = sorted.length - 1; i >= 0; i--) {
+    const e = sorted[i];
+    if (e.outcome && e.outcome.status === 'success' &&
+        e.blast_radius && e.blast_radius.lines <= HOLLOW_THRESHOLD) {
+      recentHollowStreak++;
+    } else {
+      break;
+    }
+  }
+
+  // Health assessment
+  let healthScore = 1.0;
+  const healthFlags = [];
+  if (hollowRate > 0.5) {
+    healthScore -= 0.3;
+    healthFlags.push(`⚠️ High hollow rate (${(hollowRate * 100).toFixed(0)}% — over half of cycles are no-ops)`);
+  } else if (hollowRate > 0.3) {
+    healthScore -= 0.15;
+    healthFlags.push(`⚡ Moderate hollow rate (${(hollowRate * 100).toFixed(0)}%)`);
+  }
+  if (recentHollowStreak >= 3) {
+    healthScore -= 0.2;
+    healthFlags.push(`⚠️ ${recentHollowStreak} consecutive hollow cycles — evolution may be stagnating`);
+  }
+  if (failures > 0 && (failures / total) > 0.3) {
+    healthScore -= 0.2;
+    healthFlags.push(`⚠️ High failure rate (${((failures / total) * 100).toFixed(0)}%)`);
+  }
+  if (currentStreak.type === 'failure' && currentStreak.count >= 3) {
+    healthScore -= 0.2;
+    healthFlags.push(`🔴 ${currentStreak.count}-cycle failure streak`);
+  }
+  if (healthFlags.length === 0) {
+    healthFlags.push('✅ Evolution system is healthy');
+  }
+  healthScore = Math.max(0, Math.min(1, +healthScore.toFixed(2)));
+
   return {
     summary: { total, successes, failures, successRate },
     intentBreakdown,
@@ -136,7 +186,10 @@ function analyze(assetsDir) {
     streaks: { current: currentStreak, longestSuccess, longestFailure },
     timeline,
     geneCount: genes.length,
-    capsuleCount: capsules.length
+    capsuleCount: capsules.length,
+    hollowCycles: { count: hollowCount, rate: hollowRate, recentStreak: recentHollowStreak, threshold: HOLLOW_THRESHOLD },
+    effectiveSuccessRate,
+    health: { score: healthScore, flags: healthFlags }
   };
 }
 
@@ -177,6 +230,23 @@ function report(assetsDir) {
   lines.push('## Blast Radius');
   lines.push(`- **Files:** min=${m.blastRadius.files.min}, max=${m.blastRadius.files.max}, avg=${m.blastRadius.files.avg}`);
   lines.push(`- **Lines:** min=${m.blastRadius.lines.min}, max=${m.blastRadius.lines.max}, avg=${m.blastRadius.lines.avg}`);
+  lines.push('');
+
+  // Hollow Cycles
+  lines.push('## Evolution Efficiency');
+  lines.push(`- **Substantive cycles:** ${m.summary.successes - m.hollowCycles.count}/${m.summary.total} (${(m.effectiveSuccessRate * 100).toFixed(1)}%)`);
+  lines.push(`- **Hollow cycles (≤${m.hollowCycles.threshold} lines):** ${m.hollowCycles.count} (${(m.hollowCycles.rate * 100).toFixed(1)}%)`);
+  if (m.hollowCycles.recentStreak > 0) {
+    lines.push(`- **Recent hollow streak:** ${m.hollowCycles.recentStreak} consecutive`);
+  }
+  lines.push('');
+
+  // Health Assessment
+  lines.push('## Health Assessment');
+  lines.push(`- **Score:** ${(m.health.score * 100).toFixed(0)}%`);
+  for (const flag of m.health.flags) {
+    lines.push(`- ${flag}`);
+  }
   lines.push('');
 
   // Streaks

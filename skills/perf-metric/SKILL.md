@@ -17,6 +17,9 @@ Returns a metrics object:
 - `blastRadius` — min/max/avg files and lines touched
 - `streaks` — current and longest success/failure streaks
 - `timeline` — chronological event summaries
+- `hollowCycles` — count, rate, and recent streak of no-op cycles (≤4 lines)
+- `effectiveSuccessRate` — success rate excluding hollow cycles
+- `health` — overall health score (0-1) and diagnostic flags
 
 ### `report(assetsDir?)`
 Returns a human-readable markdown string of the above.
