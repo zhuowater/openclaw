@@ -382,6 +382,159 @@ async function evolverPreflight() {
 }
 
 /**
+ * Memory Stats - Consolidated memory/notes statistics in a single call.
+ * Replaces: ls memory/ + wc -l MEMORY.md + du -sh memory/ + stat + count
+ * @param {string} workspace - Root workspace path (default: /root/openclaw)
+ * @returns {Promise<Object>} - { memoryMd, dailyNotes, archives, totalSize, recentNotes, staleCount }
+ */
+async function memoryStats(workspace = '/root/openclaw') {
+  const memDir = path.join(workspace, 'memory');
+  const result = {
+    memoryMd: { exists: false, lines: 0, bytes: 0, lastModified: null },
+    dailyNotes: [],
+    archives: [],
+    totalSize: { bytes: 0, human: '0B' },
+    recentNotes: [],
+    staleCount: 0,
+    summary: ''
+  };
+
+  // 1. MEMORY.md stats
+  try {
+    const memPath = path.join(workspace, 'MEMORY.md');
+    const stat = await fs.stat(memPath);
+    const content = await fs.readFile(memPath, 'utf8');
+    result.memoryMd = {
+      exists: true,
+      lines: content.split('\n').length,
+      bytes: stat.size,
+      lastModified: stat.mtime.toISOString()
+    };
+  } catch { /* missing */ }
+
+  // 2. Scan memory directory
+  try {
+    const entries = await fs.readdir(memDir);
+    const now = Date.now();
+    const sevenDays = 7 * 24 * 60 * 60 * 1000;
+
+    for (const entry of entries) {
+      const fullPath = path.join(memDir, entry);
+      try {
+        const stat = await fs.stat(fullPath);
+        if (!stat.isFile()) continue;
+        result.totalSize.bytes += stat.size;
+
+        if (entry.match(/^\d{4}-\d{2}-\d{2}\.md$/)) {
+          result.dailyNotes.push({ name: entry, bytes: stat.size, modified: stat.mtime.toISOString() });
+        } else if (entry.startsWith('archive-')) {
+          result.archives.push({ name: entry, bytes: stat.size });
+        }
+
+        if (now - stat.mtime.getTime() < sevenDays) {
+          result.recentNotes.push(entry);
+        } else if (entry.match(/^\d{4}-\d{2}-\d{2}\.md$/)) {
+          result.staleCount++;
+        }
+      } catch { /* skip */ }
+    }
+  } catch { /* missing dir */ }
+
+  // Sort daily notes newest first
+  result.dailyNotes.sort((a, b) => b.name.localeCompare(a.name));
+  result.recentNotes.sort((a, b) => b.localeCompare(a));
+
+  // Human-readable size
+  const bytes = result.totalSize.bytes;
+  if (bytes > 1048576) result.totalSize.human = (bytes / 1048576).toFixed(1) + 'MB';
+  else if (bytes > 1024) result.totalSize.human = (bytes / 1024).toFixed(1) + 'KB';
+  else result.totalSize.human = bytes + 'B';
+
+  result.summary = `MEMORY.md: ${result.memoryMd.lines} lines | ${result.dailyNotes.length} daily notes | ${result.archives.length} archives | ${result.totalSize.human} total | ${result.staleCount} stale`;
+
+  return result;
+}
+
+/**
+ * Evolution Stats - Quick evolution system health check in a single call.
+ * Replaces: cat events.jsonl | wc -l + ls genes/ + ls capsules/ + tail events
+ * @returns {Promise<Object>} - { eventCount, geneCount, capsuleCount, lastEvent, successRate, streakInfo }
+ */
+async function evolutionStats() {
+  const assetsDir = '/root/openclaw/skills/evolver/assets/gep';
+  const result = {
+    eventCount: 0,
+    geneCount: 0,
+    capsuleCount: 0,
+    lastEvent: null,
+    recentEvents: [],
+    successRate: 0,
+    consecutiveSuccesses: 0,
+    summary: ''
+  };
+
+  // 1. Events
+  try {
+    const eventsContent = await fs.readFile(path.join(assetsDir, 'events.jsonl'), 'utf8');
+    const lines = eventsContent.trim().split('\n').filter(Boolean);
+    const events = [];
+    let successes = 0;
+    let totalWithOutcome = 0;
+
+    for (const line of lines) {
+      try {
+        const obj = JSON.parse(line);
+        if (obj.type === 'EvolutionEvent' || obj.intent) {
+          events.push(obj);
+          if (obj.outcome) {
+            totalWithOutcome++;
+            if (obj.outcome.status === 'success') successes++;
+          }
+        }
+      } catch { /* skip */ }
+    }
+
+    result.eventCount = events.length;
+    result.successRate = totalWithOutcome > 0 ? Math.round(successes / totalWithOutcome * 100) : 0;
+
+    // Last 3 events summary
+    result.recentEvents = events.slice(-3).map(e => ({
+      id: e.id, intent: e.intent, signals: e.signals, status: e.outcome?.status
+    }));
+
+    // Consecutive success streak from tail
+    result.consecutiveSuccesses = 0;
+    for (let i = events.length - 1; i >= 0; i--) {
+      if (events[i].outcome?.status === 'success') result.consecutiveSuccesses++;
+      else break;
+    }
+
+    if (events.length > 0) {
+      const last = events[events.length - 1];
+      result.lastEvent = { id: last.id, intent: last.intent, status: last.outcome?.status };
+    }
+  } catch { /* no events file */ }
+
+  // 2. Gene count
+  try {
+    const genesDir = path.join(assetsDir, 'genes');
+    const genes = await fs.readdir(genesDir);
+    result.geneCount = genes.filter(f => f.endsWith('.json')).length;
+  } catch { /* */ }
+
+  // 3. Capsule count
+  try {
+    const capsulesDir = path.join(assetsDir, 'capsules');
+    const capsules = await fs.readdir(capsulesDir);
+    result.capsuleCount = capsules.filter(f => f.endsWith('.json')).length;
+  } catch { /* */ }
+
+  result.summary = `${result.eventCount} events (${result.successRate}% success) | ${result.geneCount} genes | ${result.capsuleCount} capsules | streak: ${result.consecutiveSuccesses}`;
+
+  return result;
+}
+
+/**
  * Batch File Check - Check existence of multiple files in one call.
  * Replaces repeated fileExists calls.
  * @param {Array<string>} paths - File paths to check
@@ -432,6 +585,18 @@ async function main() {
     return;
   }
 
+  if (cmd === 'memory') {
+    const stats = await memoryStats();
+    console.log(JSON.stringify(stats, null, 2));
+    return;
+  }
+
+  if (cmd === 'evo') {
+    const stats = await evolutionStats();
+    console.log(JSON.stringify(stats, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -439,6 +604,8 @@ async function main() {
   console.log('  node index.js preflight  - Evolver pre-flight (replaces 5-7 exec calls)');
   console.log('  node index.js health     - System health summary');
   console.log('  node index.js skill <n>  - Check skill integrity');
+  console.log('  node index.js memory     - Memory/notes statistics');
+  console.log('  node index.js evo        - Evolution system stats');
 }
 
 module.exports = {
@@ -455,6 +622,8 @@ module.exports = {
   skillHealth,
   evolverPreflight,
   batchFileCheck,
+  memoryStats,
+  evolutionStats,
   main
 };
 

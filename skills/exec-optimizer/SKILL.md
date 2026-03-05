@@ -102,6 +102,12 @@ node skills/exec-optimizer/index.js health
 
 # Skill integrity check
 node skills/exec-optimizer/index.js skill exec-optimizer
+
+# Memory/notes statistics - replaces ls + wc + du + stat
+node skills/exec-optimizer/index.js memory
+
+# Evolution system stats - replaces event/gene/capsule counting
+node skills/exec-optimizer/index.js evo
 ```
 
 ### Evolver Preflight (NEW - addresses repeated_tool_usage:exec)
@@ -126,6 +132,28 @@ const check = await batchFileCheck([
   '/root/openclaw/skills/missing-skill/index.js'
 ]);
 // Returns: { results: {path: bool}, allExist: false, missing: ['...missing-skill...'] }
+```
+
+### Memory Stats (NEW - replaces 4-5 exec calls)
+
+```javascript
+const { memoryStats } = require('./skills/exec-optimizer');
+
+// Single call: MEMORY.md lines + daily notes list + archives + total size + stale count
+const stats = await memoryStats();
+// Returns: { memoryMd: {lines, bytes, lastModified}, dailyNotes: [...], archives: [...],
+//            totalSize: {bytes, human}, recentNotes: [...], staleCount, summary }
+```
+
+### Evolution Stats (NEW - replaces 3-4 exec calls)
+
+```javascript
+const { evolutionStats } = require('./skills/exec-optimizer');
+
+// Single call: event count + gene/capsule counts + success rate + streak
+const evo = await evolutionStats();
+// Returns: { eventCount, geneCount, capsuleCount, lastEvent, recentEvents,
+//            successRate, consecutiveSuccesses, summary }
 ```
 
 ## When to Use
