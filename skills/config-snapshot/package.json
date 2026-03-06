@@ -1,0 +1,6 @@
+{
+  "name": "config-snapshot",
+  "version": "1.0.0",
+  "description": "Save, compare, and restore OpenClaw configuration snapshots",
+  "main": "index.js"
+}

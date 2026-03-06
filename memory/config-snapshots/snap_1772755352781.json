@@ -1,0 +1,307 @@
+{
+  "id": "snap_1772755352781",
+  "timestamp": "2026-03-06T00:02:32.781Z",
+  "label": "gep-34-test",
+  "hash": "21d53cf0f01bb063",
+  "config": {
+    "meta": {
+      "lastTouchedVersion": "0.1.6",
+      "lastTouchedAt": "2026-02-27T03:16:06.780Z"
+    },
+    "env": {
+      "GITHUB_TOKEN": "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",
+      "SKYEYE_API_KEY": "sk-89XhzQp0oA4mj2fxBcC295C6DeFa4303A70e0f116250A468",
+      "OPENCLAW_NO_PLUGIN_CACHE": "1",
+      "POLYMARKET_API_KEY": "ecb7cd81-c08f-3fb5-7c75-78cb4d35795b",
+      "POLYMARKET_API_SECRET": "c7SSNXijw2YRF57IPF1yZkqAxJKzbhLB0KCStXEcNXE=",
+      "POLYMARKET_API_PASSPHRASE": "42589047365a408bf5b87926d2abf59b3b169e51bc48eee98dd9ba4f2934a1ee",
+      "POLYMARKET_PRIVATE_KEY": "0xfdd5d18f9c0d6f9ab2e0887397a15005ad4f7ad228b6c09cd9fd0a844cb0b6f8",
+      "POLYMARKET_FUNDER": "0x68e8da45f26396b2cc076e24103e9494ea680c38",
+      "POLYMARKET_SIGNATURE_TYPE": "1",
+      "X_API_KEY": "bR6z2VWlapI8L8SBqolBV5dcV",
+      "X_API_SECRET": "L4E7ScgRLcHxRsNXDwghPm4PFUoWgcAbzeCMDxlbRSh15WAijP",
+      "X_ACCESS_TOKEN": "2003789868690984960-hZbJ1gh9ttdpmUybqVj8XvQLKHI5nx",
+      "X_ACCESS_TOKEN_SECRET": "DEfmZ7GMevIYRK2rJUOiOowGNOsyE2JxNgSRppUN1Yqxo",
+      "AISSTREAM_API_KEY": "05b4d6d67d3798592de71540892c84e31beac16a"
+    },
+    "wizard": {
+      "lastRunAt": "2026-02-07T08:59:58.139Z",
+      "lastRunVersion": "0.1.0",
+      "lastRunCommand": "doctor",
+      "lastRunMode": "local"
+    },
+    "browser": {
+      "enabled": true,
+      "executablePath": "/usr/bin/google-chrome",
+      "headless": true,
+      "noSandbox": true
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "ark": {
+          "baseUrl": "https://ark.cn-beijing.volces.com/api/v3",
+          "apiKey": "a0e72fcb-ffed-40cb-bdad-640def9975d0",
+          "api": "openai-completions",
+          "models": [
+            {
+              "id": "glm-4-7-251222",
+              "name": "glm-4-7-251222",
+              "reasoning": false,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 64000,
+              "maxTokens": 8192
+            }
+          ]
+        },
+        "skyeye": {
+          "baseUrl": "https://api.skyeye.net",
+          "apiKey": "sk-89XhzQp0oA4mj2fxBcC295C6DeFa4303A70e0f116250A468",
+          "api": "anthropic-messages",
+          "models": [
+            {
+              "id": "claude-sonnet-4-5-20250929",
+              "name": "claude-sonnet-4-5-20250929",
+              "reasoning": false,
+              "input": [
+                "text",
+                "image"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 200000,
+              "maxTokens": 8192
+            },
+            {
+              "id": "claude-opus-4-6",
+              "name": "claude-opus-4-6",
+              "reasoning": true,
+              "input": [
+                "text",
+                "image"
+              ],
+              "cost": {
+                "input": 5,
+                "output": 25,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 1000000,
+              "maxTokens": 128000
+            },
+            {
+              "id": "gemini-3-pro-image-preview",
+              "name": "gemini-3-pro-image-preview",
+              "reasoning": true,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 64000,
+              "maxTokens": 8192
+            }
+          ]
+        },
+        "skyeye-openai": {
+          "baseUrl": "https://api.skyeye.net/v1",
+          "apiKey": "sk-89XhzQp0oA4mj2fxBcC295C6DeFa4303A70e0f116250A468",
+          "api": "openai-completions",
+          "models": [
+            {
+              "id": "glm-5",
+              "name": "GLM-5",
+              "reasoning": false,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 128000,
+              "maxTokens": 8192
+            },
+            {
+              "id": "grok-3",
+              "name": "Grok-3",
+              "reasoning": false,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 131072,
+              "maxTokens": 8192
+            },
+            {
+              "id": "grok-4",
+              "name": "Grok-4",
+              "reasoning": true,
+              "input": [
+                "text"
+              ],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 131072,
+              "maxTokens": 16384
+            }
+          ]
+        }
+      }
+    },
+    "agents": {
+      "defaults": {
+        "model": {
+          "primary": "skyeye/claude-opus-4-6"
+        },
+        "imageModel": {
+          "primary": "skyeye/gemini-3-pro-image-preview"
+        },
+        "models": {
+          "skyeye/claude-sonnet-4-5-20250929": {
+            "alias": "sonet"
+          },
+          "ark/glm-4-7-251222": {},
+          "skyeye/gemini-3-pro-image-preview": {},
+          "skyeye-openai/glm-5": {
+            "alias": "glm5"
+          },
+          "skyeye/claude-opus-4-6": {
+            "alias": "opus"
+          },
+          "skyeye-openai/grok-3": {
+            "alias": "grok3"
+          },
+          "skyeye-openai/grok-4": {
+            "alias": "grok4"
+          }
+        },
+        "workspace": "/root/openclaw",
+        "memorySearch": {
+          "enabled": true,
+          "provider": "local",
+          "remote": {
+            "baseUrl": "https://api.skyeye.net/v1",
+            "apiKey": "sk-89XhzQp0oA4mj2fxBcC295C6DeFa4303A70e0f116250A468",
+            "batch": {
+              "enabled": false
+            }
+          },
+          "model": "text-embedding-v1"
+        },
+        "compaction": {
+          "mode": "safeguard"
+        },
+        "blockStreamingDefault": "on",
+        "blockStreamingBreak": "text_end",
+        "blockStreamingCoalesce": {
+          "minChars": 200,
+          "maxChars": 2000,
+          "idleMs": 1500
+        },
+        "maxConcurrent": 4,
+        "subagents": {
+          "maxConcurrent": 8
+        }
+      }
+    },
+    "messages": {
+      "ackReactionScope": "group-mentions"
+    },
+    "commands": {
+      "native": "auto",
+      "nativeSkills": "auto",
+      "restart": true
+    },
+    "channels": {
+      "feishu": {
+        "enabled": true,
+        "dmPolicy": "pairing",
+        "accounts": {
+          "main": {
+            "appId": "cli_a9f68bf64bf9dbde",
+            "appSecret": "Blvo5l76nUkYvcyqw5YfPcdUD1GBYebi",
+            "streaming": true,
+            "renderMode": "card"
+          }
+        },
+        "appId": "cli_a9f68bf64bf9dbde",
+        "appSecret": "Blvo5l76nUkYvcyqw5YfPcdUD1GBYebi",
+        "streaming": true,
+        "renderMode": "card"
+      }
+    },
+    "talk": {
+      "voiceId": "W8lBaQb9YIoddhxfQNLP",
+      "modelId": "eleven_v3",
+      "apiKey": "sk_87bb39c15021a84bf6f540b35a2d9460dd9bb84a79991b13"
+    },
+    "gateway": {
+      "port": 18789,
+      "mode": "local",
+      "bind": "loopback",
+      "auth": {
+        "mode": "token",
+        "token": "8bb4c82a822cc1fe36118076b986bb8d081c6a4dd1580215"
+      },
+      "tailscale": {
+        "mode": "off",
+        "resetOnExit": false
+      }
+    },
+    "plugins": {
+      "entries": {
+        "feishu": {
+          "enabled": true
+        },
+        "voice-call": {
+          "enabled": true,
+          "config": {
+            "provider": "twilio",
+            "twilio": {
+              "accountSid": "AC1cd31002d32cd4e317c993f3bb763f2b",
+              "authToken": "d0fa773cb08ce71c99cf7222566b6125"
+            },
+            "fromNumber": "+18305212085"
+          }
+        }
+      },
+      "installs": {
+        "feishu": {
+          "source": "npm",
+          "spec": "@m1heng-clawd/feishu",
+          "installPath": "/root/.openclaw/extensions/feishu",
+          "version": "0.1.12",
+          "installedAt": "2026-02-27T03:16:06.762Z"
+        }
+      }
+    }
+  }
+}
