@@ -1,0 +1,7 @@
+{
+  "name": "smart-commit",
+  "version": "1.0.0",
+  "description": "Generate intelligent git commit messages from staged changes",
+  "main": "index.js",
+  "keywords": ["git", "commit", "conventional-commits", "automation"]
+}
