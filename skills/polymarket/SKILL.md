@@ -112,6 +112,26 @@ const trades    = await poly.getTradeHistory({ limit: 20 });
 const orders    = await poly.getOpenOrders();
 ```
 
+## ⚠️ Common Error: Never Use Raw `curl | python3` for Market Lookups
+
+**DO NOT** do this (causes recurring `KeyError: 'tokens'`):
+```bash
+# ❌ WRONG — Gamma API returns clobTokenIds (JSON string), NOT tokens (list)
+curl -s 'https://gamma-api.polymarket.com/markets?slug=...' | python3 -c "import json,sys; m=json.load(sys.stdin)[0]; print(m['tokens'])"
+```
+
+**Use the safe wrapper instead:**
+```bash
+# ✅ CORRECT — market_info.py handles all API format quirks
+python3 skills/polymarket/scripts/market_info.py "market-slug"
+python3 skills/polymarket/scripts/market_info.py "market-slug" --prices
+
+# ✅ CORRECT — trade.py lookup (also safe)
+python3 skills/polymarket/scripts/trade.py lookup "market-slug"
+```
+
+The Gamma API returns `clobTokenIds` as a **JSON-encoded string** (not a list), and `outcomes` as a JSON-encoded string too. Both `market_info.py` and `trade.py` handle this parsing correctly. Raw `curl | python3` one-liners will break.
+
 ## CLI Reference
 
 ```bash

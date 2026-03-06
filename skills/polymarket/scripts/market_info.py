@@ -25,9 +25,14 @@ def get_proxy(proxy_arg=None):
 
 def get_market_by_token(token_id, proxies):
     """Get market info by CLOB token ID via Gamma API."""
-    r = requests.get(f"{GAMMA_HOST}/markets?clob_token_ids={token_id}", proxies=proxies, timeout=15)
-    r.raise_for_status()
-    data = r.json()
+    try:
+        r = requests.get(f"{GAMMA_HOST}/markets?clob_token_ids={token_id}", proxies=proxies, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+    except requests.exceptions.JSONDecodeError:
+        return {"error": f"API returned empty/invalid JSON for token {token_id}"}
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Request failed for token {token_id}: {e}"}
     if isinstance(data, list) and data:
         return format_market(data[0])
     if isinstance(data, dict) and data.get("question"):
@@ -37,19 +42,29 @@ def get_market_by_token(token_id, proxies):
 def get_market_by_slug(slug, proxies):
     """Get market info by slug via Gamma API."""
     # Try direct slug endpoint
-    r = requests.get(f"{GAMMA_HOST}/markets/{slug}", proxies=proxies, timeout=15)
-    if r.status_code == 200:
-        data = r.json()
-        m = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
-        if m:
-            return format_market(m)
+    try:
+        r = requests.get(f"{GAMMA_HOST}/markets/{slug}", proxies=proxies, timeout=15)
+        if r.status_code == 200:
+            data = r.json()
+            m = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
+            if m:
+                return format_market(m)
+    except requests.exceptions.JSONDecodeError:
+        pass  # Try fallback
+    except requests.exceptions.RequestException:
+        pass  # Try fallback
     # Fallback: query param
-    r = requests.get(f"{GAMMA_HOST}/markets?slug={slug}", proxies=proxies, timeout=15)
-    if r.status_code == 200:
-        data = r.json()
-        m = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
-        if m:
-            return format_market(m)
+    try:
+        r = requests.get(f"{GAMMA_HOST}/markets?slug={slug}", proxies=proxies, timeout=15)
+        if r.status_code == 200:
+            data = r.json()
+            m = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
+            if m:
+                return format_market(m)
+    except requests.exceptions.JSONDecodeError:
+        return {"error": f"API returned empty/invalid JSON for slug '{slug}'"}
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Request failed for slug '{slug}': {e}"}
     return {"error": f"No market found for slug '{slug}'"}
 
 def get_price_info(token_id, proxies):
@@ -110,8 +125,9 @@ def main():
     proxies = get_proxy(args.proxy)
     identifier = args.identifier.strip()
 
-    # Heuristic: if it's all digits or very long hex-like, treat as token ID
-    if len(identifier) > 30 and identifier.replace("-", "").isalnum():
+    # Heuristic: CLOB token IDs are purely numeric and very long (70+ digits)
+    # Slugs contain hyphens and letters
+    if identifier.isdigit() and len(identifier) > 30:
         result = get_market_by_token(identifier, proxies)
     else:
         result = get_market_by_slug(identifier, proxies)
