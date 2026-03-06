@@ -558,11 +558,95 @@ async function batchFileCheck(paths) {
 }
 
 /**
+ * Quick Diagnostic - All-in-one session diagnostic that replaces 3-5 separate exec calls.
+ * Replaces: git status + ls memory/ + df -h + node -v + uptime
+ * Designed to be the first call in any session to establish context fast.
+ * @param {Object} options - { includeGit: true, includeMemory: true, includeEvo: false }
+ * @returns {Promise<Object>} - Consolidated diagnostic report
+ */
+async function quickDiag(options = {}) {
+  const { includeGit = true, includeMemory = true, includeEvo = false } = options;
+  const report = {};
+
+  // 1. System basics (always)
+  report.system = await systemHealth();
+
+  // 2. Today's date + memory file existence
+  const today = new Date().toISOString().slice(0, 10);
+  const todayFile = `/root/openclaw/memory/${today}.md`;
+  report.today = today;
+  report.todayNoteExists = await fileExists(todayFile);
+
+  // 3. Git status (optional, default on)
+  if (includeGit) {
+    try {
+      report.git = await gitStatus();
+      if (!report.git.clean) {
+        report.gitDirtyCount = report.git.modified.length + report.git.untracked.length + report.git.staged.length;
+      }
+    } catch (e) {
+      report.git = { error: e.message };
+    }
+  }
+
+  // 4. Memory overview (optional, default on)
+  if (includeMemory) {
+    try {
+      const memDir = '/root/openclaw/memory';
+      const files = await fs.readdir(memDir);
+      const mdFiles = files.filter(f => f.endsWith('.md'));
+      const recentFiles = mdFiles
+        .filter(f => /^\d{4}-\d{2}-\d{2}\.md$/.test(f))
+        .sort()
+        .slice(-3);
+      report.memory = {
+        totalNotes: mdFiles.length,
+        recentDays: recentFiles.map(f => f.replace('.md', '')),
+      };
+    } catch (e) {
+      report.memory = { error: e.message };
+    }
+  }
+
+  // 5. Evolution stats (optional)
+  if (includeEvo) {
+    try {
+      const eventsPath = '/root/openclaw/skills/evolver/assets/gep/events.jsonl';
+      const content = await fs.readFile(eventsPath, 'utf8');
+      const lines = content.trim().split('\n').filter(Boolean);
+      const events = lines.map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+      const successCount = events.filter(e => e.outcome && e.outcome.status === 'success').length;
+      report.evolution = {
+        totalEvents: events.length,
+        successCount,
+        successRate: events.length > 0 ? Math.round(successCount / events.length * 100) + '%' : 'N/A',
+        latestId: events.length > 0 ? events[events.length - 1].id : null,
+      };
+    } catch (e) {
+      report.evolution = { error: e.message };
+    }
+  }
+
+  // Summary line
+  const parts = [];
+  parts.push(`Uptime: ${report.system.uptime}`);
+  parts.push(`Disk: ${report.system.disk}`);
+  if (report.git && !report.git.error) {
+    parts.push(report.git.clean ? 'Git: clean' : `Git: ${report.gitDirtyCount} dirty`);
+  }
+  parts.push(`Today note: ${report.todayNoteExists ? 'exists' : 'missing'}`);
+  report.summary = parts.join(' | ');
+
+  return report;
+}
+
+/**
  * Main entry point (for testing and CLI usage)
  * Usage:
  *   node index.js preflight    - Run evolver preflight checks
  *   node index.js health       - System health check
  *   node index.js skill <name> - Check skill health
+ *   node index.js diag         - Quick diagnostic (replaces 3-5 exec calls)
  */
 async function main() {
   const cmd = process.argv[2];
@@ -597,6 +681,13 @@ async function main() {
     return;
   }
 
+  if (cmd === 'diag') {
+    const includeEvo = process.argv.includes('--evo');
+    const report = await quickDiag({ includeEvo });
+    console.log(JSON.stringify(report, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -606,6 +697,7 @@ async function main() {
   console.log('  node index.js skill <n>  - Check skill integrity');
   console.log('  node index.js memory     - Memory/notes statistics');
   console.log('  node index.js evo        - Evolution system stats');
+  console.log('  node index.js diag       - Quick session diagnostic (replaces 3-5 exec calls)');
 }
 
 module.exports = {
@@ -624,6 +716,7 @@ module.exports = {
   batchFileCheck,
   memoryStats,
   evolutionStats,
+  quickDiag,
   main
 };
 

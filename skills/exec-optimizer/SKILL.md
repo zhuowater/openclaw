@@ -93,6 +93,11 @@ await killByName('node.*index.js');
 ### CLI Mode (single-exec access to all functions)
 
 ```bash
+# Quick session diagnostic - replaces 3-5 exec calls with 1
+node skills/exec-optimizer/index.js diag
+# Returns JSON: { system, today, todayNoteExists, git, memory, summary }
+# Add --evo flag for evolution stats: node skills/exec-optimizer/index.js diag --evo
+
 # Evolver preflight - replaces 5-7 exec calls with 1
 node skills/exec-optimizer/index.js preflight
 # Returns JSON: { system, git, recentCommits, diff, diskWarning, assetsSize, eventCount, ready, summary }
