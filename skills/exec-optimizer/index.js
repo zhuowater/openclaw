@@ -641,6 +641,87 @@ async function quickDiag(options = {}) {
 }
 
 /**
+ * Log Tail - Read last N lines from a file without spawning shell.
+ * Replaces: tail -n 20 /path/to/file (common in heartbeat/cron sessions)
+ * @param {string} filePath - File to read
+ * @param {number} lines - Number of lines from end (default: 20)
+ * @returns {Promise<Object>} - { lines: string[], totalLines: number, file: string }
+ */
+async function logTail(filePath, lines = 20) {
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    const allLines = content.split('\n');
+    const totalLines = allLines.length;
+    const tail = allLines.slice(-lines).filter(l => l.length > 0);
+    return { lines: tail, totalLines, file: path.basename(filePath) };
+  } catch (err) {
+    throw new Error(`logTail failed: ${err.message}`);
+  }
+}
+
+/**
+ * Cron Stats - Read heartbeat-state.json and summarize cron/heartbeat timing.
+ * Replaces: cat heartbeat-state.json + date calculations (common in heartbeat sessions)
+ * @param {string} workspace - Root workspace path (default: /root/openclaw)
+ * @returns {Promise<Object>} - { state, staleChecks, summary }
+ */
+async function cronStats(workspace = '/root/openclaw') {
+  const statePath = path.join(workspace, 'memory/heartbeat-state.json');
+  try {
+    const content = await fs.readFile(statePath, 'utf8');
+    const state = JSON.parse(content);
+    const now = new Date();
+    const staleChecks = [];
+
+    for (const [key, val] of Object.entries(state)) {
+      if (typeof val === 'string' && val.match(/^\d{4}-\d{2}-\d{2}/)) {
+        const ts = new Date(val);
+        const hoursAgo = (now - ts) / (1000 * 60 * 60);
+        if (hoursAgo > 24) {
+          staleChecks.push({ key, lastRun: val, hoursAgo: Math.round(hoursAgo) });
+        }
+      }
+    }
+
+    return {
+      state,
+      staleChecks,
+      summary: staleChecks.length > 0
+        ? `⚠️ ${staleChecks.length} stale checks: ${staleChecks.map(c => c.key).join(', ')}`
+        : '✅ All heartbeat checks within 24h'
+    };
+  } catch (err) {
+    return { state: null, staleChecks: [], summary: `❌ Cannot read heartbeat state: ${err.message}` };
+  }
+}
+
+/**
+ * JSON Read - Read and parse a JSON file without spawning shell.
+ * Replaces: cat file.json | python3 -c "import json..." or exec + jq patterns
+ * @param {string} filePath - JSON file path
+ * @param {string} [jsonPath] - Optional dot-path to extract (e.g., "outcome.status")
+ * @returns {Promise<any>} - Parsed JSON or extracted value
+ */
+async function jsonRead(filePath, jsonPath) {
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    const data = JSON.parse(content);
+    if (!jsonPath) return data;
+
+    // Navigate dot-path
+    const parts = jsonPath.split('.');
+    let current = data;
+    for (const part of parts) {
+      if (current == null) return undefined;
+      current = current[part];
+    }
+    return current;
+  } catch (err) {
+    throw new Error(`jsonRead(${filePath}): ${err.message}`);
+  }
+}
+
+/**
  * Main entry point (for testing and CLI usage)
  * Usage:
  *   node index.js preflight    - Run evolver preflight checks
@@ -688,6 +769,25 @@ async function main() {
     return;
   }
 
+  if (cmd === 'tail' && process.argv[3]) {
+    const lines = parseInt(process.argv[4]) || 20;
+    const report = await logTail(process.argv[3], lines);
+    console.log(JSON.stringify(report, null, 2));
+    return;
+  }
+
+  if (cmd === 'cron') {
+    const report = await cronStats();
+    console.log(JSON.stringify(report, null, 2));
+    return;
+  }
+
+  if (cmd === 'json' && process.argv[3]) {
+    const result = await jsonRead(process.argv[3], process.argv[4]);
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -698,6 +798,9 @@ async function main() {
   console.log('  node index.js memory     - Memory/notes statistics');
   console.log('  node index.js evo        - Evolution system stats');
   console.log('  node index.js diag       - Quick session diagnostic (replaces 3-5 exec calls)');
+  console.log('  node index.js tail <f> [n] - Tail N lines from file (replaces tail -n)');
+  console.log('  node index.js cron       - Heartbeat/cron state check');
+  console.log('  node index.js json <f> [path] - Read JSON file with optional dot-path');
 }
 
 module.exports = {
@@ -717,6 +820,9 @@ module.exports = {
   memoryStats,
   evolutionStats,
   quickDiag,
+  logTail,
+  cronStats,
+  jsonRead,
   main
 };
 
