@@ -89,14 +89,28 @@ def l1_headers_via_node(pk):
 
 # ── Market Info ──────────────────────────────────────────────
 
+def _safe_json(r, context="API"):
+    """Safely parse JSON response, returning None on failure."""
+    try:
+        return r.json()
+    except (ValueError, requests.exceptions.JSONDecodeError):
+        print(f"Warning: {context} returned non-JSON (status {r.status_code}): {r.text[:200]}", file=sys.stderr)
+        return None
+
 def get_market_info(token_id):
     """Get market metadata from Gamma API.
 
     Returns a formatted dict with 'tokens', 'question', 'neg_risk' etc.
     Always returns a dict with 'tokens' key (may be empty) or None.
     """
-    r = requests.get(f"{GAMMA_HOST}/markets?clob_token_ids={token_id}", proxies=PROXIES, timeout=15)
-    markets = r.json()
+    try:
+        r = requests.get(f"{GAMMA_HOST}/markets?clob_token_ids={token_id}", proxies=PROXIES, timeout=15)
+    except requests.exceptions.RequestException as e:
+        print(f"Warning: Gamma API request failed: {e}", file=sys.stderr)
+        return None
+    markets = _safe_json(r, "Gamma/markets")
+    if markets is None:
+        return None
     if isinstance(markets, list) and markets:
         return _format_market_lookup(markets[0])
     if isinstance(markets, dict) and markets.get("question"):
@@ -111,20 +125,28 @@ def lookup_market(slug):
     'TypeError: list indices must be integers or slices, not str' error.
     """
     # Try direct slug endpoint first (returns single object)
-    r = requests.get(f"{GAMMA_HOST}/markets/{slug}", proxies=PROXIES, timeout=15)
-    if r.status_code == 200:
-        data = r.json()
-        market = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
-        if market:
-            return _format_market_lookup(market)
+    try:
+        r = requests.get(f"{GAMMA_HOST}/markets/{slug}", proxies=PROXIES, timeout=15)
+        if r.status_code == 200:
+            data = _safe_json(r, f"Gamma/markets/{slug}")
+            if data is not None:
+                market = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
+                if market:
+                    return _format_market_lookup(market)
+    except requests.exceptions.RequestException:
+        pass
 
     # Fallback: query parameter (returns list)
-    r = requests.get(f"{GAMMA_HOST}/markets?slug={slug}", proxies=PROXIES, timeout=15)
-    if r.status_code == 200:
-        data = r.json()
-        market = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
-        if market:
-            return _format_market_lookup(market)
+    try:
+        r = requests.get(f"{GAMMA_HOST}/markets?slug={slug}", proxies=PROXIES, timeout=15)
+        if r.status_code == 200:
+            data = _safe_json(r, f"Gamma/markets?slug={slug}")
+            if data is not None:
+                market = data[0] if isinstance(data, list) and data else data if isinstance(data, dict) else None
+                if market:
+                    return _format_market_lookup(market)
+    except requests.exceptions.RequestException:
+        pass
 
     return None
 
@@ -167,8 +189,14 @@ def _format_market_lookup(market):
 
 def get_tick_size(token_id):
     """Get minimum tick size from CLOB API."""
-    r = requests.get(f"{CLOB_HOST}/tick-size?token_id={token_id}", proxies=PROXIES, timeout=15)
-    return r.json().get("minimum_tick_size", 0.01)
+    try:
+        r = requests.get(f"{CLOB_HOST}/tick-size?token_id={token_id}", proxies=PROXIES, timeout=15)
+        data = _safe_json(r, "CLOB/tick-size")
+        if data and isinstance(data, dict):
+            return data.get("minimum_tick_size", 0.01)
+    except requests.exceptions.RequestException as e:
+        print(f"Warning: tick-size request failed: {e}", file=sys.stderr)
+    return 0.01
 
 
 # ── Key Management ───────────────────────────────────────────
@@ -178,8 +206,12 @@ def derive_key():
     headers = l1_headers_via_node(get_env("POLYMARKET_PRIVATE_KEY"))
     r = requests.get(f"{CLOB_HOST}/auth/derive-api-key", headers=headers, proxies=PROXIES, timeout=15)
     print(f"Status: {r.status_code}")
-    print(json.dumps(r.json(), indent=2))
-    return r.json()
+    data = _safe_json(r, "CLOB/derive-api-key")
+    if data is not None:
+        print(json.dumps(data, indent=2))
+    else:
+        print(f"Response (non-JSON): {r.text[:500]}")
+    return data
 
 def create_key():
     """Create new API key using L1 auth."""
@@ -187,8 +219,12 @@ def create_key():
     headers["Content-Type"] = "application/json"
     r = requests.post(f"{CLOB_HOST}/auth/api-key", json={}, headers=headers, proxies=PROXIES, timeout=15)
     print(f"Status: {r.status_code}")
-    print(json.dumps(r.json(), indent=2))
-    return r.json()
+    data = _safe_json(r, "CLOB/api-key")
+    if data is not None:
+        print(json.dumps(data, indent=2))
+    else:
+        print(f"Response (non-JSON): {r.text[:500]}")
+    return data
 
 
 # ── Order Placement ──────────────────────────────────────────
@@ -270,8 +306,9 @@ def place_order(token_id, side, price, size):
     print(f"\nPosting order...")
     r = requests.post(f"{CLOB_HOST}/order", data=body_str, headers=headers, proxies=PROXIES, timeout=15)
     print(f"Status: {r.status_code}")
-    print(f"Response: {r.text}")
-    return r.json() if r.status_code == 200 else None
+    print(f"Response: {r.text[:500]}")
+    data = _safe_json(r, "CLOB/order")
+    return data if r.status_code == 200 and data is not None else None
 
 
 def main():

@@ -12,18 +12,18 @@
         "windows_shell_incompatible",
         "perf_bottleneck"
       ],
-      "gene": "gene_auto_a46bf5e7",
-      "summary": "固化：gene_gep_repair_from_errors 命中信号 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck，变更 1 文件 / 2 行。",
+      "gene": "gene_gep_repair_from_errors",
+      "summary": "Harden all 7 unprotected r.json() calls in trade.py with _safe_json wrapper to prevent recurring JSONDecodeError/KeyError crashes",
       "confidence": 0.85,
       "blast_radius": {
         "files": 1,
-        "lines": 6
+        "lines": 12
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 3,
+      "success_streak": 5,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -42,7 +42,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:2cacaa405e07f5fa004d6dc7ade491a790663ae3b88ffa1752a941e16c2f5f68"
+      "asset_id": "sha256:f931cfea5b47f7e325bbd4dcb9db8918f22b3acb315824b1a0aa85c42ea69e00"
     },
     {
       "type": "Capsule",
@@ -173,55 +173,14 @@
       "summary": "固化：gene_auto_a46bf5e7 命中信号 high_tool_usage:exec, evolution_saturation，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 2,
+        "lines": 97
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 1,
-      "env_fingerprint": {
-        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
-        "node_version": "v22.22.0",
-        "platform": "linux",
-        "arch": "x64",
-        "os_release": "6.8.0-55-generic",
-        "hostname": "830d846bcd56",
-        "evolver_version": "1.19.0",
-        "client": "evolver",
-        "client_version": "1.19.0",
-        "cwd": "/root/openclaw/skills/evolver",
-        "container": false
-      },
-      "source_type": "generated",
-      "reused_asset_id": null,
-      "a2a": {
-        "eligible_to_broadcast": false
-      },
-      "asset_id": "sha256:81ba213103b328e8002d3df6cfe0ee30b77e7b49ed05ca18e84a7b8c529358a2"
-    },
-    {
-      "type": "Capsule",
-      "schema_version": "1.6.0",
-      "id": "capsule_1772024430697",
-      "trigger": [
-        "evolution_stagnation_detected",
-        "stable_success_plateau",
-        "empty_cycle_loop_detected"
-      ],
-      "gene": "gene_gep_innovate_from_opportunity",
-      "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
-      "confidence": 0.85,
-      "blast_radius": {
-        "files": 1,
-        "lines": 4
-      },
-      "outcome": {
-        "status": "success",
-        "score": 0.85
-      },
-      "success_streak": 6,
+      "success_streak": 2,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -236,11 +195,52 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:474edbe62a98e0cb9058584cc27708b204a5cd31b720783fd788b2f0ae8f5923",
+      "reused_asset_id": "sha256:95f62e0b25c29b2d3b313d6321719c05b0d663fd0370f78a71b3250feacf8ac1",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:28ffc8fc6204c419165d4e9e608a1deed7f6b1bf2376f5d7bb17391edc52e143"
+      "asset_id": "sha256:f5537428799cd2c92b284d79c117b6d696ee374346b677e1e980e9ce14ffcf01"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1772024430697",
+      "trigger": [
+        "evolution_stagnation_detected",
+        "stable_success_plateau",
+        "empty_cycle_loop_detected"
+      ],
+      "gene": "gene_gep_innovate_from_opportunity",
+      "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 2,
+        "lines": 336
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 7,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "reference",
+      "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
+      "a2a": {
+        "eligible_to_broadcast": false
+      },
+      "asset_id": "sha256:aad1889ba1bc32c3f663274eb4c41dcbaf76a0b9bd1fed86ad6137a2ef47d151"
     }
   ]
 }
