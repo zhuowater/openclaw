@@ -12,18 +12,18 @@
         "windows_shell_incompatible",
         "perf_bottleneck"
       ],
-      "gene": "gene_gep_repair_from_errors",
+      "gene": "gene_gep_innovate_from_opportunity",
       "summary": "Harden all 7 unprotected r.json() calls in trade.py with _safe_json wrapper to prevent recurring JSONDecodeError/KeyError crashes",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 12
+        "files": 2,
+        "lines": 82
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 5,
+      "success_streak": 6,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -37,12 +37,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:5b8c24158435766f16bd48934fd052c1d0b0651db376252be5df625d18aca7ca",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:f931cfea5b47f7e325bbd4dcb9db8918f22b3acb315824b1a0aa85c42ea69e00"
+      "asset_id": "sha256:c2dbf4a44475b71b44f6c473723c51e6451050d10cd75d767d91768dd7cd74d5"
     },
     {
       "type": "Capsule",
@@ -90,18 +90,18 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_auto_7f294d19",
+      "gene": "gene_auto_a46bf5e7",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 3,
-        "lines": 170
+        "files": 2,
+        "lines": 108
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 7,
+      "success_streak": 8,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -115,12 +115,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:4e0bc278bca8160c7bec6267e78e6cfa96e1fb0f9c415552a996e20bac1421b5",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:8ddc6cb6aed32ed3f4c888698dff8f9ed4c4be692207d54a39d8f437ce220cff"
+      "asset_id": "sha256:61cb766a58fa821a9ff29f447d89b6979f21bd67abef97b7343a4fd771a72d7a"
     },
     {
       "type": "Capsule",

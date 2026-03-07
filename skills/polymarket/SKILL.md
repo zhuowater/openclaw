@@ -135,6 +135,9 @@ The Gamma API returns `clobTokenIds` as a **JSON-encoded string** (not a list), 
 ## CLI Reference
 
 ```bash
+# Dashboard (replaces 4 separate calls: balance+positions+markets+orders)
+node scripts/polymarket.js dashboard
+
 # Market queries (public)
 node scripts/polymarket.js markets --limit 10
 node scripts/polymarket.js events --limit 5

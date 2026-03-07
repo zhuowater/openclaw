@@ -126,9 +126,9 @@
       "epigenetic_marks": [
         {
           "context": "linux/x64/v22.22.0",
-          "boost": 0.04999999999999993,
+          "boost": 0.09999999999999994,
           "reason": "reinforced_by_success",
-          "created_at": "2026-03-06T06:03:50.621Z"
+          "created_at": "2026-03-07T12:03:43.176Z"
         }
       ],
       "schema_version": "1.6.0",
@@ -176,9 +176,9 @@
       "epigenetic_marks": [
         {
           "context": "linux/x64/v22.22.0",
-          "boost": -0.10000000000000002,
+          "boost": -0.05000000000000002,
           "reason": "reinforced_by_success",
-          "created_at": "2026-03-06T12:02:50.813Z"
+          "created_at": "2026-03-07T06:02:22.757Z"
         }
       ],
       "asset_id": "sha256:d355a3fef3b557d34d12808e626b9fc86c50f9ea596a596c74a5e947a05bcac4"
