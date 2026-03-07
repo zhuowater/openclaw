@@ -205,14 +205,22 @@ export function loadPluginManifestRegistry(params: {
       // Check whether both candidates point to the same physical directory
       // (e.g. via symlinks or different path representations). If so, this
       // is a false-positive duplicate and can be silently skipped.
-      const samePath = existing.candidate.rootDir === candidate.rootDir;
+      const samePath = process.platform === "win32"
+        ? existing.candidate.rootDir.toLowerCase() === candidate.rootDir.toLowerCase()
+        : existing.candidate.rootDir === candidate.rootDir;
       const samePlugin = (() => {
         if (samePath) {
           return true;
         }
         const existingReal = safeRealpathSync(existing.candidate.rootDir, realpathCache);
         const candidateReal = safeRealpathSync(candidate.rootDir, realpathCache);
-        return Boolean(existingReal && candidateReal && existingReal === candidateReal);
+        return Boolean(
+          existingReal &&
+            candidateReal &&
+            (process.platform === "win32"
+              ? existingReal.toLowerCase() === candidateReal.toLowerCase()
+              : existingReal === candidateReal),
+        );
       })();
       if (samePlugin) {
         // Prefer higher-precedence origins even if candidates are passed in

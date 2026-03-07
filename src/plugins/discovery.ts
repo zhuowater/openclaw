@@ -333,7 +333,9 @@ function addCandidate(params: {
   packageDir?: string;
 }) {
   const resolved = path.resolve(params.source);
-  if (params.seen.has(resolved)) {
+  // Normalize to lowercase on Windows for case-insensitive filesystem dedup
+  const seenKey = process.platform === "win32" ? resolved.toLowerCase() : resolved;
+  if (params.seen.has(seenKey)) {
     return;
   }
   const resolvedRoot = safeRealpathSync(params.rootDir) ?? path.resolve(params.rootDir);
@@ -348,7 +350,7 @@ function addCandidate(params: {
   ) {
     return;
   }
-  params.seen.add(resolved);
+  params.seen.add(seenKey);
   const manifest = params.manifest ?? null;
   params.candidates.push({
     idHint: params.idHint,
