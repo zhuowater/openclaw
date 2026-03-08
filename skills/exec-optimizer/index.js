@@ -722,12 +722,113 @@ async function jsonRead(filePath, jsonPath) {
 }
 
 /**
+ * Grep Files - Search file contents without spawning shell grep.
+ * Replaces: grep -r "pattern" dir, grep -l "pattern" files
+ * @param {string} dir - Directory to search
+ * @param {string|RegExp} pattern - Search pattern (string or regex)
+ * @param {object} [options] - { maxDepth: 3, extensions: ['.js','.md'], maxResults: 50, includeLines: true }
+ * @returns {Promise<Array<{file:string, line:number, text:string}>>}
+ */
+async function grepFiles(dir, pattern, options = {}) {
+  const { maxDepth = 3, extensions = null, maxResults = 50, includeLines = true } = options;
+  const regex = pattern instanceof RegExp ? pattern : new RegExp(pattern, 'i');
+  const results = [];
+
+  async function walk(currentDir, depth) {
+    if (depth > maxDepth || results.length >= maxResults) return;
+    try {
+      const entries = await fs.readdir(currentDir, { withFileTypes: true });
+      for (const entry of entries) {
+        if (results.length >= maxResults) break;
+        const fullPath = path.join(currentDir, entry.name);
+        if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+        if (entry.isDirectory()) {
+          await walk(fullPath, depth + 1);
+        } else if (entry.isFile()) {
+          if (extensions && !extensions.some(ext => entry.name.endsWith(ext))) continue;
+          try {
+            const content = await fs.readFile(fullPath, 'utf8');
+            const lines = content.split('\n');
+            for (let i = 0; i < lines.length && results.length < maxResults; i++) {
+              if (regex.test(lines[i])) {
+                results.push(includeLines
+                  ? { file: fullPath, line: i + 1, text: lines[i].trim().slice(0, 200) }
+                  : { file: fullPath, line: i + 1 });
+              }
+            }
+          } catch (_) { /* skip binary/unreadable */ }
+        }
+      }
+    } catch (_) { /* skip inaccessible dirs */ }
+  }
+
+  await walk(dir, 0);
+  return results;
+}
+
+/**
+ * Latest File - Find most recently modified file in a directory.
+ * Replaces: ls -t dir | head -1, ls -lt dir | head -N
+ * @param {string} dir - Directory to scan
+ * @param {object} [options] - { pattern: '*.txt', count: 1, recursive: false }
+ * @returns {Promise<Array<{name:string, path:string, mtime:string, size:number}>>}
+ */
+async function latestFile(dir, options = {}) {
+  const { pattern = null, count = 1, recursive = false } = options;
+  const files = [];
+
+  async function scan(currentDir, depth) {
+    try {
+      const entries = await fs.readdir(currentDir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(currentDir, entry.name);
+        if (entry.isFile()) {
+          if (pattern) {
+            const re = new RegExp('^' + pattern.replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
+            if (!re.test(entry.name)) continue;
+          }
+          try {
+            const stat = await fs.stat(fullPath);
+            files.push({ name: entry.name, path: fullPath, mtime: stat.mtime.toISOString(), size: stat.size });
+          } catch (_) {}
+        } else if (entry.isDirectory() && recursive && depth < 3 && !entry.name.startsWith('.') && entry.name !== 'node_modules') {
+          await scan(fullPath, depth + 1);
+        }
+      }
+    } catch (_) {}
+  }
+
+  await scan(dir, 0);
+  files.sort((a, b) => new Date(b.mtime) - new Date(a.mtime));
+  return files.slice(0, count);
+}
+
+/**
+ * Disk Usage - Get disk usage stats without spawning df/du.
+ * Replaces: df -h, du -sh dir
+ * @param {string} [targetPath='/'] - Path to check
+ * @returns {Promise<{total:string, used:string, available:string, usedPercent:string, path:string}>}
+ */
+async function diskUsage(targetPath = '/') {
+  try {
+    const stats = await fs.statfs(targetPath);
+    const total = stats.bsize * stats.blocks;
+    const free = stats.bsize * stats.bfree;
+    const used = total - free;
+    const usedPct = total > 0 ? ((used / total) * 100).toFixed(1) : '0';
+    const fmt = (bytes) => {
+      if (bytes > 1e9) return (bytes / 1e9).toFixed(1) + 'G';
+      if (bytes > 1e6) return (bytes / 1e6).toFixed(1) + 'M';
+      return (bytes / 1e3).toFixed(1) + 'K';
+    };
+    return { total: fmt(total), used: fmt(used), available: fmt(free), usedPercent: usedPct + '%', path: targetPath };
+  } catch (err) {
+    throw new Error(`diskUsage(${targetPath}): ${err.message}`);
+  }
+}
+
+/**
  * Main entry point (for testing and CLI usage)
- * Usage:
- *   node index.js preflight    - Run evolver preflight checks
- *   node index.js health       - System health check
- *   node index.js skill <name> - Check skill health
- *   node index.js diag         - Quick diagnostic (replaces 3-5 exec calls)
  */
 async function main() {
   const cmd = process.argv[2];
@@ -788,6 +889,25 @@ async function main() {
     return;
   }
 
+  if (cmd === 'grep' && process.argv[3] && process.argv[4]) {
+    const exts = process.argv[5] ? process.argv[5].split(',').map(e => e.startsWith('.') ? e : '.' + e) : null;
+    const results = await grepFiles(process.argv[3], process.argv[4], { extensions: exts });
+    console.log(JSON.stringify(results, null, 2));
+    return;
+  }
+
+  if (cmd === 'latest' && process.argv[3]) {
+    const results = await latestFile(process.argv[3], { pattern: process.argv[4] || null, count: parseInt(process.argv[5]) || 5 });
+    console.log(JSON.stringify(results, null, 2));
+    return;
+  }
+
+  if (cmd === 'disk') {
+    const result = await diskUsage(process.argv[3] || '/');
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -801,6 +921,9 @@ async function main() {
   console.log('  node index.js tail <f> [n] - Tail N lines from file (replaces tail -n)');
   console.log('  node index.js cron       - Heartbeat/cron state check');
   console.log('  node index.js json <f> [path] - Read JSON file with optional dot-path');
+  console.log('  node index.js grep <dir> <pattern> [exts] - Search file contents');
+  console.log('  node index.js latest <dir> [pattern] [n] - Find latest files');
+  console.log('  node index.js disk [path] - Disk usage stats');
 }
 
 module.exports = {
@@ -823,6 +946,9 @@ module.exports = {
   logTail,
   cronStats,
   jsonRead,
+  grepFiles,
+  latestFile,
+  diskUsage,
   main
 };
 

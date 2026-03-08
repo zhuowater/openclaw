@@ -113,6 +113,15 @@ node skills/exec-optimizer/index.js memory
 
 # Evolution system stats - replaces event/gene/capsule counting
 node skills/exec-optimizer/index.js evo
+
+# Search file contents (replaces grep -r)
+node skills/exec-optimizer/index.js grep /root/openclaw "TODO" js,md
+
+# Find latest files (replaces ls -t | head -N)
+node skills/exec-optimizer/index.js latest /root/openclaw/memory "*.md" 5
+
+# Disk usage (replaces df -h)
+node skills/exec-optimizer/index.js disk /
 ```
 
 ### Evolver Preflight (NEW - addresses repeated_tool_usage:exec)
@@ -137,6 +146,32 @@ const check = await batchFileCheck([
   '/root/openclaw/skills/missing-skill/index.js'
 ]);
 // Returns: { results: {path: bool}, allExist: false, missing: ['...missing-skill...'] }
+```
+
+### Grep Files (replaces grep -r)
+
+```javascript
+const { grepFiles } = require('./skills/exec-optimizer');
+const results = await grepFiles('/root/openclaw', 'TODO', {
+  extensions: ['.js', '.md'], maxDepth: 3, maxResults: 50
+});
+// Returns: [{ file: '/path/to/file.js', line: 42, text: '// TODO: fix this' }]
+```
+
+### Latest File (replaces ls -t | head)
+
+```javascript
+const { latestFile } = require('./skills/exec-optimizer');
+const latest = await latestFile('/root/openclaw/memory', { pattern: '*.md', count: 3 });
+// Returns: [{ name: '2026-03-08.md', path: '...', mtime: '...', size: 1234 }]
+```
+
+### Disk Usage (replaces df -h)
+
+```javascript
+const { diskUsage } = require('./skills/exec-optimizer');
+const disk = await diskUsage('/');
+// Returns: { total: '42.0G', used: '27.2G', available: '14.8G', usedPercent: '64.8%', path: '/' }
 ```
 
 ### Memory Stats (NEW - replaces 4-5 exec calls)
