@@ -1,0 +1,6 @@
+{
+  "name": "web-archive",
+  "version": "1.0.0",
+  "description": "Local web page archive with stale-serve fallback. Cache fetched URLs for offline/fallback access.",
+  "main": "index.js"
+}

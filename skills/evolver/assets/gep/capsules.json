@@ -214,14 +214,14 @@
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 336
+        "files": 3,
+        "lines": 271
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 7,
+      "success_streak": 9,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -236,11 +236,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
+      "reused_asset_id": "sha256:5c2912e9d118ddf2ed3ba3130b15a87d0d7d73a8992db624923a678e122b0c56",
       "a2a": {
         "eligible_to_broadcast": false
       },
-      "asset_id": "sha256:aad1889ba1bc32c3f663274eb4c41dcbaf76a0b9bd1fed86ad6137a2ef47d151"
+      "asset_id": "sha256:f8e29121a2f56913b85cfc3b72ff299b7a02a94b7d49a03431ab2b4330e11eba"
     }
   ]
 }
