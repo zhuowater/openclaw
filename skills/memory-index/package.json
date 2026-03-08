@@ -1,0 +1,6 @@
+{
+  "name": "memory-index",
+  "version": "1.0.0",
+  "description": "Fast keyword index for memory files — avoids full scan on every lookup",
+  "main": "index.js"
+}

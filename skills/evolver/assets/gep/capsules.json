@@ -16,14 +16,14 @@
       "summary": "Harden all 7 unprotected r.json() calls in trade.py with _safe_json wrapper to prevent recurring JSONDecodeError/KeyError crashes",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 82
+        "files": 1,
+        "lines": 6
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 6,
+      "success_streak": 7,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -38,11 +38,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:5b8c24158435766f16bd48934fd052c1d0b0651db376252be5df625d18aca7ca",
+      "reused_asset_id": "sha256:ad95398e04d7dbd1e1fd3af9be62af270d53e126006a1ad1b5ec3cf5da6e7a01",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:c2dbf4a44475b71b44f6c473723c51e6451050d10cd75d767d91768dd7cd74d5"
+      "asset_id": "sha256:f2874d2965fae5123b9ea4e8f6cbef02647725c36902e8dec606a0fec02348bf"
     },
     {
       "type": "Capsule",

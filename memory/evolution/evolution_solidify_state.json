@@ -1,36 +1,36 @@
 {
   "last_run": {
-    "run_id": "run_1772841613141",
-    "created_at": "2026-03-07T00:00:13.154Z",
-    "parent_event_id": "evt_1772820382253",
-    "selected_gene_id": "gene_gep_repair_from_errors",
+    "run_id": "run_1772928006591",
+    "created_at": "2026-03-08T00:00:06.613Z",
+    "parent_event_id": "evt_1772906550910",
+    "selected_gene_id": "gene_gep_innovate_from_opportunity",
     "selected_capsule_id": "capsule_1770477654236",
     "selector": {
-      "selected": "gene_gep_repair_from_errors",
+      "selected": "gene_gep_innovate_from_opportunity",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: errsig:**USER**: System: [2026-03-07 02:07:22 GMT+8] Cron: All done. Here's the summary: --- **Evolution Cycle #27 — ✅ SUCCESS** **Signal**: `log_error` (recurring `KeyError: 'tokens'` + `JSONDecodeError` in Polymarket sessions) **Root Cause**: Agents used raw `curl ",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.902",
+        "signals: perf_bottleneck",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.888",
         "drift_intensity: 0.447"
       ],
       "alternatives": []
     },
     "signals": [
-      "errsig:**USER**: System: [2026-03-07 02:07:22 GMT+8] Cron: All done. Here's the summary: --- **Evolution Cycle #27 — ✅ SUCCESS** **Signal**: `log_error` (recurring `KeyError: 'tokens'` + `JSONDecodeError` in Polymarket sessions) **Root Cause**: Agents used raw `curl "
+      "perf_bottleneck"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1772841613139",
-      "category": "repair",
+      "id": "mut_1772928006587",
+      "category": "innovate",
       "trigger_signals": [
-        "errsig:**USER**: System: [2026-03-07 02:07:22 GMT+8] Cron: All done. Here's the summary: --- **Evolution Cycle #27 — ✅ SUCCESS** **Signal**: `log_error` (recurring `KeyError: 'tokens'` + `JSONDecodeError` in Polymarket sessions) **Root Cause**: Agents used raw `curl"
+        "perf_bottleneck"
       ],
-      "target": "gene:gene_gep_repair_from_errors",
-      "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
-      "risk_level": "low"
+      "target": "gene:gene_gep_innovate_from_opportunity",
+      "expected_effect": "explore new strategy combinations to escape local optimum",
+      "risk_level": "medium"
     },
-    "mutation_id": "mut_1772841613139",
+    "mutation_id": "mut_1772928006587",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -44,23 +44,23 @@
     "personality_mutations": [],
     "drift": false,
     "selected_by": "memory_graph+selector",
-    "source_type": "generated",
-    "reused_asset_id": null,
-    "reused_source_node": null,
+    "source_type": "reference",
+    "reused_asset_id": "sha256:ad95398e04d7dbd1e1fd3af9be62af270d53e126006a1ad1b5ec3cf5da6e7a01",
+    "reused_source_node": "node_1aaa0792f1964364",
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "035521c68d8e8b12a2be19c80cf37e292a4741be",
+    "baseline_git_head": "9f1e8a25d766ab9e7e13091350039e08eda2d00e",
     "blast_radius_estimate": {
-      "files": 20,
-      "lines": 1600
+      "files": 25,
+      "lines": 2000
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1772841613141",
-    "at": "2026-03-07T00:04:23.695Z",
-    "event_id": "evt_1772841863695",
+    "run_id": "run_1772928006591",
+    "at": "2026-03-08T00:03:00.162Z",
+    "event_id": "evt_1772928180162",
     "capsule_id": "capsule_1770477654236",
     "outcome": {
       "status": "success",
