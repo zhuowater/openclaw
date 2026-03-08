@@ -1,0 +1,5 @@
+{
+  "name": "baidu-search",
+  "version": "1.0.0",
+  "description": "Resilient Baidu AI search wrapper with retry logic and structured output"
+}
