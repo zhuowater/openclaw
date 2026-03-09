@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-03-06T14:07:53.452920",
+  "sources": {
+    "factbase_Truth Social": [
+      {
+        "source": "factbase_Truth Social",
+        "url": "",
+        "date": "2026-03-04T19:59:04-05:00",
+        "text": "Steve Daines, of Montana, is one of our truly Great United States Senators. He honorably served for 12 years in the Senate, and 2 in the House of Representatives. He did a job like few others are capa...",
+        "matches": [
+          {
+            "keyword": "\\b12 years\\b",
+            "match": "12 years",
+            "context": "Steve Daines, of Montana, is one of our truly Great United States Senators. He honorably served for 12 years in the Senate, and 2 in the House of Representatives. He did a job like few others are capable of d..."
+          }
+        ],
+        "match_count": 1
+      }
+    ]
+  },
+  "summary": {
+    "sources_checked": 3,
+    "sources_with_matches": 1,
+    "total_mentions": 1,
+    "weekly_mentions": 1,
+    "top_keywords": [
+      [
+        "\\b12 years\\b",
+        1
+      ]
+    ],
+    "errors_count": 0
+  },
+  "weekly_mentions": 1,
+  "total_mentions": 1,
+  "keywords_breakdown": {
+    "\\b12 years\\b": 1
+  },
+  "trading_signal": {
+    "position": {
+      "shares": 5,
+      "entry_price": 0.46,
+      "current_price": 1.0310124768476219e-07,
+      "unrealized_pnl": -2.2999994844937617,
+      "unrealized_pnl_pct": -99.99997758668529
+    },
+    "recommendation": "🟡 谨慎持有",
+    "reasoning": [
+      "⚠️ 本周仅 1 次提及，论点偏弱",
+      "⏰ 距到期 24 天，需密切关注",
+      "🚨 价格已跌至 $0.00，严重超跌",
+      "⚡ 要么是市场错误定价（抄底机会），要么是根本性利空",
+      "⏰ 距到期 24 天，时间压力增加",
+      "💸 当前亏损 100.0%，已触发风险阈值"
+    ],
+    "risk_level": "MEDIUM",
+    "action_items": [
+      "设置止损位: 如跌破 $0.30 则减仓",
+      "强烈建议止损，避免继续扩大损失"
+    ]
+  },
+  "errors": [],
+  "market_data": {
+    "market_slug": "will-trump-pardon-himself-in-his-first-term",
+    "question": "Will Trump Pardon Himself in His First Term?",
+    "yes_price": 1.0310124768476219e-07,
+    "no_price": 0.9999998968987523,
+    "volume": "566518.152363",
+    "liquidity": "99.338559",
+    "end_date": "2021-02-16T00:00:00Z"
+  }
+}

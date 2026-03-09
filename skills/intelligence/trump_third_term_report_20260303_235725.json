@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-03-03T23:56:51.016694",
+  "sources": {},
+  "summary": {
+    "sources_checked": 3,
+    "sources_with_matches": 0,
+    "total_mentions": 0,
+    "weekly_mentions": 0,
+    "top_keywords": [],
+    "errors_count": 1
+  },
+  "weekly_mentions": 0,
+  "total_mentions": 0,
+  "keywords_breakdown": {},
+  "trading_signal": {
+    "position": {
+      "shares": 5,
+      "entry_price": 0.46,
+      "current_price": 0.38,
+      "unrealized_pnl": -0.4000000000000001,
+      "unrealized_pnl_pct": -17.39130434782609
+    },
+    "recommendation": "🔴 减仓 50% 或止损",
+    "reasoning": [
+      "⚠️ 本周零提及，论点显著弱化",
+      "💀 距到期 27 天，时间价值快速衰减",
+      "⏰ 距到期 27 天，时间压力增加"
+    ],
+    "risk_level": "HIGH",
+    "action_items": [
+      "卖出 2-3 shares，保留 2-3 shares 作为彩票仓位"
+    ]
+  },
+  "errors": [
+    "获取 Polymarket 价格失败: could not convert string to float: '['"
+  ],
+  "market_data": {}
+}

@@ -1,0 +1,133 @@
+🛰️  VIIRS Nightlight Analysis - Iran Power Grid Assessment
+📅 Analysis Period: 2025-02-27 → ['2025-03-02', '2025-03-03']
+📁 Output Directory: /tmp/viirs
+
+============================================================
+🌃 Analyzing: Tehran
+============================================================
+📡 Downloading Tehran @ 2025-02-27...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Tehran_2025-02-27.png
+📡 Downloading Tehran @ 2025-03-02...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Tehran_2025-03-02.png
+📡 Downloading Tehran @ 2025-03-03...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Tehran_2025-03-03.png
+
+📊 Results for Tehran:
+   Before (2025-02-27): 110.11 (mean)
+   After (avg): 129.30 (mean)
+   Change: +17.42%
+   Assessment: No significant damage
+
+============================================================
+🌃 Analyzing: Isfahan
+============================================================
+📡 Downloading Isfahan @ 2025-02-27...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Isfahan_2025-02-27.png
+📡 Downloading Isfahan @ 2025-03-02...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Isfahan_2025-03-02.png
+📡 Downloading Isfahan @ 2025-03-03...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Isfahan_2025-03-03.png
+
+📊 Results for Isfahan:
+   Before (2025-02-27): 119.07 (mean)
+   After (avg): 141.78 (mean)
+   Change: +19.07%
+   Assessment: No significant damage
+
+============================================================
+🌃 Analyzing: Tabriz
+============================================================
+📡 Downloading Tabriz @ 2025-02-27...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Tabriz_2025-02-27.png
+📡 Downloading Tabriz @ 2025-03-02...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Tabriz_2025-03-02.png
+📡 Downloading Tabriz @ 2025-03-03...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Tabriz_2025-03-03.png
+
+📊 Results for Tabriz:
+   Before (2025-02-27): 84.34 (mean)
+   After (avg): 79.96 (mean)
+   Change: -5.19%
+   Assessment: Minor damage - localized outages
+
+============================================================
+🌃 Analyzing: Abadan
+============================================================
+📡 Downloading Abadan @ 2025-02-27...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Abadan_2025-02-27.png
+📡 Downloading Abadan @ 2025-03-02...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Abadan_2025-03-02.png
+📡 Downloading Abadan @ 2025-03-03...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Abadan_2025-03-03.png
+
+📊 Results for Abadan:
+   Before (2025-02-27): 85.23 (mean)
+   After (avg): 97.52 (mean)
+   Change: +14.42%
+   Assessment: No significant damage
+
+============================================================
+🌃 Analyzing: Bandar Abbas
+============================================================
+📡 Downloading Bandar Abbas @ 2025-02-27...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Bandar Abbas_2025-02-27.png
+📡 Downloading Bandar Abbas @ 2025-03-02...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Bandar Abbas_2025-03-02.png
+📡 Downloading Bandar Abbas @ 2025-03-03...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Bandar Abbas_2025-03-03.png
+
+📊 Results for Bandar Abbas:
+   Before (2025-02-27): 101.25 (mean)
+   After (avg): 90.62 (mean)
+   Change: -10.51%
+   Assessment: Minor damage - localized outages
+
+============================================================
+🌃 Analyzing: Shiraz
+============================================================
+📡 Downloading Shiraz @ 2025-02-27...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Shiraz_2025-02-27.png
+📡 Downloading Shiraz @ 2025-03-02...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Shiraz_2025-03-02.png
+📡 Downloading Shiraz @ 2025-03-03...
+   URL: https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&L...
+   ✓ Saved: /tmp/viirs/Shiraz_2025-03-03.png
+
+📊 Results for Shiraz:
+   Before (2025-02-27): 83.78 (mean)
+   After (avg): 98.93 (mean)
+   Change: +18.08%
+   Assessment: No significant damage
+
+============================================================
+✅ Analysis complete!
+📄 JSON report: /tmp/viirs/iran_grid_assessment.json
+🖼️  Images saved in: /tmp/viirs
+============================================================
+
+============================================================
+📋 SUMMARY - Iran Power Grid Damage Assessment
+============================================================
+🟡 Bandar Abbas   :  -10.51% | Minor damage - localized outages
+🟡 Tabriz         :   -5.19% | Minor damage - localized outages
+🟢 Abadan         :  +14.42% | No significant damage
+🟢 Tehran         :  +17.42% | No significant damage
+🟢 Shiraz         :  +18.08% | No significant damage
+🟢 Isfahan        :  +19.07% | No significant damage

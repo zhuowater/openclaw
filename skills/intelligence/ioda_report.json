@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-03-03T16:01:46.172199",
+  "source": "IODA (Georgia Tech)",
+  "target": "Iran + proxy networks",
+  "findings": {
+    "iran": {
+      "google_search_volume": {
+        "baseline": 3486055187,
+        "current": 133510042,
+        "change_pct": -96.2,
+        "status": "CRITICAL"
+      },
+      "network_telescope": {
+        "baseline": 42.9,
+        "current": 1.0,
+        "change_pct": -97.7,
+        "status": "CRITICAL"
+      },
+      "bgp_routes": {
+        "baseline": 41361,
+        "current": 40172,
+        "change_pct": -2.9,
+        "status": "STABLE"
+      },
+      "active_probing": {
+        "baseline": 12057,
+        "current": 404,
+        "change_pct": -96.6,
+        "status": "CRITICAL"
+      }
+    },
+    "assessment": {
+      "iran_internet_status": "NEAR-TOTAL SHUTDOWN",
+      "cause": "Sovereign shutdown (government-imposed), NOT infrastructure destruction",
+      "evidence": "BGP routes stable (-3%) while all traffic metrics down 96-98% = routes exist but traffic blocked",
+      "trading_implications": [
+        "Confirms war-time information blackout",
+        "Iran cannot coordinate external operations effectively",
+        "Proxy networks (Hezbollah, Houthis) may lose C2 connectivity",
+        "Supports Hormuz blockade narrative (Iran restricting info flow about military status)"
+      ]
+    }
+  }
+}

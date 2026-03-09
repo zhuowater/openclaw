@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-03-03T23:54:38.509835",
+  "sources": {},
+  "summary": {
+    "total_sources_checked": 4,
+    "sources_with_matches": 0,
+    "total_mentions": 0,
+    "weekly_mentions": 0,
+    "top_keywords": []
+  },
+  "weekly_mentions": 0,
+  "total_mentions": 0,
+  "keywords_breakdown": {},
+  "trading_signal": {
+    "position": {
+      "shares": 5,
+      "entry_price": 0.46,
+      "current_price": 0.38,
+      "unrealized_pnl": -0.4000000000000001,
+      "unrealized_pnl_pct": -17.39130434782609
+    },
+    "recommendation": "减仓 50% 或止损",
+    "reasoning": [
+      "⚠️ 本周零提及，论点弱化"
+    ],
+    "risk_level": "HIGH"
+  },
+  "market_data": {}
+}

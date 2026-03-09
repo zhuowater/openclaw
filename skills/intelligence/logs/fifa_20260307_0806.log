@@ -1,0 +1,76 @@
+
+🚀 FIFA 2026 世界杯赔率套利扫描器
+
+📊 获取数据中...
+
+📋 使用默认赔率数据 (建议运行 odds_updater.py 更新)
+
+🔍 查询 Polymarket markets...
+  找到市场: Will Italy qualify for the 2026 FIFA World Cup?
+  找到市场: Will Sweden qualify for the 2026 FIFA World Cup?
+  找到市场: Will Poland qualify for the 2026 FIFA World Cup?
+  找到市场: Will Ukraine qualify for the 2026 FIFA World Cup?
+  找到市场: Will Spain win the 2026 FIFA World Cup?
+  找到市场: Will England win the 2026 FIFA World Cup?
+  找到市场: Will France win the 2026 FIFA World Cup?
+  找到市场: Will Brazil win the 2026 FIFA World Cup?
+  找到市场: Will Argentina win the 2026 FIFA World Cup?
+  找到市场: Will Germany win the 2026 FIFA World Cup?
+  找到市场: Will Portugal win the 2026 FIFA World Cup?
+  找到市场: Will Netherlands win the 2026 FIFA World Cup?
+  找到市场: Will Italy win the 2026 FIFA World Cup?
+  找到市场: Will USA win the 2026 FIFA World Cup?
+  找到市场: Will Uruguay win the 2026 FIFA World Cup?
+  找到市场: Will Mexico win the 2026 FIFA World Cup?
+  找到市场: Will Belgium win the 2026 FIFA World Cup?
+  找到市场: Will Colombia win the 2026 FIFA World Cup?
+  找到市场: Will Japan win the 2026 FIFA World Cup?
+⚠️  使用备用价格数据 (需手动更新)
+
+====================================================================================================
+                                        FIFA 2026 世界杯赔率套利分析                                         
+====================================================================================================
+
+国家           博彩赔率       博彩概率       PM价格       PM概率       差异         方向              持仓
+----------------------------------------------------------------------------------------------------
+🔥 Brazil     5.50       18.18     % 0.0855     8.55      %      -9.63% FAIR            30股 @0.086 (P/L: $+0.00)
+🔥 France     6.00       16.67     % 0.1200     12.00     %      -4.67% FAIR            
+🔥 Germany    10.00      10.00     % 0.0545     5.45      %      -4.55% FAIR            60股 @0.054 (P/L: $+0.00)
+🔥 Netherlands 15.00      6.67      % 0.0310     3.10      %      -3.57% FAIR            110股 @0.031 (P/L: $+0.00)
+   Italy      13.00      7.69      % 0.0600     6.00      %      -1.69% FAIR            
+   Norway     67.00      1.49      % 0.0310     3.10      %      +1.61% FAIR            100股 @0.031 (P/L: $+0.00)
+   Spain      8.00       12.50     % 0.1100     11.00     %      -1.50% FAIR            
+   England    7.00       14.29     % 0.1300     13.00     %      -1.29% FAIR            
+   Portugal   17.00      5.88      % 0.0704     7.04      %      +1.16% FAIR            35股 @0.070 (P/L: $+0.00)
+   Argentina  9.00       11.11     % 0.1000     10.00     %      -1.11% FAIR            
+
+====================================================================================================
+
+🎯 发现 4 个套利/错误定价机会 (差异 >2%):
+
+  ✅ BUY Brazil on PM (低估 9.6%) - 我们有 30 股，建议加仓
+  ✅ BUY France on PM (低估 4.7%) - 考虑建仓
+  ✅ BUY Germany on PM (低估 4.5%) - 我们有 60 股，建议加仓
+  ✅ BUY Netherlands on PM (低估 3.6%) - 我们有 110 股，建议加仓
+
+====================================================================================================
+                                              我们的持仓分析                                               
+====================================================================================================
+
+总投入: $14.65
+当前市值: $14.81
+未实现盈亏: $+0.16 (+1.1%)
+
+Brazil        30股 @ $0.0855  市值: $  2.57  P/L: $ -0.07 ( -2.8%)  🟢 强烈建议加仓 (PM严重低估)
+Germany       60股 @ $0.0545  市值: $  3.27  P/L: $ -0.09 ( -2.7%)  🟢 强烈建议加仓 (PM严重低估)
+Netherlands  110股 @ $0.0310  市值: $  3.41  P/L: $ +0.01 ( +0.3%)  🟢 强烈建议加仓 (PM严重低估)
+Norway       100股 @ $0.0310  市值: $  3.10  P/L: $ +0.30 (+10.7%)  ⚪ 持有观望 (价格合理)
+Portugal      35股 @ $0.0704  市值: $  2.46  P/L: $ +0.01 ( +0.6%)  ⚪ 持有观望 (价格合理)
+
+====================================================================================================
+生成时间: 2026-03-07 08:06:59
+====================================================================================================
+
+💾 JSON 报告已保存: /root/openclaw/skills/intelligence/fifa_odds_20260307_080659.json
+
+✅ 扫描完成！

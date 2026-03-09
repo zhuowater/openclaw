@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-03-08T00:05:40.545560+00:00",
+  "data_sources": {
+    "ioda": {
+      "available": true,
+      "last_updated": "2026-03-03T16:01:46.172199"
+    },
+    "viirs": {
+      "available": true,
+      "last_updated": "2026-03-08T08:05:09.610689"
+    },
+    "adsb": {
+      "available": false,
+      "last_updated": null
+    },
+    "trump": {
+      "available": true,
+      "last_updated": "2026-03-08T08:05:11.216255"
+    },
+    "fifa": {
+      "available": true,
+      "last_updated": "2026-03-08T08:05:18.219051"
+    },
+    "ais": {
+      "available": false,
+      "last_updated": null
+    },
+    "firms": {
+      "available": false,
+      "last_updated": null
+    }
+  },
+  "signals": [
+    {
+      "source": "IODA",
+      "signal": "IRAN_INTERNET_DOWN",
+      "severity": "CRITICAL",
+      "detail": "Active probing -97%",
+      "trading_implication": "Supports war continuation thesis, HOLD Hormuz YES"
+    },
+    {
+      "source": "FIFA_ODDS",
+      "signal": "Brazil_UNDERVALUED",
+      "severity": "INFO",
+      "detail": "Bookmaker 18.2% vs PM 8.6%",
+      "trading_implication": "Consider adding to Brazil position"
+    },
+    {
+      "source": "FIFA_ODDS",
+      "signal": "Germany_UNDERVALUED",
+      "severity": "INFO",
+      "detail": "Bookmaker 10.0% vs PM 5.5%",
+      "trading_implication": "Consider adding to Germany position"
+    },
+    {
+      "source": "FIFA_ODDS",
+      "signal": "Netherlands_UNDERVALUED",
+      "severity": "INFO",
+      "detail": "Bookmaker 6.7% vs PM 3.1%",
+      "trading_implication": "Consider adding to Netherlands position"
+    },
+    {
+      "source": "TRUMP_MONITOR",
+      "signal": "ZERO_MENTIONS",
+      "severity": "WARNING",
+      "detail": "No 'third term' mentions this week",
+      "trading_implication": "\ud83d\udd34 \u51cf\u4ed3 50% \u6216\u6b62\u635f"
+    }
+  ]
+}

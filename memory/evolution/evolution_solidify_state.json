@@ -1,42 +1,53 @@
 {
   "last_run": {
-    "run_id": "run_1773014413709",
-    "created_at": "2026-03-09T00:00:13.721Z",
-    "parent_event_id": "evt_1772992973811",
+    "run_id": "run_1773036018352",
+    "created_at": "2026-03-09T06:00:18.364Z",
+    "parent_event_id": "evt_1773014659337",
     "selected_gene_id": "gene_gep_innovate_from_opportunity",
-    "selected_capsule_id": "capsule_1770477654236",
+    "selected_capsule_id": "capsule_1771747065506",
     "selector": {
       "selected": "gene_gep_innovate_from_opportunity",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: protocol_drift, perf_bottleneck, capability_gap",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | memory_ban:gene_gep_repair_from_errors | gene_prior:0.846",
+        "signals: protocol_drift, recurring_error, recurring_errsig(3x):LLM ERROR] 400 developer is not one of ['system', 'assistant', 'user', 'tool', 'function'] - 'messag, perf_bottleneck, capability_gap, high_tool_usage:exec, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | memory_ban:gene_gep_repair_from_errors | gene_prior:0.857",
         "drift_intensity: 0.447"
       ],
       "alternatives": [
-        "gene_gep_optimize_prompt_and_assets"
+        "gene_gep_repair_from_errors",
+        "gene_gep_optimize_prompt_and_assets",
+        "gene_auto_a46bf5e7",
+        "gene_auto_7f294d19"
       ]
     },
     "signals": [
       "protocol_drift",
+      "recurring_error",
+      "recurring_errsig(3x):LLM ERROR] 400 developer is not one of ['system', 'assistant', 'user', 'tool', 'function'] - 'messag",
       "perf_bottleneck",
-      "capability_gap"
+      "capability_gap",
+      "high_tool_usage:exec",
+      "repeated_tool_usage:exec"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1773014413708",
+      "id": "mut_1773036018350",
       "category": "innovate",
       "trigger_signals": [
         "protocol_drift",
+        "recurring_error",
+        "recurring_errsig(3x):LLM ERROR] 400 developer is not one of ['system', 'assistant', 'user', 'tool', 'function'] - 'messag",
         "perf_bottleneck",
-        "capability_gap"
+        "capability_gap",
+        "high_tool_usage:exec",
+        "repeated_tool_usage:exec"
       ],
       "target": "gene:gene_gep_innovate_from_opportunity",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1773014413708",
+    "mutation_id": "mut_1773036018350",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -50,12 +61,12 @@
     "personality_mutations": [],
     "drift": false,
     "selected_by": "memory_graph+selector",
-    "source_type": "reference",
-    "reused_asset_id": "sha256:7c4f0748d50c6fcc5acb1ffea1f8213874ceed9c3ac4b71fd3a8314585e84ffa",
-    "reused_source_node": "node_1aaa0792f1964364",
+    "source_type": "generated",
+    "reused_asset_id": null,
+    "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "8fdb098a12a6988caa1829561390b70f0855b6ee",
+    "baseline_git_head": "45e75fb2918dcfc2be3e2ffc166eac6f9642bb9d",
     "blast_radius_estimate": {
       "files": 25,
       "lines": 2000
@@ -64,10 +75,10 @@
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1773014413709",
-    "at": "2026-03-09T00:04:19.337Z",
-    "event_id": "evt_1773014659337",
-    "capsule_id": "capsule_1770477654236",
+    "run_id": "run_1773036018352",
+    "at": "2026-03-09T06:02:16.928Z",
+    "event_id": "evt_1773036136928",
+    "capsule_id": "capsule_1771747065506",
     "outcome": {
       "status": "success",
       "score": 0.85

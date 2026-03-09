@@ -1,0 +1,6284 @@
+Analyzing Iran...
+Analyzing Lebanon...
+Analyzing Syria...
+Analyzing Yemen...
+Analyzing Iraq...
+Performing cross-country analysis...
+Fetching IODA data from 2026-02-26T08:04:43.185793 to 2026-03-05T08:04:43.185793
+Monitoring: Iran (IR), Lebanon (LB), Syria (SY), Yemen (YE), Iraq (IQ)
+
+{
+  "metadata": {
+    "generated": "2026-03-05T08:05:42.638522",
+    "period": {
+      "start": "2026-02-26T08:04:43.185793",
+      "end": "2026-03-05T08:04:43.185793"
+    },
+    "countries_monitored": {
+      "IR": "Iran",
+      "LB": "Lebanon",
+      "SY": "Syria",
+      "YE": "Yemen",
+      "IQ": "Iraq"
+    }
+  },
+  "country_results": {
+    "IR": {
+      "country_code": "IR",
+      "country_name": "Iran",
+      "period": {
+        "start": "2026-02-26T08:04:43",
+        "end": "2026-03-05T08:04:43"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 2010,
+          "mean": 40993.87,
+          "stdev": 416.67,
+          "latest_value": 40908
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 4181.8,
+          "stdev": 5375.7,
+          "latest_value": 381
+        },
+        "google_transparency": {
+          "data_points": 334,
+          "mean": 1031950885.56,
+          "stdev": 1437612935.02,
+          "latest_value": 118876666
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772274300,
+          "datetime": "2026-02-28T18:25:00",
+          "signal": "bgp",
+          "value": 39969,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772274600,
+          "datetime": "2026-02-28T18:30:00",
+          "signal": "bgp",
+          "value": 39973,
+          "baseline_mean": 40993.87,
+          "z_score": -2.45,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772274900,
+          "datetime": "2026-02-28T18:35:00",
+          "signal": "bgp",
+          "value": 39974,
+          "baseline_mean": 40993.87,
+          "z_score": -2.45,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772275200,
+          "datetime": "2026-02-28T18:40:00",
+          "signal": "bgp",
+          "value": 39970,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772275500,
+          "datetime": "2026-02-28T18:45:00",
+          "signal": "bgp",
+          "value": 39970,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772275800,
+          "datetime": "2026-02-28T18:50:00",
+          "signal": "bgp",
+          "value": 39970,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772276100,
+          "datetime": "2026-02-28T18:55:00",
+          "signal": "bgp",
+          "value": 39966,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772276400,
+          "datetime": "2026-02-28T19:00:00",
+          "signal": "bgp",
+          "value": 39940,
+          "baseline_mean": 40993.87,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772276700,
+          "datetime": "2026-02-28T19:05:00",
+          "signal": "bgp",
+          "value": 39941,
+          "baseline_mean": 40993.87,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772277000,
+          "datetime": "2026-02-28T19:10:00",
+          "signal": "bgp",
+          "value": 39943,
+          "baseline_mean": 40993.87,
+          "z_score": -2.52,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772277300,
+          "datetime": "2026-02-28T19:15:00",
+          "signal": "bgp",
+          "value": 39969,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772277600,
+          "datetime": "2026-02-28T19:20:00",
+          "signal": "bgp",
+          "value": 39969,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772277900,
+          "datetime": "2026-02-28T19:25:00",
+          "signal": "bgp",
+          "value": 39961,
+          "baseline_mean": 40993.87,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772278200,
+          "datetime": "2026-02-28T19:30:00",
+          "signal": "bgp",
+          "value": 39961,
+          "baseline_mean": 40993.87,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772278500,
+          "datetime": "2026-02-28T19:35:00",
+          "signal": "bgp",
+          "value": 39961,
+          "baseline_mean": 40993.87,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772278800,
+          "datetime": "2026-02-28T19:40:00",
+          "signal": "bgp",
+          "value": 39961,
+          "baseline_mean": 40993.87,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772279100,
+          "datetime": "2026-02-28T19:45:00",
+          "signal": "bgp",
+          "value": 39965,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772279400,
+          "datetime": "2026-02-28T19:50:00",
+          "signal": "bgp",
+          "value": 39965,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772279700,
+          "datetime": "2026-02-28T19:55:00",
+          "signal": "bgp",
+          "value": 39965,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772280000,
+          "datetime": "2026-02-28T20:00:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772280300,
+          "datetime": "2026-02-28T20:05:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772280600,
+          "datetime": "2026-02-28T20:10:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772280900,
+          "datetime": "2026-02-28T20:15:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772281200,
+          "datetime": "2026-02-28T20:20:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772281500,
+          "datetime": "2026-02-28T20:25:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772281800,
+          "datetime": "2026-02-28T20:30:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772282100,
+          "datetime": "2026-02-28T20:35:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772282400,
+          "datetime": "2026-02-28T20:40:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772282700,
+          "datetime": "2026-02-28T20:45:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772283000,
+          "datetime": "2026-02-28T20:50:00",
+          "signal": "bgp",
+          "value": 39967,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772283300,
+          "datetime": "2026-02-28T20:55:00",
+          "signal": "bgp",
+          "value": 39967,
+          "baseline_mean": 40993.87,
+          "z_score": -2.46,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772283600,
+          "datetime": "2026-02-28T21:00:00",
+          "signal": "bgp",
+          "value": 39963,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772283900,
+          "datetime": "2026-02-28T21:05:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772284200,
+          "datetime": "2026-02-28T21:10:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772284500,
+          "datetime": "2026-02-28T21:15:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772284800,
+          "datetime": "2026-02-28T21:20:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772285100,
+          "datetime": "2026-02-28T21:25:00",
+          "signal": "bgp",
+          "value": 39966,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772285400,
+          "datetime": "2026-02-28T21:30:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772285700,
+          "datetime": "2026-02-28T21:35:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772286000,
+          "datetime": "2026-02-28T21:40:00",
+          "signal": "bgp",
+          "value": 39964,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772286300,
+          "datetime": "2026-02-28T21:45:00",
+          "signal": "bgp",
+          "value": 39959,
+          "baseline_mean": 40993.87,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772286600,
+          "datetime": "2026-02-28T21:50:00",
+          "signal": "bgp",
+          "value": 39959,
+          "baseline_mean": 40993.87,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772286900,
+          "datetime": "2026-02-28T21:55:00",
+          "signal": "bgp",
+          "value": 39965,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772287200,
+          "datetime": "2026-02-28T22:00:00",
+          "signal": "bgp",
+          "value": 39963,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772287500,
+          "datetime": "2026-02-28T22:05:00",
+          "signal": "bgp",
+          "value": 39963,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772287800,
+          "datetime": "2026-02-28T22:10:00",
+          "signal": "bgp",
+          "value": 39963,
+          "baseline_mean": 40993.87,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772288100,
+          "datetime": "2026-02-28T22:15:00",
+          "signal": "bgp",
+          "value": 39867,
+          "baseline_mean": 40993.87,
+          "z_score": -2.7,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772288400,
+          "datetime": "2026-02-28T22:20:00",
+          "signal": "bgp",
+          "value": 39187,
+          "baseline_mean": 40993.87,
+          "z_score": -4.34,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772288700,
+          "datetime": "2026-02-28T22:25:00",
+          "signal": "bgp",
+          "value": 39187,
+          "baseline_mean": 40993.87,
+          "z_score": -4.34,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772289000,
+          "datetime": "2026-02-28T22:30:00",
+          "signal": "bgp",
+          "value": 39187,
+          "baseline_mean": 40993.87,
+          "z_score": -4.34,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772289300,
+          "datetime": "2026-02-28T22:35:00",
+          "signal": "bgp",
+          "value": 39403,
+          "baseline_mean": 40993.87,
+          "z_score": -3.82,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772289600,
+          "datetime": "2026-02-28T22:40:00",
+          "signal": "bgp",
+          "value": 39403,
+          "baseline_mean": 40993.87,
+          "z_score": -3.82,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772289900,
+          "datetime": "2026-02-28T22:45:00",
+          "signal": "bgp",
+          "value": 39403,
+          "baseline_mean": 40993.87,
+          "z_score": -3.82,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772349900,
+          "datetime": "2026-03-01T15:25:00",
+          "signal": "bgp",
+          "value": 40137,
+          "baseline_mean": 40993.87,
+          "z_score": -2.06,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772350200,
+          "datetime": "2026-03-01T15:30:00",
+          "signal": "bgp",
+          "value": 40133,
+          "baseline_mean": 40993.87,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772352000,
+          "datetime": "2026-03-01T16:00:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772352300,
+          "datetime": "2026-03-01T16:05:00",
+          "signal": "bgp",
+          "value": 40111,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772352600,
+          "datetime": "2026-03-01T16:10:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772352900,
+          "datetime": "2026-03-01T16:15:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772353200,
+          "datetime": "2026-03-01T16:20:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772353500,
+          "datetime": "2026-03-01T16:25:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772353800,
+          "datetime": "2026-03-01T16:30:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772354100,
+          "datetime": "2026-03-01T16:35:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772354400,
+          "datetime": "2026-03-01T16:40:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772354700,
+          "datetime": "2026-03-01T16:45:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772355000,
+          "datetime": "2026-03-01T16:50:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772355300,
+          "datetime": "2026-03-01T16:55:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772355600,
+          "datetime": "2026-03-01T17:00:00",
+          "signal": "bgp",
+          "value": 40112,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772355900,
+          "datetime": "2026-03-01T17:05:00",
+          "signal": "bgp",
+          "value": 40112,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772356200,
+          "datetime": "2026-03-01T17:10:00",
+          "signal": "bgp",
+          "value": 40112,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772356500,
+          "datetime": "2026-03-01T17:15:00",
+          "signal": "bgp",
+          "value": 40112,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772356800,
+          "datetime": "2026-03-01T17:20:00",
+          "signal": "bgp",
+          "value": 40112,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772357100,
+          "datetime": "2026-03-01T17:25:00",
+          "signal": "bgp",
+          "value": 40112,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772357400,
+          "datetime": "2026-03-01T17:30:00",
+          "signal": "bgp",
+          "value": 40108,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772357700,
+          "datetime": "2026-03-01T17:35:00",
+          "signal": "bgp",
+          "value": 40108,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772358600,
+          "datetime": "2026-03-01T17:50:00",
+          "signal": "bgp",
+          "value": 40111,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772358900,
+          "datetime": "2026-03-01T17:55:00",
+          "signal": "bgp",
+          "value": 40111,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772359200,
+          "datetime": "2026-03-01T18:00:00",
+          "signal": "bgp",
+          "value": 40100,
+          "baseline_mean": 40993.87,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772359500,
+          "datetime": "2026-03-01T18:05:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772359800,
+          "datetime": "2026-03-01T18:10:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772360100,
+          "datetime": "2026-03-01T18:15:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772360400,
+          "datetime": "2026-03-01T18:20:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772360700,
+          "datetime": "2026-03-01T18:25:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361000,
+          "datetime": "2026-03-01T18:30:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361300,
+          "datetime": "2026-03-01T18:35:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361600,
+          "datetime": "2026-03-01T18:40:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361900,
+          "datetime": "2026-03-01T18:45:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772362200,
+          "datetime": "2026-03-01T18:50:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772362500,
+          "datetime": "2026-03-01T18:55:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772362800,
+          "datetime": "2026-03-01T19:00:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772363100,
+          "datetime": "2026-03-01T19:05:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772363400,
+          "datetime": "2026-03-01T19:10:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772363700,
+          "datetime": "2026-03-01T19:15:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364000,
+          "datetime": "2026-03-01T19:20:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364300,
+          "datetime": "2026-03-01T19:25:00",
+          "signal": "bgp",
+          "value": 40114,
+          "baseline_mean": 40993.87,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364600,
+          "datetime": "2026-03-01T19:30:00",
+          "signal": "bgp",
+          "value": 40110,
+          "baseline_mean": 40993.87,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364900,
+          "datetime": "2026-03-01T19:35:00",
+          "signal": "bgp",
+          "value": 40106,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772365200,
+          "datetime": "2026-03-01T19:40:00",
+          "signal": "bgp",
+          "value": 40106,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772365500,
+          "datetime": "2026-03-01T19:45:00",
+          "signal": "bgp",
+          "value": 40106,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772365800,
+          "datetime": "2026-03-01T19:50:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772366100,
+          "datetime": "2026-03-01T19:55:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772366400,
+          "datetime": "2026-03-01T20:00:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772366700,
+          "datetime": "2026-03-01T20:05:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367000,
+          "datetime": "2026-03-01T20:10:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367300,
+          "datetime": "2026-03-01T20:15:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367600,
+          "datetime": "2026-03-01T20:20:00",
+          "signal": "bgp",
+          "value": 40107,
+          "baseline_mean": 40993.87,
+          "z_score": -2.13,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    },
+    "LB": {
+      "country_code": "LB",
+      "country_name": "Lebanon",
+      "period": {
+        "start": "2026-02-26T08:04:43",
+        "end": "2026-03-05T08:04:43"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 2010,
+          "mean": 2239.55,
+          "stdev": 2.98,
+          "latest_value": 2238
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 663.5,
+          "stdev": 6.66,
+          "latest_value": 642
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 1766592168.61,
+          "stdev": 379017833.56,
+          "latest_value": 2026399166
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772204400,
+          "datetime": "2026-02-27T23:00:00",
+          "signal": "bgp",
+          "value": 2233,
+          "baseline_mean": 2239.55,
+          "z_score": -2.2,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772210400,
+          "datetime": "2026-02-28T00:40:00",
+          "signal": "active_probing",
+          "value": 648,
+          "baseline_mean": 663.5,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772248200,
+          "datetime": "2026-02-28T11:10:00",
+          "signal": "active_probing",
+          "value": 648,
+          "baseline_mean": 663.5,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772309400,
+          "datetime": "2026-03-01T04:10:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772322600,
+          "datetime": "2026-03-01T07:50:00",
+          "signal": "active_probing",
+          "value": 649,
+          "baseline_mean": 663.5,
+          "z_score": -2.18,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772334600,
+          "datetime": "2026-03-01T11:10:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772381400,
+          "datetime": "2026-03-02T00:10:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772411400,
+          "datetime": "2026-03-02T08:30:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772431800,
+          "datetime": "2026-03-02T14:10:00",
+          "signal": "active_probing",
+          "value": 648,
+          "baseline_mean": 663.5,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772483400,
+          "datetime": "2026-03-03T04:30:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772492400,
+          "datetime": "2026-03-03T07:00:00",
+          "signal": "active_probing",
+          "value": 649,
+          "baseline_mean": 663.5,
+          "z_score": -2.18,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772505000,
+          "datetime": "2026-03-03T10:30:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772517600,
+          "datetime": "2026-03-03T14:00:00",
+          "signal": "active_probing",
+          "value": 648,
+          "baseline_mean": 663.5,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772555400,
+          "datetime": "2026-03-04T00:30:00",
+          "signal": "active_probing",
+          "value": 650,
+          "baseline_mean": 663.5,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772602800,
+          "datetime": "2026-03-04T13:40:00",
+          "signal": "active_probing",
+          "value": 649,
+          "baseline_mean": 663.5,
+          "z_score": -2.18,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772614800,
+          "datetime": "2026-03-04T17:00:00",
+          "signal": "active_probing",
+          "value": 649,
+          "baseline_mean": 663.5,
+          "z_score": -2.18,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772634600,
+          "datetime": "2026-03-04T22:30:00",
+          "signal": "active_probing",
+          "value": 648,
+          "baseline_mean": 663.5,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772639400,
+          "datetime": "2026-03-04T23:50:00",
+          "signal": "active_probing",
+          "value": 649,
+          "baseline_mean": 663.5,
+          "z_score": -2.18,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772644200,
+          "datetime": "2026-03-05T01:10:00",
+          "signal": "active_probing",
+          "value": 648,
+          "baseline_mean": 663.5,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772649000,
+          "datetime": "2026-03-05T02:30:00",
+          "signal": "active_probing",
+          "value": 647,
+          "baseline_mean": 663.5,
+          "z_score": -2.48,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772667000,
+          "datetime": "2026-03-05T07:30:00",
+          "signal": "active_probing",
+          "value": 649,
+          "baseline_mean": 663.5,
+          "z_score": -2.18,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772667600,
+          "datetime": "2026-03-05T07:40:00",
+          "signal": "active_probing",
+          "value": 644,
+          "baseline_mean": 663.5,
+          "z_score": -2.93,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772668200,
+          "datetime": "2026-03-05T07:50:00",
+          "signal": "active_probing",
+          "value": 642,
+          "baseline_mean": 663.5,
+          "z_score": -3.23,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772253000,
+          "datetime": "2026-02-28T12:30:00",
+          "signal": "google_transparency",
+          "value": 996523645,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772508600,
+          "datetime": "2026-03-03T11:30:00",
+          "signal": "google_transparency",
+          "value": 917878125,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.24,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772510400,
+          "datetime": "2026-03-03T12:00:00",
+          "signal": "google_transparency",
+          "value": 849117916,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.42,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772512200,
+          "datetime": "2026-03-03T12:30:00",
+          "signal": "google_transparency",
+          "value": 927281770,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.21,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772514000,
+          "datetime": "2026-03-03T13:00:00",
+          "signal": "google_transparency",
+          "value": 968881770,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.1,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772595000,
+          "datetime": "2026-03-04T11:30:00",
+          "signal": "google_transparency",
+          "value": 960636666,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.13,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772596800,
+          "datetime": "2026-03-04T12:00:00",
+          "signal": "google_transparency",
+          "value": 888878541,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.32,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772598600,
+          "datetime": "2026-03-04T12:30:00",
+          "signal": "google_transparency",
+          "value": 917806354,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.24,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772600400,
+          "datetime": "2026-03-04T13:00:00",
+          "signal": "google_transparency",
+          "value": 971056145,
+          "baseline_mean": 1766592168.61,
+          "z_score": -2.1,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    },
+    "SY": {
+      "country_code": "SY",
+      "country_name": "Syria",
+      "period": {
+        "start": "2026-02-26T08:04:43",
+        "end": "2026-03-05T08:04:43"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 2010,
+          "mean": 4820.02,
+          "stdev": 6.79,
+          "latest_value": 4808
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 658.12,
+          "stdev": 32.88,
+          "latest_value": 643
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 3944036065.03,
+          "stdev": 800064035.07,
+          "latest_value": 4946954687
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772529600,
+          "datetime": "2026-03-03T17:20:00",
+          "signal": "bgp",
+          "value": 4806,
+          "baseline_mean": 4820.02,
+          "z_score": -2.06,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772531100,
+          "datetime": "2026-03-03T17:45:00",
+          "signal": "bgp",
+          "value": 4806,
+          "baseline_mean": 4820.02,
+          "z_score": -2.06,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772616600,
+          "datetime": "2026-03-04T17:30:00",
+          "signal": "bgp",
+          "value": 4806,
+          "baseline_mean": 4820.02,
+          "z_score": -2.06,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772098200,
+          "datetime": "2026-02-26T17:30:00",
+          "signal": "active_probing",
+          "value": 541,
+          "baseline_mean": 658.12,
+          "z_score": -3.56,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772099400,
+          "datetime": "2026-02-26T17:50:00",
+          "signal": "active_probing",
+          "value": 482,
+          "baseline_mean": 658.12,
+          "z_score": -5.36,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772100000,
+          "datetime": "2026-02-26T18:00:00",
+          "signal": "active_probing",
+          "value": 547,
+          "baseline_mean": 658.12,
+          "z_score": -3.38,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772100600,
+          "datetime": "2026-02-26T18:10:00",
+          "signal": "active_probing",
+          "value": 532,
+          "baseline_mean": 658.12,
+          "z_score": -3.84,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772101200,
+          "datetime": "2026-02-26T18:20:00",
+          "signal": "active_probing",
+          "value": 477,
+          "baseline_mean": 658.12,
+          "z_score": -5.51,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772101800,
+          "datetime": "2026-02-26T18:30:00",
+          "signal": "active_probing",
+          "value": 488,
+          "baseline_mean": 658.12,
+          "z_score": -5.17,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772102400,
+          "datetime": "2026-02-26T18:40:00",
+          "signal": "active_probing",
+          "value": 489,
+          "baseline_mean": 658.12,
+          "z_score": -5.14,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772103000,
+          "datetime": "2026-02-26T18:50:00",
+          "signal": "active_probing",
+          "value": 477,
+          "baseline_mean": 658.12,
+          "z_score": -5.51,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772103600,
+          "datetime": "2026-02-26T19:00:00",
+          "signal": "active_probing",
+          "value": 467,
+          "baseline_mean": 658.12,
+          "z_score": -5.81,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772104200,
+          "datetime": "2026-02-26T19:10:00",
+          "signal": "active_probing",
+          "value": 472,
+          "baseline_mean": 658.12,
+          "z_score": -5.66,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772104800,
+          "datetime": "2026-02-26T19:20:00",
+          "signal": "active_probing",
+          "value": 509,
+          "baseline_mean": 658.12,
+          "z_score": -4.53,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772105400,
+          "datetime": "2026-02-26T19:30:00",
+          "signal": "active_probing",
+          "value": 507,
+          "baseline_mean": 658.12,
+          "z_score": -4.6,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772106000,
+          "datetime": "2026-02-26T19:40:00",
+          "signal": "active_probing",
+          "value": 508,
+          "baseline_mean": 658.12,
+          "z_score": -4.57,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772106600,
+          "datetime": "2026-02-26T19:50:00",
+          "signal": "active_probing",
+          "value": 503,
+          "baseline_mean": 658.12,
+          "z_score": -4.72,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772107200,
+          "datetime": "2026-02-26T20:00:00",
+          "signal": "active_probing",
+          "value": 486,
+          "baseline_mean": 658.12,
+          "z_score": -5.23,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772107800,
+          "datetime": "2026-02-26T20:10:00",
+          "signal": "active_probing",
+          "value": 493,
+          "baseline_mean": 658.12,
+          "z_score": -5.02,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772108400,
+          "datetime": "2026-02-26T20:20:00",
+          "signal": "active_probing",
+          "value": 496,
+          "baseline_mean": 658.12,
+          "z_score": -4.93,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772109000,
+          "datetime": "2026-02-26T20:30:00",
+          "signal": "active_probing",
+          "value": 504,
+          "baseline_mean": 658.12,
+          "z_score": -4.69,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772109600,
+          "datetime": "2026-02-26T20:40:00",
+          "signal": "active_probing",
+          "value": 488,
+          "baseline_mean": 658.12,
+          "z_score": -5.17,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772110200,
+          "datetime": "2026-02-26T20:50:00",
+          "signal": "active_probing",
+          "value": 457,
+          "baseline_mean": 658.12,
+          "z_score": -6.12,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772110800,
+          "datetime": "2026-02-26T21:00:00",
+          "signal": "active_probing",
+          "value": 491,
+          "baseline_mean": 658.12,
+          "z_score": -5.08,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772111400,
+          "datetime": "2026-02-26T21:10:00",
+          "signal": "active_probing",
+          "value": 482,
+          "baseline_mean": 658.12,
+          "z_score": -5.36,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772112000,
+          "datetime": "2026-02-26T21:20:00",
+          "signal": "active_probing",
+          "value": 497,
+          "baseline_mean": 658.12,
+          "z_score": -4.9,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772112600,
+          "datetime": "2026-02-26T21:30:00",
+          "signal": "active_probing",
+          "value": 484,
+          "baseline_mean": 658.12,
+          "z_score": -5.3,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772113200,
+          "datetime": "2026-02-26T21:40:00",
+          "signal": "active_probing",
+          "value": 565,
+          "baseline_mean": 658.12,
+          "z_score": -2.83,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772116200,
+          "datetime": "2026-02-26T22:30:00",
+          "signal": "active_probing",
+          "value": 571,
+          "baseline_mean": 658.12,
+          "z_score": -2.65,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772116800,
+          "datetime": "2026-02-26T22:40:00",
+          "signal": "active_probing",
+          "value": 458,
+          "baseline_mean": 658.12,
+          "z_score": -6.09,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772117400,
+          "datetime": "2026-02-26T22:50:00",
+          "signal": "active_probing",
+          "value": 549,
+          "baseline_mean": 658.12,
+          "z_score": -3.32,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772141400,
+          "datetime": "2026-02-27T05:30:00",
+          "signal": "active_probing",
+          "value": 583,
+          "baseline_mean": 658.12,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772142000,
+          "datetime": "2026-02-27T05:40:00",
+          "signal": "active_probing",
+          "value": 586,
+          "baseline_mean": 658.12,
+          "z_score": -2.19,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772310600,
+          "datetime": "2026-03-01T04:30:00",
+          "signal": "active_probing",
+          "value": 590,
+          "baseline_mean": 658.12,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772311200,
+          "datetime": "2026-03-01T04:40:00",
+          "signal": "active_probing",
+          "value": 592,
+          "baseline_mean": 658.12,
+          "z_score": -2.01,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772311800,
+          "datetime": "2026-03-01T04:50:00",
+          "signal": "active_probing",
+          "value": 568,
+          "baseline_mean": 658.12,
+          "z_score": -2.74,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772312400,
+          "datetime": "2026-03-01T05:00:00",
+          "signal": "active_probing",
+          "value": 579,
+          "baseline_mean": 658.12,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772313000,
+          "datetime": "2026-03-01T05:10:00",
+          "signal": "active_probing",
+          "value": 564,
+          "baseline_mean": 658.12,
+          "z_score": -2.86,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772313600,
+          "datetime": "2026-03-01T05:20:00",
+          "signal": "active_probing",
+          "value": 565,
+          "baseline_mean": 658.12,
+          "z_score": -2.83,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772314200,
+          "datetime": "2026-03-01T05:30:00",
+          "signal": "active_probing",
+          "value": 585,
+          "baseline_mean": 658.12,
+          "z_score": -2.22,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772314800,
+          "datetime": "2026-03-01T05:40:00",
+          "signal": "active_probing",
+          "value": 582,
+          "baseline_mean": 658.12,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772660400,
+          "datetime": "2026-03-05T05:40:00",
+          "signal": "active_probing",
+          "value": 580,
+          "baseline_mean": 658.12,
+          "z_score": -2.38,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    },
+    "YE": {
+      "country_code": "YE",
+      "country_name": "Yemen",
+      "period": {
+        "start": "2026-02-26T08:04:43",
+        "end": "2026-03-05T08:04:43"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 2010,
+          "mean": 964.12,
+          "stdev": 1.05,
+          "latest_value": 964
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 25.16,
+          "stdev": 1.72,
+          "latest_value": 26
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 2426482191.41,
+          "stdev": 1424054011.41,
+          "latest_value": 4624944791
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772358600,
+          "datetime": "2026-03-01T17:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772358900,
+          "datetime": "2026-03-01T17:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772359200,
+          "datetime": "2026-03-01T18:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772359500,
+          "datetime": "2026-03-01T18:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772359800,
+          "datetime": "2026-03-01T18:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772360100,
+          "datetime": "2026-03-01T18:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772360400,
+          "datetime": "2026-03-01T18:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772360700,
+          "datetime": "2026-03-01T18:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361000,
+          "datetime": "2026-03-01T18:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361300,
+          "datetime": "2026-03-01T18:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361600,
+          "datetime": "2026-03-01T18:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772361900,
+          "datetime": "2026-03-01T18:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772362200,
+          "datetime": "2026-03-01T18:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772362500,
+          "datetime": "2026-03-01T18:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772362800,
+          "datetime": "2026-03-01T19:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772363100,
+          "datetime": "2026-03-01T19:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772363400,
+          "datetime": "2026-03-01T19:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772363700,
+          "datetime": "2026-03-01T19:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364000,
+          "datetime": "2026-03-01T19:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364300,
+          "datetime": "2026-03-01T19:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364600,
+          "datetime": "2026-03-01T19:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772364900,
+          "datetime": "2026-03-01T19:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772365200,
+          "datetime": "2026-03-01T19:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772365500,
+          "datetime": "2026-03-01T19:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772365800,
+          "datetime": "2026-03-01T19:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772366100,
+          "datetime": "2026-03-01T19:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772366400,
+          "datetime": "2026-03-01T20:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772366700,
+          "datetime": "2026-03-01T20:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367000,
+          "datetime": "2026-03-01T20:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367300,
+          "datetime": "2026-03-01T20:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367600,
+          "datetime": "2026-03-01T20:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772367900,
+          "datetime": "2026-03-01T20:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772368200,
+          "datetime": "2026-03-01T20:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772368500,
+          "datetime": "2026-03-01T20:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772368800,
+          "datetime": "2026-03-01T20:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772369100,
+          "datetime": "2026-03-01T20:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772369400,
+          "datetime": "2026-03-01T20:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772369700,
+          "datetime": "2026-03-01T20:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772370000,
+          "datetime": "2026-03-01T21:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772370300,
+          "datetime": "2026-03-01T21:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772370600,
+          "datetime": "2026-03-01T21:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772370900,
+          "datetime": "2026-03-01T21:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772371200,
+          "datetime": "2026-03-01T21:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772371500,
+          "datetime": "2026-03-01T21:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772371800,
+          "datetime": "2026-03-01T21:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772372100,
+          "datetime": "2026-03-01T21:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772372400,
+          "datetime": "2026-03-01T21:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772372700,
+          "datetime": "2026-03-01T21:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772373000,
+          "datetime": "2026-03-01T21:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772373300,
+          "datetime": "2026-03-01T21:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772373600,
+          "datetime": "2026-03-01T22:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772373900,
+          "datetime": "2026-03-01T22:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772374200,
+          "datetime": "2026-03-01T22:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772374500,
+          "datetime": "2026-03-01T22:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772374800,
+          "datetime": "2026-03-01T22:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772375100,
+          "datetime": "2026-03-01T22:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772375400,
+          "datetime": "2026-03-01T22:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772375700,
+          "datetime": "2026-03-01T22:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772376000,
+          "datetime": "2026-03-01T22:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772376300,
+          "datetime": "2026-03-01T22:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772376600,
+          "datetime": "2026-03-01T22:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772376900,
+          "datetime": "2026-03-01T22:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772377200,
+          "datetime": "2026-03-01T23:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772377500,
+          "datetime": "2026-03-01T23:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772377800,
+          "datetime": "2026-03-01T23:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772378100,
+          "datetime": "2026-03-01T23:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772378400,
+          "datetime": "2026-03-01T23:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772378700,
+          "datetime": "2026-03-01T23:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772379000,
+          "datetime": "2026-03-01T23:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772379300,
+          "datetime": "2026-03-01T23:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772379600,
+          "datetime": "2026-03-01T23:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772379900,
+          "datetime": "2026-03-01T23:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772380200,
+          "datetime": "2026-03-01T23:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772380500,
+          "datetime": "2026-03-01T23:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772380800,
+          "datetime": "2026-03-02T00:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772381100,
+          "datetime": "2026-03-02T00:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772381400,
+          "datetime": "2026-03-02T00:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772381700,
+          "datetime": "2026-03-02T00:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772382000,
+          "datetime": "2026-03-02T00:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772382300,
+          "datetime": "2026-03-02T00:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772382600,
+          "datetime": "2026-03-02T00:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772382900,
+          "datetime": "2026-03-02T00:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772383200,
+          "datetime": "2026-03-02T00:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772383500,
+          "datetime": "2026-03-02T00:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772383800,
+          "datetime": "2026-03-02T00:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772384100,
+          "datetime": "2026-03-02T00:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772384400,
+          "datetime": "2026-03-02T01:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772384700,
+          "datetime": "2026-03-02T01:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772385000,
+          "datetime": "2026-03-02T01:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772385300,
+          "datetime": "2026-03-02T01:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772385600,
+          "datetime": "2026-03-02T01:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772385900,
+          "datetime": "2026-03-02T01:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772386200,
+          "datetime": "2026-03-02T01:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772386500,
+          "datetime": "2026-03-02T01:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772386800,
+          "datetime": "2026-03-02T01:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772387100,
+          "datetime": "2026-03-02T01:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772387400,
+          "datetime": "2026-03-02T01:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772387700,
+          "datetime": "2026-03-02T01:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772388000,
+          "datetime": "2026-03-02T02:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772388300,
+          "datetime": "2026-03-02T02:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772388600,
+          "datetime": "2026-03-02T02:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772388900,
+          "datetime": "2026-03-02T02:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772389200,
+          "datetime": "2026-03-02T02:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772389500,
+          "datetime": "2026-03-02T02:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772389800,
+          "datetime": "2026-03-02T02:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772390100,
+          "datetime": "2026-03-02T02:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772390400,
+          "datetime": "2026-03-02T02:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772390700,
+          "datetime": "2026-03-02T02:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772391000,
+          "datetime": "2026-03-02T02:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772391300,
+          "datetime": "2026-03-02T02:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772391600,
+          "datetime": "2026-03-02T03:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772391900,
+          "datetime": "2026-03-02T03:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772392200,
+          "datetime": "2026-03-02T03:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772392500,
+          "datetime": "2026-03-02T03:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772392800,
+          "datetime": "2026-03-02T03:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772393100,
+          "datetime": "2026-03-02T03:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772393400,
+          "datetime": "2026-03-02T03:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772393700,
+          "datetime": "2026-03-02T03:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772394000,
+          "datetime": "2026-03-02T03:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772394300,
+          "datetime": "2026-03-02T03:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772394600,
+          "datetime": "2026-03-02T03:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772394900,
+          "datetime": "2026-03-02T03:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772395200,
+          "datetime": "2026-03-02T04:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772395500,
+          "datetime": "2026-03-02T04:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772395800,
+          "datetime": "2026-03-02T04:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772396100,
+          "datetime": "2026-03-02T04:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772396400,
+          "datetime": "2026-03-02T04:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772396700,
+          "datetime": "2026-03-02T04:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772397000,
+          "datetime": "2026-03-02T04:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772397300,
+          "datetime": "2026-03-02T04:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772397600,
+          "datetime": "2026-03-02T04:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772397900,
+          "datetime": "2026-03-02T04:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772398200,
+          "datetime": "2026-03-02T04:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772398500,
+          "datetime": "2026-03-02T04:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772398800,
+          "datetime": "2026-03-02T05:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772399100,
+          "datetime": "2026-03-02T05:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772399400,
+          "datetime": "2026-03-02T05:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772399700,
+          "datetime": "2026-03-02T05:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772400000,
+          "datetime": "2026-03-02T05:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772400300,
+          "datetime": "2026-03-02T05:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772400600,
+          "datetime": "2026-03-02T05:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772400900,
+          "datetime": "2026-03-02T05:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772401200,
+          "datetime": "2026-03-02T05:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772401500,
+          "datetime": "2026-03-02T05:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772401800,
+          "datetime": "2026-03-02T05:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772402100,
+          "datetime": "2026-03-02T05:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772402400,
+          "datetime": "2026-03-02T06:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772402700,
+          "datetime": "2026-03-02T06:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772403000,
+          "datetime": "2026-03-02T06:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772403300,
+          "datetime": "2026-03-02T06:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772403600,
+          "datetime": "2026-03-02T06:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772403900,
+          "datetime": "2026-03-02T06:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772404200,
+          "datetime": "2026-03-02T06:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772404500,
+          "datetime": "2026-03-02T06:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772404800,
+          "datetime": "2026-03-02T06:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772405100,
+          "datetime": "2026-03-02T06:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772405400,
+          "datetime": "2026-03-02T06:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772405700,
+          "datetime": "2026-03-02T06:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772406000,
+          "datetime": "2026-03-02T07:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772406300,
+          "datetime": "2026-03-02T07:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772406600,
+          "datetime": "2026-03-02T07:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772406900,
+          "datetime": "2026-03-02T07:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772407200,
+          "datetime": "2026-03-02T07:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772407500,
+          "datetime": "2026-03-02T07:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772407800,
+          "datetime": "2026-03-02T07:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772408100,
+          "datetime": "2026-03-02T07:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772408400,
+          "datetime": "2026-03-02T07:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772408700,
+          "datetime": "2026-03-02T07:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772409000,
+          "datetime": "2026-03-02T07:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772409300,
+          "datetime": "2026-03-02T07:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772409600,
+          "datetime": "2026-03-02T08:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772409900,
+          "datetime": "2026-03-02T08:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772410200,
+          "datetime": "2026-03-02T08:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772410500,
+          "datetime": "2026-03-02T08:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772410800,
+          "datetime": "2026-03-02T08:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772411100,
+          "datetime": "2026-03-02T08:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772411400,
+          "datetime": "2026-03-02T08:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772411700,
+          "datetime": "2026-03-02T08:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412000,
+          "datetime": "2026-03-02T08:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412300,
+          "datetime": "2026-03-02T08:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412600,
+          "datetime": "2026-03-02T08:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412900,
+          "datetime": "2026-03-02T08:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772413200,
+          "datetime": "2026-03-02T09:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772413500,
+          "datetime": "2026-03-02T09:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772413800,
+          "datetime": "2026-03-02T09:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772414100,
+          "datetime": "2026-03-02T09:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772414400,
+          "datetime": "2026-03-02T09:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772414700,
+          "datetime": "2026-03-02T09:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772415000,
+          "datetime": "2026-03-02T09:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772415300,
+          "datetime": "2026-03-02T09:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772415600,
+          "datetime": "2026-03-02T09:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772415900,
+          "datetime": "2026-03-02T09:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772416200,
+          "datetime": "2026-03-02T09:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772416500,
+          "datetime": "2026-03-02T09:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772416800,
+          "datetime": "2026-03-02T10:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772417100,
+          "datetime": "2026-03-02T10:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772417400,
+          "datetime": "2026-03-02T10:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772417700,
+          "datetime": "2026-03-02T10:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772418000,
+          "datetime": "2026-03-02T10:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772418300,
+          "datetime": "2026-03-02T10:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772418600,
+          "datetime": "2026-03-02T10:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772418900,
+          "datetime": "2026-03-02T10:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772419200,
+          "datetime": "2026-03-02T10:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772419500,
+          "datetime": "2026-03-02T10:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772419800,
+          "datetime": "2026-03-02T10:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772420100,
+          "datetime": "2026-03-02T10:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772420400,
+          "datetime": "2026-03-02T11:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772420700,
+          "datetime": "2026-03-02T11:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772421000,
+          "datetime": "2026-03-02T11:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772421300,
+          "datetime": "2026-03-02T11:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772421600,
+          "datetime": "2026-03-02T11:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772421900,
+          "datetime": "2026-03-02T11:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772422200,
+          "datetime": "2026-03-02T11:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772422500,
+          "datetime": "2026-03-02T11:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772422800,
+          "datetime": "2026-03-02T11:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772423100,
+          "datetime": "2026-03-02T11:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772423400,
+          "datetime": "2026-03-02T11:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772423700,
+          "datetime": "2026-03-02T11:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772424000,
+          "datetime": "2026-03-02T12:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772424300,
+          "datetime": "2026-03-02T12:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772424600,
+          "datetime": "2026-03-02T12:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772424900,
+          "datetime": "2026-03-02T12:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772425200,
+          "datetime": "2026-03-02T12:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772425500,
+          "datetime": "2026-03-02T12:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772425800,
+          "datetime": "2026-03-02T12:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772426100,
+          "datetime": "2026-03-02T12:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772426400,
+          "datetime": "2026-03-02T12:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772426700,
+          "datetime": "2026-03-02T12:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772427000,
+          "datetime": "2026-03-02T12:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772427300,
+          "datetime": "2026-03-02T12:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772427600,
+          "datetime": "2026-03-02T13:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772427900,
+          "datetime": "2026-03-02T13:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772428200,
+          "datetime": "2026-03-02T13:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772428500,
+          "datetime": "2026-03-02T13:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772428800,
+          "datetime": "2026-03-02T13:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772429100,
+          "datetime": "2026-03-02T13:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772429400,
+          "datetime": "2026-03-02T13:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772429700,
+          "datetime": "2026-03-02T13:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430000,
+          "datetime": "2026-03-02T13:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430300,
+          "datetime": "2026-03-02T13:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430600,
+          "datetime": "2026-03-02T13:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430900,
+          "datetime": "2026-03-02T13:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772431200,
+          "datetime": "2026-03-02T14:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772431500,
+          "datetime": "2026-03-02T14:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772431800,
+          "datetime": "2026-03-02T14:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772432100,
+          "datetime": "2026-03-02T14:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772432400,
+          "datetime": "2026-03-02T14:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772432700,
+          "datetime": "2026-03-02T14:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772433000,
+          "datetime": "2026-03-02T14:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772433300,
+          "datetime": "2026-03-02T14:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772433600,
+          "datetime": "2026-03-02T14:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772433900,
+          "datetime": "2026-03-02T14:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772434200,
+          "datetime": "2026-03-02T14:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772434500,
+          "datetime": "2026-03-02T14:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772434800,
+          "datetime": "2026-03-02T15:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772435100,
+          "datetime": "2026-03-02T15:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772435400,
+          "datetime": "2026-03-02T15:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772435700,
+          "datetime": "2026-03-02T15:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772436000,
+          "datetime": "2026-03-02T15:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772436300,
+          "datetime": "2026-03-02T15:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772436600,
+          "datetime": "2026-03-02T15:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772436900,
+          "datetime": "2026-03-02T15:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772437200,
+          "datetime": "2026-03-02T15:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772437500,
+          "datetime": "2026-03-02T15:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772437800,
+          "datetime": "2026-03-02T15:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772438100,
+          "datetime": "2026-03-02T15:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772438400,
+          "datetime": "2026-03-02T16:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772438700,
+          "datetime": "2026-03-02T16:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772439000,
+          "datetime": "2026-03-02T16:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772439300,
+          "datetime": "2026-03-02T16:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772439600,
+          "datetime": "2026-03-02T16:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772439900,
+          "datetime": "2026-03-02T16:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772440200,
+          "datetime": "2026-03-02T16:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772440500,
+          "datetime": "2026-03-02T16:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772440800,
+          "datetime": "2026-03-02T16:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772441100,
+          "datetime": "2026-03-02T16:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772441400,
+          "datetime": "2026-03-02T16:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772441700,
+          "datetime": "2026-03-02T16:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772442000,
+          "datetime": "2026-03-02T17:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772442300,
+          "datetime": "2026-03-02T17:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772442600,
+          "datetime": "2026-03-02T17:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772442900,
+          "datetime": "2026-03-02T17:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772443200,
+          "datetime": "2026-03-02T17:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772443500,
+          "datetime": "2026-03-02T17:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772443800,
+          "datetime": "2026-03-02T17:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772444100,
+          "datetime": "2026-03-02T17:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772444400,
+          "datetime": "2026-03-02T17:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772444700,
+          "datetime": "2026-03-02T17:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772445000,
+          "datetime": "2026-03-02T17:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772445300,
+          "datetime": "2026-03-02T17:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772445600,
+          "datetime": "2026-03-02T18:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772445900,
+          "datetime": "2026-03-02T18:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772446200,
+          "datetime": "2026-03-02T18:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772446500,
+          "datetime": "2026-03-02T18:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772446800,
+          "datetime": "2026-03-02T18:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772447100,
+          "datetime": "2026-03-02T18:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772447400,
+          "datetime": "2026-03-02T18:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772447700,
+          "datetime": "2026-03-02T18:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772448000,
+          "datetime": "2026-03-02T18:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772448300,
+          "datetime": "2026-03-02T18:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772448600,
+          "datetime": "2026-03-02T18:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772448900,
+          "datetime": "2026-03-02T18:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772449200,
+          "datetime": "2026-03-02T19:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772449500,
+          "datetime": "2026-03-02T19:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772449800,
+          "datetime": "2026-03-02T19:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772450100,
+          "datetime": "2026-03-02T19:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772450400,
+          "datetime": "2026-03-02T19:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772450700,
+          "datetime": "2026-03-02T19:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772451000,
+          "datetime": "2026-03-02T19:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772451300,
+          "datetime": "2026-03-02T19:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772451600,
+          "datetime": "2026-03-02T19:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772451900,
+          "datetime": "2026-03-02T19:45:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772452200,
+          "datetime": "2026-03-02T19:50:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772452500,
+          "datetime": "2026-03-02T19:55:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772452800,
+          "datetime": "2026-03-02T20:00:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772453100,
+          "datetime": "2026-03-02T20:05:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772453400,
+          "datetime": "2026-03-02T20:10:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772453700,
+          "datetime": "2026-03-02T20:15:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772454000,
+          "datetime": "2026-03-02T20:20:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772454300,
+          "datetime": "2026-03-02T20:25:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772454600,
+          "datetime": "2026-03-02T20:30:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772454900,
+          "datetime": "2026-03-02T20:35:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772455200,
+          "datetime": "2026-03-02T20:40:00",
+          "signal": "bgp",
+          "value": 962,
+          "baseline_mean": 964.12,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772110800,
+          "datetime": "2026-02-26T21:00:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772137800,
+          "datetime": "2026-02-27T04:30:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 25.16,
+          "z_score": -3.01,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772138400,
+          "datetime": "2026-02-27T04:40:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772167200,
+          "datetime": "2026-02-27T12:40:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772180400,
+          "datetime": "2026-02-27T16:20:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 25.16,
+          "z_score": -3.01,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772183400,
+          "datetime": "2026-02-27T17:10:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772185800,
+          "datetime": "2026-02-27T17:50:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 25.16,
+          "z_score": -3.01,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772242200,
+          "datetime": "2026-02-28T09:30:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772250600,
+          "datetime": "2026-02-28T11:50:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772269800,
+          "datetime": "2026-02-28T17:10:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772272800,
+          "datetime": "2026-02-28T18:00:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772278200,
+          "datetime": "2026-02-28T19:30:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 25.16,
+          "z_score": -3.59,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772428800,
+          "datetime": "2026-03-02T13:20:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772541600,
+          "datetime": "2026-03-03T20:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 25.16,
+          "z_score": -3.01,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772623800,
+          "datetime": "2026-03-04T19:30:00",
+          "signal": "active_probing",
+          "value": 21,
+          "baseline_mean": 25.16,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772665800,
+          "datetime": "2026-03-05T07:10:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 25.16,
+          "z_score": -3.01,
+          "severity": "critical"
+        }
+      ],
+      "status": "critical"
+    },
+    "IQ": {
+      "country_code": "IQ",
+      "country_name": "Iraq",
+      "period": {
+        "start": "2026-02-26T08:04:43",
+        "end": "2026-03-05T08:04:43"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 2010,
+          "mean": 3161.17,
+          "stdev": 2.47,
+          "latest_value": 3159
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 915.04,
+          "stdev": 9.01,
+          "latest_value": 881
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 2914435268.0,
+          "stdev": 667412388.66,
+          "latest_value": 3470150000
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772094000,
+          "datetime": "2026-02-26T16:20:00",
+          "signal": "bgp",
+          "value": 3147,
+          "baseline_mean": 3161.17,
+          "z_score": -5.73,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772094300,
+          "datetime": "2026-02-26T16:25:00",
+          "signal": "bgp",
+          "value": 3145,
+          "baseline_mean": 3161.17,
+          "z_score": -6.54,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772094600,
+          "datetime": "2026-02-26T16:30:00",
+          "signal": "bgp",
+          "value": 3145,
+          "baseline_mean": 3161.17,
+          "z_score": -6.54,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772094900,
+          "datetime": "2026-02-26T16:35:00",
+          "signal": "bgp",
+          "value": 3145,
+          "baseline_mean": 3161.17,
+          "z_score": -6.54,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772095200,
+          "datetime": "2026-02-26T16:40:00",
+          "signal": "bgp",
+          "value": 3145,
+          "baseline_mean": 3161.17,
+          "z_score": -6.54,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772095500,
+          "datetime": "2026-02-26T16:45:00",
+          "signal": "bgp",
+          "value": 3146,
+          "baseline_mean": 3161.17,
+          "z_score": -6.13,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772095800,
+          "datetime": "2026-02-26T16:50:00",
+          "signal": "bgp",
+          "value": 3146,
+          "baseline_mean": 3161.17,
+          "z_score": -6.13,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772096100,
+          "datetime": "2026-02-26T16:55:00",
+          "signal": "bgp",
+          "value": 3148,
+          "baseline_mean": 3161.17,
+          "z_score": -5.33,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772167500,
+          "datetime": "2026-02-27T12:45:00",
+          "signal": "bgp",
+          "value": 3152,
+          "baseline_mean": 3161.17,
+          "z_score": -3.71,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772167800,
+          "datetime": "2026-02-27T12:50:00",
+          "signal": "bgp",
+          "value": 3152,
+          "baseline_mean": 3161.17,
+          "z_score": -3.71,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772372100,
+          "datetime": "2026-03-01T21:35:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772379300,
+          "datetime": "2026-03-01T23:35:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772396100,
+          "datetime": "2026-03-02T04:15:00",
+          "signal": "bgp",
+          "value": 3155,
+          "baseline_mean": 3161.17,
+          "z_score": -2.5,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772396400,
+          "datetime": "2026-03-02T04:20:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772396700,
+          "datetime": "2026-03-02T04:25:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772400000,
+          "datetime": "2026-03-02T05:20:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412000,
+          "datetime": "2026-03-02T08:40:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412300,
+          "datetime": "2026-03-02T08:45:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412600,
+          "datetime": "2026-03-02T08:50:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772412900,
+          "datetime": "2026-03-02T08:55:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772413200,
+          "datetime": "2026-03-02T09:00:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772413500,
+          "datetime": "2026-03-02T09:05:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772427900,
+          "datetime": "2026-03-02T13:05:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772428200,
+          "datetime": "2026-03-02T13:10:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772428500,
+          "datetime": "2026-03-02T13:15:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772428800,
+          "datetime": "2026-03-02T13:20:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772429100,
+          "datetime": "2026-03-02T13:25:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772429400,
+          "datetime": "2026-03-02T13:30:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772429700,
+          "datetime": "2026-03-02T13:35:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430000,
+          "datetime": "2026-03-02T13:40:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430300,
+          "datetime": "2026-03-02T13:45:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430600,
+          "datetime": "2026-03-02T13:50:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772430900,
+          "datetime": "2026-03-02T13:55:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772431200,
+          "datetime": "2026-03-02T14:00:00",
+          "signal": "bgp",
+          "value": 3154,
+          "baseline_mean": 3161.17,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772456100,
+          "datetime": "2026-03-02T20:55:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772456400,
+          "datetime": "2026-03-02T21:00:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772591400,
+          "datetime": "2026-03-04T10:30:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772591700,
+          "datetime": "2026-03-04T10:35:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772592000,
+          "datetime": "2026-03-04T10:40:00",
+          "signal": "bgp",
+          "value": 3156,
+          "baseline_mean": 3161.17,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772094600,
+          "datetime": "2026-02-26T16:30:00",
+          "signal": "active_probing",
+          "value": 896,
+          "baseline_mean": 915.04,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772099400,
+          "datetime": "2026-02-26T17:50:00",
+          "signal": "active_probing",
+          "value": 866,
+          "baseline_mean": 915.04,
+          "z_score": -5.44,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772100000,
+          "datetime": "2026-02-26T18:00:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 915.04,
+          "z_score": -2.56,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772101200,
+          "datetime": "2026-02-26T18:20:00",
+          "signal": "active_probing",
+          "value": 897,
+          "baseline_mean": 915.04,
+          "z_score": -2.0,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772116800,
+          "datetime": "2026-02-26T22:40:00",
+          "signal": "active_probing",
+          "value": 889,
+          "baseline_mean": 915.04,
+          "z_score": -2.89,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772117400,
+          "datetime": "2026-02-26T22:50:00",
+          "signal": "active_probing",
+          "value": 897,
+          "baseline_mean": 915.04,
+          "z_score": -2.0,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772378400,
+          "datetime": "2026-03-01T23:20:00",
+          "signal": "active_probing",
+          "value": 887,
+          "baseline_mean": 915.04,
+          "z_score": -3.11,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772379000,
+          "datetime": "2026-03-01T23:30:00",
+          "signal": "active_probing",
+          "value": 867,
+          "baseline_mean": 915.04,
+          "z_score": -5.33,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772379600,
+          "datetime": "2026-03-01T23:40:00",
+          "signal": "active_probing",
+          "value": 879,
+          "baseline_mean": 915.04,
+          "z_score": -4.0,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772385000,
+          "datetime": "2026-03-02T01:10:00",
+          "signal": "active_probing",
+          "value": 897,
+          "baseline_mean": 915.04,
+          "z_score": -2.0,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772388000,
+          "datetime": "2026-03-02T02:00:00",
+          "signal": "active_probing",
+          "value": 894,
+          "baseline_mean": 915.04,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772406000,
+          "datetime": "2026-03-02T07:00:00",
+          "signal": "active_probing",
+          "value": 894,
+          "baseline_mean": 915.04,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772413200,
+          "datetime": "2026-03-02T09:00:00",
+          "signal": "active_probing",
+          "value": 896,
+          "baseline_mean": 915.04,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772497800,
+          "datetime": "2026-03-03T08:30:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 915.04,
+          "z_score": -2.67,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772528400,
+          "datetime": "2026-03-03T17:00:00",
+          "signal": "active_probing",
+          "value": 894,
+          "baseline_mean": 915.04,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772643600,
+          "datetime": "2026-03-05T01:00:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772644200,
+          "datetime": "2026-03-05T01:10:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 915.04,
+          "z_score": -2.56,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772644800,
+          "datetime": "2026-03-05T01:20:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 915.04,
+          "z_score": -2.56,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772647200,
+          "datetime": "2026-03-05T02:00:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772647800,
+          "datetime": "2026-03-05T02:10:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 915.04,
+          "z_score": -2.56,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772648400,
+          "datetime": "2026-03-05T02:20:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 915.04,
+          "z_score": -2.67,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772649000,
+          "datetime": "2026-03-05T02:30:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772649600,
+          "datetime": "2026-03-05T02:40:00",
+          "signal": "active_probing",
+          "value": 895,
+          "baseline_mean": 915.04,
+          "z_score": -2.22,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772653200,
+          "datetime": "2026-03-05T03:40:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 915.04,
+          "z_score": -2.78,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772654400,
+          "datetime": "2026-03-05T04:00:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772655000,
+          "datetime": "2026-03-05T04:10:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 915.04,
+          "z_score": -2.78,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772656200,
+          "datetime": "2026-03-05T04:30:00",
+          "signal": "active_probing",
+          "value": 895,
+          "baseline_mean": 915.04,
+          "z_score": -2.22,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772656800,
+          "datetime": "2026-03-05T04:40:00",
+          "signal": "active_probing",
+          "value": 894,
+          "baseline_mean": 915.04,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772658000,
+          "datetime": "2026-03-05T05:00:00",
+          "signal": "active_probing",
+          "value": 885,
+          "baseline_mean": 915.04,
+          "z_score": -3.33,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772658600,
+          "datetime": "2026-03-05T05:10:00",
+          "signal": "active_probing",
+          "value": 897,
+          "baseline_mean": 915.04,
+          "z_score": -2.0,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772659200,
+          "datetime": "2026-03-05T05:20:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772660400,
+          "datetime": "2026-03-05T05:40:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772661000,
+          "datetime": "2026-03-05T05:50:00",
+          "signal": "active_probing",
+          "value": 887,
+          "baseline_mean": 915.04,
+          "z_score": -3.11,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772661600,
+          "datetime": "2026-03-05T06:00:00",
+          "signal": "active_probing",
+          "value": 883,
+          "baseline_mean": 915.04,
+          "z_score": -3.55,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772662200,
+          "datetime": "2026-03-05T06:10:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 915.04,
+          "z_score": -2.56,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772662800,
+          "datetime": "2026-03-05T06:20:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 915.04,
+          "z_score": -2.44,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772663400,
+          "datetime": "2026-03-05T06:30:00",
+          "signal": "active_probing",
+          "value": 886,
+          "baseline_mean": 915.04,
+          "z_score": -3.22,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772664000,
+          "datetime": "2026-03-05T06:40:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 915.04,
+          "z_score": -2.78,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772664600,
+          "datetime": "2026-03-05T06:50:00",
+          "signal": "active_probing",
+          "value": 895,
+          "baseline_mean": 915.04,
+          "z_score": -2.22,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772665200,
+          "datetime": "2026-03-05T07:00:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 915.04,
+          "z_score": -2.56,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772665800,
+          "datetime": "2026-03-05T07:10:00",
+          "signal": "active_probing",
+          "value": 888,
+          "baseline_mean": 915.04,
+          "z_score": -3.0,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772666400,
+          "datetime": "2026-03-05T07:20:00",
+          "signal": "active_probing",
+          "value": 894,
+          "baseline_mean": 915.04,
+          "z_score": -2.33,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772667000,
+          "datetime": "2026-03-05T07:30:00",
+          "signal": "active_probing",
+          "value": 883,
+          "baseline_mean": 915.04,
+          "z_score": -3.55,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772667600,
+          "datetime": "2026-03-05T07:40:00",
+          "signal": "active_probing",
+          "value": 882,
+          "baseline_mean": 915.04,
+          "z_score": -3.67,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772668200,
+          "datetime": "2026-03-05T07:50:00",
+          "signal": "active_probing",
+          "value": 881,
+          "baseline_mean": 915.04,
+          "z_score": -3.78,
+          "severity": "critical"
+        }
+      ],
+      "status": "critical"
+    }
+  },
+  "coordinated_events": [
+    {
+      "timestamp": 1772098200,
+      "datetime": "2026-02-26T17:30:00",
+      "countries": [
+        "SY",
+        "IQ"
+      ],
+      "country_names": [
+        "Syria",
+        "Iraq"
+      ],
+      "signal_count": 9,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772110800,
+      "datetime": "2026-02-26T21:00:00",
+      "countries": [
+        "SY",
+        "YE"
+      ],
+      "country_names": [
+        "Syria",
+        "Yemen"
+      ],
+      "signal_count": 6,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772116200,
+      "datetime": "2026-02-26T22:30:00",
+      "countries": [
+        "SY",
+        "IQ"
+      ],
+      "country_names": [
+        "Syria",
+        "Iraq"
+      ],
+      "signal_count": 5,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772137800,
+      "datetime": "2026-02-27T04:30:00",
+      "countries": [
+        "SY",
+        "YE"
+      ],
+      "country_names": [
+        "Syria",
+        "Yemen"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772167200,
+      "datetime": "2026-02-27T12:40:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772248200,
+      "datetime": "2026-02-28T11:10:00",
+      "countries": [
+        "LB",
+        "YE"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Yemen"
+      ],
+      "signal_count": 2,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772278200,
+      "datetime": "2026-02-28T19:30:00",
+      "countries": [
+        "IR",
+        "YE"
+      ],
+      "country_names": [
+        "Iran",
+        "Yemen"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772309400,
+      "datetime": "2026-03-01T04:10:00",
+      "countries": [
+        "SY",
+        "LB"
+      ],
+      "country_names": [
+        "Syria",
+        "Lebanon"
+      ],
+      "signal_count": 6,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772357700,
+      "datetime": "2026-03-01T17:35:00",
+      "countries": [
+        "IR",
+        "YE"
+      ],
+      "country_names": [
+        "Iran",
+        "Yemen"
+      ],
+      "signal_count": 21,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772361600,
+      "datetime": "2026-03-01T18:40:00",
+      "countries": [
+        "IR",
+        "YE"
+      ],
+      "country_names": [
+        "Iran",
+        "Yemen"
+      ],
+      "signal_count": 26,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772365500,
+      "datetime": "2026-03-01T19:45:00",
+      "countries": [
+        "IR",
+        "YE"
+      ],
+      "country_names": [
+        "Iran",
+        "Yemen"
+      ],
+      "signal_count": 21,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772369400,
+      "datetime": "2026-03-01T20:50:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772377200,
+      "datetime": "2026-03-01T23:00:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 17,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772381100,
+      "datetime": "2026-03-02T00:05:00",
+      "countries": [
+        "YE",
+        "LB"
+      ],
+      "country_names": [
+        "Yemen",
+        "Lebanon"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772385000,
+      "datetime": "2026-03-02T01:10:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 15,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772392800,
+      "datetime": "2026-03-02T03:20:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 15,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772396700,
+      "datetime": "2026-03-02T04:25:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 15,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772404500,
+      "datetime": "2026-03-02T06:35:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772408400,
+      "datetime": "2026-03-02T07:40:00",
+      "countries": [
+        "IQ",
+        "YE",
+        "LB"
+      ],
+      "country_names": [
+        "Iraq",
+        "Yemen",
+        "Lebanon"
+      ],
+      "signal_count": 15,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772412300,
+      "datetime": "2026-03-02T08:45:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 19,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772427900,
+      "datetime": "2026-03-02T13:05:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 26,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772431800,
+      "datetime": "2026-03-02T14:10:00",
+      "countries": [
+        "LB",
+        "YE"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Yemen"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772455200,
+      "datetime": "2026-03-02T20:40:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772528400,
+      "datetime": "2026-03-03T17:00:00",
+      "countries": [
+        "SY",
+        "IQ"
+      ],
+      "country_names": [
+        "Syria",
+        "Iraq"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772591400,
+      "datetime": "2026-03-04T10:30:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 4,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772614800,
+      "datetime": "2026-03-04T17:00:00",
+      "countries": [
+        "SY",
+        "LB"
+      ],
+      "country_names": [
+        "Syria",
+        "Lebanon"
+      ],
+      "signal_count": 2,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772643600,
+      "datetime": "2026-03-05T01:00:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 5,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772647800,
+      "datetime": "2026-03-05T02:10:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 5,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772658000,
+      "datetime": "2026-03-05T05:00:00",
+      "countries": [
+        "SY",
+        "IQ"
+      ],
+      "country_names": [
+        "Syria",
+        "Iraq"
+      ],
+      "signal_count": 7,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772662200,
+      "datetime": "2026-03-05T06:10:00",
+      "countries": [
+        "YE",
+        "IQ"
+      ],
+      "country_names": [
+        "Yemen",
+        "Iraq"
+      ],
+      "signal_count": 8,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772666400,
+      "datetime": "2026-03-05T07:20:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 7,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    }
+  ]
+}
+================================================================================
+IODA INTERNET OUTAGE MONITOR - IRAN & PROXY NETWORKS
+================================================================================
+Report generated: 2026-03-05T08:05:42.643277
+
+SUMMARY
+--------------------------------------------------------------------------------
+🔴 CRITICAL: Iran, Lebanon, Syria, Yemen, Iraq
+
+COORDINATED EVENTS
+--------------------------------------------------------------------------------
+Time: 2026-02-26T17:30:00
+Countries: Syria, Iraq
+Signals affected: 9
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-02-26T21:00:00
+Countries: Syria, Yemen
+Signals affected: 6
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-02-26T22:30:00
+Countries: Syria, Iraq
+Signals affected: 5
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-02-27T04:30:00
+Countries: Syria, Yemen
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-02-27T12:40:00
+Countries: Yemen, Iraq
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-02-28T11:10:00
+Countries: Lebanon, Yemen
+Signals affected: 2
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-02-28T19:30:00
+Countries: Iran, Yemen
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-01T04:10:00
+Countries: Syria, Lebanon
+Signals affected: 6
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-01T17:35:00
+Countries: Iran, Yemen
+Signals affected: 21
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-01T18:40:00
+Countries: Iran, Yemen
+Signals affected: 26
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-01T19:45:00
+Countries: Iran, Yemen
+Signals affected: 21
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-01T20:50:00
+Countries: Yemen, Iraq
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-01T23:00:00
+Countries: Yemen, Iraq
+Signals affected: 17
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T00:05:00
+Countries: Yemen, Lebanon
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T01:10:00
+Countries: Yemen, Iraq
+Signals affected: 15
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T03:20:00
+Countries: Yemen, Iraq
+Signals affected: 15
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T04:25:00
+Countries: Yemen, Iraq
+Signals affected: 15
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T06:35:00
+Countries: Yemen, Iraq
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T07:40:00
+Countries: Iraq, Yemen, Lebanon
+Signals affected: 15
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T08:45:00
+Countries: Yemen, Iraq
+Signals affected: 19
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T13:05:00
+Countries: Yemen, Iraq
+Signals affected: 26
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T14:10:00
+Countries: Lebanon, Yemen
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-02T20:40:00
+Countries: Yemen, Iraq
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-03T17:00:00
+Countries: Syria, Iraq
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-04T10:30:00
+Countries: Lebanon, Iraq
+Signals affected: 4
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-04T17:00:00
+Countries: Syria, Lebanon
+Signals affected: 2
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T01:00:00
+Countries: Lebanon, Iraq
+Signals affected: 5
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T02:10:00
+Countries: Lebanon, Iraq
+Signals affected: 5
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T05:00:00
+Countries: Syria, Iraq
+Signals affected: 7
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T06:10:00
+Countries: Yemen, Iraq
+Signals affected: 8
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T07:20:00
+Countries: Lebanon, Iraq
+Signals affected: 7
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+COUNTRY DETAILS
+--------------------------------------------------------------------------------
+
+Iran (IR)
+Status: CRITICAL
+  bgp: mean=40993.87, latest=40908
+  active_probing: mean=4181.8, latest=381
+  google_transparency: mean=1031950885.56, latest=118876666
+  Anomalies detected: 106
+    - 2026-02-28T18:25:00: bgp (z-score: -2.46, severity: warning)
+    - 2026-02-28T18:30:00: bgp (z-score: -2.45, severity: warning)
+    - 2026-02-28T18:35:00: bgp (z-score: -2.45, severity: warning)
+    - 2026-02-28T18:40:00: bgp (z-score: -2.46, severity: warning)
+    - 2026-02-28T18:45:00: bgp (z-score: -2.46, severity: warning)
+
+Lebanon (LB)
+Status: CRITICAL
+  bgp: mean=2239.55, latest=2238
+  active_probing: mean=663.5, latest=642
+  google_transparency: mean=1766592168.61, latest=2026399166
+  Anomalies detected: 32
+    - 2026-02-27T23:00:00: bgp (z-score: -2.2, severity: warning)
+    - 2026-02-28T00:40:00: active_probing (z-score: -2.33, severity: warning)
+    - 2026-02-28T11:10:00: active_probing (z-score: -2.33, severity: warning)
+    - 2026-03-01T04:10:00: active_probing (z-score: -2.03, severity: warning)
+    - 2026-03-01T07:50:00: active_probing (z-score: -2.18, severity: warning)
+
+Syria (SY)
+Status: CRITICAL
+  bgp: mean=4820.02, latest=4808
+  active_probing: mean=658.12, latest=643
+  google_transparency: mean=3944036065.03, latest=4946954687
+  Anomalies detected: 42
+    - 2026-03-03T17:20:00: bgp (z-score: -2.06, severity: warning)
+    - 2026-03-03T17:45:00: bgp (z-score: -2.06, severity: warning)
+    - 2026-03-04T17:30:00: bgp (z-score: -2.06, severity: warning)
+    - 2026-02-26T17:30:00: active_probing (z-score: -3.56, severity: critical)
+    - 2026-02-26T17:50:00: active_probing (z-score: -5.36, severity: critical)
+
+Yemen (YE)
+Status: CRITICAL
+  bgp: mean=964.12, latest=964
+  active_probing: mean=25.16, latest=26
+  google_transparency: mean=2426482191.41, latest=4624944791
+  Anomalies detected: 339
+    - 2026-03-01T17:50:00: bgp (z-score: -2.02, severity: warning)
+    - 2026-03-01T17:55:00: bgp (z-score: -2.02, severity: warning)
+    - 2026-03-01T18:00:00: bgp (z-score: -2.02, severity: warning)
+    - 2026-03-01T18:05:00: bgp (z-score: -2.02, severity: warning)
+    - 2026-03-01T18:10:00: bgp (z-score: -2.02, severity: warning)
+
+Iraq (IQ)
+Status: CRITICAL
+  bgp: mean=3161.17, latest=3159
+  active_probing: mean=915.04, latest=881
+  google_transparency: mean=2914435268.0, latest=3470150000
+  Anomalies detected: 84
+    - 2026-02-26T16:20:00: bgp (z-score: -5.73, severity: critical)
+    - 2026-02-26T16:25:00: bgp (z-score: -6.54, severity: critical)
+    - 2026-02-26T16:30:00: bgp (z-score: -6.54, severity: critical)
+    - 2026-02-26T16:35:00: bgp (z-score: -6.54, severity: critical)
+    - 2026-02-26T16:40:00: bgp (z-score: -6.54, severity: critical)
+
+================================================================================
+INTELLIGENCE INTERPRETATION
+================================================================================
+• Iran disruption → Potential military action or domestic unrest
+• Proxy network disruption → Communication cutoff or targeted strikes
+• Multi-country simultaneous → Coordinated operations likely
+================================================================================
+

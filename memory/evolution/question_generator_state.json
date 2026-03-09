@@ -1,9 +1,11 @@
 {
-  "lastAskedAt": "2026-03-09T00:00:05.367Z",
+  "lastAskedAt": "2026-03-09T06:00:06.409Z",
   "recentQuestions": [
     "Capability gap detected in agent environment: **TOOLRESULT**: Evolver loop started with PID: 1686513 tail: cannot open 'evolver.log' for reading: No such file or directory Process exited with code -- How can this be addressed or what alternative approaches exist?",
     "User requested a feature that may benefit from community solutions: **TOOLRESULT**: [master b3899c7] feat: opensky-adsb + aisstream skills — aircraft & ship tracking 7 files changed, 681 insertions(+), 64 deletions(-)  -- Are there existing implementations or best practices for this?",
     "Recurring error in evolution cycle that auto-repair cannot resolve: \"status\": \"error\", \"tool\": \"exec\", \"error\": \"python3: can't open file '/root/openclaw/skills/polymar -- What approaches or patches have worked for similar issues?",
-    "Capability gap detected in agent environment: **USER**: System: [2026-03-09 02:07:08 GMT+8] Cron: ⚠️ 🛠️ Exec: ls /tmp/viirs/ 2>&1; echo \"---\"; ls ~/openclaw/skills/intelligence/viirs_report.json  -- How can this be addressed or what alternative approaches exist?"
+    "Capability gap detected in agent environment: **USER**: System: [2026-03-09 02:07:08 GMT+8] Cron: ⚠️ 🛠️ Exec: ls /tmp/viirs/ 2>&1; echo \"---\"; ls ~/openclaw/skills/intelligence/viirs_report.json  -- How can this be addressed or what alternative approaches exist?",
+    "Recurring error in evolution cycle that auto-repair cannot resolve: LLM ERROR] 400 developer is not one of ['system', 'assistant', 'user', 'tool', 'function'] - 'messag -- What approaches or patches have worked for similar issues?",
+    "Capability gap detected in agent environment: **ASSISTANT**: [LLM ERROR] 400 invalid request: unsupported role ROLE_UNSPECIFIED -- How can this be addressed or what alternative approaches exist?"
   ]
 }

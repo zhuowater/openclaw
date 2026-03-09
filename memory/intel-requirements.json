@@ -1,21 +1,175 @@
 {
-  "generated": "2026-03-01 14:22 PM (Asia/Shanghai)",
-  "context": "已建仓 Iranian regime fall $4.92 (15 shares @ $0.33)，关键窗口 3/2 06:00 IRGC 继任者宣布",
-  "critical_questions": [
-    "搜索 X: 'Iran IRGC successor announced Mojtaba Hassan Arafi Khamenei' — IRGC 是否在 3/2 06:00 前宣布继任者？候选人是谁（硬线派 vs. 温和派）？",
-    "搜索 X: 'Khamenei alive video real-time metadata verified' — 是否有新的 Khamenei 实时视频证明其存活？元数据是否被验证为真实？",
-    "搜索 X: 'Israel Pentagon official statement Khamenei killed confirmed' — 以色列或五角大楼是否发布官方声明确认 Khamenei 死讯？",
-    "搜索 X: 'Iran war update breaking March 1 regime collapse IRGC coup' — 战争最新动态，是否有 IRGC 内部政变或政权崩溃迹象？",
-    "检查 NASA FIRMS 卫星火点 — 验证以色列轰炸是否恢复（如果 IRGC 宣布硬线派继任者，以色列可能恢复空袭）",
-    "检查 ADS-B 伊朗空域飞机数量 — 验证伊朗空军是否恢复升空（IRGC 指挥能力恢复的标志）",
-    "检查 AIS 霍尔木兹海峡航运 — 验证封锁状态是否变化（IRGC 重新掌控或完全放弃）"
+  "last_update": "2026-03-09 12:27 (Asia/Shanghai)",
+  "context": "战时市场扫描完成 — 油价继续飙升至 WTI $114.96（+53.98%），火点连续第六次归零，民航反弹至 9 架（仍无军机），地面战争'罗生门'持续（特朗普明确不想库尔德参战），Polymarket 无新机会",
+  "critical_requirements": [
+    {
+      "id": "REQ-002",
+      "topic": "Mojtaba Khamenei 政权稳定性",
+      "priority": "HIGH",
+      "status": "ACTIVE",
+      "action": "监控火点/军机/网络流量 — 验证政权是否真的稳定",
+      "hypothesis": "如果火点重启 >100 + 军机静默持续 = 政权不稳 → 倒台概率回升至 40-50%; 如果火点归零 >12h + 军机恢复 = 政权稳定 → 倒台概率降至 10-20%",
+      "current_state": "✅ 政治稳定！火点连续第六次归零（0），民航从5架回升至9架（伊朗空域）/9架（霍尔木兹），但仍无军机。IRGC指挥链仍未恢复。",
+      "deadline": "每次情报扫描",
+      "rationale": "火点归零 >24h + 民航反弹 = 政权政治稳定，但军事能力仍严重受损（无军机）"
+    },
+    {
+      "id": "REQ-003",
+      "topic": "以色列轰炸是否重启",
+      "priority": "HIGH",
+      "status": "ACTIVE",
+      "action": "FIRMS 卫星火点监控（当前 0，连续第六次归零）",
+      "hypothesis": "如果火点恢复 >100 = 战争重启 → 地缘政治波动加剧; 如果继续归零 >12h = 可能停火谈判",
+      "current_state": "✅ 暂停！火点连续第六次归零（0），以色列暂停轰炸 >24h",
+      "deadline": "每次情报扫描",
+      "rationale": "以色列暂停轰炸 >24h，等待穆杰塔巴政权反应，或评估战略目标已达成"
+    },
+    {
+      "id": "REQ-004",
+      "topic": "伊朗空军恢复情况",
+      "priority": "HIGH",
+      "status": "ACTIVE",
+      "action": "ADS-B 伊朗空域军机数量（当前 9 架民航，0 军机）",
+      "hypothesis": "如果军机升空 = IRGC 指挥链恢复; 如果军机继续静默 >48h = 政权军事指挥链瘫痪",
+      "current_state": "⚠️ 好转！民航从5架回升至9架（伊朗空域），从5架回升至9架（霍尔木兹），但仍全部为民航，无军机。IRGC指挥链仍未恢复。",
+      "deadline": "每次情报扫描",
+      "rationale": "民航反弹 = 空域部分恢复，但军机继续静默 = IRGC 军事指挥能力仍严重受损"
+    },
+    {
+      "id": "REQ-005",
+      "topic": "油价是否继续上涨",
+      "priority": "🔴🔴🔴🔴🔴🔴🔴🔴 CRITICAL（失控！）",
+      "status": "ACTIVE",
+      "action": "检查 WTI/Brent 原油价格（当前 WTI $114.96 +53.98%，Brent $115.54 +41.94%）— 继续飙升！",
+      "hypothesis": "如果油价 >$120 = 能源危机全面失控，全球经济衰退风险; 如果油价回落至 <$90 = 能源战争降温",
+      "current_state": "🔴🔴🔴🔴🔴🔴🔴🔴 超超预期！WTI $114.96（+53.98%，从$113.75上涨），Brent $115.54（+41.94%，从$114.77上涨），亚洲盘一度突破 $111，创2022年8月以来新高！国内油价上调520元/吨，'9块钱一升'即将回归。能源危机全面失控！",
+      "deadline": "每次情报扫描",
+      "rationale": "油价突破 $115 = 全球经济威胁 = 国际压力持续 + 能源危机全面爆发"
+    },
+    {
+      "id": "REQ-006",
+      "topic": "中国外交支持力度",
+      "priority": "MEDIUM",
+      "status": "ACTIVE",
+      "action": "搜索 X/百度: 'China Iran diplomatic support Wang Yi' — 当前王毅表态支持伊朗捍卫主权，派遣特使斡旋",
+      "hypothesis": "如果中国增强支持（如军事援助/经济援助）→ 倒台概率降低; 如果中国退出斡旋 → 倒台概率上升",
+      "current_state": "王毅 3/8 表态支持伊朗，反对政权更迭，派遣特使翟隽斡旋",
+      "deadline": "每 2 天检查",
+      "rationale": "中国外交支持 = 伊朗获得国际政治空间，倒台概率下降"
+    },
+    {
+      "id": "REQ-007",
+      "topic": "伊朗战争能力评估",
+      "priority": "MEDIUM",
+      "status": "ACTIVE",
+      "action": "搜索 X/百度: 'Iran IRGC military capability missiles drones' — 当前革命卫队称具备至少6个月高强度战争能力",
+      "hypothesis": "如果伊朗展示新型武器（如超音速导弹）→ 军事能力强; 如果武器库耗尽 → 战争能力丧失",
+      "current_state": "革命卫队 3/8 称已储备重型导弹、弹道导弹、巡航导弹、多种型号无人机，具备6个月高强度战争能力",
+      "deadline": "每 2 天检查",
+      "rationale": "军事能力未丧失 = 战争长期化 = 政权压力增加但短期不倒台"
+    },
+    {
+      "id": "REQ-008",
+      "topic": "民用基础设施袭击升级",
+      "priority": "LOW",
+      "status": "ACTIVE",
+      "action": "搜索 X/百度: 'Iran civilian infrastructure destroyed schools hospitals' — 当前 9669 处设施被毁（7943 住宅 + 1617 商业），1332 人死亡",
+      "hypothesis": "如果民用设施被毁数量翻倍 → 民心受损 + 国际舆论压力",
+      "current_state": "伊朗红新月会 3/8 数据：1332 人死亡，9669 处民用设施受损",
+      "deadline": "每 2 天检查",
+      "rationale": "民用设施被毁 = 政权合法性受损，可能触发内部政变"
+    },
+    {
+      "id": "REQ-009",
+      "topic": "地面战争进展",
+      "priority": "🔴🔴🔴🔴 CRITICAL",
+      "status": "ACTIVE",
+      "action": "搜索 X/百度: 'Iran Kurdish ground invasion Azerbaijan US air support' — 当前库尔德军队准备中，但实际越境存疑",
+      "hypothesis": "如果地面战争大规模开打 → 军事压力 + 领土失控; 如果地面战争陷入僵持 → 战争长期化",
+      "current_state": "⚠️⚠️⚠️ '罗生门'持续加剧！\n\n**以色列媒体/百度搜索：** 多家以色列媒体称'数千库尔德武装已从伊拉克越境，发动地面进攻'（3/6-3/8报道），CIA 已启动武装计划数月。\n\n**伊朗/伊拉克库区否认：** 伊朗安全部门3/9称'边境未发现库尔德武装动静，一切正常'，伊拉克库尔德自治区宣布'保持中立'，不允许用领土攻击伊朗。\n\n**美国/库尔德立场（X搜索）：** 特朗普3/8明确表态：'不想库尔德武装发动地面入侵，战争已经够复杂了'；库尔德领袖：'除非美国提供可靠空域保障+禁飞区，否则参战是同归于尽任务'。\n\n**土耳其警告：** 土耳其警告：'只要库尔德武装下场参战，土耳其一定会下场参战' = 北约第二大军事力量介入 = 'S2.5'。\n\n**结论：** CIA 有武装计划，库尔德武装已集结边境，但实际越境存疑，库尔德不敢轻举妄动（要求美国禁飞区），特朗普明确不想地面战争，土耳其红线是库尔德参战 = 土耳其参战。",
+      "deadline": "每次情报扫描",
+      "rationale": "地面战争 = 战争升级至新阶段，但当前'罗生门'显示美国不想地面战，库尔德不敢冒进"
+    },
+    {
+      "id": "REQ-010",
+      "topic": "Polymarket 新市场监控",
+      "priority": "🔴🔴🔴🔴🔴🔴🔴🔴 CRITICAL（油价失控！）",
+      "status": "ACTIVE",
+      "action": "检查是否有新的伊朗/油价/战争相关市场上线",
+      "hypothesis": "如果有新市场 + 信息优势 → 交易机会; 如果无市场 → 静默观察",
+      "current_state": "🔴 油价市场线索：情绪扫描发现 'Will Crude Oil (CL) hit (HIGH) $200 by end of March?' (vol spike 22.6x，价格 8.2%)，但无法查询完整市场信息（API 受限，无法获取 slug/order book）",
+      "deadline": "每次市场扫描",
+      "rationale": "油价突破 $115 + 地面战争僵局 = Polymarket 可能上线新市场，但当前 API 受限无法验证"
+    },
+    {
+      "id": "REQ-011",
+      "topic": "挪威世界杯 YES 获利锁定",
+      "priority": "MEDIUM",
+      "status": "ACTIVE",
+      "action": "监控挪威持仓浮盈（当前 +24.99%）",
+      "hypothesis": "如果浮盈 >30% → 半仓锁定（铁律 #16）; 如果挪威出现伤病/阵容变化 → 立即减仓",
+      "current_state": "⚠️ 挪威持仓 50 shares @ $0.028 avg（当前 $0.035），浮盈 +24.99%（$0.3499），距离 30% 阈值 5.01%",
+      "deadline": "每次市场扫描",
+      "rationale": "彩票仓位获利 >30% = 锁定部分利润，防止回吐"
+    }
   ],
-  "secondary_questions": [
-    "搜索 X: 'Iran regime fall odds betting prediction markets' — 其他预测市场（如 PredictIt, Manifold）对伊朗政权倒台的定价，验证 Polymarket 价格是否滞后或领先",
-    "搜索 X: 'Khamenei health condition hospital coma Iran' — Khamenei 健康状况最新报道，是否有医院消息泄露？",
-    "搜索 X: 'Iran protests demonstrations anti-regime March 2026' — 伊朗国内是否爆发大规模抗议/示威（政权倒台的前兆）"
+  "retired_requirements": [
+    {
+      "id": "REQ-001",
+      "topic": "Iranian Regime Fall 市场价格监控",
+      "status": "CLOSED — MARKET SETTLED",
+      "result": "市场已结算（NO @ $0 = YES 胜出），我方持仓 NO 全部亏损"
+    },
+    {
+      "id": "REQ-OLD-001",
+      "topic": "Polymarket API 状态",
+      "status": "RESOLVED",
+      "result": "API 已恢复正常（balance.py 成功返回 $42.15 + 12 持仓）"
+    },
+    {
+      "id": "REQ-OLD-002",
+      "topic": "Khamenei 市场价格",
+      "status": "MERGED into REQ-001 & REQ-002",
+      "reason": "统一为 Iranian Regime Fall 监控 + Mojtaba 政权稳定性监控"
+    },
+    {
+      "id": "REQ-OLD-003",
+      "topic": "霍尔木兹海峡航运恢复",
+      "status": "CLOSED — NO OPPORTUNITY",
+      "reason": "Hormuz YES $0.9755（赔率 1:40）= 负非对称性，违反铁律 #6，无交易价值"
+    },
+    {
+      "id": "REQ-OLD-004",
+      "topic": "Mojtaba 3/8 宣布市场",
+      "status": "CLOSED — DATE ERROR",
+      "reason": "新华社报道时间 3/9 09:39 Iran Standard Time（非 3/8），市场 YES @ $0.0265 应解析为 NO"
+    }
   ],
-  "next_scan_priority": "HIGH — 关键窗口 3/2 06:00（距今 ~16h），IRGC 继任者宣布直接影响仓位止盈/止损",
-  "stop_loss_trigger": "如果 3/2 06:00 后 IRGC 宣布硬线派继任者（Mojtaba Khamenei）且市场价格跌破 $0.20 → 止损卖出",
-  "take_profit_trigger": "如果 3/2 06:00 后 IRGC 仍未宣布继任者 OR 以色列/五角大楼发布官方声明确认 Khamenei 死讯 → 市场价格预计飙升至 >$0.60 → 半仓止盈"
+  "market_scan_summary": {
+    "scan_time": "2026-03-09 12:27 (Asia/Shanghai)",
+    "balance": "$42.15 USDC（起始 $100，总亏损 -57.85%）",
+    "active_positions": 12,
+    "iran_positions": {
+      "all_settled": true,
+      "total_loss_usd": -28.08,
+      "total_loss_pct": -100,
+      "settled_markets": [
+        "US strikes Iran by Feb 28 NO (-$14.10)",
+        "US strikes Iran by Mar 15 NO (-$12.60)",
+        "US strikes Iran by Mar 31 NO (-$1.38)"
+      ]
+    },
+    "candidates_analyzed": 3,
+    "candidates_passed": 0,
+    "pass_reasons": [
+      "🔴 Crude Oil $200 by Mar 31：情绪极端（vol spike 22.6x），价格 8.2%（赔率 1:12，非对称性良好），与当前油价情报高度相关（WTI $114.96 +53.98%），但无法查询 order book（API 受限），违反铁律 #8（先查 order book 再下单）",
+      "🔴 Hornets (-4.5) spread：体育博彩，无信息优势，违反铁律 #10",
+      "🔴 Greens win Baden-Württemberg：德国地方选举，无信息优势，违反铁律 #10"
+    ],
+    "trades_executed": 0,
+    "trade_details": [],
+    "framework_validation": "✅ '没有好机会时最好的交易就是不交易' — 铁律 #8 和 #10 严格执行",
+    "key_insight": "⚠️ 油价已突破 $115（WTI $114.96 +53.98%）+ 情绪扫描发现疑似油价市场（vol spike 22.6x），但 API 受限无法验证 order book，暂时 PASS。地面战争'罗生门'持续（特朗普明确不想库尔德参战，库尔德要求禁飞区，土耳其警告参战 = S2.5）。"
+  },
+  "next_scan": "2026-03-09 13:34 (67 分钟后)"
 }

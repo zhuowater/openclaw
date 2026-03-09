@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-03-09T02:05:28.669527",
+  "sources": {},
+  "summary": {
+    "sources_checked": 3,
+    "sources_with_matches": 0,
+    "total_mentions": 0,
+    "weekly_mentions": 0,
+    "top_keywords": [],
+    "errors_count": 0
+  },
+  "weekly_mentions": 0,
+  "total_mentions": 0,
+  "keywords_breakdown": {},
+  "trading_signal": {
+    "position": {
+      "shares": 5,
+      "entry_price": 0.46,
+      "current_price": 1.0310124768476219e-07,
+      "unrealized_pnl": -2.2999994844937617,
+      "unrealized_pnl_pct": -99.99997758668529
+    },
+    "recommendation": "🔴 减仓 50% 或止损",
+    "reasoning": [
+      "⚠️ 本周零提及，论点显著弱化",
+      "💀 距到期 21 天，时间价值快速衰减",
+      "🚨 价格已跌至 $0.00，严重超跌",
+      "⚡ 要么是市场错误定价（抄底机会），要么是根本性利空",
+      "⏰ 距到期 21 天，时间压力增加",
+      "💸 当前亏损 100.0%，已触发风险阈值"
+    ],
+    "risk_level": "HIGH",
+    "action_items": [
+      "卖出 2-3 shares，保留 2-3 shares 作为彩票仓位",
+      "强烈建议止损，避免继续扩大损失"
+    ]
+  },
+  "errors": [],
+  "market_data": {
+    "market_slug": "will-trump-pardon-himself-in-his-first-term",
+    "question": "Will Trump Pardon Himself in His First Term?",
+    "yes_price": 1.0310124768476219e-07,
+    "no_price": 0.9999998968987523,
+    "volume": "566518.152363",
+    "liquidity": "99.338559",
+    "end_date": "2021-02-16T00:00:00Z"
+  }
+}
