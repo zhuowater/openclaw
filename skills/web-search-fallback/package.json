@@ -1,0 +1,6 @@
+{
+  "name": "web-search-fallback",
+  "version": "1.0.0",
+  "description": "Fallback web search via DuckDuckGo HTML when Brave Search API is unavailable",
+  "main": "index.js"
+}

@@ -17,13 +17,13 @@
       "confidence": 0.85,
       "blast_radius": {
         "files": 1,
-        "lines": 6
+        "lines": 4
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 7,
+      "success_streak": 9,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -38,11 +38,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:ad95398e04d7dbd1e1fd3af9be62af270d53e126006a1ad1b5ec3cf5da6e7a01",
+      "reused_asset_id": "sha256:7c4f0748d50c6fcc5acb1ffea1f8213874ceed9c3ac4b71fd3a8314585e84ffa",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:f2874d2965fae5123b9ea4e8f6cbef02647725c36902e8dec606a0fec02348bf"
+      "asset_id": "sha256:db6b82a8072a7fb7e007ba42b2274e7eaabd6269f976f9406b225234774ee888"
     },
     {
       "type": "Capsule",
