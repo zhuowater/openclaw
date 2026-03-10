@@ -1,0 +1,6 @@
+{
+  "name": "runtime-integrity",
+  "version": "1.0.0",
+  "description": "Runtime file integrity monitor using SHA-256 baselines",
+  "main": "index.js"
+}

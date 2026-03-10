@@ -1,0 +1,574 @@
+{
+  "created_at": "2026-03-10T12:02:48.084Z",
+  "workspace": "/root/openclaw",
+  "files": {
+    "package.json": {
+      "hash": "0c5e78c5077ff4b28ee15af1fa3c8ba77ed755df53d34cef0c364773fca59d0c",
+      "category": "config"
+    },
+    ".env": {
+      "hash": "b13b58a934768be59a992343367a9fc4c9a8649139dc621fd07e1244060b1d15",
+      "category": "config"
+    },
+    "AGENTS.md": {
+      "hash": "2be32d7fb0da4dc1848f5e5a74fc16a4e03ea15edd1ce61af2f6582c73bfd0a3",
+      "category": "config"
+    },
+    "SOUL.md": {
+      "hash": "2b1678e51a0bf1d05ad1e9b4315ff0f68aedce477ddfbe6b92343ee5584f774b",
+      "category": "config"
+    },
+    "IDENTITY.md": {
+      "hash": "e034593abb3e6193940991ab2e418cbfdfedf8a626305e3fff60f38b8fab2cd7",
+      "category": "config"
+    },
+    "USER.md": {
+      "hash": "27d56489139e0482fbd44b21d6d2d96031d861a4a8a1bc3e81a3f1c0e34a35d5",
+      "category": "config"
+    },
+    "HEARTBEAT.md": {
+      "hash": "5e41b0c4637d8943435371bad430fa9cadeb3a358eafb77572d448fa6ba8968a",
+      "category": "config"
+    },
+    "TOOLS.md": {
+      "hash": "e8c30c13bd18e11f7e392c6133706d0a88050328db6bc4a7a27e21c1ff272805",
+      "category": "config"
+    },
+    "skills/evolver/index.js": {
+      "hash": "d6f3e9cacb0af791e0e3498a1f69cf1093d5a992e79838c5b35edba1d3925bbb",
+      "category": "skills"
+    },
+    "skills/evolver/package.json": {
+      "hash": "ad08153360ed3cb8a9c9c38b4fe58d36525f3ad0874b638863fcd65212252d7d",
+      "category": "system"
+    },
+    "skills/evolver/src/evolve.js": {
+      "hash": "ec9e7add01be1c4212ee526dfdb1575ad299973c5d9cd545d2be4006a3d4da9f",
+      "category": "system"
+    },
+    "skills/evolver/src/gep/solidify.js": {
+      "hash": "5fda988053cdd049fc5eb9f0fdb859cde94be3030c49abe019e09be401e2276f",
+      "category": "system"
+    },
+    "skills/evolver/src/gep/prompt.js": {
+      "hash": "ce34fe9c8e1226977a89ab33a7c974e23fb6b778fe13e8a8ab6e24f4abcead8b",
+      "category": "system"
+    },
+    "skills/evolver/src/gep/selector.js": {
+      "hash": "2017a5b74aaac72a0934b04a4e265daef513b74d693c1de993bf50a6db847eaf",
+      "category": "system"
+    },
+    "skills/activity-digest/index.js": {
+      "hash": "d0ae9d14310b881a70dd432b5ece5824f9e4609300973124755557c6a7a9886b",
+      "category": "skills"
+    },
+    "skills/activity-digest/SKILL.md": {
+      "hash": "b6fb7b557a64fbd85874578c50eeb25f82d4462f63ab2ee09886de4abd0a3f57",
+      "category": "skills"
+    },
+    "skills/ai-codemod/SKILL.md": {
+      "hash": "c93314c15645e515778991d9c17bf38f40d21d99896853a44a752d5931b46eaa",
+      "category": "skills"
+    },
+    "skills/ai-explain/SKILL.md": {
+      "hash": "dd0694a18308a1887f9be6be1554550749b74dc44a9799f47e4a049875caed24",
+      "category": "skills"
+    },
+    "skills/aisstream/SKILL.md": {
+      "hash": "43dd828763477470912027b7dd4e3b353ee0e88eda6187a7e7086e7a24487362",
+      "category": "skills"
+    },
+    "skills/antigravity-image-gen/SKILL.md": {
+      "hash": "169d44e93dda1a813a609f24631dc198d82ed796a3acc5293a42eb357b472335",
+      "category": "skills"
+    },
+    "skills/audio-gen/SKILL.md": {
+      "hash": "e21cd0608d8f899cc46e70db1fce3d794d0f0564f433007d4189fd9de2bb7899",
+      "category": "skills"
+    },
+    "skills/baidu-search/index.js": {
+      "hash": "6c4c073076d9181d0be5669d0838b7bd7268c8bc8967a06408fd36d562063bb3",
+      "category": "skills"
+    },
+    "skills/baidu-search/SKILL.md": {
+      "hash": "9c8de1129961cc062e21042f4f8fd96ff38831cf61b82b3aa4292d9f832088ac",
+      "category": "skills"
+    },
+    "skills/broken-link-checker/index.js": {
+      "hash": "7a43eb202b46e3f6fdf6ebd7bb3a6c504b827dd495727e5ad577d79ab2f20c18",
+      "category": "skills"
+    },
+    "skills/broken-link-checker/SKILL.md": {
+      "hash": "5d903c73cc53545bdf030880fe161d69da8596e2795d5fea88cfae8eac4c7af1",
+      "category": "skills"
+    },
+    "skills/changelog-gen/index.js": {
+      "hash": "8d702469a17f4c659c50f4216d1f3177864c9efd0eedc35cda688d6849cda18f",
+      "category": "skills"
+    },
+    "skills/changelog-gen/SKILL.md": {
+      "hash": "de00c29c1c62633d1964d74a5bff3b8b23abe0954e38e356f29deea9053ed240",
+      "category": "skills"
+    },
+    "skills/chess/SKILL.md": {
+      "hash": "c303d3d91379de7673e2837ea93e8ca0b2d778ce9bf6a82db95c29e8354e5415",
+      "category": "skills"
+    },
+    "skills/clawdbot-security-suite/SKILL.md": {
+      "hash": "77fd5feae52d0f7ef2adaaac101bfd1732b46fab84f7d8bee375740ced1d3c0d",
+      "category": "skills"
+    },
+    "skills/code-stats/index.js": {
+      "hash": "8783cfb204198b628c945a27d10b4562b6664758ff7a06d25d6dfa41e8605207",
+      "category": "skills"
+    },
+    "skills/code-stats/SKILL.md": {
+      "hash": "3021d99b1735569bb3b2cc4e3fa5df593c94b6ce1b69892cc276db7553d4e07d",
+      "category": "skills"
+    },
+    "skills/coding-agent/SKILL.md": {
+      "hash": "d85cd576c6818d0d3c9f0de9844463f77a0fe264979c6d874d159762503936f3",
+      "category": "skills"
+    },
+    "skills/commodity-prices/SKILL.md": {
+      "hash": "ce9d316a764ad1c1f08738b576c193d1f03cfbbdd6418387d7585c0f8840323b",
+      "category": "skills"
+    },
+    "skills/config-snapshot/index.js": {
+      "hash": "3148325c694a39380f96daf30121dd3e0596df9b6ee1db04d8bc64e688296077",
+      "category": "skills"
+    },
+    "skills/config-snapshot/SKILL.md": {
+      "hash": "bd722d873696cfa0087889646e70784b2e57fc3822c4595a591ddca5772a29fc",
+      "category": "skills"
+    },
+    "skills/creative-thought-partner/SKILL.md": {
+      "hash": "04c8d798d156613174e7431cf92c3d16a599523d3cd5718f9b83a068d21829f8",
+      "category": "skills"
+    },
+    "skills/cron-health/index.js": {
+      "hash": "1d9369475c9b8eefe59d789f02da31c017dbc3afad0c19bfd6eb9486bb577b05",
+      "category": "skills"
+    },
+    "skills/cron-health/SKILL.md": {
+      "hash": "a362be1080fd6d9b6a2f4093a4d83f2b0837d0dda14a65b51d74d913ac731d1a",
+      "category": "skills"
+    },
+    "skills/database/SKILL.md": {
+      "hash": "eaaf45fbaad18e049e6bfc41dbd0c8917f4a6c053e1cbd925bc5ae254b39b200",
+      "category": "skills"
+    },
+    "skills/deep-research/SKILL.md": {
+      "hash": "766ddc95a55c6318b18d6823cccdc0a020241888a25bcd7e7aa26d7f80a3c45d",
+      "category": "skills"
+    },
+    "skills/dep-audit/index.js": {
+      "hash": "e322cffa2294140623603d5c4373d2cbc79bbb548a58692da8fc73755835abe5",
+      "category": "skills"
+    },
+    "skills/dep-audit/SKILL.md": {
+      "hash": "58aa3e8e56f5893bcc503553f7c43c11114b6436e2c43da5751454dbdc2f33c6",
+      "category": "skills"
+    },
+    "skills/elevenlabs-stt/SKILL.md": {
+      "hash": "ab5880156e90bd1115a0a34a51765e116bb80f7e796f811490f75e70b2fdf0df",
+      "category": "skills"
+    },
+    "skills/env-doctor/index.js": {
+      "hash": "d7bd9244c069ca609e877c39050a233bd3b022a77b51bcc4477d41f450053112",
+      "category": "skills"
+    },
+    "skills/env-doctor/SKILL.md": {
+      "hash": "7f284ffea3b81cc16fc5ac975b4968105582965074019f167fd68496b147bfbe",
+      "category": "skills"
+    },
+    "skills/evolver/SKILL.md": {
+      "hash": "4305aa15a3c11cbb2c5dcf4cdc76d68d12207e13748d00d794e3937004f125df",
+      "category": "skills"
+    },
+    "skills/exec-optimizer/index.js": {
+      "hash": "298fa81588fd2cd3f77d5e880b8c52e6fce95f37f4d9fa87be2a8e1d7d81f0ba",
+      "category": "skills"
+    },
+    "skills/exec-optimizer/SKILL.md": {
+      "hash": "83087975cc4ef413aed7ee13b8fc02b779e03dd89dcbf2f36e898f292b3a796d",
+      "category": "skills"
+    },
+    "skills/feishu-file-send/SKILL.md": {
+      "hash": "96ebad735301d0c37e5069bf81bfa24c96d53397d83535caa1c52a6c504f3162",
+      "category": "skills"
+    },
+    "skills/feishu-media/SKILL.md": {
+      "hash": "539799237107b831184bdb8a705114665e35a70f7f605d2764b624ef7e5580e4",
+      "category": "skills"
+    },
+    "skills/feishu-voice-auto-transcribe/index.js": {
+      "hash": "877858e3d5667f816794f94441b632feb7ee7900796e485cd3bcdd20ef358a61",
+      "category": "skills"
+    },
+    "skills/feishu-voice-auto-transcribe/SKILL.md": {
+      "hash": "c1a5a2ef959d15881d3b3eceba99c20568dabf75c5d295ebe8e7cf5d8042834b",
+      "category": "skills"
+    },
+    "skills/feishu-voice-conversation/SKILL.md": {
+      "hash": "68bd64794b362e0869ad89a8f16008501f75dc2e60cee92c60f30a4c5734a184",
+      "category": "skills"
+    },
+    "skills/firms-satellite/SKILL.md": {
+      "hash": "ed5f974f558dc225c1f6fc43300f2d05d966a0b4e7c8499c32737311c8918788",
+      "category": "skills"
+    },
+    "skills/flomo-notes/SKILL.md": {
+      "hash": "44d8a66500fe1a558307ba3eb8dfc63a37b1f2ce50ca62f1e31ecfbc21348cee",
+      "category": "skills"
+    },
+    "skills/focus-deep-work/SKILL.md": {
+      "hash": "49210c4f52887892fb0885a009ca2c44fcfcd224764087191f8b121ff7d9647f",
+      "category": "skills"
+    },
+    "skills/gdelt-events/SKILL.md": {
+      "hash": "62fbab4c7f651917b9d4d597af1f4887434c7ae656d72a3221ae31488982152f",
+      "category": "skills"
+    },
+    "skills/gifhorse/SKILL.md": {
+      "hash": "42acfc2a558ab105b1114d1b0e7ce0ca99bed85d63dee2715c56f01bbb66e60b",
+      "category": "skills"
+    },
+    "skills/git-essentials/SKILL.md": {
+      "hash": "91afbc572326eb63a249a96f7880a21d1a0288f09b7d833cc616a184ce5ca71f",
+      "category": "skills"
+    },
+    "skills/github-action-gen/SKILL.md": {
+      "hash": "702367d412e26389bc4d35ec43bdecb6f104066af8929564c14b51cae4c4fde5",
+      "category": "skills"
+    },
+    "skills/gps-jamming/SKILL.md": {
+      "hash": "fdf61628b2d3bf1973d895d4ce40d2f91edf2476ee2d9eb7c41cc6709121c361",
+      "category": "skills"
+    },
+    "skills/grok-x-search/index.js": {
+      "hash": "e6377c17941f6bc49e5efcadf8d7d10e10e6bc95290244189c1d588245c99e69",
+      "category": "skills"
+    },
+    "skills/grok-x-search/SKILL.md": {
+      "hash": "60178d968f8f03b88f98b60ba6bef8679f36f1016e1f200d14ade592a6aa7ab1",
+      "category": "skills"
+    },
+    "skills/hn/SKILL.md": {
+      "hash": "ec2504a880751f1a043475dc4f53dd5592f089116cff3ed1937669ae758c24c3",
+      "category": "skills"
+    },
+    "skills/image-generate/SKILL.md": {
+      "hash": "b71a8c76c51a2d9aee8357a13b810d28e40f8fb592d9a41f58aa2cbb5ec1691c",
+      "category": "skills"
+    },
+    "skills/imagemagick/SKILL.md": {
+      "hash": "58a5d8623430a5e8a4fd564ea7a356fb362a074b0e1d045a27594535fc583019",
+      "category": "skills"
+    },
+    "skills/intelligence/SKILL.md": {
+      "hash": "c2cc3774e5a87c5436994d2f2aadf5984bd27da4ce29978d9fc29302cf464da1",
+      "category": "skills"
+    },
+    "skills/ioda-outage/SKILL.md": {
+      "hash": "18e94ec64bfea661ed64a3d8ed81749e039dd4319719fe43c1348998cfafd251",
+      "category": "skills"
+    },
+    "skills/japanese-translation-and-tutor/SKILL.md": {
+      "hash": "d1d2a176af66e14eef86a04445493fd6e57798d57c0f432fffee878bf902eddf",
+      "category": "skills"
+    },
+    "skills/local-vector-store/index.js": {
+      "hash": "f7ca6ceec7bc7f0b6df5c72516198688f857ae59e3439a44fe44216419ee130b",
+      "category": "skills"
+    },
+    "skills/local-vector-store/SKILL.md": {
+      "hash": "3ec694d92441897a7733448553236fabb49cc92a0ad88340707aa7e67a8c701d",
+      "category": "skills"
+    },
+    "skills/local-whisper/SKILL.md": {
+      "hash": "bb27c6bcee9c5bbc1f3467b1112e89afe5bd4cb1050b50e89fa4badf721e1622",
+      "category": "skills"
+    },
+    "skills/meeting-prep/index.js": {
+      "hash": "57abaa148793876def9cef2367906407ba6a1c50ceee0a7653b3943a6c91bd47",
+      "category": "skills"
+    },
+    "skills/meeting-prep/SKILL.md": {
+      "hash": "ab4125aadb1b703885923a97ba574a37fc05f5b5195824732f26bb2b34ca4f1e",
+      "category": "skills"
+    },
+    "skills/memory-index/index.js": {
+      "hash": "6965e2492566b9d6183e71aa74f04be66ecb0fa1f92923b4dcaf340b83fa1043",
+      "category": "skills"
+    },
+    "skills/memory-index/SKILL.md": {
+      "hash": "88d96217d79bff233331d9bed4cdcd360102c4c0575991632d3d8f48429ef401",
+      "category": "skills"
+    },
+    "skills/memory-janitor/index.js": {
+      "hash": "c3a7d9427be50fdc5d80e42dd218cf98dcb2a9d2a50ca8041f9f2d2b59e0c451",
+      "category": "skills"
+    },
+    "skills/memory-janitor/SKILL.md": {
+      "hash": "38f943d23475ca96af41bb5797bfb7e098854bb3fde7e6e6055c07fabb93de5d",
+      "category": "skills"
+    },
+    "skills/mindfulness-meditation/SKILL.md": {
+      "hash": "7c5161e20619f7a54e70255fd9377d94946c397b8f626187ffd3e5a4071ad929",
+      "category": "skills"
+    },
+    "skills/n8n-workflow-automation/SKILL.md": {
+      "hash": "b82537f81d728a19cff51137588e95211c229e5c342cf0d008cbe971f004c1d9",
+      "category": "skills"
+    },
+    "skills/nano-banana/SKILL.md": {
+      "hash": "ae4a84db12f15bf59c996dbb3c1fe3e5a49e7cfbd1bbe4a6be79a9c8b99d891d",
+      "category": "skills"
+    },
+    "skills/nano-banana-pro/SKILL.md": {
+      "hash": "1c8d3bd54b75397ae714c7914d2955910396f0e9fb5b832128ff35a4c6e3152e",
+      "category": "skills"
+    },
+    "skills/news-summary/SKILL.md": {
+      "hash": "1b4c45b56f5675670df484445f9b021b05ba1b2e688c202ac962f22c9812f23b",
+      "category": "skills"
+    },
+    "skills/openai-whisper/SKILL.md": {
+      "hash": "f9fadf134b6de49d55ffae904b2c75f5b7035f37ffa96394b19de648bdef9e0f",
+      "category": "skills"
+    },
+    "skills/opensky-adsb/SKILL.md": {
+      "hash": "6e9b4d3b0c4e0f751957098d243a7c9740457d499edd116233de3cccf97eb42e",
+      "category": "skills"
+    },
+    "skills/perf-metric/index.js": {
+      "hash": "fb9804b088ddb94ba89ba9ef14f66ac07949792c5b7afb95cac9d6d7d048e785",
+      "category": "skills"
+    },
+    "skills/perf-metric/SKILL.md": {
+      "hash": "8424f9ed5a636824c2b75f32546124d56802be7c96c2bf627be2eabb9d2129b7",
+      "category": "skills"
+    },
+    "skills/pokemon-red/SKILL.md": {
+      "hash": "fe2b40df4ebdabfa12f2eb0655d01df478f671b17aa4a4d3be178d441f9b9fc8",
+      "category": "skills"
+    },
+    "skills/polymarket/index.js": {
+      "hash": "fb6d6c820600cae0a3f6a1674e0ae00b7241d7705e99700bd29c646729e6e490",
+      "category": "skills"
+    },
+    "skills/polymarket/SKILL.md": {
+      "hash": "992b33c1c9df3abcf38b55462d5eeb06ed0875862b35f2d929193dabbae1a379",
+      "category": "skills"
+    },
+    "skills/pre-mortem-analyst/SKILL.md": {
+      "hash": "51be8754ad23302e92e31f2243ec95dc77326f290ac2c38bc74e4db1a5b10b67",
+      "category": "skills"
+    },
+    "skills/prompt-guard/SKILL.md": {
+      "hash": "db29ac7a7b25a3f823a54c9d4f703c94d32c125eb206fcda56b0893eb5643fd3",
+      "category": "skills"
+    },
+    "skills/radiation-monitor/SKILL.md": {
+      "hash": "3eaea43133d56daffd245ca713014bc78eeaa573c2ee988f3e39be4e7f07b2d4",
+      "category": "skills"
+    },
+    "skills/reddit-insights/SKILL.md": {
+      "hash": "635870e9caea0bd97f041fef9867b2528624cb88c8004753de9fbce887cf925b",
+      "category": "skills"
+    },
+    "skills/reflect-learn/SKILL.md": {
+      "hash": "19b70c1f74c20650ce077a065c48624b04b061d4a37d33f6a2e0ff3b7c4bdf20",
+      "category": "skills"
+    },
+    "skills/research/SKILL.md": {
+      "hash": "4fd9a7399a2727801914ad8b1df77485a6586e45f8c970b2c5e6b52d3414990a",
+      "category": "skills"
+    },
+    "skills/research-tracker/SKILL.md": {
+      "hash": "7aaf5b46795fe3c583da74b5011c7c363fe0c609256304a5b464311698b2ce7f",
+      "category": "skills"
+    },
+    "skills/roast-gen/SKILL.md": {
+      "hash": "30492230692a7e8956fc9431658716aa5f63b6af1d4aea1a7606c21b8450ac4a",
+      "category": "skills"
+    },
+    "skills/runtime-integrity/index.js": {
+      "hash": "dc0a2bf151c0aff6aa042d5d0af40ff5a614070660011c874a685a12ea1ee048",
+      "category": "skills"
+    },
+    "skills/runtime-integrity/SKILL.md": {
+      "hash": "8383177c05eb4784385fa7a58c7bd88ed8a725f87d1c562ce7b3296ad9f630bc",
+      "category": "skills"
+    },
+    "skills/secret-scanner/SKILL.md": {
+      "hash": "2fb2e21a3b973edeca57d656829cf403476e042d246649b32cc5bc81130acec5",
+      "category": "skills"
+    },
+    "skills/security-audit/SKILL.md": {
+      "hash": "7ed4a7bd3811fbf405703886f4ce53c4953803af3f4e3705da95a8ae83e69dd5",
+      "category": "skills"
+    },
+    "skills/security-monitor/SKILL.md": {
+      "hash": "ff2c622ba0707d6d1a28c70cee77b33ee78807b8ddc52f3351892a1fcbf098b6",
+      "category": "skills"
+    },
+    "skills/sentinel-imagery/SKILL.md": {
+      "hash": "c67a2c26d438f59f446e2f72eb517b4cc1b59ffe01a41c5635a8604a0d93abb2",
+      "category": "skills"
+    },
+    "skills/skill-health-monitor/index.js": {
+      "hash": "793dd414253b23a475766feaeba89abec08e3447f095d2948a867c83d2f35a26",
+      "category": "skills"
+    },
+    "skills/skill-health-monitor/SKILL.md": {
+      "hash": "cf3b7a1df65db88f73e2d8144770c14146b2504800e2805f6eab19ded33eb430",
+      "category": "skills"
+    },
+    "skills/skill-scanner/SKILL.md": {
+      "hash": "040682b9cb0b3f5ef94e71c0282a61d79449b553db00741b1d9801be2ed56329",
+      "category": "skills"
+    },
+    "skills/smart-commit/index.js": {
+      "hash": "442c53a5254239aa3405d5cd7221146af3ebafcb29f258064e0c974cf9244703",
+      "category": "skills"
+    },
+    "skills/smart-commit/SKILL.md": {
+      "hash": "cf1519cce6ff0c96e35bc5ac4b438d7145a922c5dc68f6c5cb86dabafc3171c1",
+      "category": "skills"
+    },
+    "skills/sonoscli/SKILL.md": {
+      "hash": "0b9cf84b375cd2269aa7c295a776129c3c630b916ea66f9fd0b49feb76ba7499",
+      "category": "skills"
+    },
+    "skills/submarine-cables/SKILL.md": {
+      "hash": "cf6d4761ea64761de76798b162b77f87afa799eeafd085254f4d80af52c87951",
+      "category": "skills"
+    },
+    "skills/sutui-ai/SKILL.md": {
+      "hash": "7908d4c6930fa705309dd002dc136798c5fc3e5a6223558cbad72290742f93d1",
+      "category": "skills"
+    },
+    "skills/sysinfo/index.js": {
+      "hash": "c05b257cbf2f39c4124512771902588244f39273afa2483dd408e7d3b318f2ef",
+      "category": "skills"
+    },
+    "skills/sysinfo/SKILL.md": {
+      "hash": "201e6dd0fdbe349d60433d4fb8af5cfe8431e1705de41f13e8f986a5d8434d40",
+      "category": "skills"
+    },
+    "skills/task-status/SKILL.md": {
+      "hash": "d0f34e837a05c2a6cae1840b208825c00baf018838f036bc15d03c700547efdf",
+      "category": "skills"
+    },
+    "skills/threat-intel-digest/index.js": {
+      "hash": "7dc3a8058f6d0d402d12bf45c16b40f0bed18fef4f742dfe346b8a232b58d9ca",
+      "category": "skills"
+    },
+    "skills/threat-intel-digest/SKILL.md": {
+      "hash": "6c80f5941b4f39126d47ed18aa3b069dc783859e284b7c6b62cdf4fc778db853",
+      "category": "skills"
+    },
+    "skills/tiktok-osint/SKILL.md": {
+      "hash": "818797fbc286f6245acc33ce6325cc9bf486dbceedf60f94ed2971dbbb25ba71",
+      "category": "skills"
+    },
+    "skills/timer/SKILL.md": {
+      "hash": "ccbb606f708c0aef12303d9805babf0a85de9c2c2c70fd435de43f0e885039e3",
+      "category": "skills"
+    },
+    "skills/todo/index.js": {
+      "hash": "e1aa59eeb537cbc16eb36fbbc69f5ef9e01a7b29493f39201a8f15b9383df07d",
+      "category": "skills"
+    },
+    "skills/todo/SKILL.md": {
+      "hash": "024be917c019fc9e74605b92b90f6d57f909d0ec3de12161a4f7a5f2a713de5a",
+      "category": "skills"
+    },
+    "skills/topic-monitor/SKILL.md": {
+      "hash": "ed79e948634e7850b1400c476cb4de83e24d214325c761b49a53a4eed17a9097",
+      "category": "skills"
+    },
+    "skills/twilio-voice/SKILL.md": {
+      "hash": "e06cacd47fda5f64e3bd12b46ce98ea8fa29837ed1f1bc5874d040a0959c2a9c",
+      "category": "skills"
+    },
+    "skills/twilio-voice-call/SKILL.md": {
+      "hash": "e04a45dd364bf4f4f6c5761d6cdf1c753fe8b42e383f9f259fd2b9c73785297b",
+      "category": "skills"
+    },
+    "skills/uptime-monitor/index.js": {
+      "hash": "b22cb5d4fa5fa10532e99228cba6e8e005545c0671226278ee27e698f2eeebac",
+      "category": "skills"
+    },
+    "skills/uptime-monitor/SKILL.md": {
+      "hash": "fa94bbed22200d0971248918883017d8ad3e4b5dd0225f700be4b0b549374c16",
+      "category": "skills"
+    },
+    "skills/usgs-earthquake/SKILL.md": {
+      "hash": "aa08353d525361389cc523fb09974891648b0d35d99586d96c85de660c8e3b78",
+      "category": "skills"
+    },
+    "skills/vap-media/SKILL.md": {
+      "hash": "d5f8d2f59721ec8a37b1bf965eccc58c25bb3c83fa960a4b8e1ac8d07b7a4ce8",
+      "category": "skills"
+    },
+    "skills/veadk-skills/SKILL.md": {
+      "hash": "8b7d4be9bc84e131ac9c61abdfecdc11dfaa350af28f0e1908e4440c8360eb7c",
+      "category": "skills"
+    },
+    "skills/video-download/SKILL.md": {
+      "hash": "33e0c94507be9a80038dacd4d297d2088731121375f5b1eafc3b6c2278261418",
+      "category": "skills"
+    },
+    "skills/video-generate/SKILL.md": {
+      "hash": "106b15d53125d06d488076ba5fa8e9fe9f6bb12fb053e4c9e536e79e0acce4ce",
+      "category": "skills"
+    },
+    "skills/voice-wake-say/SKILL.md": {
+      "hash": "76b1d998eecc02ecd17262264483bf07f3be93573e696e447a97a571d1fd5e5f",
+      "category": "skills"
+    },
+    "skills/web-archive/index.js": {
+      "hash": "9c2319d5e83d062e2912c02d65a36296c8c52e0f10cbb343b9eea923fecec2de",
+      "category": "skills"
+    },
+    "skills/web-archive/SKILL.md": {
+      "hash": "e4aa82fe9637f6f7795a87d460092b8a797f06cc664201706464bec0c94414b8",
+      "category": "skills"
+    },
+    "skills/web-search-fallback/index.js": {
+      "hash": "91d3c685b16e014dcc58fca9859bc7b60af8fa23ec72ce8ac446362c147508aa",
+      "category": "skills"
+    },
+    "skills/web-search-fallback/SKILL.md": {
+      "hash": "9901f378c56387bb385fe6b4476e20e35af168ff267c6ec47968c0a27da5729b",
+      "category": "skills"
+    },
+    "skills/websdr-monitor/SKILL.md": {
+      "hash": "63c6e231efa3f3fae48769c1bb4f3ff27034f41ded966faff13d02732c5c8817",
+      "category": "skills"
+    },
+    "skills/workspace-health/index.js": {
+      "hash": "f3fdd1196d473a9f83460a3e0c50aa35650c96838fb38ec55d97bf61c708c192",
+      "category": "skills"
+    },
+    "skills/workspace-health/SKILL.md": {
+      "hash": "0d56d8724f4597268ee614d10653adeaebe47b8984d78be04510cde057f45186",
+      "category": "skills"
+    },
+    "skills/xapi/index.js": {
+      "hash": "429f1ea5e9529ae06c9e45b0e01b52d1f0e82ac39f306096dadd7f4fef1f384f",
+      "category": "skills"
+    },
+    "skills/xapi/SKILL.md": {
+      "hash": "50da235f144be59f851382ace9327ff8de9b413e114aaed7fc62ded0198e7016",
+      "category": "skills"
+    },
+    "skills/youtube-transcript/SKILL.md": {
+      "hash": "f8843aca94abffecb456a7e71fef337bd814150f215a66f7733c373488b3d43a",
+      "category": "skills"
+    }
+  }
+}
