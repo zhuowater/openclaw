@@ -15,8 +15,16 @@ const STATS_ONLY = process.argv.includes('--stats-only');
 const ARCHIVE_ONLY = process.argv.includes('--archive-daily');
 const DISK_CLEAN = process.argv.includes('--disk');
 const DEDUP_CANDIDATES = process.argv.includes('--dedup-candidates');
+const SESSION_CLEAN = process.argv.includes('--sessions');
 const WORKSPACE = process.env.WORKSPACE || path.resolve(__dirname, '../..');
 const EVOLVER_ASSETS = path.join(WORKSPACE, 'skills', 'evolver', 'assets', 'gep');
+
+// Session archive config
+const os = require('os');
+const AGENT_NAME = process.env.AGENT_NAME || 'main';
+const SESSIONS_ARCHIVE_DIR = path.join(os.homedir(), `.openclaw/agents/${AGENT_NAME}/sessions/archive`);
+const SESSION_ARCHIVE_MAX_AGE_DAYS = parseInt(process.env.JANITOR_SESSION_MAX_DAYS || '7', 10);
+const SESSION_ARCHIVE_MAX_COUNT = parseInt(process.env.JANITOR_SESSION_MAX_COUNT || '200', 10);
 
 // Protected files that must never be deleted
 const PROTECTED_ROOTS = new Set([
@@ -465,6 +473,73 @@ function cleanStaleLogs() {
   return { skipped: false, freedBytes, count, description: `${count} stale log files (${formatBytes(freedBytes)})` };
 }
 
+function cleanSessionArchives() {
+  if (!fs.existsSync(SESSIONS_ARCHIVE_DIR)) {
+    return { skipped: true, reason: 'archive dir not found' };
+  }
+
+  const files = fs.readdirSync(SESSIONS_ARCHIVE_DIR)
+    .filter(f => f.endsWith('.jsonl') || f.endsWith('.json'))
+    .map(f => {
+      const fullPath = path.join(SESSIONS_ARCHIVE_DIR, f);
+      const stat = fs.statSync(fullPath);
+      return { name: f, path: fullPath, size: stat.size, mtimeMs: stat.mtimeMs };
+    })
+    .sort((a, b) => b.mtimeMs - a.mtimeMs); // newest first
+
+  if (files.length === 0) {
+    return { skipped: true, reason: 'no archived sessions' };
+  }
+
+  const now = Date.now();
+  const maxAgeMs = SESSION_ARCHIVE_MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
+
+  // Delete files that are both: older than max age AND beyond max count
+  const toDelete = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const isOld = (now - file.mtimeMs) > maxAgeMs;
+    const isBeyondCount = i >= SESSION_ARCHIVE_MAX_COUNT;
+    if (isOld || isBeyondCount) {
+      toDelete.push(file);
+    }
+  }
+
+  if (toDelete.length === 0) {
+    return {
+      skipped: true,
+      reason: `all ${files.length} files within limits (max ${SESSION_ARCHIVE_MAX_COUNT} files, ${SESSION_ARCHIVE_MAX_AGE_DAYS} days)`
+    };
+  }
+
+  let freedBytes = 0;
+  const deleted = [];
+  for (const file of toDelete) {
+    if (!DRY_RUN) {
+      try {
+        fs.unlinkSync(file.path);
+        freedBytes += file.size;
+        deleted.push(file.name);
+      } catch (e) {
+        console.error(`    Failed to delete ${file.name}: ${e.message}`);
+      }
+    } else {
+      freedBytes += file.size;
+      deleted.push(file.name);
+    }
+  }
+
+  return {
+    action: 'clean_session_archives',
+    total: files.length,
+    deleted: deleted.length,
+    remaining: files.length - deleted.length,
+    freedBytes,
+    deletedFiles: deleted.slice(0, 10), // only show first 10
+    dryRun: DRY_RUN
+  };
+}
+
 function diskCleanup() {
   console.log('🧹 Disk Cleanup:');
   console.log('');
@@ -558,6 +633,19 @@ function main() {
     return { stats, actions: [{ action: 'dedup_candidates', ...dedupResult }], dryRun: DRY_RUN };
   }
 
+  // Handle --sessions shortcut
+  if (SESSION_CLEAN) {
+    console.log(`🗂️ Session Archive Cleanup (max ${SESSION_ARCHIVE_MAX_COUNT} files, ${SESSION_ARCHIVE_MAX_AGE_DAYS} days):`);
+    const sessResult = cleanSessionArchives();
+    if (sessResult.skipped) {
+      console.log(`  Skipped: ${sessResult.reason}`);
+    } else {
+      console.log(`  Deleted ${sessResult.deleted} of ${sessResult.total} sessions (freed ${formatBytes(sessResult.freedBytes)})`);
+      console.log(`  Remaining: ${sessResult.remaining} sessions`);
+    }
+    return { stats, actions: [{ action: 'clean_session_archives', ...sessResult }], dryRun: DRY_RUN };
+  }
+
   // 1. Clean GEP prompt .txt files
   console.log(`🧹 GEP Prompts (keep latest ${KEEP_PROMPTS}):`);
   const promptResult = cleanGepPrompts();
@@ -622,6 +710,18 @@ function main() {
   }
   console.log('');
 
+  // 6. Clean session archives
+  console.log(`🗂️ Session Archives (max ${SESSION_ARCHIVE_MAX_COUNT} files, ${SESSION_ARCHIVE_MAX_AGE_DAYS} days):`);
+  const sessResult = cleanSessionArchives();
+  if (sessResult.skipped) {
+    console.log(`  Skipped: ${sessResult.reason}`);
+  } else {
+    console.log(`  Deleted ${sessResult.deleted} of ${sessResult.total} sessions (freed ${formatBytes(sessResult.freedBytes)})`);
+    console.log(`  Remaining: ${sessResult.remaining} sessions`);
+    actions.push(sessResult);
+  }
+  console.log('');
+
   // Summary
   const totalFreed = actions.reduce((sum, a) => sum + (a.freedBytes || 0), 0);
   console.log(`✅ Done. ${DRY_RUN ? '[DRY RUN] Would free' : 'Freed'}: ${formatBytes(totalFreed)}`);
@@ -630,7 +730,7 @@ function main() {
 }
 
 // Export for require() and run if executed directly
-module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes, deduplicateCandidates, diskCleanup, cleanNpmCache, cleanPycache, cleanJournalLogs, cleanStaleLogs };
+module.exports = { main, collectStats, cleanGepPrompts, cleanGepPromptJsons, compactMemoryGraph, archiveDailyNotes, deduplicateCandidates, cleanSessionArchives, diskCleanup, cleanNpmCache, cleanPycache, cleanJournalLogs, cleanStaleLogs };
 
 if (require.main === module) {
   main();
