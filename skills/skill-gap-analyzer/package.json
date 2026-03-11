@@ -1,0 +1,5 @@
+{
+  "name": "skill-gap-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze session logs to identify unmet user needs and skill gaps"
+}
