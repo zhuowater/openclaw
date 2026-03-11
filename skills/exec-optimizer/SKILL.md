@@ -43,7 +43,7 @@ const check = await skillHealth('exec-optimizer');
 ### Git Operations
 
 ```javascript
-const { gitStatus, gitLog, gitDiff } = require('./skills/exec-optimizer');
+const { gitStatus, gitLog, gitDiff, gitCommit } = require('./skills/exec-optimizer');
 
 // Check git status (replaces: exec('git status'))
 const status = await gitStatus();
@@ -56,6 +56,12 @@ const commits = await gitLog(5);
 // Get diff summary (replaces: exec('git diff --stat'))
 const diff = await gitDiff();
 // Returns: { files: number, insertions: number, deletions: number }
+
+// Stage and commit in one call (replaces: exec('git add -A') + exec('git commit -m "..."'))
+const commit = await gitCommit('feat: add new feature', { files: 'all' });
+// Returns: { ok: true, hash: 'abc1234', message: '...', filesChanged: 3 }
+// Or stage specific files:
+const commit2 = await gitCommit('fix: bug', { files: ['src/index.js', 'README.md'] });
 ```
 
 ### File System Operations
@@ -80,14 +86,21 @@ const lines = await readLines('/file', { start: 1, count: 10 });
 ### Process Operations
 
 ```javascript
-const { processInfo, killByName } = require('./skills/exec-optimizer');
+const { processInfo } = require('./skills/exec-optimizer');
 
 // Get process info (replaces: exec('ps aux | grep node'))
 const procs = await processInfo('node');
 // Returns: [{ pid: number, cpu: number, mem: number, command: string }]
+```
 
-// Kill process by name (replaces: exec('pkill -f pattern'))
-await killByName('node.*index.js');
+### File Stats Batch (replaces multiple stat/ls calls)
+
+```javascript
+const { fileStatsBatch } = require('./skills/exec-optimizer');
+
+// Batch stat multiple files in one call
+const stats = await fileStatsBatch(['/root/openclaw/MEMORY.md', '/root/openclaw/SOUL.md', '/foo/bar']);
+// Returns: [{ path, exists: true, size, mtime, isDir }, { path, exists: false }]
 ```
 
 ### CLI Mode (single-exec access to all functions)
@@ -122,6 +135,12 @@ node skills/exec-optimizer/index.js latest /root/openclaw/memory "*.md" 5
 
 # Disk usage (replaces df -h)
 node skills/exec-optimizer/index.js disk /
+
+# Git add all + commit in one call (replaces 2 exec calls)
+node skills/exec-optimizer/index.js commit "feat: add feature"
+
+# Batch file stats (replaces multiple stat/ls -la calls)
+node skills/exec-optimizer/index.js fstats /path/a /path/b /path/c
 ```
 
 ### Evolver Preflight (NEW - addresses repeated_tool_usage:exec)

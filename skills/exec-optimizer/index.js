@@ -828,6 +828,72 @@ async function diskUsage(targetPath = '/') {
 }
 
 /**
+ * Git Commit - Stage files and commit in a single call.
+ * Replaces: git add <files> + git commit -m "msg" (2 exec calls → 1 function call)
+ * @param {string} message - Commit message
+ * @param {Object} [options] - { files: string[]|'all', cwd: string }
+ * @returns {Promise<{ok:boolean, hash:string, message:string, filesChanged:number}>}
+ */
+async function gitCommit(message, options = {}) {
+  const { files = 'all', cwd = '/root/openclaw' } = options;
+
+  try {
+    // Stage
+    if (files === 'all') {
+      await execFileAsync('git', ['add', '-A'], { cwd });
+    } else if (Array.isArray(files) && files.length > 0) {
+      await execFileAsync('git', ['add', '--', ...files], { cwd });
+    } else {
+      throw new Error('files must be "all" or a non-empty array of paths');
+    }
+
+    // Commit
+    const { stdout } = await execFileAsync('git', ['commit', '-m', message], { cwd });
+
+    // Parse output for hash and file count
+    const hashMatch = stdout.match(/\[[\w/-]+ ([a-f0-9]+)\]/);
+    const filesMatch = stdout.match(/(\d+) files? changed/);
+    return {
+      ok: true,
+      hash: hashMatch ? hashMatch[1] : 'unknown',
+      message,
+      filesChanged: filesMatch ? parseInt(filesMatch[1]) : 0
+    };
+  } catch (err) {
+    // "nothing to commit" is not a real error
+    if (err.stderr && err.stderr.includes('nothing to commit')) {
+      return { ok: true, hash: null, message, filesChanged: 0 };
+    }
+    throw new Error(`gitCommit failed: ${(err.stderr || err.message).trim().slice(0, 200)}`);
+  }
+}
+
+/**
+ * File Stats - Batch stat multiple files in one call (size, mtime, type).
+ * Replaces: repeated ls -la / stat calls on individual files.
+ * @param {string[]} paths - Array of file paths
+ * @returns {Promise<Array<{path:string, exists:boolean, size?:number, mtime?:string, isDir?:boolean}>>}
+ */
+async function fileStatsBatch(paths) {
+  const results = [];
+  for (const p of paths) {
+    try {
+      const stat = await fs.stat(p);
+      results.push({
+        path: p,
+        exists: true,
+        size: stat.size,
+        mtime: stat.mtime.toISOString(),
+        isDir: stat.isDirectory()
+      });
+    } catch {
+      results.push({ path: p, exists: false });
+    }
+  }
+  return results;
+}
+
+/**
  * Main entry point (for testing and CLI usage)
  */
 async function main() {
@@ -908,6 +974,20 @@ async function main() {
     return;
   }
 
+  if (cmd === 'commit' && process.argv[3]) {
+    const result = await gitCommit(process.argv[3]);
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
+  if (cmd === 'fstats') {
+    const paths = process.argv.slice(3);
+    if (paths.length === 0) { console.error('Usage: fstats <path1> [path2] ...'); process.exit(1); }
+    const result = await fileStatsBatch(paths);
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -924,12 +1004,15 @@ async function main() {
   console.log('  node index.js grep <dir> <pattern> [exts] - Search file contents');
   console.log('  node index.js latest <dir> [pattern] [n] - Find latest files');
   console.log('  node index.js disk [path] - Disk usage stats');
+  console.log('  node index.js commit <msg> - Git add all + commit (replaces 2 exec calls)');
+  console.log('  node index.js fstats <paths...> - Batch file stats (replaces multiple stat/ls)');
 }
 
 module.exports = {
   gitStatus,
   gitLog,
   gitDiff,
+  gitCommit,
   fileExists,
   dirSize,
   findFiles,
@@ -940,6 +1023,7 @@ module.exports = {
   skillHealth,
   evolverPreflight,
   batchFileCheck,
+  fileStatsBatch,
   memoryStats,
   evolutionStats,
   quickDiag,
