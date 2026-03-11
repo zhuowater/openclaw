@@ -10,10 +10,32 @@ Data Source: https://api.ioda.inetintel.cc.gatech.edu/v2/
 
 import json
 import sys
+import time
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 import statistics
+
+
+def _make_session(retries=3, backoff=1.0, timeout=60):
+    """Create a requests session with retry + backoff for transient DNS/connection errors."""
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=retries,
+        backoff_factor=backoff,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+
+# Module-level session for connection reuse + retries
+_session = _make_session()
 
 # Target countries - Iran and proxy networks
 COUNTRIES = {
@@ -63,7 +85,7 @@ def fetch_signal_data(country_code: str, signal: str, start_ts: int, end_ts: int
     target_datasource = datasource_map.get(signal, signal)
     
     try:
-        response = requests.get(url, params=params, timeout=60)
+        response = _session.get(url, params=params, timeout=60)
         response.raise_for_status()
         data = response.json()
         

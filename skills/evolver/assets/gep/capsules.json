@@ -12,18 +12,18 @@
         "windows_shell_incompatible",
         "perf_bottleneck"
       ],
-      "gene": "gene_gep_innovate_from_opportunity",
+      "gene": "gene_gep_repair_from_errors",
       "summary": "Harden all 7 unprotected r.json() calls in trade.py with _safe_json wrapper to prevent recurring JSONDecodeError/KeyError crashes",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 4
+        "files": 2,
+        "lines": 12
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 9,
+      "success_streak": 11,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -37,12 +37,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:7c4f0748d50c6fcc5acb1ffea1f8213874ceed9c3ac4b71fd3a8314585e84ffa",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:db6b82a8072a7fb7e007ba42b2274e7eaabd6269f976f9406b225234774ee888"
+      "asset_id": "sha256:c80a00c5bd7e090e6b23b2e96060824dcd76bd2fb5f636420dd818e4b0236ce7"
     },
     {
       "type": "Capsule",
@@ -214,14 +214,14 @@
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 3,
-        "lines": 271
+        "files": 2,
+        "lines": 12
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 9,
+      "success_streak": 11,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -236,11 +236,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:5c2912e9d118ddf2ed3ba3130b15a87d0d7d73a8992db624923a678e122b0c56",
+      "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
       "a2a": {
-        "eligible_to_broadcast": false
+        "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:f8e29121a2f56913b85cfc3b72ff299b7a02a94b7d49a03431ab2b4330e11eba"
+      "asset_id": "sha256:d3ee93239f4e130d785978f316a4a3db4f63340ca85266a98179133330e9bbd2"
     }
   ]
 }
