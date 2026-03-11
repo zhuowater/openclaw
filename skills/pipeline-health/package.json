@@ -1,0 +1,6 @@
+{
+  "name": "pipeline-health",
+  "version": "1.0.0",
+  "description": "Intelligence pipeline health checker",
+  "main": "index.js"
+}
