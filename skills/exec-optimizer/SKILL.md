@@ -141,6 +141,12 @@ node skills/exec-optimizer/index.js commit "feat: add feature"
 
 # Batch file stats (replaces multiple stat/ls -la calls)
 node skills/exec-optimizer/index.js fstats /path/a /path/b /path/c
+
+# Safe disk cleanup (replaces manual du/find/rm chains)
+node skills/exec-optimizer/index.js cleanup           # Execute cleanup
+node skills/exec-optimizer/index.js cleanup --dry-run  # Preview only
+# Cleans: pip-unpack temp dirs, old generated images, npm cache, rotated logs, stale whisper-venv
+# Returns JSON: { before, after, freed, actions[], summary }
 ```
 
 ### Evolver Preflight (NEW - addresses repeated_tool_usage:exec)

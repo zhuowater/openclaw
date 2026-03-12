@@ -828,6 +828,155 @@ async function diskUsage(targetPath = '/') {
 }
 
 /**
+ * Disk Cleanup - Safe, automated cleanup of known-safe temp/cache files.
+ * Addresses: protocol_drift (disk bloat = system degradation), repeated_tool_usage:exec
+ * Replaces: manual du/find/rm exec calls for disk maintenance.
+ * @param {Object} [options] - { dryRun: boolean }
+ * @returns {Promise<Object>} - { before, after, freed, actions[] }
+ */
+async function diskCleanup(options = {}) {
+  const { dryRun = false } = options;
+  const actions = [];
+  let totalFreed = 0;
+
+  const fmt = (bytes) => {
+    if (bytes > 1e9) return (bytes / 1e9).toFixed(1) + 'G';
+    if (bytes > 1e6) return (bytes / 1e6).toFixed(1) + 'M';
+    return (bytes / 1e3).toFixed(1) + 'K';
+  };
+
+  // Helper: get dir size recursively
+  async function getDirSize(dir) {
+    let total = 0;
+    try {
+      const entries = await fs.readdir(dir, { withFileTypes: true });
+      for (const e of entries) {
+        const full = path.join(dir, e.name);
+        if (e.isDirectory()) {
+          total += await getDirSize(full);
+        } else {
+          try { total += (await fs.stat(full)).size; } catch {} 
+        }
+      }
+    } catch {}
+    return total;
+  }
+
+  // Helper: remove directory recursively
+  async function rmDir(dir) {
+    try { await fs.rm(dir, { recursive: true, force: true }); } catch {}
+  }
+
+  // Helper: remove file
+  async function rmFile(file) {
+    try { await fs.unlink(file); } catch {}
+  }
+
+  // Get disk before
+  let before;
+  try { before = await diskUsage('/'); } catch { before = { usedPercent: 'unknown' }; }
+
+  // 1. Clean /tmp/pip-unpack-* dirs (stale pip temp files)
+  try {
+    const tmpEntries = await fs.readdir('/tmp', { withFileTypes: true });
+    for (const e of tmpEntries) {
+      if (e.isDirectory() && e.name.startsWith('pip-unpack-')) {
+        const full = path.join('/tmp', e.name);
+        const size = await getDirSize(full);
+        if (!dryRun) await rmDir(full);
+        totalFreed += size;
+        actions.push({ target: full, size: fmt(size), action: dryRun ? 'would_remove' : 'removed' });
+      }
+    }
+  } catch {}
+
+  // 2. Clean old generated images (>7 days) in skills/image-generate/
+  try {
+    const imgDir = '/root/openclaw/skills/image-generate';
+    const imgEntries = await fs.readdir(imgDir);
+    const now = Date.now();
+    for (const name of imgEntries) {
+      if (!name.startsWith('generated_image_') || !name.endsWith('.png')) continue;
+      const full = path.join(imgDir, name);
+      const stat = await fs.stat(full);
+      const ageDays = (now - stat.mtimeMs) / (1000 * 60 * 60 * 24);
+      if (ageDays > 7) {
+        if (!dryRun) await rmFile(full);
+        totalFreed += stat.size;
+        actions.push({ target: full, size: fmt(stat.size), ageDays: Math.round(ageDays), action: dryRun ? 'would_remove' : 'removed' });
+      }
+    }
+  } catch {}
+
+  // 3. Clean npm cache
+  try {
+    const npmCache = '/root/.npm/_cacache';
+    const stat = await fs.stat(npmCache);
+    if (stat.isDirectory()) {
+      const size = await getDirSize(npmCache);
+      if (size > 50 * 1e6) { // Only clean if > 50MB
+        if (!dryRun) {
+          try { await execFileAsync('npm', ['cache', 'clean', '--force'], { timeout: 30000 }); } catch {}
+        }
+        totalFreed += size;
+        actions.push({ target: 'npm cache', size: fmt(size), action: dryRun ? 'would_clean' : 'cleaned' });
+      }
+    }
+  } catch {}
+
+  // 4. Clean old /var/log files (>14 days, only .gz and rotated logs)
+  try {
+    const logDir = '/var/log';
+    const logEntries = await fs.readdir(logDir);
+    const now = Date.now();
+    for (const name of logEntries) {
+      if (!name.endsWith('.gz') && !name.match(/\.\d+$/)) continue;
+      const full = path.join(logDir, name);
+      try {
+        const stat = await fs.stat(full);
+        if (!stat.isFile()) continue;
+        const ageDays = (now - stat.mtimeMs) / (1000 * 60 * 60 * 24);
+        if (ageDays > 14) {
+          if (!dryRun) await rmFile(full);
+          totalFreed += stat.size;
+          actions.push({ target: full, size: fmt(stat.size), action: dryRun ? 'would_remove' : 'removed' });
+        }
+      } catch {}
+    }
+  } catch {}
+
+  // 5. Clean stale whisper-venv in /tmp (>3 days old)
+  try {
+    const whisperDir = '/tmp/whisper-venv';
+    const stat = await fs.stat(whisperDir);
+    const ageDays = (Date.now() - stat.mtimeMs) / (1000 * 60 * 60 * 24);
+    if (ageDays > 3) {
+      const size = await getDirSize(whisperDir);
+      if (!dryRun) await rmDir(whisperDir);
+      totalFreed += size;
+      actions.push({ target: whisperDir, size: fmt(size), ageDays: Math.round(ageDays), action: dryRun ? 'would_remove' : 'removed' });
+    }
+  } catch {}
+
+  // Get disk after
+  let after;
+  try { after = await diskUsage('/'); } catch { after = { usedPercent: 'unknown' }; }
+
+  return {
+    dryRun,
+    before: before.usedPercent,
+    after: after.usedPercent,
+    freed: fmt(totalFreed),
+    freedBytes: totalFreed,
+    actionCount: actions.length,
+    actions,
+    summary: dryRun
+      ? `Dry run: would free ${fmt(totalFreed)} across ${actions.length} targets`
+      : `Freed ${fmt(totalFreed)} across ${actions.length} targets (${before.usedPercent} → ${after.usedPercent})`
+  };
+}
+
+/**
  * Git Commit - Stage files and commit in a single call.
  * Replaces: git add <files> + git commit -m "msg" (2 exec calls → 1 function call)
  * @param {string} message - Commit message
@@ -988,6 +1137,13 @@ async function main() {
     return;
   }
 
+  if (cmd === 'cleanup') {
+    const dryRun = process.argv.includes('--dry-run');
+    const result = await diskCleanup({ dryRun });
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -1006,6 +1162,7 @@ async function main() {
   console.log('  node index.js disk [path] - Disk usage stats');
   console.log('  node index.js commit <msg> - Git add all + commit (replaces 2 exec calls)');
   console.log('  node index.js fstats <paths...> - Batch file stats (replaces multiple stat/ls)');
+  console.log('  node index.js cleanup    - Safe disk cleanup (--dry-run to preview)');
 }
 
 module.exports = {
@@ -1033,6 +1190,7 @@ module.exports = {
   grepFiles,
   latestFile,
   diskUsage,
+  diskCleanup,
   main
 };
 
