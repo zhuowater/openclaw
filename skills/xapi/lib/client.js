@@ -95,7 +95,14 @@ class XAPIClient {
   }
 
   /**
-   * Make HTTP request with OAuth 1.0a
+   * Transient error codes that are safe to retry
+   */
+  static RETRYABLE_ERRORS = ['ECONNRESET', 'ETIMEDOUT', 'ECONNREFUSED', 'ENOTFOUND', 'EAI_AGAIN', 'EPIPE', 'EHOSTUNREACH'];
+  static MAX_RETRIES = 3;
+  static BASE_DELAY_MS = 1000;
+
+  /**
+   * Make HTTP request with OAuth 1.0a (with automatic retry for transient errors)
    */
   async request(method, path, options = {}) {
     const { body, queryParams = {}, useBearerToken = false } = options;
@@ -114,30 +121,56 @@ class XAPIClient {
     }
 
     const urlObj = new URL(url);
-    const headers = {
-      'User-Agent': 'OpenClaw-XAPI/1.0'
-    };
 
-    if (useBearerToken && this.bearerToken) {
-      // Use Bearer Token for App-Only auth (search)
-      headers['Authorization'] = `Bearer ${this.bearerToken}`;
-    } else {
-      // Use OAuth 1.0a for User Context
-      headers['Authorization'] = this.generateOAuthHeader(method, baseUrl, queryParams);
+    let lastError;
+    for (let attempt = 0; attempt <= XAPIClient.MAX_RETRIES; attempt++) {
+      if (attempt > 0) {
+        const delay = XAPIClient.BASE_DELAY_MS * Math.pow(2, attempt - 1);
+        await new Promise(r => setTimeout(r, delay));
+      }
+
+      try {
+        // Re-generate OAuth header on each attempt (nonce + timestamp must be fresh)
+        const headers = { 'User-Agent': 'OpenClaw-XAPI/1.0' };
+        if (useBearerToken && this.bearerToken) {
+          headers['Authorization'] = `Bearer ${this.bearerToken}`;
+        } else {
+          headers['Authorization'] = this.generateOAuthHeader(method, baseUrl, queryParams);
+        }
+        if (body) {
+          headers['Content-Type'] = 'application/json';
+          headers['Content-Length'] = Buffer.byteLength(JSON.stringify(body));
+        }
+
+        const result = await this._doRequest(method, urlObj, headers, body);
+        return result;
+      } catch (err) {
+        lastError = err;
+        const code = err && (err.code || (err.cause && err.cause.code));
+        const isRetryable = code && XAPIClient.RETRYABLE_ERRORS.includes(code);
+        const isServerError = err && err.statusCode && err.statusCode >= 500;
+
+        if ((isRetryable || isServerError) && attempt < XAPIClient.MAX_RETRIES) {
+          continue; // retry
+        }
+        throw err;
+      }
     }
+    throw lastError;
+  }
 
-    if (body) {
-      headers['Content-Type'] = 'application/json';
-      headers['Content-Length'] = Buffer.byteLength(JSON.stringify(body));
-    }
-
+  /**
+   * Single HTTP request attempt (no retry logic)
+   */
+  _doRequest(method, urlObj, headers, body) {
     return new Promise((resolve, reject) => {
       const requestOptions = {
         method,
         hostname: urlObj.hostname,
         path: urlObj.pathname + urlObj.search,
         headers,
-        agent: this.proxyAgent
+        agent: this.proxyAgent,
+        timeout: 30000
       };
 
       const req = https.request(requestOptions, (res) => {
@@ -169,7 +202,13 @@ class XAPIClient {
         });
       });
 
-      req.on('error', reject);
+      req.on('timeout', () => {
+        req.destroy(new Error('Request timed out'));
+      });
+
+      req.on('error', (err) => {
+        reject(err);
+      });
 
       if (body) {
         req.write(JSON.stringify(body));
