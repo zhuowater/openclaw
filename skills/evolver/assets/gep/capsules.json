@@ -90,18 +90,18 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_gep_innovate_from_opportunity",
+      "gene": "gene_gep_optimize_prompt_and_assets",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 2,
+        "lines": 16
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 10,
+      "success_streak": 8,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -120,7 +120,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:12b6a2ce2908de094bb18bc441264a8019e0990741d21c820747288d8b6de27d"
+      "asset_id": "sha256:ca62506ff95ed7dec333c138d132610678edddd0771fe44b28a03dd8f9b16d7e"
     },
     {
       "type": "Capsule",
@@ -221,7 +221,7 @@
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 11,
+      "success_streak": 12,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -236,11 +236,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:4b40f9c2444667dea58cf8122441f4dc329b2bc79cd20e1083d54301bb5f4973",
+      "reused_asset_id": "sha256:d8e878b65fb4e763468c653e671937e442d4db3ef67a650d18fc5e95bf244e65",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:d3ee93239f4e130d785978f316a4a3db4f63340ca85266a98179133330e9bbd2"
+      "asset_id": "sha256:075698da4a22bfeeca56363bc7218ba925158c6bc6fa67f966433879ce05cdd2"
     }
   ]
 }
