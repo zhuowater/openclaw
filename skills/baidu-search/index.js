@@ -42,12 +42,14 @@ function search(query, opts = {}) {
         encoding: 'utf8',
         stdio: ['pipe', 'pipe', 'pipe'],
         env: { ...process.env },
+        cwd: '/root/openclaw',  // Avoid CWD conflict with local package.json name
       });
       return { ok: true, results: out.trim() };
     } catch (err) {
       lastError = err.stderr?.trim() || err.message || String(err);
-      // Only retry on transient errors (connection, timeout, MCP not found)
-      const transient = /timeout|ECONNREFUSED|ENOTFOUND|Unknown MCP server/i.test(lastError);
+      // Only retry on transient errors (connection, timeout)
+      // "Unknown MCP server" is NOT transient — it means config resolution failed
+      const transient = /timeout|ECONNREFUSED|ENOTFOUND/i.test(lastError);
       if (!transient || attempt >= retries) break;
       // Brief back-off
       const delay = (attempt + 1) * 1000;
@@ -74,6 +76,7 @@ function main() {
   for (let i = 1; i < args.length; i++) {
     if (args[i] === '--model' && args[i + 1]) { opts.model = args[++i]; }
     else if (args[i] === '--instruction' && args[i + 1]) { opts.instruction = args[++i]; }
+    else if (args[i] === '--limit' && args[i + 1]) { /* ignored — baidu API has no limit param */ i++; }
   }
 
   const result = search(query, opts);
