@@ -1,0 +1,6 @@
+{
+  "name": "session-analyzer",
+  "version": "1.0.0",
+  "description": "Analyze OpenClaw session logs for usage patterns, tool frequency, errors, and cost estimates",
+  "main": "index.js"
+}
