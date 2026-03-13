@@ -234,8 +234,32 @@ class XAPIClient {
 
     const fileBuffer = fs.readFileSync(filePath);
     const fileName = path.basename(filePath);
+
+    // Retry loop for transient errors (ECONNRESET, ETIMEDOUT, etc.)
+    for (let attempt = 0; attempt <= XAPIClient.MAX_RETRIES; attempt++) {
+      if (attempt > 0) {
+        const delay = XAPIClient.BASE_DELAY_MS * Math.pow(2, attempt - 1);
+        await new Promise(r => setTimeout(r, delay));
+      }
+      try {
+        return await this._uploadMediaAttempt(fileBuffer, fileName);
+      } catch (error) {
+        const code = error?.code || error?.cause?.code || '';
+        const isRetryable = XAPIClient.RETRYABLE_ERRORS.includes(code);
+        const isServerError = typeof error?.statusCode === 'number' && error.statusCode >= 500;
+        if ((isRetryable || isServerError) && attempt < XAPIClient.MAX_RETRIES) {
+          continue;
+        }
+        throw error;
+      }
+    }
+  }
+
+  /**
+   * Single media upload attempt (no retry)
+   */
+  async _uploadMediaAttempt(fileBuffer, fileName) {
     const boundary = `----OpenClawBoundary${Date.now()}`;
-    
     const url = 'https://upload.twitter.com/1.1/media/upload.json';
     const urlObj = new URL(url);
     
@@ -245,7 +269,6 @@ class XAPIClient {
       'User-Agent': 'OpenClaw-XAPI/1.0'
     };
 
-    // Build multipart body
     const parts = [];
     parts.push(`--${boundary}\r\n`);
     parts.push(`Content-Disposition: form-data; name="media"; filename="${fileName}"\r\n`);
@@ -295,7 +318,7 @@ class XAPIClient {
         });
       });
 
-      req.on('error', reject);
+      req.on('error', (err) => reject(err));
       req.write(body);
       req.end();
     });

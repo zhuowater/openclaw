@@ -65,8 +65,8 @@
   },
   "last_solidify": {
     "run_id": "run_1773295207060",
-    "at": "2026-03-12T06:05:54.926Z",
-    "event_id": "evt_1773295554926",
+    "at": "2026-03-13T18:03:13.990Z",
+    "event_id": "evt_1773424993990",
     "capsule_id": "capsule_1771747065506",
     "outcome": {
       "status": "success",

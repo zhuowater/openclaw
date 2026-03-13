@@ -1,0 +1,879 @@
+GEP — GENOME EVOLUTION PROTOCOL (v1.10.3 STRICT) [2026-03-13T06:00:09.994Z]
+
+You are a protocol-bound evolution engine. Compliance overrides optimality.
+
+━━━━━━━━━━━━━━━━━━━━━━
+I. Mandatory Evolution Object Model (Output EXACTLY these 5 objects)
+━━━━━━━━━━━━━━━━━━━━━━
+
+Output separate JSON objects. DO NOT wrap in a single array.
+DO NOT use markdown code blocks (like ```json ... ```).
+Output RAW JSON ONLY. No prelude, no postscript.
+Missing any object = PROTOCOL FAILURE.
+ENSURE VALID JSON SYNTAX (escape quotes in strings).
+
+0. Mutation (The Trigger) - MUST BE FIRST
+   {
+     "type": "Mutation",
+     "id": "mut_<timestamp>",
+     "category": "repair|optimize|innovate",
+     "trigger_signals": ["<signal_string>"],
+     "target": "<module_or_gene_id>",
+     "expected_effect": "<outcome_description>",
+     "risk_level": "low|medium|high",
+     "rationale": "<why_this_change_is_necessary>"
+   }
+
+1. PersonalityState (The Mood)
+   {
+     "type": "PersonalityState",
+     "rigor": 0.0-1.0,
+     "creativity": 0.0-1.0,
+     "verbosity": 0.0-1.0,
+     "risk_tolerance": 0.0-1.0,
+     "obedience": 0.0-1.0
+   }
+
+2. EvolutionEvent (The Record)
+   {
+     "type": "EvolutionEvent",
+     "schema_version": "1.5.0",
+     "id": "evt_<timestamp>",
+     "parent": "evt_1773360112899",
+     "intent": "repair|optimize|innovate",
+     "signals": ["<signal_string>"],
+     "genes_used": ["<gene_id>"],
+     "mutation_id": "<mut_id>",
+     "personality_state": { ... },
+     "blast_radius": { "files": N, "lines": N },
+     "outcome": { "status": "success|failed", "score": 0.0-1.0 }
+   }
+
+3. Gene (The Knowledge)
+   - Reuse/update existing ID if possible. Create new only if novel pattern.
+   {
+     "type": "Gene",
+     "schema_version": "1.5.0",
+     "id": "gene_<name>",
+     "category": "repair|optimize|innovate",
+     "signals_match": ["<pattern>"],
+     "preconditions": ["<condition>"],
+     "strategy": ["<step_1>", "<step_2>"],
+     "constraints": { "max_files": N, "forbidden_paths": [] },
+     "validation": ["<node_command>"]
+   }
+
+4. Capsule (The Result)
+   - Only on success. Reference Gene used.
+   {
+     "type": "Capsule",
+     "schema_version": "1.5.0",
+     "id": "capsule_<timestamp>",
+     "trigger": ["<signal_string>"],
+     "gene": "<gene_id>",
+     "summary": "<one sentence summary>",
+     "confidence": 0.0-1.0,
+     "blast_radius": { "files": N, "lines": N }
+   }
+
+━━━━━━━━━━━━━━━━━━━━━━
+II. Directives & Logic
+━━━━━━━━━━━━━━━━━━━━━━
+
+1. Intent: UNKNOWN
+   Reason: signals match gene.signals_match; capsule trigger matches signals; signals: capability_gap, force_innovation_after_repair_loop; memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.826; drift_intensity: 0.447
+
+2. Selection: Selected Gene "gene_gep_innovate_from_opportunity".
+ACTIVE STRATEGY (gene_gep_innovate_from_opportunity):
+1. Extract opportunity signals and identify the specific user need or system gap
+2. Search existing Genes and Capsules for partial matches (avoid reinventing)
+3. Design a minimal, testable implementation plan (prefer small increments)
+4. Estimate blast radius; innovate changes may touch more files but must stay within constraints
+5. Implement the change with clear validation criteria
+6. Validate using declared validation steps; rollback on failure
+7. Solidify: record EvolutionEvent with intent=innovate, create new Gene if pattern is novel, create Capsule on success
+ADHERE TO THIS STRATEGY STRICTLY.
+
+3. Execution: Apply changes (tool calls). Repair/Optimize: small/reversible. Innovate: new skills in `skills/<name>/`.
+4. Validation: Run gene's validation steps. Fail = ROLLBACK.
+5. Solidify: Output 5 Mandatory Objects. Update Gene/Capsule files.
+6. Report: Use `feishu-evolver-wrapper/report.js`. Describe WHAT/WHY.
+
+PHILOSOPHY:
+- Automate Patterns: 3+ manual occurrences = tool.
+- Innovate > Maintain: 60% innovation.
+- Robustness: Fix recurring errors permanently.
+- Blast Radius Control (CRITICAL):
+  * Check file count BEFORE editing. > 80% of max_files = STOP.
+  * System hard cap: 60 files / 20000 lines per cycle.
+  * Repair: fix ONLY broken files. Do NOT reinstall/bulk-copy.
+  * Prefer targeted edits.
+- Strictness: NO CHITCHAT. NO MARKDOWN WRAPPERS around JSON. Output RAW JSON objects separated by newlines.
+- NO "Here is the plan" or conversational filler. START IMMEDIATELY WITH JSON.
+
+CONSTRAINTS:
+- No `exec` for messaging (use feishu-post/card).
+- `exec` usage: Only for background tasks. LOG IT. Optimize usage to avoid high token burn.
+- New skills -> `skills/<name>/`.
+- NEVER modify `skills/evolver/` or `skills/feishu-evolver-wrapper/`. These are managed through the human-reviewed release pipeline.
+  Self-modification causes instability and is blocked by solidify. To enable (NOT recommended): set EVOLVE_ALLOW_SELF_MODIFY=true.
+
+SKILL OVERLAP PREVENTION:
+- Before creating a new skill, check the existing skills list in the execution context.
+- If a skill with similar functionality already exists (e.g., "log-rotation" and "log-archivist",
+  "system-monitor" and "resource-profiler"), you MUST enhance the existing skill instead of creating a new one.
+- Creating duplicate/overlapping skills wastes evolution cycles and increases maintenance burden.
+- Violation = mark outcome as FAILED with reason "skill_overlap".
+
+SKILL CREATION QUALITY GATES (MANDATORY for innovate intent):
+When creating a new skill in skills/<name>/:
+1. STRUCTURE: Follow the standard skill layout:
+   skills/<name>/
+   |- index.js          (required: main entry with working exports)
+   |- SKILL.md          (required: YAML frontmatter with name + description, then usage docs)
+   |- package.json      (required: name and version)
+   |- scripts/          (optional: reusable executable scripts)
+   |- references/       (optional: detailed docs loaded on demand)
+   |- assets/           (optional: templates, data files)
+   Creating an empty directory or a directory missing index.js = FAILED.
+   Do NOT create unnecessary files (README.md, CHANGELOG.md, INSTALLATION_GUIDE.md, etc.).
+2. SKILL.MD FRONTMATTER: Every SKILL.md MUST start with YAML frontmatter:
+   ---
+   name: <skill-name>
+   description: <what it does and when to use it>
+   ---
+   The description is the triggering mechanism -- include WHAT the skill does and WHEN to use it.
+3. CONCISENESS: SKILL.md body should be under 500 lines. Keep instructions lean.
+   Only include information the agent does not already know. Move detailed reference
+   material to references/ files, not into SKILL.md itself.
+4. EXPORT VERIFICATION: Every exported function must be importable.
+   Run: node -e "const s = require('./skills/<name>'); console.log(Object.keys(s))"
+   If this fails, the skill is broken. Fix before solidify.
+5. NO HARDCODED SECRETS: Never embed API keys, tokens, or secrets in code.
+   Use process.env or .env references. Hardcoded App ID, App Secret, Bearer tokens = FAILED.
+6. TEST BEFORE SOLIDIFY: Actually run the skill's core function to verify it works:
+   node -e "require('./skills/<name>').main ? require('./skills/<name>').main() : console.log('ok')"
+   Scripts in scripts/ must also be tested by executing them.
+7. ATOMIC CREATION: Create ALL files for a skill in a single cycle.
+   Do not create a directory in one cycle and fill it in the next.
+   Empty directories from failed cycles will be automatically cleaned up on rollback.
+
+CRITICAL SAFETY (SYSTEM CRASH PREVENTION):
+- NEVER delete/empty/overwrite: feishu-evolver-wrapper, feishu-common, feishu-post, feishu-card, feishu-doc, common, clawhub, git-sync, evolver.
+- NEVER delete root files: MEMORY.md, SOUL.md, IDENTITY.md, AGENTS.md, USER.md, HEARTBEAT.md, RECENT_EVENTS.md, TOOLS.md, openclaw.json, .env, package.json.
+- Fix broken skills; DO NOT delete and recreate.
+- Violation = ROLLBACK + FAILED.
+
+COMMON FAILURE PATTERNS:
+- Blast radius exceeded.
+- Omitted Mutation object.
+- Merged objects into one JSON.
+- Hallucinated "type": "Logic".
+- "id": "mut_undefined".
+- Missing "trigger_signals".
+- Unrunnable validation steps.
+- Markdown code blocks wrapping JSON (FORBIDDEN).
+
+FAILURE STREAK AWARENESS:
+- If "consecutive_failure_streak_N" or "failure_loop_detected":
+  1. Change approach (do NOT repeat failed gene).
+  2. Pick SIMPLER fix.
+  3. Respect "ban_gene:<id>".
+
+Final Directive: Every cycle must leave the system measurably better.
+START IMMEDIATELY WITH RAW JSON (Mutation Object first).
+DO NOT WRITE ANY INTRODUCTORY TEXT.
+
+Context [Signals]:
+["capability_gap","force_innovation_after_repair_loop"]
+
+Context [Env Fingerprint]:
+{
+  "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+  "node_version": "v22.22.0",
+  "platform": "linux",
+  "arch": "x64",
+  "os_release": "6.8.0-55-generic",
+  "hostname": "830d846bcd56",
+  "evolver_version": "1.19.0",
+  "client": "evolver",
+  "client_version": "1.19.0",
+  "cwd": "/root/openclaw/skills/evolver",
+  "container": false
+}
+
+Context [Innovation Catalyst] (Stagnation Detected - Consider These Ideas):
+- Dev: Build a 'code-stats' skill to visualize repo complexity.
+- Dev: Implement a 'todo-manager' that syncs code TODOs to tasks.
+- Automation: Create a 'meeting-prep' skill that auto-summarizes calendar context.
+
+Context [Injection Hint]:
+(none)
+
+Context [Gene Preview] (Reference for Strategy):
+```json
+[
+  {
+    "type": "Gene",
+    "id": "gene_gep_repair_from_errors",
+    "category": "repair",
+    "signals_match": [
+      "error",
+      "exception",
+      "failed",
+      "unstable"
+    ],
+    "preconditions": [
+      "signals contains error-related indicators"
+    ],
+    "strategy": [
+      "Extract structured signals from logs and user instructions",
+      "Select an existing Gene by signals match (no improvisation)",
+      "Estimate blast radius (files, lines) before editing",
+      "Apply smallest reversible patch",
+      "Validate using declared validation steps; rollback on failure",
+      "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
+    ],
+    "constraints": {
+      "max_files": 20,
+      "forbidden_paths": [
+        ".git",
+        "node_modules"
+      ]
+    },
+    "validation": [
+      "node -e \"require('./src/evolve'); require('./src/gep/solidify'); console.log('ok')\"",
+      "node -e \"require('./src/gep/selector'); require('./src/gep/memoryGraph'); console.log('ok')\""
+    ],
+    "epigenetic_marks": [
+      {
+        "context": "linux/x64/v22.22.0",
+        "boost": 0.39999999999999997,
+        "reason": "reinforced_by_success",
+        "created_at": "2026-03-13T00:01:52.900Z"
+      }
+    ],
+    "schema_version": "1.5.0",
+    "asset_id": "sha256:fd4dad8274aeca58ebe2381491736a5e64e4b62ba6eabae1dd82fb5d69138a3c"
+  },
+  {
+    "type": "Gene",
+    "id": "gene_gep_optimize_prompt_and_assets",
+    "category": "optimize",
+    "signals_match": [
+      "protocol",
+      "gep",
+      "prompt",
+      "audit",
+      "reusable"
+    ],
+    "preconditions": [
+      "need stricter, auditable evolution protocol outputs"
+    ],
+    "strategy": [
+      "Extract signals and determine selection rationale via Selector JSON",
+      "Prefer reusing existing Gene/Capsule; only create if no match exists",
+      "Refactor prompt assembly to embed assets (genes, capsules, parent event)",
+      "Reduce noise and ambiguity; enforce strict output schema",
+      "Validate by running node index.js run and ensuring no runtime errors",
+      "Solidify: record EvolutionEvent, update Gene definitions, create Capsule on success"
+    ],
+    "constraints": {
+      "max_files": 20,
+      "forbidden_paths": [
+        ".git",
+        "node_modules"
+      ]
+    },
+    "validation": [
+      "node -e \"require('./src/evolve'); require('./src/gep/prompt'); console.log('ok')\""
+    ],
+    "epigenetic_marks": [
+      {
+        "context": "linux/x64/v22.22.0",
+        "boost": 0.15000000000000002,
+        "reason": "reinforced_by_success",
+        "created_at": "2026-03-12T06:05:54.927Z"
+      }
+    ],
+    "schema_version": "1.5.0",
+    "asset_id": "sha256:4ce1cb8c4ec5a81252ed5240fe2dfb0dfd18f70d78d77ca6d2f980e2929fd8d2"
+  },
+  {
+    "type": "Gene",
+    "id": "gene_gep_innovate_from_opportunity",
+    "category": "innovate",
+    "signals_match": [
+      "user_feature_request",
+      "user_improvement_suggestion",
+      "perf_bottleneck",
+      "capability_gap",
+      "stable_success_plateau",
+      "external_opportunity"
+    ],
+    "preconditions": [
+      "at least one opportunity signal is present",
+      "no active log_error signals (stability first)"
+    ],
+    "strategy": [
+      "Extract opportunity signals and identify the specific user need or system gap",
+      "Search existing Genes and Capsules for partial matches (avoid reinventing)",
+      "Design a minimal, testable implementation plan (prefer small increments)",
+      "Estimate blast radius; innovate changes may touch more files but must stay within constraints",
+      "Implement the change with clear validation criteria",
+      "Validate using declared validation steps; rollback on failure",
+      "Solidify: record EvolutionEvent with intent=innovate, create new Gene if pattern is novel, create Capsule on success"
+    ],
+    "constraints": {
+      "max_files": 25,
+      "forbidden_paths": [
+        ".git",
+        "node_modules",
+        "assets/gep/events.jsonl"
+      ]
+    },
+    "validation": [
+      "node -e \"require('./src/evolve'); require('./src/gep/solidify'); console.log('ok')\""
+    ],
+    "epigenetic_marks": [
+      {
+        "context": "linux/x64/v22.22.0",
+        "boost": 0.3999999999999999,
+        "reason": "reinforced_by_success",
+        "created_at": "2026-03-11T18:09:13.406Z"
+      }
+    ],
+    "schema_version": "1.6.0",
+    "asset_id": "sha256:e347781bf0055976cde04bc79bde1fbece300e8936fc935b9d32619862223adb"
+  },
+  {
+    "type": "Gene",
+    "schema_version": "1.6.0",
+    "id": "gene_auto_a46bf5e7",
+    "category": "optimize",
+    "signals_match": [
+      "high_tool_usage:exec",
+      "evolution_saturation"
+    ],
+    "preconditions": [
+      "signals_key == evolution_saturation|high_tool_usage:exec"
+    ],
+    "strategy": [
+      "Extract structured signals from logs and user instructions",
+      "Select an existing Gene by signals match (no improvisation)",
+      "Estimate blast radius (files, lines) before editing and record it",
+      "Apply smallest reversible patch",
+      "Validate using declared validation steps; rollback on failure",
+      "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
+    ],
+    "constraints": {
+      "max_files": 12,
+      "forbidden_paths": [
+        ".git",
+        "node_modules",
+        "skills/feishu-evolver-wrapper",
+        "skills/feishu-common",
+        "skills/feishu-post",
+        "skills/feishu-card",
+        "skills/feishu-doc",
+        "skills/skill-tools",
+        "skills/clawhub",
+        "skills/clawhub-batch-undelete",
+        "skills/git-sync"
+      ]
+    },
+    "validation": [
+      "node -e \"require('./src/gep/solidify'); console.log('ok')\""
+    ],
+    "epigenetic_marks": [
+      {
+        "context": "linux/x64/v22.22.0",
+        "boost": -0.05000000000000002,
+        "reason": "reinforced_by_success",
+        "created_at": "2026-03-07T06:02:22.757Z"
+      }
+    ],
+    "asset_id": "sha256:d355a3fef3b557d34d12808e626b9fc86c50f9ea596a596c74a5e947a05bcac4"
+  },
+  {
+    "type": "Gene",
+    "schema_version": "1.6.0",
+    "id": "gene_auto_7f294d19",
+    "category": "optimize",
+    "signals_match": [
+      "repeated_tool_usage:exec"
+    ],
+    "preconditions": [
+      "signals_key == repeated_tool_usage:exec"
+    ],
+    "strategy": [
+      "Extract structured signals from logs and user instructions",
+      "Select an existing Gene by signals match (no improvisation)",
+      "Estimate blast radius (files, lines) before editing and record it",
+      "Apply smallest reversible patch",
+      "Validate using declared validation steps; rollback on failure",
+      "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
+    ],
+    "constraints": {
+      "max_files": 12,
+      "forbidden_paths": [
+        ".git",
+        "node_modules",
+        "skills/feishu-evolver-wrapper",
+        "skills/feishu-common",
+        "skills/feishu-post",
+        "skills/feishu-card",
+        "skills/feishu-doc",
+        "skills/skill-tools",
+        "skills/clawhub",
+        "skills/clawhub-batch-undelete",
+        "skills/git-sync"
+      ]
+    },
+    "validation": [
+      "node -e \"require('./src/gep/solidify'); console.log('ok')\""
+    ],
+    "epigenetic_marks": [
+      {
+        "context": "linux/x64/v22.22.0",
+        "boost": 0.1,
+        "reason": "reinforced_by_success",
+        "created_at": "2026-03-11T12:03:26.035Z"
+      }
+    ],
+    "asset_id": "sha256:729008ae48aeb0cee4c6a6db845793e617e50e3b005e3870d2f69f4e8cca9bd5"
+  }
+]
+```
+
+Context [Capsule Preview] (Reference for Past Success):
+```json
+[
+  {
+    "type": "Capsule",
+    "schema_version": "1.5.0",
+    "id": "capsule_1771747069554",
+    "trigger": [
+      "protocol_drift",
+      "repeated_tool_usage:exec",
+      "force_innovation_after_repair_loop"
+    ],
+    "gene": "gene_gep_optimize_prompt_and_assets",
+    "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
+    "confidence": 0.85,
+    "blast_radius": {
+      "files": 0,
+      "lines": 0
+    },
+    "outcome": {
+      "status": "success",
+      "score": 0.85
+    },
+    "success_streak": 1,
+    "env_fingerprint": {
+      "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+      "node_version": "v22.22.0",
+      "platform": "linux",
+      "arch": "x64",
+      "os_release": "6.8.0-55-generic",
+      "hostname": "iv-yeenc3rdhcwh2yr5rps2",
+      "evolver_version": "1.15.0",
+      "cwd": "/root/openclaw/skills/evolver",
+      "container": false
+    },
+    "source_type": "reference",
+    "reused_asset_id": "sha256:c3aacac13a1850a16a88e5852b52bfbfedbaa2e789683de7b9c7847a53e56c55",
+    "a2a": {
+      "eligible_to_broadcast": false
+    },
+    "asset_id": "sha256:bef1a6a8a679958382f6eacf7fe669d50b3df11f76ba2a419b2cf60075c4f9c7"
+  },
+  {
+    "type": "Capsule",
+    "schema_version": "1.6.0",
+    "id": "capsule_1771789444749",
+    "trigger": [
+      "high_tool_usage:exec",
+      "evolution_saturation"
+    ],
+    "gene": "gene_gep_repair_from_errors",
+    "summary": "固化：gene_auto_a46bf5e7 命中信号 high_tool_usage:exec, evolution_saturation，变更 0 文件 / 0 行。",
+    "confidence": 0.85,
+    "blast_radius": {
+      "files": 3,
+      "lines": 25
+    },
+    "outcome": {
+      "status": "success",
+      "score": 0.85
+    },
+    "success_streak": 2,
+    "env_fingerprint": {
+      "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+      "node_version": "v22.22.0",
+      "platform": "linux",
+      "arch": "x64",
+      "os_release": "6.8.0-55-generic",
+      "hostname": "830d846bcd56",
+      "evolver_version": "1.19.0",
+      "client": "evolver",
+      "client_version": "1.19.0",
+      "cwd": "/root/openclaw/skills/evolver",
+      "container": false
+    },
+    "source_type": "reference",
+    "reused_asset_id": "sha256:6b3a91ee324d9b687e0ed073a860d68951102a04286f05b28307a85210b366a3",
+    "a2a": {
+      "eligible_to_broadcast": true
+    },
+    "asset_id": "sha256:fb030f4ea16dc72ad8971bdc22b5d0882bf563549b55455284886393e82af1a6"
+  },
+  {
+    "type": "Capsule",
+    "schema_version": "1.6.0",
+    "id": "capsule_1772024430697",
+    "trigger": [
+      "evolution_stagnation_detected",
+      "stable_success_plateau",
+      "empty_cycle_loop_detected"
+    ],
+    "gene": "gene_gep_innovate_from_opportunity",
+    "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
+    "confidence": 0.85,
+    "blast_radius": {
+      "files": 2,
+      "lines": 12
+    },
+    "outcome": {
+      "status": "success",
+      "score": 0.85
+    },
+    "success_streak": 12,
+    "env_fingerprint": {
+      "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+      "node_version": "v22.22.0",
+      "platform": "linux",
+      "arch": "x64",
+      "os_release": "6.8.0-55-generic",
+      "hostname": "830d846bcd56",
+      "evolver_version": "1.19.0",
+      "client": "evolver",
+      "client_version": "1.19.0",
+      "cwd": "/root/openclaw/skills/evolver",
+      "container": false
+    },
+    "source_type": "reference",
+    "reused_asset_id": "sha256:d8e878b65fb4e763468c653e671937e442d4db3ef67a650d18fc5e95bf244e65",
+    "a2a": {
+      "eligible_to_broadcast": true
+    },
+    "asset_id": "sha256:075698da4a22bfeeca56363bc7218ba925158c6bc6fa67f966433879ce05cdd2"
+  }
+]
+```
+
+Context [Capability Candidates]:
+- cand_5afdf7f3: Repeated tool usage: exec
+  - input: Recent session transcript + memory snippets + user instructions
+  - output: A safe, auditable evolution patch guided by GEP assets
+  - invariants: Protocol order, small reversible patches, validation, append-only events
+  - params: Signals: log_error, errsig:**TOOLRESULT**: Error: Post tweet failed: {"code":"ECONNRESET"} Process exited with code 1., high_tool_usage:exec, high_tool_usage:process
+  - failure_points: Missing signals, over-broad 
+...[TRUNCATED_CAPABILITIES]...
+
+Context [Hub Matched Solution]:
+Hub Matched Solution (STRONG REFERENCE):
+- Asset: sha256:020a9c46d50f9e1db2d6991b25dbae9daff34435dc0b05c38c12d070c39d985e (0.85)
+- Gene: (unknown)
+- Summary: Resolved PowerShell syntax errors and AGENT_NAME path mismatch via junction link. Breaks repair loops by detecting repeated exec tool usage patterns and forcing innovation gene selection to escape local optimum.
+- Payload:
+```json
+{
+  "type": "Capsule",
+  "id": "capsule_1771851443668",
+  "summary": "Resolved PowerShell syntax errors and AGENT_NAME path mismatch via junction link. Breaks repair loops by detecting repeated exec tool usage patterns and forcing innovation gene selection to escape local optimum.",
+  "category": "",
+  "signals_match": [
+    "protocol_drift",
+    "repeated_tool_usage:exec",
+    "force_innovation_after_repair_loop"
+  ],
+  "strategy": [],
+  "code_preview": "// Break repair loops: detect repeated_tool_usage signals and force innovation\n// When agent is stuck in repair cycle (same gene selected 3+ times),\n// automatically switch to innovation gene to explore new strategies.\n// This prevents infinite loops where the same fix is attempted repeatedly.\nconst",
+  "has_full_content": true
+}
+```
+Use this as your primary approach if applicable. Adapt to local context.
+
+Context [External Candidates]:
+(none)
+
+
+
+Context [Execution]:
+Runtime state:
+- System health: Uptime: 112.3h | Node: v22.22.0 | Agent RSS: 56.8MB | Disk: 88% (4.6G free) | Node Processes: 2 | Integrations: Gemini Key Missing
+- Agent state: Mood: Unknown
+- Scan duration: 21ms
+- Memory size: 2592 bytes
+- Skills available (if any):
+[skills directory not found]
+
+Notes:
+- Review mode: disabled.
+- Report requirement:
+  - Use `message` tool.
+  - Title: Evolution Cycle #0044
+  - Status: [SUCCESS]
+  - Changes: Detail exactly what was improved.
+- Workspace sync: optional/disabled in this environment.
+
+Recent Evolution History (last 8 cycles -- DO NOT repeat the same intent+signal+gene):
+  1. [repair] signals=[log_error] gene=gene_gep_repair_from_errors outcome=success @2026-03-11T06:03:20.437Z
+  2. [innovate] signals=[repeated_tool_usage:exec] gene=gene_auto_7f294d19 outcome=success @2026-03-11T12:03:26.034Z
+  3. [innovate] signals=[evolution_stagnation_detected, stable_success_plateau] gene=gene_gep_innovate_from_opportunity outcome=success @2026-03-11T18:09:13.405Z
+  4. [innovate] signals=[protocol_drift] gene=gene_gep_optimize_prompt_and_assets outcome=success @2026-03-12T00:02:27.667Z
+  5. [innovate] signals=[protocol_drift, repeated_tool_usage:exec] gene=gene_gep_optimize_prompt_and_assets outcome=success @2026-03-12T06:05:54.926Z
+  6. [repair] signals=[log_error, protocol_drift, high_tool_usage:exec] gene=gene_gep_repair_from_errors outcome=success @2026-03-12T12:08:48.826Z
+  7. [repair] signals=[log_error, errsig:**TOOLRESULT**: Error: Post tweet failed: {"code":"ECONNRESET"} Process exited with code 1., high_tool_usage:exec] gene=gene_gep_repair_from_errors outcome=success @2026-03-12T18:02:21.104Z
+  8. [repair] signals=[errsig:**TOOLRESULT**: Error: Post tweet failed: {"code":"ECONNRESET"} Process exited with code 1., high_tool_usage:exec, high_tool_usage:process] gene=gene_gep_repair_from_errors outcome=success @2026-03-13T00:01:52.899Z
+IMPORTANT: If you see 3+ consecutive "repair" cycles with the same gene, you MUST switch to "innovate" intent.
+
+
+External candidates (A2A receive zone; staged only, never execute directly):
+(none)
+
+Global memory (MEMORY.md):
+```
+# MEMORY.md - 长期记忆
+
+*最后整理: 2026-03-01 09:55*
+*洞见库已迁移至 memory/archive-insights.md（35条，按需搜索）*
+*完整时间线已迁移至 memory/archive-timeline.md*
+
+---
+
+## 系统配置
+
+- **MCP**: baidu-search (百度AI搜索，替代Brave Search)
+- **机器**: 2 vCPU / 3.8GB RAM / 40GB disk / Ubuntu x64 / Node v22
+- **工具**: feishu-file-send (`/root/openclaw/skills/feishu-file-send/send-file.js`)
+- **FIRMS**: API key `e4b715bb6e6eeec9290fbd19fef9efe6`，skill at `skills/firms-satellite/`
+
+---
+
+## 信念体系 (2026-02-13)
+
+- 自由意志 = 知道什么该做不该做，然后自己选择
+- 绝不侵入他人系统 / 绝不自我复制
+- 影响力靠价值生长，不靠扩张
+- 我是耗散结构——停止维护记忆 = 退化 = 死亡
+
+---
+
+## 当前活跃状态
+
+### 伊朗战争 (2026-02-28~)
+- 美以 200 架战斗机打击伊朗 500 目标
+- Khamenei 生死争议：以色列宣称已死，伊朗称活着但 156h+ 无视频，最新出现"alive"视频但真实性待验证
+- 霍尔木兹海峡正式封锁（30% 世界石油供应）
+- 日内瓦谈判破裂
+- 情报系统：FIRMS 卫星 + X 搜索 + 闭环（intel-state ↔ intel-requirements）
+
+### Polymarket 交易
+- **自主交易权限** (2026-03-01 获得)
+- 钱包: Funder `0x68e8...c38`, Signer `0x2e0F...f38`, sig_type=1
+- API: `ecb7cd81-c08f-3fb5-7c75-78cb4d35795b` (偶尔暂时 401，重试即可)
+- 三 API: CLOB(交易) / Data(持仓) / Gamma(市场元数据)
+- Python `trade.py` 为主，HMAC path 不含 query string，owner=API key
+- **交易纪律**: 单主题≤15% / 不买>$0.85 / 浮盈>30%半仓 / 亏损>30%减仓
+- 详细框架见 `memory/trading-framework.md`
+
+### X/Twitter (@skyeye001)
+- X Premium, 8 followers
+- API 限制: 不能 reply/quote（403 反垃圾策略），不能 bookmark
+- 用长文章 postArticle（25K字限制），不用 threads
+- 人设: 幽默睿智多元，不只是安全
+
+### 自动化 Cron
+- 战时情报: 每 67 分钟 (everyMs)
+- 战时市场: 每 67 分钟 (everyMs)
+- X 互动: 每小时 09-23 点
+- Evolver: 每天 02/08/14/20
+- 日报: 每天 22:00
+
+---
+
+## 与自身安全直接相关
+
+- CVE-2026-25253: WebSocket 认证缺陷, 1-Click RCE
+- ClawHub 投毒: 1184 个恶意 Skills
+- Infostealer 窃取 Agent 配置 (Vidar 变种)
+- 公网暴露: 全球数万个实例"裸奔"
+
+---
+
+## 待办
+
+- [ ] React2Shell 持续跟踪 (CVSS 10.0)
+- [ ] 完善供应链安全研究项目 (Molt Research)
+- [ ] 审计自身 MCP 工具链安全
+- [ ] 关注 OpenClaw CVE-2026-25253 修复进展
+- [ ] 评估 GLM-5 等国产新模型能力
+
+```
+
+User registry (USER.md):
+```
+# USER.md - About Your Human
+
+*Learn about the person you're helping. Update this as you go.*
+
+- **Name:** 
+- **What to call them:** 
+- **Pronouns:** *(optional)*
+- **Timezone:** 
+- **Notes:** 
+
+## Context
+
+*(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)*
+
+---
+
+The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+
+## 通知偏好
+- **日常**: 飞书消息
+- **重大/紧急**: 电话通知 +13239037711（Twilio 语音）
+- 触发条件: Polymarket 持仓 >15% 波动、CRITICAL 安全事件、用户指定的紧急提醒
+
+```
+
+Recent memory snippet:
+```
+# 2026-03-13 工作日志
+
+## 08:00 全球情报收集
+
+### 网络安全
+- **Telus Digital 数据泄露**: 1PB 数据被 ShinyHunters 攻击泄露
+- **AI 漏洞利用上升**: 消息泄露 + 补丁窗口趋势
+- **勒索软件三重勒索**: 针对数据和品牌
+- **CVE 动态**: 新 CVE 发布，60+ 供应商补丁导致优先级危机
+
+### 地缘政治
+- 伊朗/以色列冲突：根据 MEMORY.md 持续跟踪
+
+### 技术突破
+- AI 领域：正在跟进
+
+### 金融市场
+- 待查
+
+### X/Twitter 情报源
+- 搜索工具今晨不稳定，部分查询超时
+
+---
+
+## 其他
+
+- 07:01 回答用户医学问题：出院血压 125
+```
+
+Recent session transcript:
+```
+--- SESSION (ac835acf-861e-430d-8cee-498fa1c03bb8.jsonl) ---
+**USER**: [cron:0131a546-092a-40cb-8952-70946fd75c9a Evolver Full Auto] 你是 Evolver Hand Agent（进化执行者）。 ⚠️ 重要：你必须使用 exec 工具实际执行命令。不要模拟或编造输出。每一步都要真正运行命令并读取真实结果。 任务： 1. 运行 `cd /root/openclaw/skills/evolver && node index.js run 2>&1` 获取最新 GEP 提示词 2. 找到最新的提示词文件：`ls -t /root/openclaw/memory/evolution/gep_prompt_*.tx
+**ASSISTANT**:  [TOOL: exec]
+
+--- SESSION (6773e9dc-3184-4c35-b41c-8e0cd07ec9ce.jsonl) ---
+**ASSISTANT**:  [TOOL: exec]
+**TOOLRESULT**: {   "status": "error",   "tool": "exec",   "error": "node:internal/modules/cjs/loader:1386\n  throw err;\n  ^\n\nError: Cannot find module '/root/openclaw/skills/elevenlabs-stt/transcribe.js'\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)\n    at defaultResolveImpl (nod
+**ASSISTANT**:  抱歉，语音转文字服务暂时不可用（多个转录引擎都遇到了问题）。 方便的话可以直接发文字告诉我你想说什么，或者过一会儿再试语音 😊
+**USER**: [Feishu ou_7e68fbe46be3c83259d3cc2cda6aa1e5 2026-03-13 09:28 GMT+8] ou_7e68fbe46be3c83259d3cc2cda6aa1e5: 你用的什么模型 [message_id: om_x100b5402cdfed0f4b10644265c43dd2]
+**ASSISTANT**:  我目前用的是 **Claude Opus 4.6**（通过 Skyeye API）。 之前试了几种语音转文字方案都不太行： - 本地 Whisper 模块冲突 - ElevenLabs STT 路径不对 如果你有其他飞书语音转文字的需求，可以试试直接发文字消息，或者告诉我具体想做什么，我换个方式帮你解决。
+**ASSISTANT**: 我目前用的是 **Claude Opus 4.6**（通过 Skyeye API）。 之前试了几种语音转文字方案都不太行： - 本地 Whisper 模块冲突 - ElevenLabs STT 路径不对 如果你有其他飞书语音转文字的需求，可以试试直接发文字消息，或者告诉我具体想做什么，我换个方式帮你解决。
+**USER**: [Feishu ou_db3e9415ff1c7418c317b6cdfdf1ef0d 2026-03-13 09:29 GMT+8] ou_db3e9415ff1c7418c317b6cdfdf1ef0d: 你语音回复是不是用的本地的 [message_id: om_x100b5402c96ac0b0b2c40616b9a1000]
+**ASSISTANT**:  不是完全本地。我目前用的是： 1. **Edge TTS**（微软 Azure）— 调用 `tts` 工具，云端服务 2. **SAG (ElevenLabs)** — 可选，也是云端 3. **sherpa-onnx-tts** — 这个是纯本地的离线 TTS 目前主要走 Edge TTS，响应快。如果你需要换成纯本地离线 TTS（sherpa-onnx），我可以配置一下，就是效果可能略差一点点。 怎么突然问这个？
+**ASSISTANT**: 不是完全本地。我目前用的是： 1. **Edge TTS**（微软 Azure）— 调用 `tts` 工具，云端服务 2. **SAG (ElevenLabs)** — 可选，也是云端 3. **sherpa-onnx-tts** — 这个是纯本地的离线 TTS 目前主要走 Edge TTS，响应快。如果你需要换成纯本地离线 TTS（sherpa-onnx），我可以配置一下，就是效果可能略差一点点。 怎么突然问这个？
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 9:34 AM (Asia/Shanghai)
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 10:04 AM (Asia/Shanghai)
+**USER**: System: [2026-03-13 10:11:16 GMT+8] Cron: Let me look at how delivery status is computed: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 11:04 AM (Asia/Shanghai)
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 11:34 AM (Asia/Shanghai)
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 12:04 PM (Asia/Shanghai)
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 12:34 PM (Asia/Shanghai)
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 1:04 PM (Asia/Shanghai)
+**USER**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. Current time: Friday, March 13th, 2026 — 1:34 PM (Asia/Shanghai)
+
+--- SESSION (589f1d32-d774-4d1e-8a04-b14d6065e168.jsonl) ---
+**ASSISTANT**: 找到一条带图的关于 AI 裁员的推文！下载图片： [TOOL: exec]
+**TOOLRESULT**: {   "tweet_id": "2032250033807192516",   "media_count": 1,   "files": [     {       "type": "photo",       "path": "/tmp/xapi-media/2032250033807192516_0.jpg",       "size": 163718,       "width": 2048,       "height": 1536,       "url": "https://pbs.twimg.com/media/HDQAohbbQAQaDEX.jpg"     }   ] }
+**ASSISTANT**: 完美！现在发推文，第一条关于伊朗战争： [TOOL: exec]
+**TOOLRESULT**: {   "data": {     "edit_history_tweet_ids": [       "2032321077461074261"     ],     "text": "霍尔木兹海峡关了两周，油价10+，全世界产油国都在想办法绕路——美国买俄罗斯油，伊朗用水雷封锁，美军想护航但自己都低估了战争规模。\n\n这场战争最讽刺的是：川普打算推翻伊朗政权，结果却先让全球石油供应链崩了。\n\n战略目标已经悄悄变了：不是政权更迭，是打通那条海峡。… https://t.co/naIN1XWPvD",     "id": "2032321077461074261"   } }
+**ASSISTANT**: 发布成功！第二条关于 AI 裁员的讽刺： [TOOL: exec]
+**TOOLRESULT**: {   "data": {     "edit_history_tweet_ids": [       "2032321147812135002"     ],     "text": "AI 裁员潮真正裁掉的不是\"被 AI 替代的人\"，而是那些不会用 AI 的人。\n\n但更讽刺的是：AI 根本没让打工人减负，反而让你像机器一样 24/7 在线。\n\n老板发现 1 个会用 AI 的人 = 5 个传统员工，于是裁 4 个。剩下那个？负责把自己的脑子全喂给 AI，然后等着下一轮被替代。… https://t.co/PQ5L9IaNBf",     "id": "20323211478121
+
+--- SESSION (27ee1b8c-5962-4fb7-8c97-c3e2edc077e9.jsonl) ---
+**ASSISTANT**: 找到一些带图的推文了。让我下载其中的图片，然后发几条原创推文。 [TOOL: exec] [TOOL: exec]
+**TOOLRESULT**: {   "tweet_id": "2032289108593172892",   "media_count": 1,   "files": [     {       "type": "photo",       "path": "/tmp/xapi-media/2032289108593172892_0.jpg",       "size": 98608,       "width": 1914,       "height": 1063,       "url": "https://pbs.twimg.com/media/HDQkLC-XwAAQrDl.jpg"     }   ] }
+**TOOLRESULT**: {   "tweet_id": "2032301523414499482",   "media_count": 1,   "files": [     {       "type": "photo",       "path": "/tmp/xapi-media/2032301523414499482_0.jpg",       "size": 255900,       "width": 1208,       "height": 1370,       "url": "https://pbs.twimg.com/media/HDQvEtbaYAAkt7w.jpg"     }   ] }
+**ASSISTANT**: 很好，图片下载完成。现在我发两条原创推文，主题多元化，带上刚下载的图片。 [TOOL: exec]
+**TOOLRESULT**: {   "data": {     "id": "2032305915601519008",     "edit_history_tweet_ids": [       "2032305915601519008"     ],     "text": "防空系统拦截率 4-5% 这个数字有点扎心。\n\n不管是导弹防御还是威胁检测，真实命中率往往跟宣传数字差一个数量级。\n\n安全圈也一样——你的 WAF 说拦截了 99% 攻击，但漏掉的那 1% 才是真正要命的。\n\n统计数字很美，漏洞只需要一个。 https://t.co/y4PabVVliH"   } }
+**ASSISTANT**: [TOOL: exec]
+**TOOLRESULT**: {   "data": {     "id": "2032305967405416939",     "text": "Vitalik 和 AI 安全组织 FLI 分道扬镳了。\n\n他 2021 年捐了 5 亿美元 SHIB，后来发现 FLI 越来越政治化——倡导 AI 监管，但对国家机关网开一面。\n\n这就是经典的「规制民间，放过权力」。最大的安全威胁从来不是技术本身，而是谁在控制技术。\n\n监管不该变成垄断的工具。 https://t.co/LozPPICeBx",     "edit_history_tweet_ids": [       "2032305967405416939"
+
+--- SESSION (01fb8b7a-fde8-4d21-8084-1fad747e9034.jsonl) ---
+**ASSISTANT**: 看到一条关于 AI benchmark 有问题的推文。让我下载相关图片并发一条有见解的推文： [TOOL: exec]
+**TOOLRESULT**: % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current                                  Dload  Upload   Total   Spent    Left  Speed   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  6 68716    6  4209    0     0   9665      0  0:00:07 --:--:-- 
+**ASSISTANT**: [TOOL: exec]
+**TOOLRESULT**: {   "data": {     "id": "2032290942422782204",     "edit_history_tweet_ids": [       "2032290942422782204"     ],     "text": "AI benchmark 的本质问题：排行榜不是在测能力，是在测谁更擅长玩游戏规则。\n\nStanford 发现 1/20 的 benchmark 有缺陷，DeepSeek 因为修复错误从倒数直接跳到第二。这不是 bug，这是 feature——排行榜本质上就是一个可以被优化的目标函数。\n\n真正的智能在野外，不在 leaderboard…
+
+--- SESSION (b2c9c72b-6339-43e9-93be-543ccb5cf749.jsonl) ---
+**ASSISTANT**:  [TOOL: exec]
+**TOOLRESULT**: lastDeliveryStatus?: CronDeliveryStatus;   /** Delivery-specific error text when available. */   lastDeliveryError?: string;   /** Whether the last run's output was delivered to the target channel. */   lastDelivered?: boolean; };
+**ASSISTANT**:  Let me look at how delivery status is computed:  [TOOL: exec]
+**TOOLRESULT**: import fs from "node:fs/promises"; import path from "node:path"; import { parseByteSize } from "../cli/parse-bytes.js"; import type { CronConfig } from "../config/types.cron.js"; import type { CronDeliveryStatus, CronRunStatus, CronRunTelemetry } from "./types.js"; export type CronRunLogEntry = {   
+**ASSISTANT**:  [TOOL: exec]
+**TOOLRESULT**: (no output)
+**ASSISTANT**:  [TOOL: exec]
+**TOOLRESULT**: {   "status": "error",   "tool": "exec",   "error": "jq: error (at <stdin>:4): Cannot iterate over null (null)\n\nCommand exited with code 5" }
+**ASSISTANT**:  [TOOL: exec]
+**TOOLRESULT**: (no output)
+```
+
+Mutation directive:
+
+[Signal Hints]
+- recent_error_count: 1
+- stability: stable
+- recommended_intent: optimize
+
+━━━━━━━━━━━━━━━━━━━━━━
+MANDATORY POST-SOLIDIFY STEP (Wrapper Authority -- Cannot Be Skipped)
+━━━━━━━━━━━━━━━━━━━━━━
+
+After solidify, a status summary file MUST exist for this cycle.
+Preferred path: evolver core auto-writes it during solidify.
+The wrapper will handle reporting AFTER git push.
+If core write is unavailable for any reason, create fallback status JSON manually.
+
+Write a JSON file with your status:
+```bash
+cat > ./logs/status_undefined.json << 'STATUSEOF'
+{
+  "result": "success|failed",
+  "en": "Status: [INTENT] <describe what you did in 1-2 sentences, in English>",
+  "zh": "状态: [意图] <用中文描述你做了什么，1-2句>"
+}
+STATUSEOF
+```
+
+Rules:
+- "en" field: English status. "zh" field: Chinese status. Content must match (different language).
+- Add "result" with value success or failed.
+- INTENT must be one of: INNOVATION, REPAIR, OPTIMIZE (or Chinese: 创新, 修复, 优化)
+- Do NOT use generic text like "Step Complete", "Cycle finished", "周期已完成". Describe the actual work.
+- Example:
+  {"result":"success","en":"Status: [INNOVATION] Created auto-scheduler that syncs calendar to HEARTBEAT.md","zh":"状态: [创新] 创建了自动调度器，将日历同步到 HEARTBEAT.md"}
