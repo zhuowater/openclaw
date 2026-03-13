@@ -97,9 +97,9 @@ class XAPIClient {
   /**
    * Transient error codes that are safe to retry
    */
-  static RETRYABLE_ERRORS = ['ECONNRESET', 'ETIMEDOUT', 'ECONNREFUSED', 'ENOTFOUND', 'EAI_AGAIN', 'EPIPE', 'EHOSTUNREACH'];
+  static RETRYABLE_ERRORS = ['ECONNRESET', 'ETIMEDOUT', 'ECONNREFUSED', 'ENOTFOUND', 'EAI_AGAIN', 'EPIPE', 'EHOSTUNREACH', 'ESOCKETTIMEDOUT'];
   static MAX_RETRIES = 3;
-  static BASE_DELAY_MS = 1000;
+  static BASE_DELAY_MS = 2000;
 
   /**
    * Make HTTP request with OAuth 1.0a (with automatic retry for transient errors)
@@ -126,7 +126,8 @@ class XAPIClient {
     for (let attempt = 0; attempt <= XAPIClient.MAX_RETRIES; attempt++) {
       if (attempt > 0) {
         const delay = XAPIClient.BASE_DELAY_MS * Math.pow(2, attempt - 1);
-        await new Promise(r => setTimeout(r, delay));
+        const jitter = Math.floor(Math.random() * 500);
+        await new Promise(r => setTimeout(r, delay + jitter));
       }
 
       try {
@@ -170,7 +171,7 @@ class XAPIClient {
         path: urlObj.pathname + urlObj.search,
         headers,
         agent: this.proxyAgent,
-        timeout: 30000
+        timeout: 45000
       };
 
       const req = https.request(requestOptions, (res) => {
@@ -203,7 +204,9 @@ class XAPIClient {
       });
 
       req.on('timeout', () => {
-        req.destroy(new Error('Request timed out'));
+        const err = new Error('Request timed out after 45s');
+        err.code = 'ESOCKETTIMEDOUT';
+        req.destroy(err);
       });
 
       req.on('error', (err) => {
