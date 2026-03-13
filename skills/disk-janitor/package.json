@@ -1,0 +1,6 @@
+{
+  "name": "disk-janitor",
+  "version": "1.0.0",
+  "description": "Automated disk space cleanup for OpenClaw workspaces",
+  "main": "index.js"
+}
