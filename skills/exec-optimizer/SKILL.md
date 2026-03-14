@@ -221,6 +221,54 @@ const evo = await evolutionStats();
 //            successRate, consecutiveSuccesses, summary }
 ```
 
+### HTTP Fetch (replaces exec curl)
+
+```javascript
+const { httpFetch } = require('./skills/exec-optimizer');
+
+// Simple GET (replaces: exec('curl -s https://api.example.com/data'))
+const res = await httpFetch('https://api.example.com/data');
+// Returns: { ok, status, headers, body, elapsed }
+
+// POST with retry (replaces: exec('curl -X POST -H "..." -d "..." URL'))
+const res2 = await httpFetch('https://api.example.com/submit', {
+  method: 'POST',
+  headers: { 'Authorization': 'Bearer token' },
+  body: { key: 'value' },
+  retries: 2,       // auto-retry on 5xx/network errors
+  retryDelayMs: 1000
+});
+```
+
+### Env Exec (simplifies env-var-prefixed commands)
+
+```javascript
+const { envExec } = require('./skills/exec-optimizer');
+
+// Replaces: exec('SKYEYE_API_KEY=xxx node script.js --flag')
+const result = await envExec('node script.js --flag', {
+  SKYEYE_API_KEY: 'xxx',
+  OTHER_VAR: 'yyy'
+});
+// Returns: { ok, stdout, stderr, exitCode }
+```
+
+### Session Exec Analysis
+
+```javascript
+const { sessionExecAnalysis } = require('./skills/exec-optimizer');
+
+// Analyze exec usage patterns to find optimization opportunities
+const analysis = await sessionExecAnalysis(null, 10); // last 10 sessions
+// Returns: { sessionsAnalyzed, totalExecCalls, commandPatterns, optimizableCount, suggestions }
+```
+
+```bash
+# CLI: Analyze exec patterns in recent sessions
+node skills/exec-optimizer/index.js exec-analysis 10
+# Shows: which exec commands could be replaced by exec-optimizer functions
+```
+
 ## When to Use
 
 ✅ **Use exec-optimizer when**:

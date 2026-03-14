@@ -17,13 +17,13 @@
       "confidence": 0.85,
       "blast_radius": {
         "files": 2,
-        "lines": 12
+        "lines": 86
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 11,
+      "success_streak": 10,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -37,12 +37,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:66905e0f251ba7b1e346d5387dd5c001c72f0969df6f6b3b665822ef948fb360",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:c80a00c5bd7e090e6b23b2e96060824dcd76bd2fb5f636420dd818e4b0236ce7"
+      "asset_id": "sha256:3a80468578a80dae71f47a391ec9388169d6708e7b3b7e728e0e382e582483ee"
     },
     {
       "type": "Capsule",
@@ -174,7 +174,7 @@
       "confidence": 0.85,
       "blast_radius": {
         "files": 2,
-        "lines": 97
+        "lines": 248
       },
       "outcome": {
         "status": "success",
@@ -195,11 +195,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:95f62e0b25c29b2d3b313d6321719c05b0d663fd0370f78a71b3250feacf8ac1",
+      "reused_asset_id": "sha256:4cb29aed675ebd49cf4ef70bcbbd1b6001489a59e3b94497168b0d77efaa7521",
       "a2a": {
-        "eligible_to_broadcast": true
+        "eligible_to_broadcast": false
       },
-      "asset_id": "sha256:f5537428799cd2c92b284d79c117b6d696ee374346b677e1e980e9ce14ffcf01"
+      "asset_id": "sha256:345603eac559276a7bbd61d1377a42279811ae19fd70e787174f0efab460bf06"
     },
     {
       "type": "Capsule",

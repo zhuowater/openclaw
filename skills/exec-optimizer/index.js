@@ -1043,6 +1043,232 @@ async function fileStatsBatch(paths) {
 }
 
 /**
+ * HTTP Fetch - Make HTTP requests without spawning curl.
+ * Replaces: exec curl -s URL, curl -X POST -H "..." -d "..." URL
+ * Uses Node.js built-in http/https modules with retry and timeout.
+ * @param {string} url - URL to fetch
+ * @param {Object} [options] - { method, headers, body, timeout, retries, retryDelayMs }
+ * @returns {Promise<{ok:boolean, status:number, headers:Object, body:string, elapsed:number}>}
+ */
+async function httpFetch(url, options = {}) {
+  const {
+    method = 'GET',
+    headers = {},
+    body = null,
+    timeout = 15000,
+    retries = 2,
+    retryDelayMs = 1000
+  } = options;
+  const mod = url.startsWith('https') ? require('https') : require('http');
+
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const start = Date.now();
+    try {
+      const result = await new Promise((resolve, reject) => {
+        const reqOpts = {
+          method,
+          headers: { ...headers },
+          timeout
+        };
+        if (body && !reqOpts.headers['Content-Type']) {
+          reqOpts.headers['Content-Type'] = 'application/json';
+        }
+
+        const req = mod.request(url, reqOpts, (res) => {
+          const chunks = [];
+          res.on('data', (chunk) => chunks.push(chunk));
+          res.on('end', () => {
+            const respBody = Buffer.concat(chunks).toString('utf8');
+            resolve({
+              ok: res.statusCode >= 200 && res.statusCode < 300,
+              status: res.statusCode,
+              headers: res.headers,
+              body: respBody,
+              elapsed: Date.now() - start
+            });
+          });
+        });
+
+        req.on('error', reject);
+        req.on('timeout', () => { req.destroy(); reject(new Error('Request timeout')); });
+
+        if (body) {
+          req.write(typeof body === 'string' ? body : JSON.stringify(body));
+        }
+        req.end();
+      });
+
+      // Don't retry on 4xx client errors
+      if (result.ok || (result.status >= 400 && result.status < 500)) {
+        return result;
+      }
+      // Retry on 5xx
+      if (attempt < retries) {
+        await sleep(retryDelayMs * (attempt + 1));
+        continue;
+      }
+      return result;
+    } catch (err) {
+      if (attempt < retries) {
+        await sleep(retryDelayMs * (attempt + 1));
+        continue;
+      }
+      return {
+        ok: false,
+        status: 0,
+        headers: {},
+        body: '',
+        error: err.message,
+        elapsed: Date.now() - start
+      };
+    }
+  }
+}
+
+/**
+ * Env Exec - Run a command with environment variables set, without shell string escaping.
+ * Replaces: exec('KEY=val KEY2=val2 command args') which requires careful escaping.
+ * @param {string} cmd - Command to run (string, will be shell-interpreted)
+ * @param {Object} [env] - Extra environment variables to merge
+ * @param {Object} [options] - { cwd, timeout }
+ * @returns {Promise<{ok:boolean, stdout:string, stderr:string, exitCode:number}>}
+ */
+async function envExec(cmd, env = {}, options = {}) {
+  const { cwd = '/root/openclaw', timeout = 30000 } = options;
+  try {
+    const { stdout, stderr } = await execFileAsync('sh', ['-c', cmd], {
+      cwd,
+      timeout,
+      maxBuffer: 2 * 1024 * 1024,
+      env: { ...process.env, ...env }
+    });
+    return { ok: true, stdout: stdout.trim(), stderr: stderr.trim(), exitCode: 0 };
+  } catch (err) {
+    return {
+      ok: false,
+      stdout: (err.stdout || '').trim(),
+      stderr: (err.stderr || err.message || '').trim(),
+      exitCode: err.code || 1
+    };
+  }
+}
+
+/**
+ * Session Exec Analysis - Analyze exec usage patterns from session logs.
+ * Helps identify which exec calls could be replaced by exec-optimizer functions.
+ * @param {string} [sessionsDir] - Path to sessions directory
+ * @param {number} [count] - Number of recent sessions to analyze (default: 5)
+ * @returns {Promise<Object>} - { totalExecCalls, commandPatterns, optimizableCount, suggestions }
+ */
+async function sessionExecAnalysis(sessionsDir, count = 5) {
+  const dir = sessionsDir || '/root/.openclaw/agents/main/sessions';
+  const result = {
+    sessionsAnalyzed: 0,
+    totalExecCalls: 0,
+    commandPatterns: {},
+    optimizable: [],
+    suggestions: []
+  };
+
+  const optimizablePatterns = {
+    'curl': 'Use httpFetch() instead of exec curl',
+    'git status': 'Use gitStatus() instead of exec git status',
+    'git log': 'Use gitLog() instead of exec git log',
+    'git diff': 'Use gitDiff() instead of exec git diff',
+    'git add': 'Use gitCommit() for add+commit in one call',
+    'ls -t': 'Use latestFile() instead of exec ls -t',
+    'ls -l': 'Use fileStatsBatch() instead of exec ls -l',
+    'tail ': 'Use logTail() instead of exec tail',
+    'cat ': 'Use readLines() or read tool instead of exec cat',
+    'grep ': 'Use grepFiles() instead of exec grep',
+    'find ': 'Use findFiles() instead of exec find',
+    'df ': 'Use diskUsage() instead of exec df',
+    'du ': 'Use dirSize() instead of exec du',
+    'wc -l': 'Use readLines() and count instead of exec wc -l',
+    'stat ': 'Use fileStatsBatch() instead of exec stat'
+  };
+
+  try {
+    const files = await fs.readdir(dir);
+    const jsonlFiles = files
+      .filter(f => f.endsWith('.jsonl') && !f.includes('.deleted.') && !f.includes('.reset.'));
+
+    // Sort by modification time (newest first) since UUID filenames don't sort chronologically
+    const withMtime = [];
+    for (const file of jsonlFiles) {
+      try {
+        const stat = await fs.stat(path.join(dir, file));
+        withMtime.push({ file, mtime: stat.mtimeMs });
+      } catch { /* skip */ }
+    }
+    withMtime.sort((a, b) => b.mtime - a.mtime);
+    const targetFiles = withMtime.slice(0, count).map(w => w.file);
+
+    for (const file of targetFiles) {
+      const content = await fs.readFile(path.join(dir, file), 'utf8');
+      const lines = content.split('\n').filter(Boolean);
+      let sessionExecs = 0;
+
+      for (const line of lines) {
+        try {
+          const obj = JSON.parse(line);
+          // Look for tool_use with name=exec in message.content array
+          const contentArr = obj?.message?.content || obj?.content;
+          if (contentArr && Array.isArray(contentArr)) {
+            for (const block of contentArr) {
+              if ((block.type === 'tool_use' || block.type === 'toolCall') && block.name === 'exec') {
+                // Handle both 'input' and 'arguments' field names (dict or JSON string)
+                let args = block.input || block.arguments || {};
+                if (typeof args === 'string') { try { args = JSON.parse(args); } catch { args = {}; } }
+                const cmd = args.command;
+                if (!cmd) continue;
+                sessionExecs++;
+                // Categorize by first significant command word
+                const cleaned = cmd.replace(/^cd\s+[^\s]+\s*&&\s*/, '').replace(/^\w+=\S+\s+/, '');
+                const firstWord = cleaned.split(/[\s|;]/)[0];
+                result.commandPatterns[firstWord] = (result.commandPatterns[firstWord] || 0) + 1;
+
+                // Check if optimizable
+                for (const [pattern, suggestion] of Object.entries(optimizablePatterns)) {
+                  if (cmd.includes(pattern)) {
+                    result.optimizable.push({ cmd: cmd.slice(0, 120), suggestion });
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        } catch { /* skip unparseable */ }
+      }
+
+      result.totalExecCalls += sessionExecs;
+      result.sessionsAnalyzed++;
+    }
+
+    // Generate top suggestions
+    const patternCounts = {};
+    for (const item of result.optimizable) {
+      patternCounts[item.suggestion] = (patternCounts[item.suggestion] || 0) + 1;
+    }
+    result.suggestions = Object.entries(patternCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([suggestion, count]) => `${suggestion} (${count} occurrences)`);
+
+    result.optimizableCount = result.optimizable.length;
+    // Trim optimizable to top 10 examples
+    result.optimizable = result.optimizable.slice(0, 10);
+
+  } catch (err) {
+    result.error = err.message;
+  }
+
+  return result;
+}
+
+/**
  * Main entry point (for testing and CLI usage)
  */
 async function main() {
@@ -1144,6 +1370,19 @@ async function main() {
     return;
   }
 
+  if (cmd === 'fetch' && process.argv[3]) {
+    const result = await httpFetch(process.argv[3]);
+    console.log(JSON.stringify({ ok: result.ok, status: result.status, elapsed: result.elapsed, bodyLength: result.body.length }, null, 2));
+    return;
+  }
+
+  if (cmd === 'exec-analysis') {
+    const count = parseInt(process.argv[3]) || 5;
+    const result = await sessionExecAnalysis(null, count);
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -1163,6 +1402,8 @@ async function main() {
   console.log('  node index.js commit <msg> - Git add all + commit (replaces 2 exec calls)');
   console.log('  node index.js fstats <paths...> - Batch file stats (replaces multiple stat/ls)');
   console.log('  node index.js cleanup    - Safe disk cleanup (--dry-run to preview)');
+  console.log('  node index.js fetch <url> - HTTP fetch without curl (replaces exec curl)');
+  console.log('  node index.js exec-analysis [n] - Analyze exec patterns in recent sessions');
 }
 
 module.exports = {
@@ -1191,6 +1432,9 @@ module.exports = {
   latestFile,
   diskUsage,
   diskCleanup,
+  httpFetch,
+  envExec,
+  sessionExecAnalysis,
   main
 };
 
