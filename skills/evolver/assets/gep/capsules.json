@@ -174,13 +174,13 @@
       "confidence": 0.85,
       "blast_radius": {
         "files": 2,
-        "lines": 248
+        "lines": 26
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 2,
+      "success_streak": 3,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -197,9 +197,9 @@
       "source_type": "reference",
       "reused_asset_id": "sha256:4cb29aed675ebd49cf4ef70bcbbd1b6001489a59e3b94497168b0d77efaa7521",
       "a2a": {
-        "eligible_to_broadcast": false
+        "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:345603eac559276a7bbd61d1377a42279811ae19fd70e787174f0efab460bf06"
+      "asset_id": "sha256:c021a6467f085cfde5c300fa79c332e9ebc4d019f4bc02cead63196015a21c81"
     },
     {
       "type": "Capsule",
@@ -214,14 +214,14 @@
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 12
+        "files": 0,
+        "lines": 0
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 12,
+      "success_streak": 10,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -240,7 +240,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:075698da4a22bfeeca56363bc7218ba925158c6bc6fa67f966433879ce05cdd2"
+      "asset_id": "sha256:de4f6e58c81e1973a4e553000b6664f5a46af9a60fc24ee1f1ebb0b956901f7a"
     }
   ]
 }

@@ -958,6 +958,28 @@ async function diskCleanup(options = {}) {
     }
   } catch {}
 
+  // 6. Clean old GEP evolution prompt files (keep latest 5)
+  try {
+    const evoDir = '/root/openclaw/memory/evolution';
+    const evoEntries = await fs.readdir(evoDir);
+    const promptFiles = evoEntries
+      .filter(f => f.startsWith('gep_prompt_') && f.endsWith('.txt'))
+      .sort()
+      .reverse(); // newest first (alphabetical sort on cycle number works)
+    
+    // Keep the 5 most recent, remove older ones
+    const toRemove = promptFiles.slice(5);
+    for (const name of toRemove) {
+      const full = path.join(evoDir, name);
+      try {
+        const stat = await fs.stat(full);
+        if (!dryRun) await rmFile(full);
+        totalFreed += stat.size;
+        actions.push({ target: full, size: fmt(stat.size), action: dryRun ? 'would_remove' : 'removed' });
+      } catch {}
+    }
+  } catch {}
+
   // Get disk after
   let after;
   try { after = await diskUsage('/'); } catch { after = { usedPercent: 'unknown' }; }

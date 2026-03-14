@@ -1,0 +1,5 @@
+{
+  "result": "success",
+  "en": "Status: [OPTIMIZE] Fixed recurring LLM 400 error by adding compat.supportsDeveloperRole=false to all skyeye-openai models (kimi-k2.5, glm-5, grok-3/4) and ark models in gateway config. This prevents OpenClaw from sending unsupported 'developer' role messages to non-OpenAI backends.",
+  "zh": "状态: [优化] 修复了反复出现的 LLM 400 错误，为所有 skyeye-openai 模型（kimi-k2.5, glm-5, grok-3/4）和 ark 模型添加了 compat.supportsDeveloperRole=false 配置，阻止 OpenClaw 向不支持的后端发送 developer 角色消息。"
+}

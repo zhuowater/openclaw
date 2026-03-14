@@ -1,0 +1,3718 @@
+Analyzing Iran...
+Analyzing Lebanon...
+Analyzing Syria...
+Analyzing Yemen...
+Analyzing Iraq...
+Performing cross-country analysis...
+Fetching IODA data from 2026-03-05T08:03:57.605499 to 2026-03-12T08:03:57.605499
+Monitoring: Iran (IR), Lebanon (LB), Syria (SY), Yemen (YE), Iraq (IQ)
+
+{
+  "metadata": {
+    "generated": "2026-03-12T08:04:47.718178",
+    "period": {
+      "start": "2026-03-05T08:03:57.605499",
+      "end": "2026-03-12T08:03:57.605499"
+    },
+    "countries_monitored": {
+      "IR": "Iran",
+      "LB": "Lebanon",
+      "SY": "Syria",
+      "YE": "Yemen",
+      "IQ": "Iraq"
+    }
+  },
+  "country_results": {
+    "IR": {
+      "country_code": "IR",
+      "country_name": "Iran",
+      "period": {
+        "start": "2026-03-05T08:03:57",
+        "end": "2026-03-12T08:03:57"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 1908,
+          "mean": 40725.01,
+          "stdev": 90.86,
+          "latest_value": 40705
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 385.09,
+          "stdev": 6.1,
+          "latest_value": 379
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 114991920.28,
+          "stdev": 18175598.56,
+          "latest_value": 56736264
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1773046800,
+          "datetime": "2026-03-09T17:00:00",
+          "signal": "bgp",
+          "value": 39761,
+          "baseline_mean": 40725.01,
+          "z_score": -10.61,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773047100,
+          "datetime": "2026-03-09T17:05:00",
+          "signal": "bgp",
+          "value": 39765,
+          "baseline_mean": 40725.01,
+          "z_score": -10.57,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773047400,
+          "datetime": "2026-03-09T17:10:00",
+          "signal": "bgp",
+          "value": 39761,
+          "baseline_mean": 40725.01,
+          "z_score": -10.61,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773047700,
+          "datetime": "2026-03-09T17:15:00",
+          "signal": "bgp",
+          "value": 39757,
+          "baseline_mean": 40725.01,
+          "z_score": -10.65,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773048000,
+          "datetime": "2026-03-09T17:20:00",
+          "signal": "bgp",
+          "value": 39757,
+          "baseline_mean": 40725.01,
+          "z_score": -10.65,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772820600,
+          "datetime": "2026-03-07T02:10:00",
+          "signal": "active_probing",
+          "value": 370,
+          "baseline_mean": 385.09,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772823000,
+          "datetime": "2026-03-07T02:50:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772896800,
+          "datetime": "2026-03-07T23:20:00",
+          "signal": "active_probing",
+          "value": 370,
+          "baseline_mean": 385.09,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772905800,
+          "datetime": "2026-03-08T01:50:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772916600,
+          "datetime": "2026-03-08T04:50:00",
+          "signal": "active_probing",
+          "value": 372,
+          "baseline_mean": 385.09,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772920800,
+          "datetime": "2026-03-08T06:00:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772921400,
+          "datetime": "2026-03-08T06:10:00",
+          "signal": "active_probing",
+          "value": 372,
+          "baseline_mean": 385.09,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772932200,
+          "datetime": "2026-03-08T09:10:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772993400,
+          "datetime": "2026-03-09T02:10:00",
+          "signal": "active_probing",
+          "value": 372,
+          "baseline_mean": 385.09,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773007800,
+          "datetime": "2026-03-09T06:10:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773106800,
+          "datetime": "2026-03-10T09:40:00",
+          "signal": "active_probing",
+          "value": 370,
+          "baseline_mean": 385.09,
+          "z_score": -2.47,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773111000,
+          "datetime": "2026-03-10T10:50:00",
+          "signal": "active_probing",
+          "value": 372,
+          "baseline_mean": 385.09,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773165000,
+          "datetime": "2026-03-11T01:50:00",
+          "signal": "active_probing",
+          "value": 372,
+          "baseline_mean": 385.09,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773180600,
+          "datetime": "2026-03-11T06:10:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773184800,
+          "datetime": "2026-03-11T07:20:00",
+          "signal": "active_probing",
+          "value": 372,
+          "baseline_mean": 385.09,
+          "z_score": -2.15,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773186000,
+          "datetime": "2026-03-11T07:40:00",
+          "signal": "active_probing",
+          "value": 371,
+          "baseline_mean": 385.09,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773250200,
+          "datetime": "2026-03-12T01:30:00",
+          "signal": "google_transparency",
+          "value": 53367714,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.39,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773252000,
+          "datetime": "2026-03-12T02:00:00",
+          "signal": "google_transparency",
+          "value": 49882888,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.58,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773253800,
+          "datetime": "2026-03-12T02:30:00",
+          "signal": "google_transparency",
+          "value": 49989555,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.58,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773255600,
+          "datetime": "2026-03-12T03:00:00",
+          "signal": "google_transparency",
+          "value": 51407583,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.5,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773257400,
+          "datetime": "2026-03-12T03:30:00",
+          "signal": "google_transparency",
+          "value": 49225765,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.62,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773259200,
+          "datetime": "2026-03-12T04:00:00",
+          "signal": "google_transparency",
+          "value": 64637666,
+          "baseline_mean": 114991920.28,
+          "z_score": -2.77,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773261000,
+          "datetime": "2026-03-12T04:30:00",
+          "signal": "google_transparency",
+          "value": 51236395,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.51,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773262800,
+          "datetime": "2026-03-12T05:00:00",
+          "signal": "google_transparency",
+          "value": 62625552,
+          "baseline_mean": 114991920.28,
+          "z_score": -2.88,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773264600,
+          "datetime": "2026-03-12T05:30:00",
+          "signal": "google_transparency",
+          "value": 59241454,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.07,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773266400,
+          "datetime": "2026-03-12T06:00:00",
+          "signal": "google_transparency",
+          "value": 56736264,
+          "baseline_mean": 114991920.28,
+          "z_score": -3.21,
+          "severity": "critical"
+        }
+      ],
+      "status": "critical"
+    },
+    "LB": {
+      "country_code": "LB",
+      "country_name": "Lebanon",
+      "period": {
+        "start": "2026-03-05T08:03:57",
+        "end": "2026-03-12T08:03:57"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 1908,
+          "mean": 2236.2,
+          "stdev": 5.02,
+          "latest_value": 2237
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 651.63,
+          "stdev": 8.24,
+          "latest_value": 642
+        },
+        "google_transparency": {
+          "data_points": 334,
+          "mean": 1741486081.16,
+          "stdev": 395309332.67,
+          "latest_value": 2106106875
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772775900,
+          "datetime": "2026-03-06T13:45:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772776200,
+          "datetime": "2026-03-06T13:50:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772776500,
+          "datetime": "2026-03-06T13:55:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772776800,
+          "datetime": "2026-03-06T14:00:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772777100,
+          "datetime": "2026-03-06T14:05:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772777400,
+          "datetime": "2026-03-06T14:10:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772777700,
+          "datetime": "2026-03-06T14:15:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772778000,
+          "datetime": "2026-03-06T14:20:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772778300,
+          "datetime": "2026-03-06T14:25:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772778600,
+          "datetime": "2026-03-06T14:30:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772778900,
+          "datetime": "2026-03-06T14:35:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772779200,
+          "datetime": "2026-03-06T14:40:00",
+          "signal": "bgp",
+          "value": 2226,
+          "baseline_mean": 2236.2,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772895000,
+          "datetime": "2026-03-07T22:50:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772895300,
+          "datetime": "2026-03-07T22:55:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772895600,
+          "datetime": "2026-03-07T23:00:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772895900,
+          "datetime": "2026-03-07T23:05:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772896200,
+          "datetime": "2026-03-07T23:10:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772896500,
+          "datetime": "2026-03-07T23:15:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772896800,
+          "datetime": "2026-03-07T23:20:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772897100,
+          "datetime": "2026-03-07T23:25:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772897400,
+          "datetime": "2026-03-07T23:30:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772897700,
+          "datetime": "2026-03-07T23:35:00",
+          "signal": "bgp",
+          "value": 2217,
+          "baseline_mean": 2236.2,
+          "z_score": -3.83,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772934000,
+          "datetime": "2026-03-08T09:40:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772934300,
+          "datetime": "2026-03-08T09:45:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772934600,
+          "datetime": "2026-03-08T09:50:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772934900,
+          "datetime": "2026-03-08T09:55:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772935200,
+          "datetime": "2026-03-08T10:00:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772935500,
+          "datetime": "2026-03-08T10:05:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772935800,
+          "datetime": "2026-03-08T10:10:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772936100,
+          "datetime": "2026-03-08T10:15:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772936400,
+          "datetime": "2026-03-08T10:20:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772936700,
+          "datetime": "2026-03-08T10:25:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772937000,
+          "datetime": "2026-03-08T10:30:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772937300,
+          "datetime": "2026-03-08T10:35:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772937600,
+          "datetime": "2026-03-08T10:40:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772937900,
+          "datetime": "2026-03-08T10:45:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772938200,
+          "datetime": "2026-03-08T10:50:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772938500,
+          "datetime": "2026-03-08T10:55:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772938800,
+          "datetime": "2026-03-08T11:00:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772939100,
+          "datetime": "2026-03-08T11:05:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772939400,
+          "datetime": "2026-03-08T11:10:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772939700,
+          "datetime": "2026-03-08T11:15:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772940000,
+          "datetime": "2026-03-08T11:20:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772940300,
+          "datetime": "2026-03-08T11:25:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772940600,
+          "datetime": "2026-03-08T11:30:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772940900,
+          "datetime": "2026-03-08T11:35:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772941200,
+          "datetime": "2026-03-08T11:40:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772941500,
+          "datetime": "2026-03-08T11:45:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772941800,
+          "datetime": "2026-03-08T11:50:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772942100,
+          "datetime": "2026-03-08T11:55:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772942400,
+          "datetime": "2026-03-08T12:00:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772942700,
+          "datetime": "2026-03-08T12:05:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772943000,
+          "datetime": "2026-03-08T12:10:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772943300,
+          "datetime": "2026-03-08T12:15:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772943600,
+          "datetime": "2026-03-08T12:20:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772943900,
+          "datetime": "2026-03-08T12:25:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772944200,
+          "datetime": "2026-03-08T12:30:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772944500,
+          "datetime": "2026-03-08T12:35:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772944800,
+          "datetime": "2026-03-08T12:40:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772945100,
+          "datetime": "2026-03-08T12:45:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772945400,
+          "datetime": "2026-03-08T12:50:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772945700,
+          "datetime": "2026-03-08T12:55:00",
+          "signal": "bgp",
+          "value": 2218,
+          "baseline_mean": 2236.2,
+          "z_score": -3.63,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772965200,
+          "datetime": "2026-03-08T18:20:00",
+          "signal": "bgp",
+          "value": 2216,
+          "baseline_mean": 2236.2,
+          "z_score": -4.03,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772965500,
+          "datetime": "2026-03-08T18:25:00",
+          "signal": "bgp",
+          "value": 2215,
+          "baseline_mean": 2236.2,
+          "z_score": -4.23,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772965800,
+          "datetime": "2026-03-08T18:30:00",
+          "signal": "bgp",
+          "value": 2216,
+          "baseline_mean": 2236.2,
+          "z_score": -4.03,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772966100,
+          "datetime": "2026-03-08T18:35:00",
+          "signal": "bgp",
+          "value": 2216,
+          "baseline_mean": 2236.2,
+          "z_score": -4.03,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772966400,
+          "datetime": "2026-03-08T18:40:00",
+          "signal": "bgp",
+          "value": 2216,
+          "baseline_mean": 2236.2,
+          "z_score": -4.03,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772966700,
+          "datetime": "2026-03-08T18:45:00",
+          "signal": "bgp",
+          "value": 2216,
+          "baseline_mean": 2236.2,
+          "z_score": -4.03,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772967000,
+          "datetime": "2026-03-08T18:50:00",
+          "signal": "bgp",
+          "value": 2216,
+          "baseline_mean": 2236.2,
+          "z_score": -4.03,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772967300,
+          "datetime": "2026-03-08T18:55:00",
+          "signal": "bgp",
+          "value": 2211,
+          "baseline_mean": 2236.2,
+          "z_score": -5.02,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772967600,
+          "datetime": "2026-03-08T19:00:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773059100,
+          "datetime": "2026-03-09T20:25:00",
+          "signal": "bgp",
+          "value": 2225,
+          "baseline_mean": 2236.2,
+          "z_score": -2.23,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773059400,
+          "datetime": "2026-03-09T20:30:00",
+          "signal": "bgp",
+          "value": 2225,
+          "baseline_mean": 2236.2,
+          "z_score": -2.23,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773059700,
+          "datetime": "2026-03-09T20:35:00",
+          "signal": "bgp",
+          "value": 2225,
+          "baseline_mean": 2236.2,
+          "z_score": -2.23,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773060000,
+          "datetime": "2026-03-09T20:40:00",
+          "signal": "bgp",
+          "value": 2225,
+          "baseline_mean": 2236.2,
+          "z_score": -2.23,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773062400,
+          "datetime": "2026-03-09T21:20:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773062700,
+          "datetime": "2026-03-09T21:25:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773063000,
+          "datetime": "2026-03-09T21:30:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773136800,
+          "datetime": "2026-03-10T18:00:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773140700,
+          "datetime": "2026-03-10T19:05:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773141000,
+          "datetime": "2026-03-10T19:10:00",
+          "signal": "bgp",
+          "value": 2223,
+          "baseline_mean": 2236.2,
+          "z_score": -2.63,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773234600,
+          "datetime": "2026-03-11T21:10:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773234900,
+          "datetime": "2026-03-11T21:15:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773235200,
+          "datetime": "2026-03-11T21:20:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773235500,
+          "datetime": "2026-03-11T21:25:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773235800,
+          "datetime": "2026-03-11T21:30:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773236100,
+          "datetime": "2026-03-11T21:35:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773236400,
+          "datetime": "2026-03-11T21:40:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773236700,
+          "datetime": "2026-03-11T21:45:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773237000,
+          "datetime": "2026-03-11T21:50:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773237300,
+          "datetime": "2026-03-11T21:55:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773237600,
+          "datetime": "2026-03-11T22:00:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773237900,
+          "datetime": "2026-03-11T22:05:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773238200,
+          "datetime": "2026-03-11T22:10:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773238500,
+          "datetime": "2026-03-11T22:15:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773238800,
+          "datetime": "2026-03-11T22:20:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773239100,
+          "datetime": "2026-03-11T22:25:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773239400,
+          "datetime": "2026-03-11T22:30:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773239700,
+          "datetime": "2026-03-11T22:35:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773240000,
+          "datetime": "2026-03-11T22:40:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773240300,
+          "datetime": "2026-03-11T22:45:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773240600,
+          "datetime": "2026-03-11T22:50:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773240900,
+          "datetime": "2026-03-11T22:55:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773241200,
+          "datetime": "2026-03-11T23:00:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773241500,
+          "datetime": "2026-03-11T23:05:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773241800,
+          "datetime": "2026-03-11T23:10:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773242100,
+          "datetime": "2026-03-11T23:15:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773242400,
+          "datetime": "2026-03-11T23:20:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773242700,
+          "datetime": "2026-03-11T23:25:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773243000,
+          "datetime": "2026-03-11T23:30:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773243300,
+          "datetime": "2026-03-11T23:35:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773243600,
+          "datetime": "2026-03-11T23:40:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773243900,
+          "datetime": "2026-03-11T23:45:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773244200,
+          "datetime": "2026-03-11T23:50:00",
+          "signal": "bgp",
+          "value": 2224,
+          "baseline_mean": 2236.2,
+          "z_score": -2.43,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772777400,
+          "datetime": "2026-03-06T14:10:00",
+          "signal": "active_probing",
+          "value": 626,
+          "baseline_mean": 651.63,
+          "z_score": -3.11,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772854200,
+          "datetime": "2026-03-07T11:30:00",
+          "signal": "active_probing",
+          "value": 634,
+          "baseline_mean": 651.63,
+          "z_score": -2.14,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772897400,
+          "datetime": "2026-03-07T23:30:00",
+          "signal": "active_probing",
+          "value": 629,
+          "baseline_mean": 651.63,
+          "z_score": -2.75,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772933400,
+          "datetime": "2026-03-08T09:30:00",
+          "signal": "active_probing",
+          "value": 632,
+          "baseline_mean": 651.63,
+          "z_score": -2.38,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772934000,
+          "datetime": "2026-03-08T09:40:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772937600,
+          "datetime": "2026-03-08T10:40:00",
+          "signal": "active_probing",
+          "value": 632,
+          "baseline_mean": 651.63,
+          "z_score": -2.38,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772938200,
+          "datetime": "2026-03-08T10:50:00",
+          "signal": "active_probing",
+          "value": 633,
+          "baseline_mean": 651.63,
+          "z_score": -2.26,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772940000,
+          "datetime": "2026-03-08T11:20:00",
+          "signal": "active_probing",
+          "value": 632,
+          "baseline_mean": 651.63,
+          "z_score": -2.38,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772940600,
+          "datetime": "2026-03-08T11:30:00",
+          "signal": "active_probing",
+          "value": 634,
+          "baseline_mean": 651.63,
+          "z_score": -2.14,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772941200,
+          "datetime": "2026-03-08T11:40:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772943000,
+          "datetime": "2026-03-08T12:10:00",
+          "signal": "active_probing",
+          "value": 629,
+          "baseline_mean": 651.63,
+          "z_score": -2.75,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772963400,
+          "datetime": "2026-03-08T17:50:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772964600,
+          "datetime": "2026-03-08T18:10:00",
+          "signal": "active_probing",
+          "value": 631,
+          "baseline_mean": 651.63,
+          "z_score": -2.5,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772966400,
+          "datetime": "2026-03-08T18:40:00",
+          "signal": "active_probing",
+          "value": 631,
+          "baseline_mean": 651.63,
+          "z_score": -2.5,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772967000,
+          "datetime": "2026-03-08T18:50:00",
+          "signal": "active_probing",
+          "value": 631,
+          "baseline_mean": 651.63,
+          "z_score": -2.5,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772967600,
+          "datetime": "2026-03-08T19:00:00",
+          "signal": "active_probing",
+          "value": 634,
+          "baseline_mean": 651.63,
+          "z_score": -2.14,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773054600,
+          "datetime": "2026-03-09T19:10:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773084600,
+          "datetime": "2026-03-10T03:30:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773109800,
+          "datetime": "2026-03-10T10:30:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773116400,
+          "datetime": "2026-03-10T12:20:00",
+          "signal": "active_probing",
+          "value": 634,
+          "baseline_mean": 651.63,
+          "z_score": -2.14,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773216600,
+          "datetime": "2026-03-11T16:10:00",
+          "signal": "active_probing",
+          "value": 633,
+          "baseline_mean": 651.63,
+          "z_score": -2.26,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773237000,
+          "datetime": "2026-03-11T21:50:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773246000,
+          "datetime": "2026-03-12T00:20:00",
+          "signal": "active_probing",
+          "value": 635,
+          "baseline_mean": 651.63,
+          "z_score": -2.02,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773258600,
+          "datetime": "2026-03-12T03:50:00",
+          "signal": "active_probing",
+          "value": 633,
+          "baseline_mean": 651.63,
+          "z_score": -2.26,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772681400,
+          "datetime": "2026-03-05T11:30:00",
+          "signal": "google_transparency",
+          "value": 940145520,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772683200,
+          "datetime": "2026-03-05T12:00:00",
+          "signal": "google_transparency",
+          "value": 854319270,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.24,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772685000,
+          "datetime": "2026-03-05T12:30:00",
+          "signal": "google_transparency",
+          "value": 862046770,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.22,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772686800,
+          "datetime": "2026-03-05T13:00:00",
+          "signal": "google_transparency",
+          "value": 930072812,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.05,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772769600,
+          "datetime": "2026-03-06T12:00:00",
+          "signal": "google_transparency",
+          "value": 863307187,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.22,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772771400,
+          "datetime": "2026-03-06T12:30:00",
+          "signal": "google_transparency",
+          "value": 870333958,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.2,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772773200,
+          "datetime": "2026-03-06T13:00:00",
+          "signal": "google_transparency",
+          "value": 934018750,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.04,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772856000,
+          "datetime": "2026-03-07T12:00:00",
+          "signal": "google_transparency",
+          "value": 946527916,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.01,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772857800,
+          "datetime": "2026-03-07T12:30:00",
+          "signal": "google_transparency",
+          "value": 912579166,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.1,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772859600,
+          "datetime": "2026-03-07T13:00:00",
+          "signal": "google_transparency",
+          "value": 946318854,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.01,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773028800,
+          "datetime": "2026-03-09T12:00:00",
+          "signal": "google_transparency",
+          "value": 927857916,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.06,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773030600,
+          "datetime": "2026-03-09T12:30:00",
+          "signal": "google_transparency",
+          "value": 913877395,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.09,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773032400,
+          "datetime": "2026-03-09T13:00:00",
+          "signal": "google_transparency",
+          "value": 940203072,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773115200,
+          "datetime": "2026-03-10T12:00:00",
+          "signal": "google_transparency",
+          "value": 902603541,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.12,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773117000,
+          "datetime": "2026-03-10T12:30:00",
+          "signal": "google_transparency",
+          "value": 926416979,
+          "baseline_mean": 1741486081.16,
+          "z_score": -2.06,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    },
+    "SY": {
+      "country_code": "SY",
+      "country_name": "Syria",
+      "period": {
+        "start": "2026-03-05T08:03:57",
+        "end": "2026-03-12T08:03:57"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 1908,
+          "mean": 4807.1,
+          "stdev": 3.91,
+          "latest_value": 4808
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 663.73,
+          "stdev": 43.39,
+          "latest_value": 674
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 4005626877.1,
+          "stdev": 842623269.7,
+          "latest_value": 6074228645
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772851200,
+          "datetime": "2026-03-07T10:40:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772851500,
+          "datetime": "2026-03-07T10:45:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772851800,
+          "datetime": "2026-03-07T10:50:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772852100,
+          "datetime": "2026-03-07T10:55:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772852400,
+          "datetime": "2026-03-07T11:00:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772852700,
+          "datetime": "2026-03-07T11:05:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772853000,
+          "datetime": "2026-03-07T11:10:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772853300,
+          "datetime": "2026-03-07T11:15:00",
+          "signal": "bgp",
+          "value": 4775,
+          "baseline_mean": 4807.1,
+          "z_score": -8.21,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772853600,
+          "datetime": "2026-03-07T11:20:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772853900,
+          "datetime": "2026-03-07T11:25:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772854200,
+          "datetime": "2026-03-07T11:30:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772854500,
+          "datetime": "2026-03-07T11:35:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772854800,
+          "datetime": "2026-03-07T11:40:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772855100,
+          "datetime": "2026-03-07T11:45:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772855400,
+          "datetime": "2026-03-07T11:50:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772855700,
+          "datetime": "2026-03-07T11:55:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772856000,
+          "datetime": "2026-03-07T12:00:00",
+          "signal": "bgp",
+          "value": 4775,
+          "baseline_mean": 4807.1,
+          "z_score": -8.21,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772856300,
+          "datetime": "2026-03-07T12:05:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772856600,
+          "datetime": "2026-03-07T12:10:00",
+          "signal": "bgp",
+          "value": 4775,
+          "baseline_mean": 4807.1,
+          "z_score": -8.21,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772856900,
+          "datetime": "2026-03-07T12:15:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772857200,
+          "datetime": "2026-03-07T12:20:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772857500,
+          "datetime": "2026-03-07T12:25:00",
+          "signal": "bgp",
+          "value": 4776,
+          "baseline_mean": 4807.1,
+          "z_score": -7.95,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772857800,
+          "datetime": "2026-03-07T12:30:00",
+          "signal": "bgp",
+          "value": 4775,
+          "baseline_mean": 4807.1,
+          "z_score": -8.21,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772963400,
+          "datetime": "2026-03-08T17:50:00",
+          "signal": "bgp",
+          "value": 4799,
+          "baseline_mean": 4807.1,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772965200,
+          "datetime": "2026-03-08T18:20:00",
+          "signal": "bgp",
+          "value": 4799,
+          "baseline_mean": 4807.1,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772967300,
+          "datetime": "2026-03-08T18:55:00",
+          "signal": "bgp",
+          "value": 4799,
+          "baseline_mean": 4807.1,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772973000,
+          "datetime": "2026-03-08T20:30:00",
+          "signal": "bgp",
+          "value": 4799,
+          "baseline_mean": 4807.1,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772983800,
+          "datetime": "2026-03-08T23:30:00",
+          "signal": "bgp",
+          "value": 4799,
+          "baseline_mean": 4807.1,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772986800,
+          "datetime": "2026-03-09T00:20:00",
+          "signal": "bgp",
+          "value": 4799,
+          "baseline_mean": 4807.1,
+          "z_score": -2.07,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772668800,
+          "datetime": "2026-03-05T08:00:00",
+          "signal": "active_probing",
+          "value": 544,
+          "baseline_mean": 663.73,
+          "z_score": -2.76,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772669400,
+          "datetime": "2026-03-05T08:10:00",
+          "signal": "active_probing",
+          "value": 513,
+          "baseline_mean": 663.73,
+          "z_score": -3.47,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772737200,
+          "datetime": "2026-03-06T03:00:00",
+          "signal": "active_probing",
+          "value": 572,
+          "baseline_mean": 663.73,
+          "z_score": -2.11,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772737800,
+          "datetime": "2026-03-06T03:10:00",
+          "signal": "active_probing",
+          "value": 561,
+          "baseline_mean": 663.73,
+          "z_score": -2.37,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772738400,
+          "datetime": "2026-03-06T03:20:00",
+          "signal": "active_probing",
+          "value": 547,
+          "baseline_mean": 663.73,
+          "z_score": -2.69,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772739000,
+          "datetime": "2026-03-06T03:30:00",
+          "signal": "active_probing",
+          "value": 551,
+          "baseline_mean": 663.73,
+          "z_score": -2.6,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772739600,
+          "datetime": "2026-03-06T03:40:00",
+          "signal": "active_probing",
+          "value": 537,
+          "baseline_mean": 663.73,
+          "z_score": -2.92,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772741400,
+          "datetime": "2026-03-06T04:10:00",
+          "signal": "active_probing",
+          "value": 523,
+          "baseline_mean": 663.73,
+          "z_score": -3.24,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772742000,
+          "datetime": "2026-03-06T04:20:00",
+          "signal": "active_probing",
+          "value": 540,
+          "baseline_mean": 663.73,
+          "z_score": -2.85,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772742600,
+          "datetime": "2026-03-06T04:30:00",
+          "signal": "active_probing",
+          "value": 538,
+          "baseline_mean": 663.73,
+          "z_score": -2.9,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772743200,
+          "datetime": "2026-03-06T04:40:00",
+          "signal": "active_probing",
+          "value": 526,
+          "baseline_mean": 663.73,
+          "z_score": -3.17,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772743800,
+          "datetime": "2026-03-06T04:50:00",
+          "signal": "active_probing",
+          "value": 482,
+          "baseline_mean": 663.73,
+          "z_score": -4.19,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772744400,
+          "datetime": "2026-03-06T05:00:00",
+          "signal": "active_probing",
+          "value": 509,
+          "baseline_mean": 663.73,
+          "z_score": -3.57,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772745000,
+          "datetime": "2026-03-06T05:10:00",
+          "signal": "active_probing",
+          "value": 518,
+          "baseline_mean": 663.73,
+          "z_score": -3.36,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772746200,
+          "datetime": "2026-03-06T05:30:00",
+          "signal": "active_probing",
+          "value": 515,
+          "baseline_mean": 663.73,
+          "z_score": -3.43,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772746800,
+          "datetime": "2026-03-06T05:40:00",
+          "signal": "active_probing",
+          "value": 519,
+          "baseline_mean": 663.73,
+          "z_score": -3.34,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772747400,
+          "datetime": "2026-03-06T05:50:00",
+          "signal": "active_probing",
+          "value": 442,
+          "baseline_mean": 663.73,
+          "z_score": -5.11,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772748000,
+          "datetime": "2026-03-06T06:00:00",
+          "signal": "active_probing",
+          "value": 482,
+          "baseline_mean": 663.73,
+          "z_score": -4.19,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772748600,
+          "datetime": "2026-03-06T06:10:00",
+          "signal": "active_probing",
+          "value": 494,
+          "baseline_mean": 663.73,
+          "z_score": -3.91,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772749200,
+          "datetime": "2026-03-06T06:20:00",
+          "signal": "active_probing",
+          "value": 547,
+          "baseline_mean": 663.73,
+          "z_score": -2.69,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772818800,
+          "datetime": "2026-03-07T01:40:00",
+          "signal": "active_probing",
+          "value": 508,
+          "baseline_mean": 663.73,
+          "z_score": -3.59,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772819400,
+          "datetime": "2026-03-07T01:50:00",
+          "signal": "active_probing",
+          "value": 457,
+          "baseline_mean": 663.73,
+          "z_score": -4.76,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772820000,
+          "datetime": "2026-03-07T02:00:00",
+          "signal": "active_probing",
+          "value": 416,
+          "baseline_mean": 663.73,
+          "z_score": -5.71,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772820600,
+          "datetime": "2026-03-07T02:10:00",
+          "signal": "active_probing",
+          "value": 350,
+          "baseline_mean": 663.73,
+          "z_score": -7.23,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772821200,
+          "datetime": "2026-03-07T02:20:00",
+          "signal": "active_probing",
+          "value": 352,
+          "baseline_mean": 663.73,
+          "z_score": -7.18,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772821800,
+          "datetime": "2026-03-07T02:30:00",
+          "signal": "active_probing",
+          "value": 339,
+          "baseline_mean": 663.73,
+          "z_score": -7.48,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772822400,
+          "datetime": "2026-03-07T02:40:00",
+          "signal": "active_probing",
+          "value": 342,
+          "baseline_mean": 663.73,
+          "z_score": -7.41,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772823000,
+          "datetime": "2026-03-07T02:50:00",
+          "signal": "active_probing",
+          "value": 347,
+          "baseline_mean": 663.73,
+          "z_score": -7.3,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772823600,
+          "datetime": "2026-03-07T03:00:00",
+          "signal": "active_probing",
+          "value": 366,
+          "baseline_mean": 663.73,
+          "z_score": -6.86,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772824200,
+          "datetime": "2026-03-07T03:10:00",
+          "signal": "active_probing",
+          "value": 377,
+          "baseline_mean": 663.73,
+          "z_score": -6.61,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772824800,
+          "datetime": "2026-03-07T03:20:00",
+          "signal": "active_probing",
+          "value": 375,
+          "baseline_mean": 663.73,
+          "z_score": -6.65,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772825400,
+          "datetime": "2026-03-07T03:30:00",
+          "signal": "active_probing",
+          "value": 368,
+          "baseline_mean": 663.73,
+          "z_score": -6.82,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772826000,
+          "datetime": "2026-03-07T03:40:00",
+          "signal": "active_probing",
+          "value": 413,
+          "baseline_mean": 663.73,
+          "z_score": -5.78,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772826600,
+          "datetime": "2026-03-07T03:50:00",
+          "signal": "active_probing",
+          "value": 483,
+          "baseline_mean": 663.73,
+          "z_score": -4.17,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772827200,
+          "datetime": "2026-03-07T04:00:00",
+          "signal": "active_probing",
+          "value": 546,
+          "baseline_mean": 663.73,
+          "z_score": -2.71,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772827800,
+          "datetime": "2026-03-07T04:10:00",
+          "signal": "active_probing",
+          "value": 561,
+          "baseline_mean": 663.73,
+          "z_score": -2.37,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772895600,
+          "datetime": "2026-03-07T23:00:00",
+          "signal": "active_probing",
+          "value": 567,
+          "baseline_mean": 663.73,
+          "z_score": -2.23,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772896200,
+          "datetime": "2026-03-07T23:10:00",
+          "signal": "active_probing",
+          "value": 532,
+          "baseline_mean": 663.73,
+          "z_score": -3.04,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772896800,
+          "datetime": "2026-03-07T23:20:00",
+          "signal": "active_probing",
+          "value": 549,
+          "baseline_mean": 663.73,
+          "z_score": -2.64,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772901600,
+          "datetime": "2026-03-08T00:40:00",
+          "signal": "active_probing",
+          "value": 541,
+          "baseline_mean": 663.73,
+          "z_score": -2.83,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    },
+    "YE": {
+      "country_code": "YE",
+      "country_name": "Yemen",
+      "period": {
+        "start": "2026-03-05T08:03:57",
+        "end": "2026-03-12T08:03:57"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 1908,
+          "mean": 963.31,
+          "stdev": 0.95,
+          "latest_value": 962
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 23.85,
+          "stdev": 1.67,
+          "latest_value": 24
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 2591730178.47,
+          "stdev": 1567491374.54,
+          "latest_value": 5558168125
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1773054300,
+          "datetime": "2026-03-09T19:05:00",
+          "signal": "bgp",
+          "value": 961,
+          "baseline_mean": 963.31,
+          "z_score": -2.42,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773054600,
+          "datetime": "2026-03-09T19:10:00",
+          "signal": "bgp",
+          "value": 961,
+          "baseline_mean": 963.31,
+          "z_score": -2.42,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773054900,
+          "datetime": "2026-03-09T19:15:00",
+          "signal": "bgp",
+          "value": 961,
+          "baseline_mean": 963.31,
+          "z_score": -2.42,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772689200,
+          "datetime": "2026-03-05T13:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772697600,
+          "datetime": "2026-03-05T16:00:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772709600,
+          "datetime": "2026-03-05T19:20:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772735400,
+          "datetime": "2026-03-06T02:30:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772736000,
+          "datetime": "2026-03-06T02:40:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772736600,
+          "datetime": "2026-03-06T02:50:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772778000,
+          "datetime": "2026-03-06T14:20:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772811000,
+          "datetime": "2026-03-06T23:30:00",
+          "signal": "active_probing",
+          "value": 18,
+          "baseline_mean": 23.85,
+          "z_score": -3.51,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772811600,
+          "datetime": "2026-03-06T23:40:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772814600,
+          "datetime": "2026-03-07T00:30:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772821800,
+          "datetime": "2026-03-07T02:30:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772829600,
+          "datetime": "2026-03-07T04:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772831400,
+          "datetime": "2026-03-07T05:10:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772902800,
+          "datetime": "2026-03-08T01:00:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772905200,
+          "datetime": "2026-03-08T01:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772916000,
+          "datetime": "2026-03-08T04:40:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772940600,
+          "datetime": "2026-03-08T11:30:00",
+          "signal": "active_probing",
+          "value": 17,
+          "baseline_mean": 23.85,
+          "z_score": -4.11,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772941200,
+          "datetime": "2026-03-08T11:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772942400,
+          "datetime": "2026-03-08T12:00:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772943000,
+          "datetime": "2026-03-08T12:10:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772951400,
+          "datetime": "2026-03-08T14:30:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772958000,
+          "datetime": "2026-03-08T16:20:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772973600,
+          "datetime": "2026-03-08T20:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772974200,
+          "datetime": "2026-03-08T20:50:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773028800,
+          "datetime": "2026-03-09T12:00:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773029400,
+          "datetime": "2026-03-09T12:10:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773053400,
+          "datetime": "2026-03-09T18:50:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773067200,
+          "datetime": "2026-03-09T22:40:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773091200,
+          "datetime": "2026-03-10T05:20:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773145200,
+          "datetime": "2026-03-10T20:20:00",
+          "signal": "active_probing",
+          "value": 20,
+          "baseline_mean": 23.85,
+          "z_score": -2.31,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773207600,
+          "datetime": "2026-03-11T13:40:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773208200,
+          "datetime": "2026-03-11T13:50:00",
+          "signal": "active_probing",
+          "value": 19,
+          "baseline_mean": 23.85,
+          "z_score": -2.91,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    },
+    "IQ": {
+      "country_code": "IQ",
+      "country_name": "Iraq",
+      "period": {
+        "start": "2026-03-05T08:03:57",
+        "end": "2026-03-12T08:03:57"
+      },
+      "signals": {
+        "bgp": {
+          "data_points": 1908,
+          "mean": 3165.49,
+          "stdev": 3.86,
+          "latest_value": 3170
+        },
+        "active_probing": {
+          "data_points": 1008,
+          "mean": 909.28,
+          "stdev": 8.0,
+          "latest_value": 921
+        },
+        "google_transparency": {
+          "data_points": 333,
+          "mean": 2932101901.47,
+          "stdev": 777600157.16,
+          "latest_value": 4856918229
+        }
+      },
+      "anomalies": [
+        {
+          "timestamp": 1772943600,
+          "datetime": "2026-03-08T12:20:00",
+          "signal": "bgp",
+          "value": 3150,
+          "baseline_mean": 3165.49,
+          "z_score": -4.01,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773025800,
+          "datetime": "2026-03-09T11:10:00",
+          "signal": "bgp",
+          "value": 3152,
+          "baseline_mean": 3165.49,
+          "z_score": -3.5,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1773089400,
+          "datetime": "2026-03-10T04:50:00",
+          "signal": "bgp",
+          "value": 3155,
+          "baseline_mean": 3165.49,
+          "z_score": -2.72,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772668800,
+          "datetime": "2026-03-05T08:00:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 909.28,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772670000,
+          "datetime": "2026-03-05T08:20:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 909.28,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772670600,
+          "datetime": "2026-03-05T08:30:00",
+          "signal": "active_probing",
+          "value": 886,
+          "baseline_mean": 909.28,
+          "z_score": -2.91,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772671800,
+          "datetime": "2026-03-05T08:50:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 909.28,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772672400,
+          "datetime": "2026-03-05T09:00:00",
+          "signal": "active_probing",
+          "value": 889,
+          "baseline_mean": 909.28,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772673000,
+          "datetime": "2026-03-05T09:10:00",
+          "signal": "active_probing",
+          "value": 887,
+          "baseline_mean": 909.28,
+          "z_score": -2.78,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772673600,
+          "datetime": "2026-03-05T09:20:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 909.28,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772675400,
+          "datetime": "2026-03-05T09:50:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 909.28,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772680200,
+          "datetime": "2026-03-05T11:10:00",
+          "signal": "active_probing",
+          "value": 889,
+          "baseline_mean": 909.28,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772682000,
+          "datetime": "2026-03-05T11:40:00",
+          "signal": "active_probing",
+          "value": 884,
+          "baseline_mean": 909.28,
+          "z_score": -3.16,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772682600,
+          "datetime": "2026-03-05T11:50:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 909.28,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772683800,
+          "datetime": "2026-03-05T12:10:00",
+          "signal": "active_probing",
+          "value": 882,
+          "baseline_mean": 909.28,
+          "z_score": -3.41,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772686800,
+          "datetime": "2026-03-05T13:00:00",
+          "signal": "active_probing",
+          "value": 888,
+          "baseline_mean": 909.28,
+          "z_score": -2.66,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772687400,
+          "datetime": "2026-03-05T13:10:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 909.28,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772772000,
+          "datetime": "2026-03-06T12:40:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772847000,
+          "datetime": "2026-03-07T09:30:00",
+          "signal": "active_probing",
+          "value": 888,
+          "baseline_mean": 909.28,
+          "z_score": -2.66,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772850600,
+          "datetime": "2026-03-07T10:30:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772856000,
+          "datetime": "2026-03-07T12:00:00",
+          "signal": "active_probing",
+          "value": 889,
+          "baseline_mean": 909.28,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772859600,
+          "datetime": "2026-03-07T13:00:00",
+          "signal": "active_probing",
+          "value": 889,
+          "baseline_mean": 909.28,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772860200,
+          "datetime": "2026-03-07T13:10:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772860800,
+          "datetime": "2026-03-07T13:20:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772863200,
+          "datetime": "2026-03-07T14:00:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 909.28,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772863800,
+          "datetime": "2026-03-07T14:10:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 909.28,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772871000,
+          "datetime": "2026-03-07T16:10:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 909.28,
+          "z_score": -2.16,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772888400,
+          "datetime": "2026-03-07T21:00:00",
+          "signal": "active_probing",
+          "value": 888,
+          "baseline_mean": 909.28,
+          "z_score": -2.66,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772889000,
+          "datetime": "2026-03-07T21:10:00",
+          "signal": "active_probing",
+          "value": 884,
+          "baseline_mean": 909.28,
+          "z_score": -3.16,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772895600,
+          "datetime": "2026-03-07T23:00:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772896800,
+          "datetime": "2026-03-07T23:20:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 909.28,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772897400,
+          "datetime": "2026-03-07T23:30:00",
+          "signal": "active_probing",
+          "value": 884,
+          "baseline_mean": 909.28,
+          "z_score": -3.16,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772898000,
+          "datetime": "2026-03-07T23:40:00",
+          "signal": "active_probing",
+          "value": 889,
+          "baseline_mean": 909.28,
+          "z_score": -2.53,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772903400,
+          "datetime": "2026-03-08T01:10:00",
+          "signal": "active_probing",
+          "value": 892,
+          "baseline_mean": 909.28,
+          "z_score": -2.16,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772904000,
+          "datetime": "2026-03-08T01:20:00",
+          "signal": "active_probing",
+          "value": 882,
+          "baseline_mean": 909.28,
+          "z_score": -3.41,
+          "severity": "critical"
+        },
+        {
+          "timestamp": 1772910000,
+          "datetime": "2026-03-08T03:00:00",
+          "signal": "active_probing",
+          "value": 891,
+          "baseline_mean": 909.28,
+          "z_score": -2.28,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772911200,
+          "datetime": "2026-03-08T03:20:00",
+          "signal": "active_probing",
+          "value": 890,
+          "baseline_mean": 909.28,
+          "z_score": -2.41,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1772917200,
+          "datetime": "2026-03-08T05:00:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773091200,
+          "datetime": "2026-03-10T05:20:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773191400,
+          "datetime": "2026-03-11T09:10:00",
+          "signal": "active_probing",
+          "value": 893,
+          "baseline_mean": 909.28,
+          "z_score": -2.03,
+          "severity": "warning"
+        },
+        {
+          "timestamp": 1773198000,
+          "datetime": "2026-03-11T11:00:00",
+          "signal": "active_probing",
+          "value": 886,
+          "baseline_mean": 909.28,
+          "z_score": -2.91,
+          "severity": "warning"
+        }
+      ],
+      "status": "critical"
+    }
+  },
+  "coordinated_events": [
+    {
+      "timestamp": 1772668800,
+      "datetime": "2026-03-05T08:00:00",
+      "countries": [
+        "SY",
+        "IQ"
+      ],
+      "country_names": [
+        "Syria",
+        "Iraq"
+      ],
+      "signal_count": 7,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772680200,
+      "datetime": "2026-03-05T11:10:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 6,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772685000,
+      "datetime": "2026-03-05T12:30:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 4,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772735400,
+      "datetime": "2026-03-06T02:30:00",
+      "countries": [
+        "SY",
+        "YE"
+      ],
+      "country_names": [
+        "Syria",
+        "Yemen"
+      ],
+      "signal_count": 7,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772769600,
+      "datetime": "2026-03-06T12:00:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 4,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772775900,
+      "datetime": "2026-03-06T13:45:00",
+      "countries": [
+        "LB",
+        "YE"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Yemen"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772818800,
+      "datetime": "2026-03-07T01:40:00",
+      "countries": [
+        "IR",
+        "SY",
+        "YE"
+      ],
+      "country_names": [
+        "Iran",
+        "Syria",
+        "Yemen"
+      ],
+      "signal_count": 9,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772823000,
+      "datetime": "2026-03-07T02:50:00",
+      "countries": [
+        "IR",
+        "SY"
+      ],
+      "country_names": [
+        "Iran",
+        "Syria"
+      ],
+      "signal_count": 8,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772827200,
+      "datetime": "2026-03-07T04:00:00",
+      "countries": [
+        "SY",
+        "YE"
+      ],
+      "country_names": [
+        "Syria",
+        "Yemen"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772851200,
+      "datetime": "2026-03-07T10:40:00",
+      "countries": [
+        "SY",
+        "LB"
+      ],
+      "country_names": [
+        "Syria",
+        "Lebanon"
+      ],
+      "signal_count": 14,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772855100,
+      "datetime": "2026-03-07T11:45:00",
+      "countries": [
+        "SY",
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Syria",
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 13,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772859600,
+      "datetime": "2026-03-07T13:00:00",
+      "countries": [
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 5,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772895000,
+      "datetime": "2026-03-07T22:50:00",
+      "countries": [
+        "IR",
+        "SY",
+        "LB",
+        "IQ"
+      ],
+      "country_names": [
+        "Iran",
+        "Syria",
+        "Lebanon",
+        "Iraq"
+      ],
+      "signal_count": 19,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772901600,
+      "datetime": "2026-03-08T00:40:00",
+      "countries": [
+        "SY",
+        "IQ",
+        "YE"
+      ],
+      "country_names": [
+        "Syria",
+        "Iraq",
+        "Yemen"
+      ],
+      "signal_count": 5,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772916000,
+      "datetime": "2026-03-08T04:40:00",
+      "countries": [
+        "IR",
+        "IQ",
+        "YE"
+      ],
+      "country_names": [
+        "Iran",
+        "Iraq",
+        "Yemen"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772932200,
+      "datetime": "2026-03-08T09:10:00",
+      "countries": [
+        "IR",
+        "LB"
+      ],
+      "country_names": [
+        "Iran",
+        "Lebanon"
+      ],
+      "signal_count": 10,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772940000,
+      "datetime": "2026-03-08T11:20:00",
+      "countries": [
+        "LB",
+        "IQ",
+        "YE"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq",
+        "Yemen"
+      ],
+      "signal_count": 22,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772963400,
+      "datetime": "2026-03-08T17:50:00",
+      "countries": [
+        "SY",
+        "LB"
+      ],
+      "country_names": [
+        "Syria",
+        "Lebanon"
+      ],
+      "signal_count": 13,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772967300,
+      "datetime": "2026-03-08T18:55:00",
+      "countries": [
+        "SY",
+        "LB"
+      ],
+      "country_names": [
+        "Syria",
+        "Lebanon"
+      ],
+      "signal_count": 4,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1772973000,
+      "datetime": "2026-03-08T20:30:00",
+      "countries": [
+        "SY",
+        "YE"
+      ],
+      "country_names": [
+        "Syria",
+        "Yemen"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1773025800,
+      "datetime": "2026-03-09T11:10:00",
+      "countries": [
+        "LB",
+        "IQ",
+        "YE"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Iraq",
+        "Yemen"
+      ],
+      "signal_count": 4,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1773053400,
+      "datetime": "2026-03-09T18:50:00",
+      "countries": [
+        "LB",
+        "YE"
+      ],
+      "country_names": [
+        "Lebanon",
+        "Yemen"
+      ],
+      "signal_count": 5,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1773089400,
+      "datetime": "2026-03-10T04:50:00",
+      "countries": [
+        "IQ",
+        "YE"
+      ],
+      "country_names": [
+        "Iraq",
+        "Yemen"
+      ],
+      "signal_count": 3,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1773106800,
+      "datetime": "2026-03-10T09:40:00",
+      "countries": [
+        "IR",
+        "LB"
+      ],
+      "country_names": [
+        "Iran",
+        "Lebanon"
+      ],
+      "signal_count": 2,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    },
+    {
+      "timestamp": 1773255600,
+      "datetime": "2026-03-12T03:00:00",
+      "countries": [
+        "IR",
+        "LB"
+      ],
+      "country_names": [
+        "Iran",
+        "Lebanon"
+      ],
+      "signal_count": 4,
+      "interpretation": "Coordinated disruption detected across multiple proxy networks"
+    }
+  ]
+}
+================================================================================
+IODA INTERNET OUTAGE MONITOR - IRAN & PROXY NETWORKS
+================================================================================
+Report generated: 2026-03-12T08:04:47.720897
+
+SUMMARY
+--------------------------------------------------------------------------------
+🔴 CRITICAL: Iran, Lebanon, Syria, Yemen, Iraq
+
+COORDINATED EVENTS
+--------------------------------------------------------------------------------
+Time: 2026-03-05T08:00:00
+Countries: Syria, Iraq
+Signals affected: 7
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T11:10:00
+Countries: Lebanon, Iraq
+Signals affected: 6
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-05T12:30:00
+Countries: Lebanon, Iraq
+Signals affected: 4
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-06T02:30:00
+Countries: Syria, Yemen
+Signals affected: 7
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-06T12:00:00
+Countries: Lebanon, Iraq
+Signals affected: 4
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-06T13:45:00
+Countries: Lebanon, Yemen
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T01:40:00
+Countries: Iran, Syria, Yemen
+Signals affected: 9
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T02:50:00
+Countries: Iran, Syria
+Signals affected: 8
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T04:00:00
+Countries: Syria, Yemen
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T10:40:00
+Countries: Syria, Lebanon
+Signals affected: 14
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T11:45:00
+Countries: Syria, Lebanon, Iraq
+Signals affected: 13
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T13:00:00
+Countries: Lebanon, Iraq
+Signals affected: 5
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-07T22:50:00
+Countries: Iran, Syria, Lebanon, Iraq
+Signals affected: 19
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T00:40:00
+Countries: Syria, Iraq, Yemen
+Signals affected: 5
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T04:40:00
+Countries: Iran, Iraq, Yemen
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T09:10:00
+Countries: Iran, Lebanon
+Signals affected: 10
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T11:20:00
+Countries: Lebanon, Iraq, Yemen
+Signals affected: 22
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T17:50:00
+Countries: Syria, Lebanon
+Signals affected: 13
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T18:55:00
+Countries: Syria, Lebanon
+Signals affected: 4
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-08T20:30:00
+Countries: Syria, Yemen
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-09T11:10:00
+Countries: Lebanon, Iraq, Yemen
+Signals affected: 4
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-09T18:50:00
+Countries: Lebanon, Yemen
+Signals affected: 5
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-10T04:50:00
+Countries: Iraq, Yemen
+Signals affected: 3
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-10T09:40:00
+Countries: Iran, Lebanon
+Signals affected: 2
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+Time: 2026-03-12T03:00:00
+Countries: Iran, Lebanon
+Signals affected: 4
+Analysis: Coordinated disruption detected across multiple proxy networks
+
+COUNTRY DETAILS
+--------------------------------------------------------------------------------
+
+Iran (IR)
+Status: CRITICAL
+  bgp: mean=40725.01, latest=40705
+  active_probing: mean=385.09, latest=379
+  google_transparency: mean=114991920.28, latest=56736264
+  Anomalies detected: 31
+    - 2026-03-09T17:00:00: bgp (z-score: -10.61, severity: critical)
+    - 2026-03-09T17:05:00: bgp (z-score: -10.57, severity: critical)
+    - 2026-03-09T17:10:00: bgp (z-score: -10.61, severity: critical)
+    - 2026-03-09T17:15:00: bgp (z-score: -10.65, severity: critical)
+    - 2026-03-09T17:20:00: bgp (z-score: -10.65, severity: critical)
+
+Lebanon (LB)
+Status: CRITICAL
+  bgp: mean=2236.2, latest=2237
+  active_probing: mean=651.63, latest=642
+  google_transparency: mean=1741486081.16, latest=2106106875
+  Anomalies detected: 153
+    - 2026-03-06T13:45:00: bgp (z-score: -2.03, severity: warning)
+    - 2026-03-06T13:50:00: bgp (z-score: -2.03, severity: warning)
+    - 2026-03-06T13:55:00: bgp (z-score: -2.03, severity: warning)
+    - 2026-03-06T14:00:00: bgp (z-score: -2.03, severity: warning)
+    - 2026-03-06T14:05:00: bgp (z-score: -2.03, severity: warning)
+
+Syria (SY)
+Status: CRITICAL
+  bgp: mean=4807.1, latest=4808
+  active_probing: mean=663.73, latest=674
+  google_transparency: mean=4005626877.1, latest=6074228645
+  Anomalies detected: 69
+    - 2026-03-07T10:40:00: bgp (z-score: -7.95, severity: critical)
+    - 2026-03-07T10:45:00: bgp (z-score: -7.95, severity: critical)
+    - 2026-03-07T10:50:00: bgp (z-score: -7.95, severity: critical)
+    - 2026-03-07T10:55:00: bgp (z-score: -7.95, severity: critical)
+    - 2026-03-07T11:00:00: bgp (z-score: -7.95, severity: critical)
+
+Yemen (YE)
+Status: CRITICAL
+  bgp: mean=963.31, latest=962
+  active_probing: mean=23.85, latest=24
+  google_transparency: mean=2591730178.47, latest=5558168125
+  Anomalies detected: 35
+    - 2026-03-09T19:05:00: bgp (z-score: -2.42, severity: warning)
+    - 2026-03-09T19:10:00: bgp (z-score: -2.42, severity: warning)
+    - 2026-03-09T19:15:00: bgp (z-score: -2.42, severity: warning)
+    - 2026-03-05T13:40:00: active_probing (z-score: -2.31, severity: warning)
+    - 2026-03-05T16:00:00: active_probing (z-score: -2.31, severity: warning)
+
+Iraq (IQ)
+Status: CRITICAL
+  bgp: mean=3165.49, latest=3170
+  active_probing: mean=909.28, latest=921
+  google_transparency: mean=2932101901.47, latest=4856918229
+  Anomalies detected: 41
+    - 2026-03-08T12:20:00: bgp (z-score: -4.01, severity: critical)
+    - 2026-03-09T11:10:00: bgp (z-score: -3.5, severity: critical)
+    - 2026-03-10T04:50:00: bgp (z-score: -2.72, severity: warning)
+    - 2026-03-05T08:00:00: active_probing (z-score: -2.41, severity: warning)
+    - 2026-03-05T08:20:00: active_probing (z-score: -2.41, severity: warning)
+
+================================================================================
+INTELLIGENCE INTERPRETATION
+================================================================================
+• Iran disruption → Potential military action or domestic unrest
+• Proxy network disruption → Communication cutoff or targeted strikes
+• Multi-country simultaneous → Coordinated operations likely
+================================================================================
+

@@ -145,7 +145,7 @@ node skills/exec-optimizer/index.js fstats /path/a /path/b /path/c
 # Safe disk cleanup (replaces manual du/find/rm chains)
 node skills/exec-optimizer/index.js cleanup           # Execute cleanup
 node skills/exec-optimizer/index.js cleanup --dry-run  # Preview only
-# Cleans: pip-unpack temp dirs, old generated images, npm cache, rotated logs, stale whisper-venv
+# Cleans: pip-unpack temp dirs, old generated images, npm cache, rotated logs, stale whisper-venv, old GEP prompts (keeps latest 5)
 # Returns JSON: { before, after, freed, actions[], summary }
 ```
 
