@@ -1,0 +1,6 @@
+{
+  "name": "system-health-dashboard",
+  "version": "1.0.0",
+  "description": "Unified system health dashboard aggregating all health-check skills into a single actionable report",
+  "main": "index.js"
+}
