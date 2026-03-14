@@ -9,6 +9,28 @@ const FormData = require('form-data');
  * 支持图片、文件等媒体内容上传和发送
  */
 
+// 瞬时网络错误重试（ECONNRESET, ETIMEDOUT, ECONNREFUSED 等）
+const RETRYABLE_CODES = ['ECONNRESET', 'ETIMEDOUT', 'ECONNREFUSED', 'EPIPE', 'EAI_AGAIN', 'EHOSTUNREACH'];
+async function withRetry(fn, { maxRetries = 3, baseDelayMs = 1000, label = 'operation' } = {}) {
+  let lastErr;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      const code = err.code || (typeof err.message === 'string' && err.message.match(/\{[^}]*"code"\s*:\s*"([^"]+)"/)?.[1]);
+      if (attempt < maxRetries && RETRYABLE_CODES.includes(code)) {
+        const delay = baseDelayMs * Math.pow(2, attempt);
+        console.log(`⚠️ ${label} 失败 (${code})，${delay}ms 后第 ${attempt + 1} 次重试...`);
+        await new Promise(r => setTimeout(r, delay));
+      } else {
+        throw err;
+      }
+    }
+  }
+  throw lastErr;
+}
+
 // 从环境变量或配置文件获取 token
 function getFeishuToken() {
   // 优先从环境变量读取
@@ -26,9 +48,9 @@ function getFeishuToken() {
   }
 }
 
-// 从 URL 下载文件
+// 从 URL 下载文件（带重试）
 function downloadFile(url) {
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const protocol = url.startsWith('https') ? https : http;
     protocol.get(url, (res) => {
       if (res.statusCode !== 200) {
@@ -41,7 +63,7 @@ function downloadFile(url) {
       res.on('end', () => resolve(Buffer.concat(chunks)));
       res.on('error', reject);
     }).on('error', reject);
-  });
+  }), { label: '下载文件' });
 }
 
 // 处理 base64 数据
@@ -56,9 +78,9 @@ function decodeBase64(dataUrl) {
   };
 }
 
-// 上传文件到飞书
+// 上传文件到飞书（带重试）
 async function uploadToFeishu(buffer, filename, token) {
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const form = new FormData();
     form.append('image', buffer, { filename });
     form.append('image_type', 'message');
@@ -90,7 +112,7 @@ async function uploadToFeishu(buffer, filename, token) {
 
     req.on('error', reject);
     form.pipe(req);
-  });
+  }), { label: '上传图片' });
 }
 
 // 自动检测 receive_id 类型
@@ -101,14 +123,14 @@ function detectReceiveIdType(receiveId) {
   return 'chat_id'; // 默认
 }
 
-// 发送图片消息
+// 发送图片消息（带重试）
 async function sendImageMessage(fileKey, receiveIdType, receiveId, token) {
   // 自动检测类型（如果未指定）
   if (!receiveIdType || receiveIdType === 'auto') {
     receiveIdType = detectReceiveIdType(receiveId);
   }
 
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const payload = JSON.stringify({
       receive_id: receiveId,
       msg_type: 'image',
@@ -144,7 +166,7 @@ async function sendImageMessage(fileKey, receiveIdType, receiveId, token) {
     req.on('error', reject);
     req.write(payload);
     req.end();
-  });
+  }), { label: '发送图片消息' });
 }
 
 /**

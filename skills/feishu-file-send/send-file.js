@@ -27,6 +27,28 @@ if (!fs.existsSync(filePath)) {
   process.exit(1);
 }
 
+// 瞬时网络错误重试（ECONNRESET, ETIMEDOUT 等）
+const RETRYABLE_CODES = ['ECONNRESET', 'ETIMEDOUT', 'ECONNREFUSED', 'EPIPE', 'EAI_AGAIN', 'EHOSTUNREACH'];
+async function withRetry(fn, { maxRetries = 3, baseDelayMs = 1000, label = 'operation' } = {}) {
+  let lastErr;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      const code = err.code || '';
+      if (attempt < maxRetries && RETRYABLE_CODES.includes(code)) {
+        const delay = baseDelayMs * Math.pow(2, attempt);
+        console.log(`⚠️ ${label} 失败 (${code})，${delay}ms 后第 ${attempt + 1} 次重试...`);
+        await new Promise(r => setTimeout(r, delay));
+      } else {
+        throw err;
+      }
+    }
+  }
+  throw lastErr;
+}
+
 // Load Feishu config
 const configPath = path.join(process.env.HOME || '/root', '.openclaw/openclaw.json');
 let config;
@@ -48,9 +70,9 @@ if (!appId || !appSecret) {
 
 const fileName = path.basename(filePath);
 
-// Step 1: Get tenant_access_token
+// Step 1: Get tenant_access_token（带重试）
 function getToken() {
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const tokenData = querystring.stringify({
       app_id: appId,
       app_secret: appSecret
@@ -88,12 +110,12 @@ function getToken() {
     req.on('error', reject);
     req.write(tokenData);
     req.end();
-  });
+  }), { label: '获取Token' });
 }
 
-// Step 2: Upload file
+// Step 2: Upload file（带重试）
 function uploadFile(token) {
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const FormData = require('form-data');
     const form = new FormData();
     
@@ -132,12 +154,12 @@ function uploadFile(token) {
 
     req.on('error', reject);
     form.pipe(req);
-  });
+  }), { label: '上传文件' });
 }
 
-// Step 3: Send file message
+// Step 3: Send file message（带重试）
 function sendFileMessage(token, fileKey) {
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const messageData = JSON.stringify({
       receive_id: target,
       msg_type: 'file',
@@ -179,12 +201,12 @@ function sendFileMessage(token, fileKey) {
     req.on('error', reject);
     req.write(messageData);
     req.end();
-  });
+  }), { label: '发送文件消息' });
 }
 
-// Step 4: Send optional text message
+// Step 4: Send optional text message（带重试）
 function sendTextMessage(token, text) {
-  return new Promise((resolve, reject) => {
+  return withRetry(() => new Promise((resolve, reject) => {
     const messageData = JSON.stringify({
       receive_id: target,
       msg_type: 'text',
@@ -224,7 +246,7 @@ function sendTextMessage(token, text) {
     req.on('error', reject);
     req.write(messageData);
     req.end();
-  });
+  }), { label: '发送文本消息' });
 }
 
 // Main execution
