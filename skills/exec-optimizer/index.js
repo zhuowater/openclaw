@@ -1405,6 +1405,13 @@ async function main() {
     return;
   }
 
+  if (cmd === 'skill-audit' || cmd === 'audit') {
+    const deep = process.argv.includes('--deep');
+    const result = await skillAudit({ includeImportCheck: deep });
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));
@@ -1426,6 +1433,90 @@ async function main() {
   console.log('  node index.js cleanup    - Safe disk cleanup (--dry-run to preview)');
   console.log('  node index.js fetch <url> - HTTP fetch without curl (replaces exec curl)');
   console.log('  node index.js exec-analysis [n] - Analyze exec patterns in recent sessions');
+  console.log('  node index.js skill-audit [--deep] - Batch audit all skills (replaces manual dir scanning)');
+}
+
+/**
+ * Skill Audit - Batch scan all skills and classify them.
+ * Replaces repeated `exec` calls to manually check skill directories.
+ * @param {Object} opts - Options
+ * @param {boolean} opts.includeImportCheck - Test require() for each skill (slower, default false)
+ * @param {string} opts.skillsDir - Skills directory (default: /root/openclaw/skills)
+ * @returns {Promise<Object>} - { healthy, degraded, orphan, broken, summary }
+ */
+async function skillAudit(opts = {}) {
+  const skillsDir = opts.skillsDir || '/root/openclaw/skills';
+  const includeImportCheck = opts.includeImportCheck || false;
+
+  const entries = await fs.readdir(skillsDir, { withFileTypes: true });
+  const dirs = entries.filter(e => e.isDirectory() && !e.name.startsWith('.'));
+
+  const healthy = [];
+  const degraded = [];
+  const orphan = [];
+  const broken = [];
+
+  for (const dir of dirs) {
+    const name = dir.name;
+    const base = path.join(skillsDir, name);
+    const checks = {
+      hasIndex: false,
+      hasSkillMd: false,
+      hasPkg: false,
+      importable: null,
+      issues: []
+    };
+
+    try { await fs.access(path.join(base, 'index.js')); checks.hasIndex = true; } catch {}
+    try { await fs.access(path.join(base, 'SKILL.md')); checks.hasSkillMd = true; } catch {}
+    try { await fs.access(path.join(base, 'package.json')); checks.hasPkg = true; } catch {}
+
+    // Orphan: no standard files at all
+    if (!checks.hasIndex && !checks.hasSkillMd && !checks.hasPkg) {
+      // Check if there's at least some content
+      const contents = await fs.readdir(base);
+      const hasContent = contents.filter(f => !f.startsWith('.')).length > 0;
+      orphan.push({ name, hasContent, issues: ['no index.js, SKILL.md, or package.json'] });
+      continue;
+    }
+
+    // Optional import check
+    if (includeImportCheck && checks.hasIndex) {
+      try {
+        const { stdout } = await execFileAsync('node', [
+          '-e', `try { require('${base}'); console.log('ok') } catch(e) { console.error(e.message); process.exit(1) }`
+        ], { timeout: 5000 });
+        checks.importable = stdout.trim() === 'ok';
+        if (!checks.importable) checks.issues.push('import returned non-ok');
+      } catch (err) {
+        checks.importable = false;
+        checks.issues.push(`import error: ${(err.stderr || err.message).trim().slice(0, 100)}`);
+      }
+    }
+
+    // Classify
+    if (checks.importable === false) {
+      broken.push({ name, ...checks });
+    } else if (!checks.hasSkillMd || !checks.hasIndex) {
+      degraded.push({ name, ...checks });
+    } else {
+      healthy.push({ name, ...checks });
+    }
+  }
+
+  return {
+    healthy: healthy.map(s => s.name),
+    degraded: degraded.map(s => ({ name: s.name, issues: s.issues, hasIndex: s.hasIndex, hasSkillMd: s.hasSkillMd })),
+    orphan: orphan.map(s => ({ name: s.name, hasContent: s.hasContent })),
+    broken: broken.map(s => ({ name: s.name, issues: s.issues })),
+    summary: {
+      total: dirs.length,
+      healthy: healthy.length,
+      degraded: degraded.length,
+      orphan: orphan.length,
+      broken: broken.length
+    }
+  };
 }
 
 module.exports = {
@@ -1441,6 +1532,7 @@ module.exports = {
   batchExec,
   systemHealth,
   skillHealth,
+  skillAudit,
   evolverPreflight,
   batchFileCheck,
   fileStatsBatch,
