@@ -10,11 +10,11 @@
   },
   "stats": {
     "rigor=0.7|creativity=0.3|verbosity=0.3|risk_tolerance=0.4|obedience=0.9": {
-      "success": 43,
-      "fail": 10,
-      "avg_score": 0.7273584905660379,
-      "n": 53,
-      "updated_at": "2026-03-14T18:02:02.238Z"
+      "success": 44,
+      "fail": 11,
+      "avg_score": 0.7200000000000001,
+      "n": 55,
+      "updated_at": "2026-03-15T12:02:42.736Z"
     }
   },
   "history": [
@@ -388,7 +388,21 @@
       "outcome": "success",
       "score": 0.85,
       "notes": "event:evt_1773511322232"
+    },
+    {
+      "at": "2026-03-15T06:05:07.650Z",
+      "key": "rigor=0.7|creativity=0.3|verbosity=0.3|risk_tolerance=0.4|obedience=0.9",
+      "outcome": "failed",
+      "score": 0.2,
+      "notes": "event:evt_1773554707551"
+    },
+    {
+      "at": "2026-03-15T12:02:42.736Z",
+      "key": "rigor=0.7|creativity=0.3|verbosity=0.3|risk_tolerance=0.4|obedience=0.9",
+      "outcome": "success",
+      "score": 0.85,
+      "notes": "event:evt_1773576162731"
     }
   ],
-  "updated_at": "2026-03-14T18:02:02.238Z"
+  "updated_at": "2026-03-15T12:02:42.736Z"
 }
