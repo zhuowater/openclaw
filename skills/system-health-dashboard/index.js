@@ -85,6 +85,27 @@ const SUBSYSTEMS = {
       }
     }
   },
+  cronErrors: {
+    label: 'Cron Error Digest',
+    run: async () => {
+      try {
+        const { digest } = require(path.join(SKILLS_DIR, 'cron-error-digest'));
+        const report = digest({ sinceMs: Date.now() - 7 * 86400000 });
+        if (!report || report.error) return { severity: 'ok', details: 'No cron error data' };
+        const s = report.summary;
+        const severity = s.chronicOffenders > 0 ? 'critical' : s.errorRate > 10 ? 'warn' : 'ok';
+        return {
+          severity,
+          errorRate: s.errorRate + '%',
+          totalErrors: s.totalErrors,
+          chronicOffenders: s.chronicOffenders,
+          details: report.chronicOffenders.slice(0, 3),
+        };
+      } catch (e) {
+        return { severity: 'ok', details: 'cron-error-digest not available: ' + e.message };
+      }
+    }
+  },
   skills: {
     label: 'Skill Quality',
     run: async () => {

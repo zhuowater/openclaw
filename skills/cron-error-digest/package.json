@@ -1,0 +1,6 @@
+{
+  "name": "cron-error-digest",
+  "version": "1.0.0",
+  "description": "Analyze cron job run logs to identify chronic failures, timeout patterns, and error trends",
+  "main": "index.js"
+}
