@@ -1392,6 +1392,13 @@ async function main() {
     return;
   }
 
+  if (cmd === 'gep-maintain' || cmd === 'gep-maint') {
+    const dryRun = process.argv.includes('--dry-run');
+    const result = await gepMaintain({ dryRun });
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   if (cmd === 'fetch' && process.argv[3]) {
     const result = await httpFetch(process.argv[3]);
     console.log(JSON.stringify({ ok: result.ok, status: result.status, elapsed: result.elapsed, bodyLength: result.body.length }, null, 2));
@@ -1431,6 +1438,7 @@ async function main() {
   console.log('  node index.js commit <msg> - Git add all + commit (replaces 2 exec calls)');
   console.log('  node index.js fstats <paths...> - Batch file stats (replaces multiple stat/ls)');
   console.log('  node index.js cleanup    - Safe disk cleanup (--dry-run to preview)');
+  console.log('  node index.js gep-maintain - GEP asset maintenance (dedup + archive, --dry-run to preview)');
   console.log('  node index.js fetch <url> - HTTP fetch without curl (replaces exec curl)');
   console.log('  node index.js exec-analysis [n] - Analyze exec patterns in recent sessions');
   console.log('  node index.js skill-audit [--deep] - Batch audit all skills (replaces manual dir scanning)');
@@ -1519,6 +1527,77 @@ async function skillAudit(opts = {}) {
   };
 }
 
+/**
+ * GEP Asset Maintenance - Dedup candidates, archive old events, report stats.
+ * Replaces: python3 scripts/gep-maintenance.py + manual wc/ls/grep checks (3-5 exec calls → 1)
+ * @param {Object} [options] - { dryRun: boolean, keepEvents: number }
+ * @returns {Promise<Object>} - { candidates, events, summary }
+ */
+async function gepMaintain(options = {}) {
+  const { dryRun = false, keepEvents = 30 } = options;
+  const gepDir = path.join('/root/openclaw/skills/evolver/assets/gep');
+  const result = { candidates: { before: 0, after: 0, removed: 0 }, events: { before: 0, after: 0, archived: 0 }, summary: '' };
+
+  // 1. Dedup candidates.jsonl
+  const candPath = path.join(gepDir, 'candidates.jsonl');
+  try {
+    const raw = (await fs.readFile(candPath, 'utf8')).trim();
+    const lines = raw ? raw.split('\n').filter(Boolean) : [];
+    result.candidates.before = lines.length;
+    const seen = {};
+    for (const line of lines) {
+      try { const obj = JSON.parse(line); seen[obj.id || line] = line; } catch { seen[line] = line; }
+    }
+    const deduped = Object.values(seen);
+    result.candidates.after = deduped.length;
+    result.candidates.removed = lines.length - deduped.length;
+    if (!dryRun && result.candidates.removed > 0) {
+      await fs.writeFile(candPath, deduped.join('\n') + '\n');
+    }
+  } catch {}
+
+  // 2. Archive old events from events.jsonl
+  const evtPath = path.join(gepDir, 'events.jsonl');
+  const archPath = path.join(gepDir, 'events_archive.jsonl');
+  try {
+    const raw = (await fs.readFile(evtPath, 'utf8')).trim();
+    const entries = raw ? raw.split('\n').filter(Boolean).map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean) : [];
+    result.events.before = entries.length;
+    const evts = entries.filter(e => e.type === 'EvolutionEvent');
+    const vrs = entries.filter(e => e.type === 'ValidationReport');
+    const others = entries.filter(e => e.type !== 'EvolutionEvent' && e.type !== 'ValidationReport');
+
+    if (evts.length > keepEvents) {
+      evts.sort((a, b) => (a.id || '').localeCompare(b.id || ''));
+      vrs.sort((a, b) => (a.id || '').localeCompare(b.id || ''));
+      const archivedEvts = evts.slice(0, -keepEvents);
+      const archivedVrs = vrs.slice(0, -keepEvents);
+      const keptEvts = evts.slice(-keepEvents);
+      const keptVrs = vrs.slice(-keepEvents);
+      const archived = [...archivedEvts, ...archivedVrs];
+      const kept = [...keptEvts, ...keptVrs, ...others];
+      kept.sort((a, b) => (a.id || '').localeCompare(b.id || ''));
+      result.events.archived = archived.length;
+      result.events.after = kept.length;
+      if (!dryRun && archived.length > 0) {
+        await fs.appendFile(archPath, archived.map(e => JSON.stringify(e)).join('\n') + '\n');
+        await fs.writeFile(evtPath, kept.map(e => JSON.stringify(e)).join('\n') + '\n');
+      }
+    } else {
+      result.events.after = entries.length;
+    }
+  } catch {}
+
+  const actions = [];
+  if (result.candidates.removed > 0) actions.push(`deduped ${result.candidates.removed} candidates`);
+  if (result.events.archived > 0) actions.push(`archived ${result.events.archived} old events`);
+  result.summary = actions.length > 0
+    ? `${dryRun ? '[DRY RUN] ' : ''}${actions.join(', ')}`
+    : 'Assets clean, nothing to do.';
+
+  return result;
+}
+
 module.exports = {
   gitStatus,
   gitLog,
@@ -1549,6 +1628,7 @@ module.exports = {
   httpFetch,
   envExec,
   sessionExecAnalysis,
+  gepMaintain,
   main
 };
 

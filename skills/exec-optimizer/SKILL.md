@@ -147,6 +147,12 @@ node skills/exec-optimizer/index.js cleanup           # Execute cleanup
 node skills/exec-optimizer/index.js cleanup --dry-run  # Preview only
 # Cleans: pip-unpack temp dirs, old generated images, npm cache, rotated logs, stale whisper-venv, old GEP prompts (keeps latest 5)
 # Returns JSON: { before, after, freed, actions[], summary }
+
+# GEP asset maintenance (replaces python3 scripts/gep-maintenance.py + manual checks)
+node skills/exec-optimizer/index.js gep-maintain           # Execute maintenance
+node skills/exec-optimizer/index.js gep-maintain --dry-run  # Preview only
+# Deduplicates candidates.jsonl and archives old events from events.jsonl
+# Returns JSON: { candidates: {before, after, removed}, events: {before, after, archived}, summary }
 ```
 
 ### Evolver Preflight (NEW - addresses repeated_tool_usage:exec)
