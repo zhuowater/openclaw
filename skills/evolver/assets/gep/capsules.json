@@ -94,14 +94,14 @@
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 80
+        "files": 0,
+        "lines": 0
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 9,
+      "success_streak": 10,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -115,12 +115,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:6b3a91ee324d9b687e0ed073a860d68951102a04286f05b28307a85210b366a3",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:19bd341604322b1e7191ddd0ef8cb51ffdbf192dedf9e7f611d4f95a09cac469"
+      "asset_id": "sha256:9debeb8ff7858cec315cc02980f6a1b6bdbe04bf9e3ab9f5c8a18727b97b2677"
     },
     {
       "type": "Capsule",
