@@ -12,6 +12,29 @@ const fs = require('fs');
 const path = require('path');
 
 const CRON_RUNS_DIR = path.join(process.env.HOME || '/root', '.openclaw/cron/runs');
+const CRON_JOBS_FILE = path.join(process.env.HOME || '/root', '.openclaw/cron/jobs.json');
+
+/**
+ * Load active cron job metadata (id -> { name, enabled }) from jobs.json.
+ * Returns empty map on failure (graceful degradation).
+ */
+function loadJobMeta() {
+  const meta = new Map();
+  try {
+    const raw = fs.readFileSync(CRON_JOBS_FILE, 'utf8');
+    const data = JSON.parse(raw);
+    const jobs = Array.isArray(data) ? data : (data.jobs || []);
+    for (const j of jobs) {
+      if (j && j.id) {
+        meta.set(j.id, {
+          name: j.name || null,
+          enabled: j.enabled !== false,
+        });
+      }
+    }
+  } catch (_) { /* graceful: no metadata available */ }
+  return meta;
+}
 
 /**
  * Parse a single cron run log file and extract error entries
@@ -104,22 +127,33 @@ function parseRunLog(filePath) {
 function digest(opts = {}) {
   const sinceMs = opts.sinceMs || 0;
   const minErrors = opts.minErrors || 1;
+  const includeStale = opts.includeStale !== false; // default: include stale for backward compat
 
   if (!fs.existsSync(CRON_RUNS_DIR)) {
     return { error: 'Cron runs directory not found', dir: CRON_RUNS_DIR };
   }
+
+  const jobMeta = loadJobMeta();
 
   const files = fs.readdirSync(CRON_RUNS_DIR)
     .filter(f => f.endsWith('.jsonl'))
     .map(f => path.join(CRON_RUNS_DIR, f));
 
   const jobs = [];
+  const staleJobs = []; // run logs for deleted/removed jobs
   let totalErrors = 0;
   let totalTimeouts = 0;
   let totalRuns = 0;
 
   for (const file of files) {
     const parsed = parseRunLog(file);
+    const meta = jobMeta.get(parsed.jobId);
+
+    // Annotate with name and active status
+    parsed.jobName = meta ? meta.name : null;
+    parsed.isActive = !!meta;
+    parsed.isEnabled = meta ? meta.enabled : false;
+
     totalRuns += parsed.totalRuns;
     totalErrors += parsed.errorCount;
     totalTimeouts += parsed.timeoutCount;
@@ -131,6 +165,11 @@ function digest(opts = {}) {
       parsed.timeoutCount = parsed.errors.filter(e => e.isTimeout).length;
     }
 
+    if (!meta) {
+      staleJobs.push(parsed);
+      if (!includeStale) continue; // skip stale jobs from main report
+    }
+
     if (parsed.errorCount >= minErrors) {
       jobs.push(parsed);
     }
@@ -139,11 +178,11 @@ function digest(opts = {}) {
   // Sort by error count descending
   jobs.sort((a, b) => b.errorCount - a.errorCount);
 
-  // Identify chronic offenders (>50% failure rate)
-  const chronic = jobs.filter(j => j.totalRuns > 2 && j.errorCount / j.totalRuns > 0.5);
+  // Identify chronic offenders (>50% failure rate, active jobs only)
+  const chronic = jobs.filter(j => j.totalRuns > 2 && j.errorCount / j.totalRuns > 0.5 && j.isActive);
 
-  // Identify timeout-heavy jobs
-  const timeoutHeavy = jobs.filter(j => j.timeoutCount > 2);
+  // Identify timeout-heavy jobs (active only)
+  const timeoutHeavy = jobs.filter(j => j.timeoutCount > 2 && j.isActive);
 
   // Error frequency by day (last 7 days)
   const now = Date.now();
@@ -199,6 +238,8 @@ function digest(opts = {}) {
     timestamp: new Date().toISOString(),
     summary: {
       totalJobs: files.length,
+      activeJobs: files.length - staleJobs.length,
+      staleRunLogs: staleJobs.length,
       totalRuns,
       totalErrors,
       totalTimeouts,
@@ -208,6 +249,8 @@ function digest(opts = {}) {
     },
     chronicOffenders: chronic.map(j => ({
       jobId: j.jobId,
+      jobName: j.jobName,
+      isEnabled: j.isEnabled,
       totalRuns: j.totalRuns,
       errorCount: j.errorCount,
       timeoutCount: j.timeoutCount,
@@ -217,14 +260,23 @@ function digest(opts = {}) {
     })),
     timeoutHeavy: timeoutHeavy.map(j => ({
       jobId: j.jobId,
+      jobName: j.jobName,
       timeoutCount: j.timeoutCount,
       totalRuns: j.totalRuns,
       avgDurationMs: j.avgDurationMs,
     })),
+    staleRunLogs: staleJobs.length > 0 ? staleJobs.map(j => ({
+      jobId: j.jobId,
+      totalRuns: j.totalRuns,
+      errorCount: j.errorCount,
+      note: 'Job deleted/removed but run log persists. Consider cleaning up.',
+    })) : [],
     errorTrend: dayBuckets,
     topErrorPatterns: patterns,
-    problematicJobs: jobs.slice(0, 15).map(j => ({
+    problematicJobs: jobs.filter(j => j.isActive).slice(0, 15).map(j => ({
       jobId: j.jobId,
+      jobName: j.jobName,
+      isEnabled: j.isEnabled,
       totalRuns: j.totalRuns,
       errorCount: j.errorCount,
       successCount: j.successCount,
@@ -246,16 +298,26 @@ function formatText(report) {
   const lines = [
     `📊 Cron Error Digest (${report.timestamp})`,
     `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-    `Jobs: ${s.totalJobs} | Runs: ${s.totalRuns} | Errors: ${s.totalErrors} (${s.errorRate}%) | Timeouts: ${s.totalTimeouts}`,
-    `Chronic offenders: ${s.chronicOffenders} | Timeout-heavy: ${s.timeoutHeavyJobs}`,
+    `Jobs: ${s.activeJobs}/${s.totalJobs} active | Runs: ${s.totalRuns} | Errors: ${s.totalErrors} (${s.errorRate}%) | Timeouts: ${s.totalTimeouts}`,
+    `Chronic offenders: ${s.chronicOffenders} | Timeout-heavy: ${s.timeoutHeavyJobs}` + (s.staleRunLogs > 0 ? ` | Stale logs: ${s.staleRunLogs}` : ''),
     '',
   ];
 
   if (report.chronicOffenders.length > 0) {
     lines.push('🔴 Chronic Offenders (>50% failure rate):');
     for (const j of report.chronicOffenders) {
-      lines.push(`  ${j.jobId.substring(0, 8)}... — ${j.failureRate}% failures (${j.errorCount}/${j.totalRuns}), ${j.timeoutCount} timeouts`);
+      const nameTag = j.jobName ? ` (${j.jobName})` : '';
+      const enabledTag = j.isEnabled === false ? ' [DISABLED]' : '';
+      lines.push(`  ${j.jobId.substring(0, 8)}...${nameTag}${enabledTag} — ${j.failureRate}% failures (${j.errorCount}/${j.totalRuns}), ${j.timeoutCount} timeouts`);
       if (j.lastError) lines.push(`    Last: ${j.lastError.error}`);
+    }
+    lines.push('');
+  }
+
+  if (report.staleRunLogs && report.staleRunLogs.length > 0) {
+    lines.push('🗑️  Stale Run Logs (job deleted, log persists):');
+    for (const j of report.staleRunLogs) {
+      lines.push(`  ${j.jobId.substring(0, 8)}... — ${j.totalRuns} runs, ${j.errorCount} errors (can be cleaned up)`);
     }
     lines.push('');
   }
