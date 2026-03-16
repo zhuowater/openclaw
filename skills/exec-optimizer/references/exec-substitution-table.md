@@ -1,0 +1,32 @@
+# exec-optimizer Substitution Quick Reference
+
+Use `node skills/exec-optimizer/index.js <cmd>` for all of these.
+
+| Instead of exec...            | Use CLI...                          | Saves |
+|-------------------------------|-------------------------------------|-------|
+| `curl -s URL`                 | `fetch <url>`                       | ~300 tokens |
+| `git status --porcelain`      | `diag` (includes git)               | ~200 tokens |
+| `git add -A && git commit`    | `commit "message"`                  | 2→1 calls |
+| `ls -t dir \| head -1`       | `latest <dir> [pattern] [count]`    | ~150 tokens |
+| `ls -la file1 file2 ...`     | `fstats <path1> <path2> ...`        | N→1 calls |
+| `tail -n 20 file`            | `tail <file> [lines]`               | ~100 tokens |
+| `grep -r pattern dir`        | `grep <dir> <pattern> [exts]`       | ~200 tokens |
+| `df -h`                      | `disk [path]`                       | ~100 tokens |
+| `free -m && df -h && uptime` | `health`                            | 3→1 calls |
+| `cat file.json`              | `json <file> [dot.path]`            | ~100 tokens |
+| `du -sh dir`                 | (use `disk` for mountpoint)         | ~100 tokens |
+| Multiple independent cmds     | Use `batchExec()` programmatically  | N→1 calls |
+
+## Combined Diagnostics (Biggest Wins)
+
+| Pattern                           | One-liner                           | Replaces |
+|-----------------------------------|-------------------------------------|----------|
+| Session startup checks            | `diag`                              | 3-5 calls |
+| Evolver pre-flight                | `preflight`                         | 5-7 calls |
+| Memory/notes overview             | `memory`                            | 4-5 calls |
+| Evolution health check            | `evo`                               | 3-4 calls |
+| Skill audit (all skills)          | `skill-audit` or `skill-audit --deep` | 10+ calls |
+| Heartbeat state check             | `cron`                              | 2-3 calls |
+| Safe disk cleanup                 | `cleanup` or `cleanup --dry-run`    | 5-10 calls |
+| GEP asset maintenance             | `gep-maintain`                      | 3-5 calls |
+| Analyze exec usage                | `exec-analysis [count]`             | 5-10 calls |

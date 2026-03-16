@@ -173,8 +173,8 @@
       "summary": "固化：gene_auto_a46bf5e7 命中信号 high_tool_usage:exec, evolution_saturation，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 26
+        "files": 1,
+        "lines": 6
       },
       "outcome": {
         "status": "success",
@@ -194,12 +194,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:4cb29aed675ebd49cf4ef70bcbbd1b6001489a59e3b94497168b0d77efaa7521",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:c021a6467f085cfde5c300fa79c332e9ebc4d019f4bc02cead63196015a21c81"
+      "asset_id": "sha256:5facd8c175302a86173c0102b2275fdfa7dd310b57fbc5fb884d918185d59753"
     },
     {
       "type": "Capsule",

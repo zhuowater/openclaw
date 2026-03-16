@@ -1,6 +1,6 @@
 ---
 name: exec-optimizer
-description: Reduce exec tool usage by providing lightweight Node.js wrappers for common shell operations like git status, file checks, and directory operations. Use when you need to perform frequent file/git operations without burning tokens on shell spawning overhead.
+description: Reduce exec tool usage by providing lightweight Node.js wrappers for common shell operations like git status, file checks, directory operations, HTTP requests, and disk maintenance. Use INSTEAD OF exec for curl, git status, ls, tail, grep, df, du, cat .json. Use `node skills/exec-optimizer/index.js diag` for session startup checks (replaces 3-5 exec calls). Use `node skills/exec-optimizer/index.js health` for system health. Ref table at references/exec-substitution-table.md.
 ---
 
 # exec-optimizer
