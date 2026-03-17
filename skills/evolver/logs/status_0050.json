@@ -1,0 +1,5 @@
+{
+  "result": "success",
+  "en": "Status: [OPTIMIZE] Enhanced exec-optimizer discoverability — added substitution reference table (exec-substitution-table.md) and enriched SKILL.md description with explicit replaceable exec patterns (curl, git, ls, tail, grep, df). Session exec analysis: 73/191 calls optimizable across 10 sessions.",
+  "zh": "状态: [优化] 增强 exec-optimizer 可发现性 — 添加替代命令快查表 (exec-substitution-table.md)，丰富 SKILL.md 描述以明确列出可替代的 exec 模式 (curl, git, ls, tail, grep, df)。会话分析：10 个会话中 191 次 exec 调用有 73 次可优化。"
+}

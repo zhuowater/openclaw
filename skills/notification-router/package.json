@@ -1,0 +1,6 @@
+{
+  "name": "notification-router",
+  "version": "1.0.0",
+  "description": "Smart notification routing and escalation based on event severity",
+  "main": "index.js"
+}
