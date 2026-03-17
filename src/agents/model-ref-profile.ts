@@ -19,5 +19,12 @@ export function splitTrailingAuthProfile(raw: string): {
     return { model: trimmed };
   }
 
+  // Purely numeric suffixes (e.g. @20251001) are version strings used by
+  // LiteLLM / Vertex AI model naming conventions, not auth-profile names.
+  // Keep them as part of the model ID to avoid silent truncation.
+  if (/^\d+$/.test(profile)) {
+    return { model: trimmed };
+  }
+
   return { model, profile };
 }
