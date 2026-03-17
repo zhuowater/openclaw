@@ -1,0 +1,6 @@
+{
+  "name": "memory-curator",
+  "version": "1.0.0",
+  "description": "Automatically curate MEMORY.md from daily notes - anti-entropy maintenance",
+  "main": "index.js"
+}
