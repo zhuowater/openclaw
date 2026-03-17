@@ -1,0 +1,6 @@
+{
+  "name": "quick-ref",
+  "version": "1.0.0",
+  "description": "Fast key-value reference store for frequently-used operational data",
+  "main": "index.js"
+}

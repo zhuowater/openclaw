@@ -1,36 +1,47 @@
 {
   "last_run": {
-    "run_id": "run_1773727227994",
-    "created_at": "2026-03-17T06:00:28.004Z",
-    "parent_event_id": "evt_1773705836837",
-    "selected_gene_id": "gene_gep_innovate_from_opportunity",
-    "selected_capsule_id": "capsule_1773705836837",
+    "run_id": "run_1773770414930",
+    "created_at": "2026-03-17T18:00:14.944Z",
+    "parent_event_id": "evt_1773749172558",
+    "selected_gene_id": "gene_gep_repair_from_errors",
+    "selected_capsule_id": "capsule_1772024430697",
     "selector": {
-      "selected": "gene_gep_innovate_from_opportunity",
+      "selected": "gene_gep_repair_from_errors",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: user_feature_request",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.750",
+        "signals: recurring_error, repeated_tool_usage:exec, high_tool_usage:process, empty_cycle_loop_detected, stable_success_plateau",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.857",
         "drift_intensity: 0.447"
       ],
-      "alternatives": []
+      "alternatives": [
+        "gene_gep_innovate_from_opportunity",
+        "gene_auto_7f294d19"
+      ]
     },
     "signals": [
-      "user_feature_request"
+      "recurring_error",
+      "repeated_tool_usage:exec",
+      "high_tool_usage:process",
+      "empty_cycle_loop_detected",
+      "stable_success_plateau"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1773727227992",
+      "id": "mut_1773770414928",
       "category": "innovate",
       "trigger_signals": [
-        "user_feature_request"
+        "recurring_error",
+        "repeated_tool_usage:exec",
+        "high_tool_usage:process",
+        "empty_cycle_loop_detected",
+        "stable_success_plateau"
       ],
-      "target": "gene:gene_gep_innovate_from_opportunity",
+      "target": "gene:gene_gep_repair_from_errors",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1773727227992",
+    "mutation_id": "mut_1773770414928",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -49,19 +60,19 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "21d96265db8e374c26363aeb4022571ce500324b",
+    "baseline_git_head": "a719544f3cdcd09e5d1ab7a4c29b70a8de97113a",
     "blast_radius_estimate": {
-      "files": 25,
-      "lines": 2000
+      "files": 20,
+      "lines": 1600
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1773727227994",
-    "at": "2026-03-17T06:03:11.315Z",
-    "event_id": "evt_1773727391315",
-    "capsule_id": "capsule_1773705836837",
+    "run_id": "run_1773770414930",
+    "at": "2026-03-17T18:04:24.876Z",
+    "event_id": "evt_1773770664876",
+    "capsule_id": "capsule_1772024430697",
     "outcome": {
       "status": "success",
       "score": 0.85
