@@ -1,0 +1,6 @@
+{
+  "name": "session-cost-report",
+  "version": "1.0.0",
+  "description": "Analyze OpenClaw session token costs and recommend optimizations",
+  "main": "index.js"
+}
