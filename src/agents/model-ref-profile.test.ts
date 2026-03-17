@@ -53,4 +53,23 @@ describe("splitTrailingAuthProfile", () => {
       profile: "google-gemini-cli:test@gmail.com",
     });
   });
+
+  it("does not split numeric version suffixes (LiteLLM/Vertex AI @YYYYMMDD style)", () => {
+    expect(splitTrailingAuthProfile("my-litellm/vertex-ai_claude-haiku-4-5@20251001")).toEqual({
+      model: "my-litellm/vertex-ai_claude-haiku-4-5@20251001",
+    });
+  });
+
+  it("does not split short numeric version suffixes", () => {
+    expect(splitTrailingAuthProfile("provider/model@20240101")).toEqual({
+      model: "provider/model@20240101",
+    });
+  });
+
+  it("still splits non-numeric named auth profiles that follow a model with underscores", () => {
+    expect(splitTrailingAuthProfile("my-litellm/vertex-ai_claude-haiku-4-5@prod")).toEqual({
+      model: "my-litellm/vertex-ai_claude-haiku-4-5",
+      profile: "prod",
+    });
+  });
 });
