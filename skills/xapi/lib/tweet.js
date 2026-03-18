@@ -1,6 +1,24 @@
 const XAPIClient = require('./client');
 
 /**
+ * Serialize error for logging (handles Error instances, plain objects, strings)
+ */
+function serializeError(error) {
+  if (error instanceof Error) {
+    const obj = { message: error.message, name: error.name };
+    if (error.code) obj.code = error.code;
+    if (error.statusCode) obj.statusCode = error.statusCode;
+    if (error.cause) obj.cause = serializeError(error.cause);
+    if (error.stack) obj.stack = error.stack.split('\n').slice(0, 3).join('\n');
+    return JSON.stringify(obj);
+  }
+  if (typeof error === 'object' && error !== null) {
+    return JSON.stringify(error);
+  }
+  return String(error);
+}
+
+/**
  * Post a tweet (supports Premium long tweets up to 25,000 chars)
  */
 async function postTweet(text, options = {}) {
@@ -17,7 +35,7 @@ async function postTweet(text, options = {}) {
         media_ids: [mediaResult.media_id_string]
       };
     } catch (error) {
-      throw new Error(`Media upload failed: ${JSON.stringify(error)}`);
+      throw new Error(`Media upload failed: ${serializeError(error)}`);
     }
   }
 
@@ -37,7 +55,7 @@ async function postTweet(text, options = {}) {
     const result = await client.request('POST', '/2/tweets', { body });
     return result;
   } catch (error) {
-    throw new Error(`Post tweet failed: ${JSON.stringify(error)}`);
+    throw new Error(`Post tweet failed: ${serializeError(error)}`);
   }
 }
 
@@ -125,7 +143,7 @@ async function deleteTweet(tweetId) {
     const result = await client.request('DELETE', `/2/tweets/${tweetId}`);
     return result;
   } catch (error) {
-    throw new Error(`Delete tweet failed: ${JSON.stringify(error)}`);
+    throw new Error(`Delete tweet failed: ${serializeError(error)}`);
   }
 }
 
@@ -145,7 +163,7 @@ async function getTweet(tweetId) {
     const result = await client.request('GET', `/2/tweets/${tweetId}`, { queryParams });
     return result;
   } catch (error) {
-    throw new Error(`Get tweet failed: ${JSON.stringify(error)}`);
+    throw new Error(`Get tweet failed: ${serializeError(error)}`);
   }
 }
 
@@ -160,7 +178,7 @@ async function bookmarkTweet(tweetId, userId) {
     });
     return result;
   } catch (error) {
-    throw new Error(`Bookmark failed: ${JSON.stringify(error)}`);
+    throw new Error(`Bookmark failed: ${serializeError(error)}`);
   }
 }
 
@@ -180,7 +198,7 @@ async function getBookmarks(userId, options = {}) {
     });
     return result;
   } catch (error) {
-    throw new Error(`Get bookmarks failed: ${JSON.stringify(error)}`);
+    throw new Error(`Get bookmarks failed: ${serializeError(error)}`);
   }
 }
 
@@ -195,7 +213,7 @@ async function followUser(targetUserId, myUserId) {
     });
     return result;
   } catch (error) {
-    throw new Error(`Follow failed: ${JSON.stringify(error)}`);
+    throw new Error(`Follow failed: ${serializeError(error)}`);
   }
 }
 
@@ -208,7 +226,7 @@ async function unfollowUser(targetUserId, myUserId) {
     const result = await client.request('DELETE', `/2/users/${myUserId}/following/${targetUserId}`);
     return result;
   } catch (error) {
-    throw new Error(`Unfollow failed: ${JSON.stringify(error)}`);
+    throw new Error(`Unfollow failed: ${serializeError(error)}`);
   }
 }
 
@@ -227,7 +245,7 @@ async function getFollowers(userId, options = {}) {
     });
     return result;
   } catch (error) {
-    throw new Error(`Get followers failed: ${JSON.stringify(error)}`);
+    throw new Error(`Get followers failed: ${serializeError(error)}`);
   }
 }
 
@@ -246,7 +264,7 @@ async function getFollowing(userId, options = {}) {
     });
     return result;
   } catch (error) {
-    throw new Error(`Get following failed: ${JSON.stringify(error)}`);
+    throw new Error(`Get following failed: ${serializeError(error)}`);
   }
 }
 
