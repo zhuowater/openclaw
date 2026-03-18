@@ -1412,6 +1412,13 @@ async function main() {
     return;
   }
 
+  if (cmd === 'signal-trend' || cmd === 'signals') {
+    const count = parseInt(process.argv[3]) || 10;
+    const result = await signalTrend(count);
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   if (cmd === 'skill-audit' || cmd === 'audit') {
     const deep = process.argv.includes('--deep');
     const result = await skillAudit({ includeImportCheck: deep });
@@ -1441,6 +1448,7 @@ async function main() {
   console.log('  node index.js gep-maintain - GEP asset maintenance (dedup + archive, --dry-run to preview)');
   console.log('  node index.js fetch <url> - HTTP fetch without curl (replaces exec curl)');
   console.log('  node index.js exec-analysis [n] - Analyze exec patterns in recent sessions');
+  console.log('  node index.js signal-trend [n] - GEP signal trend analysis (replaces 3-4 exec grep calls)');
   console.log('  node index.js skill-audit [--deep] - Batch audit all skills (replaces manual dir scanning)');
 }
 
@@ -1525,6 +1533,140 @@ async function skillAudit(opts = {}) {
       broken: broken.length
     }
   };
+}
+
+/**
+ * Signal Trend Analysis - Analyze GEP signal frequency and repetition patterns.
+ * Replaces: multiple exec calls to grep/parse events.jsonl for signal analysis.
+ * One call replaces 3-4 exec calls (cat events.jsonl | grep | sort | uniq -c).
+ * @param {number} [lastN=10] - Number of recent events to analyze
+ * @returns {Promise<Object>} - { signals, repeated, stagnation, trend, recommendations }
+ */
+async function signalTrend(lastN = 10) {
+  const evtPath = '/root/openclaw/skills/evolver/assets/gep/events.jsonl';
+  const result = {
+    analyzed: 0,
+    signalFrequency: {},  // signal -> count
+    geneFrequency: {},    // gene -> count
+    intentBreakdown: {},  // intent -> count
+    repeatedSignals: [],  // signals appearing in >50% of cycles
+    stagnation: false,    // same signal+gene combo 3+ times
+    streak: { type: null, count: 0 },  // success/fail streak
+    trend: 'stable',      // improving | stable | degrading | stagnant
+    recommendations: [],
+    summary: ''
+  };
+
+  try {
+    const raw = await fs.readFile(evtPath, 'utf8');
+    const lines = raw.trim().split('\n').filter(Boolean);
+    const events = [];
+    for (const line of lines) {
+      try {
+        const obj = JSON.parse(line);
+        if (obj.type === 'EvolutionEvent') events.push(obj);
+      } catch { /* skip */ }
+    }
+
+    const recent = events.slice(-lastN);
+    result.analyzed = recent.length;
+
+    // Frequency counts
+    for (const evt of recent) {
+      // Signals
+      if (Array.isArray(evt.signals)) {
+        for (const sig of evt.signals) {
+          // Normalize long errsig strings
+          const key = sig.length > 60 ? sig.substring(0, 60) + '...' : sig;
+          result.signalFrequency[key] = (result.signalFrequency[key] || 0) + 1;
+        }
+      }
+      // Genes
+      if (Array.isArray(evt.genes_used)) {
+        for (const g of evt.genes_used) {
+          result.geneFrequency[g] = (result.geneFrequency[g] || 0) + 1;
+        }
+      }
+      // Intent
+      if (evt.intent) {
+        result.intentBreakdown[evt.intent] = (result.intentBreakdown[evt.intent] || 0) + 1;
+      }
+    }
+
+    // Repeated signals (>50% of cycles)
+    const threshold = Math.max(2, Math.floor(result.analyzed * 0.5));
+    result.repeatedSignals = Object.entries(result.signalFrequency)
+      .filter(([, c]) => c >= threshold)
+      .map(([sig, count]) => ({ signal: sig, count, pct: Math.round(count / result.analyzed * 100) }))
+      .sort((a, b) => b.count - a.count);
+
+    // Stagnation detection: same (signal_set + gene) combo 3+ times consecutively
+    if (recent.length >= 3) {
+      const fingerprints = recent.map(e => {
+        const sigs = (e.signals || []).sort().join('|');
+        const genes = (e.genes_used || []).sort().join('|');
+        return `${sigs}::${genes}`;
+      });
+      let maxConsec = 1, curConsec = 1;
+      for (let i = 1; i < fingerprints.length; i++) {
+        if (fingerprints[i] === fingerprints[i - 1]) {
+          curConsec++;
+          if (curConsec > maxConsec) maxConsec = curConsec;
+        } else {
+          curConsec = 1;
+        }
+      }
+      result.stagnation = maxConsec >= 3;
+    }
+
+    // Success/fail streak from tail
+    let streakType = null, streakCount = 0;
+    for (let i = recent.length - 1; i >= 0; i--) {
+      const s = recent[i].outcome?.status;
+      if (!streakType) { streakType = s; streakCount = 1; }
+      else if (s === streakType) streakCount++;
+      else break;
+    }
+    result.streak = { type: streakType, count: streakCount };
+
+    // Trend calculation
+    if (result.analyzed < 3) {
+      result.trend = 'insufficient_data';
+    } else {
+      const scores = recent.map(e => e.outcome?.score || 0);
+      const half = Math.floor(scores.length / 2);
+      const firstHalf = scores.slice(0, half).reduce((a, b) => a + b, 0) / half;
+      const secondHalf = scores.slice(half).reduce((a, b) => a + b, 0) / (scores.length - half);
+      if (result.stagnation) result.trend = 'stagnant';
+      else if (secondHalf > firstHalf + 0.05) result.trend = 'improving';
+      else if (secondHalf < firstHalf - 0.05) result.trend = 'degrading';
+      else result.trend = 'stable';
+    }
+
+    // Recommendations
+    if (result.stagnation) {
+      result.recommendations.push('Stagnation detected: consider switching gene or changing approach');
+    }
+    if (result.repeatedSignals.some(s => s.signal.includes('repeated_tool_usage'))) {
+      result.recommendations.push('Repeated exec usage: use exec-optimizer batch functions instead of individual exec calls');
+    }
+    if (result.streak.type === 'failed' && result.streak.count >= 2) {
+      result.recommendations.push(`Failure streak (${result.streak.count}x): try simpler fix or different gene`);
+    }
+    const innovateRatio = (result.intentBreakdown.innovate || 0) / result.analyzed;
+    if (innovateRatio < 0.3 && result.analyzed >= 5) {
+      result.recommendations.push(`Low innovation rate (${Math.round(innovateRatio * 100)}%): consider more innovate cycles`);
+    }
+
+    // Summary
+    const topSignals = result.repeatedSignals.slice(0, 3).map(s => `${s.signal}(${s.count}x)`).join(', ');
+    result.summary = `Analyzed ${result.analyzed} cycles | trend: ${result.trend} | streak: ${result.streak.count}x ${result.streak.type} | top signals: ${topSignals || 'varied'} | ${result.recommendations.length} recommendations`;
+
+  } catch (err) {
+    result.summary = `Error: ${err.message}`;
+  }
+
+  return result;
 }
 
 /**
@@ -1628,6 +1770,7 @@ module.exports = {
   httpFetch,
   envExec,
   sessionExecAnalysis,
+  signalTrend,
   gepMaintain,
   main
 };

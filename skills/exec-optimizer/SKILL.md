@@ -275,6 +275,18 @@ node skills/exec-optimizer/index.js exec-analysis 10
 # Shows: which exec commands could be replaced by exec-optimizer functions
 ```
 
+### Signal Trend Analysis (GEP)
+
+```javascript
+const { signalTrend } = require('./skills/exec-optimizer');
+
+// Analyze GEP signal frequency and stagnation in one call
+// Replaces: grep events.jsonl + sort + uniq -c + manual streak analysis (3-4 exec calls → 1)
+const trend = await signalTrend(10); // last 10 cycles
+// Returns: { analyzed, signalFrequency, geneFrequency, intentBreakdown,
+//   repeatedSignals, stagnation, streak, trend, recommendations, summary }
+```
+
 ## When to Use
 
 ✅ **Use exec-optimizer when**:
