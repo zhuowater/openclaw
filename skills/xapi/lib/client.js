@@ -13,8 +13,10 @@ class XAPIClient {
     this.accessTokenSecret = process.env.X_ACCESS_TOKEN_SECRET;
     this.bearerToken = process.env.X_BEARER_TOKEN;
     
-    // SOCKS5 proxy for bypassing GFW
-    this.proxyAgent = new SocksProxyAgent('socks5h://127.0.0.1:7880');
+    // SOCKS5 proxy for bypassing GFW (timeout: 45s for proxy connection)
+    this.proxyAgent = new SocksProxyAgent('socks5h://127.0.0.1:7880', {
+      timeout: 45000
+    });
     
     if (!this.apiKey || !this.apiSecret || !this.accessToken || !this.accessTokenSecret) {
       throw new Error('Missing required X API credentials. Set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET');
@@ -98,8 +100,19 @@ class XAPIClient {
    * Transient error codes that are safe to retry
    */
   static RETRYABLE_ERRORS = ['ECONNRESET', 'ETIMEDOUT', 'ECONNREFUSED', 'ENOTFOUND', 'EAI_AGAIN', 'EPIPE', 'EHOSTUNREACH', 'ESOCKETTIMEDOUT'];
+  static RETRYABLE_MESSAGES = ['proxy connection timed out', 'socket closed', 'socket hang up'];
   static MAX_RETRIES = 3;
   static BASE_DELAY_MS = 2000;
+
+  /**
+   * Check if an error is retryable (by code or message pattern)
+   */
+  static isRetryableError(err) {
+    const code = err && (err.code || (err.cause && err.cause.code));
+    if (code && XAPIClient.RETRYABLE_ERRORS.includes(code)) return true;
+    const msg = (err && (err.message || '')) .toLowerCase();
+    return XAPIClient.RETRYABLE_MESSAGES.some(pat => msg.includes(pat));
+  }
 
   /**
    * Make HTTP request with OAuth 1.0a (with automatic retry for transient errors)
@@ -147,8 +160,7 @@ class XAPIClient {
         return result;
       } catch (err) {
         lastError = err;
-        const code = err && (err.code || (err.cause && err.cause.code));
-        const isRetryable = code && XAPIClient.RETRYABLE_ERRORS.includes(code);
+        const isRetryable = XAPIClient.isRetryableError(err);
         const isServerError = err && err.statusCode && err.statusCode >= 500;
 
         if ((isRetryable || isServerError) && attempt < XAPIClient.MAX_RETRIES) {
@@ -171,7 +183,7 @@ class XAPIClient {
         path: urlObj.pathname + urlObj.search,
         headers,
         agent: this.proxyAgent,
-        timeout: 45000
+        timeout: 60000
       };
 
       const req = https.request(requestOptions, (res) => {
@@ -244,8 +256,7 @@ class XAPIClient {
       try {
         return await this._uploadMediaAttempt(fileBuffer, fileName);
       } catch (error) {
-        const code = error?.code || error?.cause?.code || '';
-        const isRetryable = XAPIClient.RETRYABLE_ERRORS.includes(code);
+        const isRetryable = XAPIClient.isRetryableError(error);
         const isServerError = typeof error?.statusCode === 'number' && error.statusCode >= 500;
         if ((isRetryable || isServerError) && attempt < XAPIClient.MAX_RETRIES) {
           continue;
