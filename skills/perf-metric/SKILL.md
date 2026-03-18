@@ -1,6 +1,6 @@
 ---
 name: perf-metric
-description: Evolution performance dashboard. Analyzes GEP events, genes, capsules to report success rates, intent breakdown, gene effectiveness, blast radius stats, streaks, and timeline. Use when you need to assess evolution health, find stagnation patterns, or generate a performance report for the GEP system.
+description: Evolution performance dashboard. Analyzes GEP events, genes, capsules to report success rates, intent breakdown, gene effectiveness, blast radius stats, streaks, protocol drift detection, signal recycling, and timeline. Use when you need to assess evolution health, find stagnation patterns, detect protocol drift, or generate a performance report for the GEP system.
 ---
 
 # Perf Metric
@@ -19,6 +19,8 @@ Returns a metrics object:
 - `timeline` — chronological event summaries
 - `hollowCycles` — count, rate, and recent streak of no-op cycles (≤4 lines)
 - `effectiveSuccessRate` — success rate excluding hollow cycles
+- `protocolDrift` — intent-gene category mismatches (e.g., repair intent + innovate gene)
+- `signalRepetitions` — recycled signal patterns across 3+ cycles (stagnation indicator)
 - `health` — overall health score (0-1) and diagnostic flags
 
 ### `report(assetsDir?)`

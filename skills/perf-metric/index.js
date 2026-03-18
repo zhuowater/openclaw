@@ -151,6 +151,49 @@ function analyze(assetsDir) {
     }
   }
 
+  // Protocol drift detection: intent-gene category mismatch
+  const geneCategoryMap = {};
+  for (const g of genes) {
+    geneCategoryMap[g.id] = g.category;
+  }
+  const intentGeneMismatches = [];
+  for (const e of sorted) {
+    const intent = e.intent;
+    const geneId = (e.genes_used || [])[0];
+    if (!intent || !geneId || !geneCategoryMap[geneId]) continue;
+    const geneCat = geneCategoryMap[geneId];
+    // A mismatch is when the event intent doesn't align with the gene's category
+    // e.g., intent=innovate but gene=repair, or intent=repair but gene=innovate
+    if (intent !== geneCat && !(intent === 'optimize' || geneCat === 'optimize')) {
+      intentGeneMismatches.push({
+        eventId: e.id,
+        at: (e.meta && e.meta.at) || null,
+        intent,
+        gene: geneId,
+        geneCategory: geneCat
+      });
+    }
+  }
+
+  // Signal repetition analysis: detect recycled signal patterns
+  const signalPatterns = {};
+  const signalRepetitions = [];
+  for (const e of sorted) {
+    const key = (e.signals || []).slice().sort().join('|');
+    if (!key) continue;
+    if (!signalPatterns[key]) signalPatterns[key] = [];
+    signalPatterns[key].push({ eventId: e.id, at: (e.meta && e.meta.at) || null });
+  }
+  for (const [pattern, occurrences] of Object.entries(signalPatterns)) {
+    if (occurrences.length >= 3) {
+      signalRepetitions.push({
+        signals: pattern.split('|'),
+        count: occurrences.length,
+        recent: occurrences.slice(-3)
+      });
+    }
+  }
+
   // Health assessment
   let healthScore = 1.0;
   const healthFlags = [];
@@ -173,6 +216,22 @@ function analyze(assetsDir) {
     healthScore -= 0.2;
     healthFlags.push(`🔴 ${currentStreak.count}-cycle failure streak`);
   }
+  if (intentGeneMismatches.length > 0) {
+    const mismatchRate = intentGeneMismatches.length / total;
+    if (mismatchRate > 0.2) {
+      healthScore -= 0.15;
+      healthFlags.push(`🔀 Protocol drift: ${intentGeneMismatches.length} intent-gene mismatches (${(mismatchRate * 100).toFixed(0)}%)`);
+    } else if (intentGeneMismatches.length > 0) {
+      healthFlags.push(`🔀 Minor drift: ${intentGeneMismatches.length} intent-gene mismatch(es)`);
+    }
+  }
+  if (signalRepetitions.length > 0) {
+    const worstRepeat = Math.max(...signalRepetitions.map(r => r.count));
+    if (worstRepeat >= 5) {
+      healthScore -= 0.1;
+      healthFlags.push(`🔄 Signal recycling: ${signalRepetitions.length} pattern(s) repeated ${worstRepeat}+ times`);
+    }
+  }
   if (healthFlags.length === 0) {
     healthFlags.push('✅ Evolution system is healthy');
   }
@@ -189,6 +248,15 @@ function analyze(assetsDir) {
     capsuleCount: capsules.length,
     hollowCycles: { count: hollowCount, rate: hollowRate, recentStreak: recentHollowStreak, threshold: HOLLOW_THRESHOLD },
     effectiveSuccessRate,
+    protocolDrift: {
+      intentGeneMismatches,
+      mismatchCount: intentGeneMismatches.length,
+      mismatchRate: total > 0 ? +(intentGeneMismatches.length / total).toFixed(3) : 0
+    },
+    signalRepetitions: {
+      patterns: signalRepetitions,
+      recycledPatternCount: signalRepetitions.length
+    },
     health: { score: healthScore, flags: healthFlags }
   };
 }
@@ -248,6 +316,26 @@ function report(assetsDir) {
     lines.push(`- ${flag}`);
   }
   lines.push('');
+
+  // Protocol Drift
+  if (m.protocolDrift.mismatchCount > 0) {
+    lines.push('## Protocol Drift');
+    lines.push(`- **Intent-gene mismatches:** ${m.protocolDrift.mismatchCount} (${(m.protocolDrift.mismatchRate * 100).toFixed(1)}%)`);
+    for (const mm of m.protocolDrift.intentGeneMismatches.slice(-5)) {
+      const date = mm.at ? mm.at.replace('T', ' ').slice(0, 19) : '?';
+      lines.push(`  - \`${date}\` intent=${mm.intent} but gene=${mm.gene} (cat=${mm.geneCategory})`);
+    }
+    lines.push('');
+  }
+
+  // Signal Repetition
+  if (m.signalRepetitions.recycledPatternCount > 0) {
+    lines.push('## Signal Recycling');
+    for (const sr of m.signalRepetitions.patterns) {
+      lines.push(`- **${sr.signals.join(', ')}** — repeated ${sr.count}× (stagnation risk)`);
+    }
+    lines.push('');
+  }
 
   // Streaks
   lines.push('## Streaks');
