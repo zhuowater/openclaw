@@ -1,3 +1,8 @@
+---
+name: websdr-monitor
+description: Track online shortwave radio receivers (WebSDR/KiwiSDR). Detect outages in conflict zones. Use for radio monitoring, communications intelligence.
+---
+
 # WebSDR/KiwiSDR Monitor
 
 Track online shortwave radio receivers worldwide. Detect outages in conflict zones.

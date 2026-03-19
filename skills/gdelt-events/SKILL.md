@@ -1,3 +1,8 @@
+---
+name: gdelt-events
+description: Monitor global events via GDELT database. Use for geopolitical event tracking, conflict monitoring, news analysis.
+---
+
 # GDELT Event Monitor
 
 ## Purpose

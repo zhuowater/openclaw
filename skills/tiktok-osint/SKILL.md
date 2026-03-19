@@ -1,3 +1,8 @@
+---
+name: tiktok-osint
+description: TikTok OSINT scanner via TikAPI.io REST API. Use for social media intelligence, hashtag search, video discovery.
+---
+
 # TikTok OSINT Scanner
 
 Search TikTok for videos by hashtag via TikAPI.io REST API.

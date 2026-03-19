@@ -1,3 +1,8 @@
+---
+name: grok-x-search
+description: 通过 xAI Responses API + server-side tools 获取 X/Twitter 实时内容和网页搜索结果。适用于搜索X上的热点讨论、新闻验证、社交媒体情报收集。触发词：X搜索、推特搜索、grok搜索。
+---
+
 # grok-x-search v2
 
 通过 xAI Responses API + server-side tools（x_search / web_search）获取 X/Twitter 实时内容。

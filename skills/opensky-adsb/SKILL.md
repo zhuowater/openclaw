@@ -1,3 +1,8 @@
+---
+name: opensky-adsb
+description: Real-time aircraft tracking via OpenSky Network REST API. Use for flight tracking, airspace monitoring, military aviation detection.
+---
+
 # OpenSky ADS-B Aircraft Scanner
 
 Real-time aircraft tracking via OpenSky Network REST API.

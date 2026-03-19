@@ -1,3 +1,8 @@
+---
+name: usgs-earthquake
+description: Monitor earthquakes via USGS API. Use for seismic activity tracking, earthquake alerts, geological monitoring.
+---
+
 # USGS Earthquake Monitor
 
 ## Purpose

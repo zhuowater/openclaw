@@ -1,3 +1,8 @@
+---
+name: polymarket
+description: Query prediction markets, manage authentication, and trade on Polymarket via SOCKS5 proxy. Use for market queries, position checks, order placement, balance inquiries. Triggers on "polymarket", "prediction market", "交易", "持仓".
+---
+
 # Polymarket Trading Skill
 
 Query prediction markets, manage authentication, and trade on Polymarket — all through a SOCKS5 proxy.

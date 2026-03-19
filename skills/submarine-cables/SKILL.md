@@ -1,3 +1,8 @@
+---
+name: submarine-cables
+description: Monitor undersea cable status and outages. Use for infrastructure monitoring, connectivity analysis.
+---
+
 # Submarine Cable Monitor
 
 ## Purpose

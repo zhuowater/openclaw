@@ -1,3 +1,8 @@
+---
+name: commodity-prices
+description: Monitor commodity prices (oil, gold, etc.). Use for commodity tracking, price alerts, market analysis.
+---
+
 # Commodity Price Monitor
 
 ## Purpose

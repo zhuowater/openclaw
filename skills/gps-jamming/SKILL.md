@@ -1,3 +1,8 @@
+---
+name: gps-jamming
+description: Detect GPS jamming/interference using ADS-B aircraft navigation anomalies. Use for GPS interference detection, navigation security.
+---
+
 # GPS Jamming Detection
 
 Indirect GPS interference detection using ADS-B aircraft navigation anomalies.

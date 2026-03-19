@@ -1,3 +1,8 @@
+---
+name: sentinel-imagery
+description: Satellite imagery from Sentinel-2. Use for Earth observation, terrain analysis, change detection.
+---
+
 # Sentinel-2 Satellite Imagery Scanner
 
 ## Purpose

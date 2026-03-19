@@ -1,3 +1,8 @@
+---
+name: aisstream
+description: Real-time vessel tracking via AISStream.io WebSocket API. Use for ship tracking, maritime surveillance, port monitoring.
+---
+
 # AISStream Ship Scanner
 
 Real-time vessel tracking via AISStream.io WebSocket API.

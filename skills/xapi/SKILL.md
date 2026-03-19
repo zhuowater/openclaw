@@ -1,3 +1,8 @@
+---
+name: xapi
+description: X (Twitter) API v2 integration. Search, post, read, engage with tweets via OAuth 1.0a + SOCKS5 proxy. Use when user mentions tweeting, X/Twitter search, posting to X, checking timeline, or social media engagement.
+---
+
 # X (Twitter) API Skill
 
 Complete X (Twitter) API v2 integration for OpenClaw. Search, post, read, and engage with tweets via OAuth 1.0a authentication with SOCKS5 proxy support.

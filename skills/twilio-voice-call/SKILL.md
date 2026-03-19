@@ -1,3 +1,8 @@
+---
+name: twilio-voice-call
+description: Twilio 实时语音通话，真正的电话级实时 AI 对话。适用于需要语音交互的场景。
+---
+
 # Twilio 实时语音通话
 
 **真正的电话级实时 AI 对话**

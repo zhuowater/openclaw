@@ -1,3 +1,8 @@
+---
+name: ioda-outage
+description: Detect internet outages by country using IODA (Georgia Tech) + RIPE RIS BGP data. Use for outage detection, connectivity monitoring.
+---
+
 # IODA Internet Outage Scanner
 
 Detect internet outages by country using IODA (Georgia Tech) + RIPE RIS BGP data.

@@ -1,3 +1,8 @@
+---
+name: secret-scanner
+description: Scan codebase for leaked secrets, API keys, and credentials. Use before commits, during audits, or when checking for exposed credentials.
+---
+
 # Secret Scanner
 
 Scan your codebase for leaked secrets, API keys, and credentials before they hit production.

@@ -1,3 +1,8 @@
+---
+name: imagemagick
+description: Image manipulation via ImageMagick CLI. Use for image resize, convert, composite, annotate operations.
+---
+
 # ImageMagick Moltbot Skill
 
 Comprehensive ImageMagick operations for image manipulation in Moltbot.

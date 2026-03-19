@@ -1,3 +1,8 @@
+---
+name: intelligence
+description: 多源情报聚合系统，为 Polymarket 交易提供数据驱动的信号。聚合 FIRMS卫星、GDELT事件、USGS地震等多源数据。触发词：情报分析、intelligence、交易信号、多源情报。
+---
+
 # Intelligence Trading Suite
 
 多源情报聚合系统，为 Polymarket 交易提供数据驱动的信号。

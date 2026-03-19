@@ -1,3 +1,8 @@
+---
+name: radiation-monitor
+description: OSINT radiation surveillance from public monitoring networks. Use for radiation level tracking, nuclear incident detection.
+---
+
 # Radiation Monitor — OSINT Radiation Surveillance
 
 ## Purpose
