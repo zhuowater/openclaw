@@ -1,0 +1,5 @@
+{
+  "name": "evo-compactor",
+  "version": "1.0.0",
+  "description": "Compact and optimize evolution data files for reduced scan time"
+}
