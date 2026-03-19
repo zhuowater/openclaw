@@ -173,14 +173,14 @@
       "summary": "固化：gene_auto_a46bf5e7 命中信号 high_tool_usage:exec, evolution_saturation，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 6
+        "files": 0,
+        "lines": 0
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 3,
+      "success_streak": 4,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -199,7 +199,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:5facd8c175302a86173c0102b2275fdfa7dd310b57fbc5fb884d918185d59753"
+      "asset_id": "sha256:2a54a5298ec778167f6fe6b57fecc7902d146b50e5f4651d694188b4c7ae33ca"
     },
     {
       "type": "Capsule",
