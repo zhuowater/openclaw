@@ -1,0 +1,6 @@
+{
+  "name": "context-bridge",
+  "version": "1.0.0",
+  "description": "Generate compressed context summaries for sub-agent onboarding and session handoffs",
+  "main": "index.js"
+}
