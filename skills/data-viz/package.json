@@ -1,0 +1,5 @@
+{
+  "name": "data-viz",
+  "version": "1.0.0",
+  "description": "Generate SVG charts (bar, line, pie, sparkline) from data arrays"
+}
