@@ -1,0 +1,6 @@
+{
+  "name": "skill-data-cleaner",
+  "version": "1.0.0",
+  "description": "Scan and clean stale data files accumulated within skills directories",
+  "main": "index.js"
+}
