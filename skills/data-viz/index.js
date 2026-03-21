@@ -278,9 +278,229 @@ function sparkline(opts = {}) {
   return svg;
 }
 
+// ─── Heatmap ───
+
+function heatmap(opts = {}) {
+  const {
+    title = '',
+    rows = [],      // row labels (e.g. days of week)
+    cols = [],      // column labels (e.g. hours)
+    data = [],      // 2D array: data[row][col] = value
+    width = 700,
+    height = 400,
+    colorLow = '#ebedf0',
+    colorHigh = '#216e39',
+    padding = 80,
+  } = opts;
+
+  if (!data.length || !data[0]) return '<svg xmlns="http://www.w3.org/2000/svg"></svg>';
+
+  const numRows = data.length;
+  const numCols = data[0].length;
+  const allVals = data.flat();
+  const maxVal = Math.max(...allVals, 1);
+  const minVal = Math.min(...allVals, 0);
+  const range = maxVal - minVal || 1;
+
+  const chartW = width - padding - 20;
+  const chartH = height - padding - (title ? 30 : 0) - 20;
+  const cellW = chartW / numCols;
+  const cellH = chartH / numRows;
+  const topY = padding / 2 + (title ? 30 : 0);
+  const leftX = padding;
+
+  // Interpolate color
+  function lerpColor(t) {
+    const lo = [parseInt(colorLow.slice(1,3),16), parseInt(colorLow.slice(3,5),16), parseInt(colorLow.slice(5,7),16)];
+    const hi = [parseInt(colorHigh.slice(1,3),16), parseInt(colorHigh.slice(3,5),16), parseInt(colorHigh.slice(5,7),16)];
+    const r = Math.round(lo[0] + (hi[0]-lo[0]) * t);
+    const g = Math.round(lo[1] + (hi[1]-lo[1]) * t);
+    const b = Math.round(lo[2] + (hi[2]-lo[2]) * t);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" style="font-family:system-ui,sans-serif;background:#fff">\n`;
+
+  if (title) {
+    svg += `  <text x="${width/2}" y="20" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">${escapeXml(title)}</text>\n`;
+  }
+
+  // Cells
+  for (let r = 0; r < numRows; r++) {
+    for (let c = 0; c < numCols; c++) {
+      const val = data[r][c] || 0;
+      const t = (val - minVal) / range;
+      const x = leftX + c * cellW;
+      const y = topY + r * cellH;
+      svg += `  <rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(cellW-1).toFixed(1)}" height="${(cellH-1).toFixed(1)}" fill="${lerpColor(t)}" rx="2">\n`;
+      svg += `    <title>${rows[r] || r} × ${cols[c] || c}: ${val}</title>\n`;
+      svg += `  </rect>\n`;
+    }
+  }
+
+  // Row labels
+  for (let r = 0; r < numRows; r++) {
+    if (rows[r]) {
+      const y = topY + r * cellH + cellH / 2 + 4;
+      svg += `  <text x="${leftX - 5}" y="${y.toFixed(1)}" text-anchor="end" font-size="10" fill="#666">${escapeXml(rows[r])}</text>\n`;
+    }
+  }
+
+  // Col labels
+  for (let c = 0; c < numCols; c++) {
+    if (cols[c]) {
+      const x = leftX + c * cellW + cellW / 2;
+      const y = topY + numRows * cellH + 14;
+      svg += `  <text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" font-size="10" fill="#666">${escapeXml(cols[c])}</text>\n`;
+    }
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
+// ─── Gauge ───
+
+function gauge(opts = {}) {
+  const {
+    title = '',
+    value = 0,
+    min = 0,
+    max = 100,
+    width = 300,
+    height = 200,
+    thresholds = [
+      { limit: 0.33, color: '#E74C3C' },
+      { limit: 0.66, color: '#F39C12' },
+      { limit: 1.0, color: '#2ECC71' },
+    ],
+    suffix = '%',
+    label = '',
+  } = opts;
+
+  const cx = width / 2;
+  const cy = height - 30;
+  const r = Math.min(cx - 20, cy - (title ? 30 : 10));
+  const normalized = Math.max(0, Math.min(1, (value - min) / ((max - min) || 1)));
+
+  // Arc helper: angle in radians (0 = 9 o'clock, PI = 3 o'clock for semicircle)
+  function arcPoint(fraction) {
+    const angle = Math.PI * (1 - fraction); // left to right
+    return { x: cx - r * Math.cos(angle), y: cy - r * Math.sin(angle) };
+  }
+
+  function arcPath(startFrac, endFrac, arcR) {
+    const s = arcPoint(startFrac);
+    const e = arcPoint(endFrac);
+    // fix x/y using the arcR
+    const sx = cx - arcR * Math.cos(Math.PI * (1 - startFrac));
+    const sy = cy - arcR * Math.sin(Math.PI * (1 - startFrac));
+    const ex = cx - arcR * Math.cos(Math.PI * (1 - endFrac));
+    const ey = cy - arcR * Math.sin(Math.PI * (1 - endFrac));
+    const largeArc = (endFrac - startFrac) > 0.5 ? 1 : 0;
+    return `M${sx.toFixed(1)},${sy.toFixed(1)} A${arcR},${arcR} 0 ${largeArc} 1 ${ex.toFixed(1)},${ey.toFixed(1)}`;
+  }
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" style="font-family:system-ui,sans-serif;background:#fff">\n`;
+
+  if (title) {
+    svg += `  <text x="${cx}" y="20" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">${escapeXml(title)}</text>\n`;
+  }
+
+  // Background arc
+  svg += `  <path d="${arcPath(0, 1, r)}" fill="none" stroke="#eee" stroke-width="18" stroke-linecap="round"/>\n`;
+
+  // Threshold colored segments
+  let prevLimit = 0;
+  for (const t of thresholds) {
+    const segEnd = Math.min(t.limit, normalized);
+    if (segEnd > prevLimit) {
+      svg += `  <path d="${arcPath(prevLimit, segEnd, r)}" fill="none" stroke="${t.color}" stroke-width="18" stroke-linecap="round"/>\n`;
+    }
+    prevLimit = t.limit;
+    if (prevLimit >= normalized) break;
+  }
+
+  // Needle
+  const needleAngle = Math.PI * (1 - normalized);
+  const nx = cx - (r - 25) * Math.cos(needleAngle);
+  const ny = cy - (r - 25) * Math.sin(needleAngle);
+  svg += `  <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>\n`;
+  svg += `  <circle cx="${cx}" cy="${cy}" r="5" fill="#333"/>\n`;
+
+  // Value text
+  const displayVal = typeof value === 'number' ? (value % 1 === 0 ? value : value.toFixed(1)) : value;
+  svg += `  <text x="${cx}" y="${cy - 20}" text-anchor="middle" font-size="24" font-weight="bold" fill="#333">${displayVal}${escapeXml(suffix)}</text>\n`;
+
+  if (label) {
+    svg += `  <text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="11" fill="#888">${escapeXml(label)}</text>\n`;
+  }
+
+  // Min/Max labels
+  svg += `  <text x="${cx - r - 5}" y="${cy + 5}" text-anchor="end" font-size="10" fill="#aaa">${min}</text>\n`;
+  svg += `  <text x="${cx + r + 5}" y="${cy + 5}" text-anchor="start" font-size="10" fill="#aaa">${max}</text>\n`;
+
+  svg += '</svg>';
+  return svg;
+}
+
+// ─── Horizontal Bar Chart ───
+
+function horizontalBar(opts = {}) {
+  const {
+    title = '',
+    labels = [],
+    values = [],
+    width = 500,
+    height,
+    color = '#4A90D9',
+    colors,
+    barHeight = 22,
+    gap = 8,
+    padding = 40,
+    labelWidth = 100,
+  } = opts;
+
+  if (!values.length) return '<svg xmlns="http://www.w3.org/2000/svg"></svg>';
+
+  const maxVal = Math.max(...values, 1);
+  const barCount = values.length;
+  const computedHeight = height || (padding * 2 + (title ? 30 : 0) + barCount * (barHeight + gap));
+  const chartW = width - padding - labelWidth;
+  const topY = padding + (title ? 30 : 0);
+  const barColors = colors || defaultColors(barCount);
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${computedHeight}" style="font-family:system-ui,sans-serif;background:#fff">\n`;
+
+  if (title) {
+    svg += `  <text x="${width/2}" y="${padding - 10}" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">${escapeXml(title)}</text>\n`;
+  }
+
+  for (let i = 0; i < barCount; i++) {
+    const barW = (values[i] / maxVal) * chartW;
+    const x = labelWidth;
+    const y = topY + i * (barHeight + gap);
+    const fillColor = typeof color === 'string' && !colors ? color : barColors[i % barColors.length];
+
+    // Label
+    if (labels[i]) {
+      svg += `  <text x="${labelWidth - 8}" y="${y + barHeight / 2 + 4}" text-anchor="end" font-size="11" fill="#555">${escapeXml(labels[i])}</text>\n`;
+    }
+
+    // Bar
+    svg += `  <rect x="${x}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${barHeight}" fill="${fillColor}" rx="3"/>\n`;
+
+    // Value
+    svg += `  <text x="${(x + barW + 6).toFixed(1)}" y="${(y + barHeight / 2 + 4).toFixed(1)}" font-size="11" fill="#555">${values[i]}</text>\n`;
+  }
+
+  svg += '</svg>';
+  return svg;
+}
+
 // ─── Exports ───
 
-module.exports = { barChart, lineChart, pieChart, sparkline };
+module.exports = { barChart, lineChart, pieChart, sparkline, heatmap, gauge, horizontalBar };
 
 // ─── CLI ───
 
@@ -302,12 +522,16 @@ if (require.main === module) {
       let svg;
       switch (type) {
         case 'bar':  svg = barChart(data); break;
+        case 'hbar': svg = horizontalBar(data); break;
         case 'line': svg = lineChart(data); break;
         case 'pie':  svg = pieChart(data); break;
         case 'spark':
         case 'sparkline': svg = sparkline(data); break;
+        case 'heat':
+        case 'heatmap': svg = heatmap(data); break;
+        case 'gauge': svg = gauge(data); break;
         default:
-          console.error('Usage: echo JSON | node index.js <bar|line|pie|spark> [--title "T"] [-o file.svg]');
+          console.error('Usage: echo JSON | node index.js <bar|hbar|line|pie|spark|heat|gauge> [--title "T"] [-o file.svg]');
           process.exit(1);
       }
       if (outFile) {

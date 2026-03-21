@@ -1,82 +1,106 @@
 ---
 name: data-viz
-description: Generate SVG charts (bar, line, pie, sparkline) from data arrays. Use when you need to visualize numbers, trends, comparisons, or distributions without external dependencies. Outputs SVG files or inline SVG strings.
+description: Generate SVG charts (bar, horizontal bar, line, pie, sparkline, heatmap, gauge) from data arrays. Use when you need to visualize numbers, trends, comparisons, distributions, time patterns, or health scores without external dependencies. Outputs SVG files or inline SVG strings.
 ---
 
 # Data Viz
 
 Generate lightweight SVG charts from structured data. No external dependencies.
 
+## Chart Types
+
+| Type | Function | Best For |
+|------|----------|----------|
+| `bar` | `barChart()` | Comparing categories |
+| `hbar` | `horizontalBar()` | Ranked lists, long labels |
+| `line` | `lineChart()` | Trends over time (multi-series) |
+| `pie` | `pieChart()` | Proportions |
+| `spark` | `sparkline()` | Inline mini-trends |
+| `heat` | `heatmap()` | 2D patterns (time × category) |
+| `gauge` | `gauge()` | Health scores, single metrics |
+
 ## Usage
 
 ```javascript
-const { barChart, lineChart, pieChart, sparkline } = require('./skills/data-viz');
+const { barChart, lineChart, pieChart, sparkline, heatmap, gauge, horizontalBar } = require('./skills/data-viz');
 
 // Bar chart
-const svg = barChart({
-  title: 'Monthly Revenue',
-  labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-  values: [120, 340, 250, 410],
-  width: 600,
-  height: 400,
-  color: '#4A90D9'
-});
+barChart({ title: 'Revenue', labels: ['Q1','Q2','Q3'], values: [100,200,150] });
 
-// Line chart (supports multiple series)
-const svg = lineChart({
+// Horizontal bar (great for ranked data)
+horizontalBar({ title: 'Top Tools', labels: ['exec','read','web_search'], values: [45,30,12] });
+
+// Line chart (multi-series)
+lineChart({
   title: 'Price Trend',
-  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+  labels: ['Mon','Tue','Wed','Thu','Fri'],
   series: [
-    { name: 'BTC', values: [60000, 62000, 58000, 65000, 63000], color: '#F7931A' },
-    { name: 'ETH', values: [3000, 3200, 2900, 3400, 3100], color: '#627EEA' }
-  ],
-  width: 600,
-  height: 400
+    { name: 'BTC', values: [60000,62000,58000,65000,63000], color: '#F7931A' },
+    { name: 'ETH', values: [3000,3200,2900,3400,3100], color: '#627EEA' }
+  ]
 });
 
 // Pie chart
-const svg = pieChart({
-  title: 'Market Share',
+pieChart({
+  title: 'Share',
   slices: [
     { label: 'Chrome', value: 65, color: '#4285F4' },
-    { label: 'Firefox', value: 18, color: '#FF7139' },
-    { label: 'Safari', value: 12, color: '#006CFF' },
-    { label: 'Other', value: 5, color: '#999' }
+    { label: 'Firefox', value: 18 },
+    { label: 'Other', value: 17 }
+  ]
+});
+
+// Sparkline
+sparkline({ values: [3,7,2,9,4,6,8,1,5], width: 200, height: 40 });
+
+// Heatmap (rows × cols → 2D data array)
+heatmap({
+  title: 'Tool Usage by Hour',
+  rows: ['Mon','Tue','Wed','Thu','Fri'],
+  cols: ['0','4','8','12','16','20'],
+  data: [
+    [1,0,3,8,5,2],
+    [0,0,4,7,6,1],
+    [2,1,5,9,4,3],
+    [0,0,3,6,8,2],
+    [1,0,2,5,3,1]
   ],
-  width: 400,
-  height: 400
+  colorLow: '#ebedf0',
+  colorHigh: '#216e39'
 });
 
-// Sparkline (inline mini chart)
-const svg = sparkline({
-  values: [3, 7, 2, 9, 4, 6, 8, 1, 5],
-  width: 200,
-  height: 40,
-  color: '#E74C3C'
+// Gauge (health score / single metric)
+gauge({
+  title: 'System Health',
+  value: 78,
+  min: 0,
+  max: 100,
+  suffix: '%',
+  label: 'Overall Score',
+  thresholds: [
+    { limit: 0.33, color: '#E74C3C' },  // red zone
+    { limit: 0.66, color: '#F39C12' },  // yellow zone
+    { limit: 1.0,  color: '#2ECC71' }   // green zone
+  ]
 });
-```
-
-## Saving to File
-
-```javascript
-const fs = require('fs');
-const { barChart } = require('./skills/data-viz');
-const svg = barChart({ labels: ['A','B','C'], values: [10,20,15] });
-fs.writeFileSync('/tmp/chart.svg', svg);
-// Convert to PNG if needed: exec `convert /tmp/chart.svg /tmp/chart.png`
 ```
 
 ## CLI
 
 ```bash
-# Quick bar chart from JSON
-echo '{"labels":["Q1","Q2","Q3","Q4"],"values":[100,200,150,300]}' | \
-  node /root/openclaw/skills/data-viz/index.js bar --title "Quarterly"
+# Bar chart
+echo '{"labels":["Q1","Q2"],"values":[100,200]}' | node skills/data-viz/index.js bar
 
-# Line chart from JSON
-echo '{"labels":["1","2","3"],"series":[{"name":"A","values":[10,20,15]}]}' | \
-  node /root/openclaw/skills/data-viz/index.js line
+# Heatmap
+echo '{"rows":["A","B"],"cols":["1","2","3"],"data":[[1,5,3],[4,2,6]]}' | \
+  node skills/data-viz/index.js heat --title "Pattern" -o /tmp/heat.svg
+
+# Gauge
+echo '{"value":85,"max":100,"label":"Health"}' | node skills/data-viz/index.js gauge
+
+# Horizontal bar
+echo '{"labels":["exec","read","write"],"values":[45,30,12]}' | node skills/data-viz/index.js hbar
 
 # Save to file
-node /root/openclaw/skills/data-viz/index.js bar --title "Test" -o /tmp/chart.svg < data.json
+echo '...' | node skills/data-viz/index.js bar -o /tmp/chart.svg
 ```
