@@ -42,6 +42,9 @@ async function getUserByUsername(username) {
     const result = await client.request('GET', `/2/users/by/username/${cleanUsername}`, { queryParams });
     return result;
   } catch (error) {
+    if (error && error.statusCode === 429) {
+      throw new Error(`Get user rate limited (429). X API cap exceeded. Try again later.`);
+    }
     throw new Error(`Get user failed: ${JSON.stringify(error)}`);
   }
 }
@@ -74,6 +77,9 @@ async function getUserTimeline(username, options = {}) {
     const result = await client.request('GET', `/2/users/${userId}/tweets`, { queryParams });
     return attachMediaToTweets(result);
   } catch (error) {
+    if (error && error.statusCode === 429) {
+      throw new Error(`Get user timeline rate limited (429). X API cap exceeded. Try again later.`);
+    }
     throw new Error(`Get timeline failed: ${JSON.stringify(error)}`);
   }
 }
@@ -99,6 +105,10 @@ async function getHomeTimeline(userId, options = {}) {
     const result = await client.request('GET', `/2/users/${userId}/timelines/reverse_chronological`, { queryParams });
     return attachMediaToTweets(result);
   } catch (error) {
+    if (error && error.statusCode === 429) {
+      const title = error.error?.error?.title || 'UsageCapExceeded';
+      throw new Error(`Get home timeline rate limited (429 ${title}). X API monthly/daily cap may be exceeded. Try again later.`);
+    }
     throw new Error(`Get home timeline failed: ${JSON.stringify(error)}`);
   }
 }

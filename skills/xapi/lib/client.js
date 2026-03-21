@@ -103,6 +103,7 @@ class XAPIClient {
   static RETRYABLE_MESSAGES = ['proxy connection timed out', 'socket closed', 'socket hang up'];
   static MAX_RETRIES = 3;
   static BASE_DELAY_MS = 2000;
+  static RATE_LIMIT_MAX_WAIT_MS = 120000; // max 2 min wait for rate limit
 
   /**
    * Check if an error is retryable (by code or message pattern)
@@ -162,6 +163,15 @@ class XAPIClient {
         lastError = err;
         const isRetryable = XAPIClient.isRetryableError(err);
         const isServerError = err && err.statusCode && err.statusCode >= 500;
+        const isRateLimit = err && err.statusCode === 429;
+
+        if (isRateLimit && attempt < XAPIClient.MAX_RETRIES) {
+          // Respect Retry-After header or use exponential backoff
+          const retryAfterSec = err.retryAfter || (15 * Math.pow(2, attempt));
+          const waitMs = Math.min(retryAfterSec * 1000, XAPIClient.RATE_LIMIT_MAX_WAIT_MS);
+          await new Promise(r => setTimeout(r, waitMs));
+          continue;
+        }
 
         if ((isRetryable || isServerError) && attempt < XAPIClient.MAX_RETRIES) {
           continue; // retry
@@ -200,10 +210,15 @@ class XAPIClient {
             if (res.statusCode >= 200 && res.statusCode < 300) {
               resolve(parsed);
             } else {
-              reject({
+              const err = {
                 statusCode: res.statusCode,
                 error: parsed
-              });
+              };
+              // Capture Retry-After for 429 rate limit responses
+              if (res.statusCode === 429 && res.headers['retry-after']) {
+                err.retryAfter = parseInt(res.headers['retry-after'], 10) || 15;
+              }
+              reject(err);
             }
           } catch (err) {
             reject({
