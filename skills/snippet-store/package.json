@@ -1,0 +1,5 @@
+{
+  "name": "snippet-store",
+  "version": "1.0.0",
+  "description": "Lightweight code/text snippet manager with tagging and fuzzy search"
+}

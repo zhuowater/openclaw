@@ -90,12 +90,12 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_gep_optimize_prompt_and_assets",
+      "gene": "gene_gep_innovate_from_opportunity",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 96
+        "files": 1,
+        "lines": 6
       },
       "outcome": {
         "status": "success",
@@ -115,12 +115,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:5f3ece0d99722fee79701ad39237e44a08f1145997749b9fd750659bebf2b161",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:3b84c1c4583be37f0a8b4955427ba4b465bd9080b5f0cd388cab940e681fe1f5"
+      "asset_id": "sha256:fa33f4e87b15e0022a6e208fb411246011537a53a5c4889f69c736be5e351db6"
     },
     {
       "type": "Capsule",
@@ -210,18 +210,18 @@
         "stable_success_plateau",
         "empty_cycle_loop_detected"
       ],
-      "gene": "gene_gep_repair_from_errors",
+      "gene": "gene_gep_innovate_from_opportunity",
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 8
+        "files": 1,
+        "lines": 6
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 8,
+      "success_streak": 7,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -235,12 +235,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:bdd2b04c34ed35b64895b7590944384acb79346b69d09a0449e277bdd9a3f44d",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:dff3318df05e3a25b6635406d4b7542d50925233f087e627048c650fcd8dce8d"
+      "asset_id": "sha256:4c8366e32447e1e196b66b9003dd2a3ca162f2985ac99f3ec9f8dfcd4e7bfcf8"
     },
     {
       "type": "Capsule",
