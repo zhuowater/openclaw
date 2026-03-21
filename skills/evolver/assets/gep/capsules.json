@@ -17,13 +17,13 @@
       "confidence": 0.85,
       "blast_radius": {
         "files": 1,
-        "lines": 8
+        "lines": 4
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 13,
+      "success_streak": 8,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -37,12 +37,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:66905e0f251ba7b1e346d5387dd5c001c72f0969df6f6b3b665822ef948fb360",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:44b8d9b35c25a9863c99d2dd2b21761d1ee1428322db7e62b13f9280a31b9440"
+      "asset_id": "sha256:15d99831ea0698e5509841e63238be30baf25d0829e8dbfcfca21514c4f1270a"
     },
     {
       "type": "Capsule",
@@ -210,18 +210,18 @@
         "stable_success_plateau",
         "empty_cycle_loop_detected"
       ],
-      "gene": "gene_gep_innovate_from_opportunity",
+      "gene": "gene_auto_a46bf5e7",
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected，变更 1 文件 / 60 行。",
       "confidence": 0.85,
       "blast_radius": {
         "files": 1,
-        "lines": 6
+        "lines": 228
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 7,
+      "success_streak": 8,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -235,12 +235,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:bdd2b04c34ed35b64895b7590944384acb79346b69d09a0449e277bdd9a3f44d",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
-        "eligible_to_broadcast": true
+        "eligible_to_broadcast": false
       },
-      "asset_id": "sha256:4c8366e32447e1e196b66b9003dd2a3ca162f2985ac99f3ec9f8dfcd4e7bfcf8"
+      "asset_id": "sha256:1c652229f25df924ae76e6d0f43f79c9b206e94ed1062be6c38132f6cfbd41f7"
     },
     {
       "type": "Capsule",
