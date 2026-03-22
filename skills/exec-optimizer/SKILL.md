@@ -25,7 +25,7 @@ All commands: `node skills/exec-optimizer/index.js <cmd>`
 | `evo` | event/gene/capsule counting | 3-4 → 1 call |
 | `fstats <paths...>` | multiple stat/ls -la | N → 1 call |
 | `cleanup [--dry-run]` | manual du/find/rm | 5-10 → 1 call |
-| `gep-maintain [--dry-run]` | dedup candidates + archive events | 3-5 → 1 call |
+| `gep-maintain [--dry-run]` | dedup candidates + archive events + clean old prompts | 3-5 → 1 call |
 | `exec-analysis [count]` | analyze exec patterns | 5-10 → 1 call |
 | `skill <name>` | check skill integrity | 2-3 → 1 call |
 

@@ -1676,9 +1676,10 @@ async function signalTrend(lastN = 10) {
  * @returns {Promise<Object>} - { candidates, events, summary }
  */
 async function gepMaintain(options = {}) {
-  const { dryRun = false, keepEvents = 30 } = options;
+  const { dryRun = false, keepEvents = 30, keepPrompts = 5 } = options;
   const gepDir = path.join('/root/openclaw/skills/evolver/assets/gep');
-  const result = { candidates: { before: 0, after: 0, removed: 0 }, events: { before: 0, after: 0, archived: 0 }, summary: '' };
+  const evoDir = path.join('/root/openclaw/memory/evolution');
+  const result = { candidates: { before: 0, after: 0, removed: 0 }, events: { before: 0, after: 0, archived: 0 }, prompts: { before: 0, after: 0, removed: 0, freedKB: 0 }, summary: '' };
 
   // 1. Dedup candidates.jsonl
   const candPath = path.join(gepDir, 'candidates.jsonl');
@@ -1730,9 +1731,36 @@ async function gepMaintain(options = {}) {
     }
   } catch {}
 
+  // 3. Clean up old GEP prompt files (keep only the latest N)
+  try {
+    const evoFiles = await fs.readdir(evoDir);
+    const promptTxts = evoFiles.filter(f => f.startsWith('gep_prompt_') && f.endsWith('.txt')).sort();
+    const promptJsons = evoFiles.filter(f => f.startsWith('gep_prompt_') && f.endsWith('.json')).sort();
+    const allPrompts = [...promptTxts, ...promptJsons];
+    result.prompts.before = allPrompts.length;
+    
+    const toRemoveTxt = promptTxts.length > keepPrompts ? promptTxts.slice(0, -keepPrompts) : [];
+    const toRemoveJson = promptJsons.length > keepPrompts ? promptJsons.slice(0, -keepPrompts) : [];
+    const toRemove = [...toRemoveTxt, ...toRemoveJson];
+    result.prompts.removed = toRemove.length;
+    result.prompts.after = allPrompts.length - toRemove.length;
+    
+    let freedBytes = 0;
+    for (const f of toRemove) {
+      const fp = path.join(evoDir, f);
+      try {
+        const st = await fs.stat(fp);
+        freedBytes += st.size;
+        if (!dryRun) await fs.unlink(fp);
+      } catch {}
+    }
+    result.prompts.freedKB = Math.round(freedBytes / 1024);
+  } catch {}
+
   const actions = [];
   if (result.candidates.removed > 0) actions.push(`deduped ${result.candidates.removed} candidates`);
   if (result.events.archived > 0) actions.push(`archived ${result.events.archived} old events`);
+  if (result.prompts.removed > 0) actions.push(`cleaned ${result.prompts.removed} old prompt files (${result.prompts.freedKB}KB)`);
   result.summary = actions.length > 0
     ? `${dryRun ? '[DRY RUN] ' : ''}${actions.join(', ')}`
     : 'Assets clean, nothing to do.';
