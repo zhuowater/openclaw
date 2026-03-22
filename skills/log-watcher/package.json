@@ -1,0 +1,6 @@
+{
+  "name": "log-watcher",
+  "version": "1.0.0",
+  "description": "Lightweight log tailing, searching, and monitoring — replaces repeated exec grep/tail/cat calls",
+  "main": "index.js"
+}
