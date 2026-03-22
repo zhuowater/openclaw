@@ -1,47 +1,38 @@
 {
   "last_run": {
-    "run_id": "run_1774094410303",
-    "created_at": "2026-03-21T12:00:10.332Z",
-    "parent_event_id": "evt_1774073068679",
-    "selected_gene_id": "gene_gep_innovate_from_opportunity",
+    "run_id": "run_1774137613525",
+    "created_at": "2026-03-22T00:00:13.553Z",
+    "parent_event_id": "evt_1774116133896",
+    "selected_gene_id": "gene_gep_repair_from_errors",
     "selected_capsule_id": "capsule_1770477654236",
     "selector": {
-      "selected": "gene_gep_innovate_from_opportunity",
+      "selected": "gene_gep_repair_from_errors",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Traceback (most recent call last):\\n File \\\"/root/openclaw/skills/nano-banana-pro/scripts/generate_image.py\\\", line 23, in <module>\\n from google import genai\\nModuleNotFoundError: No module named , user_feature_request, capability_gap, high_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.885",
+        "signals: log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Error: Get home timeline failed: {\\\"statusCode\\\":429,\\\"error\\\":{\\\"account_id\\\":2003793972045746200,\\\"product_name\\\":\\\"standard-basic\\\",\\\"title\\\":\\\"UsageCapExceeded\\\",\\\"period\\\":\\\"Monthly\\\",\\\"scope\\",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors | gene_prior:0.667",
         "drift_intensity: 0.447"
       ],
-      "alternatives": [
-        "gene_gep_repair_from_errors",
-        "gene_auto_a46bf5e7"
-      ]
+      "alternatives": []
     },
     "signals": [
       "log_error",
-      "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Traceback (most recent call last):\\n File \\\"/root/openclaw/skills/nano-banana-pro/scripts/generate_image.py\\\", line 23, in <module>\\n from google import genai\\nModuleNotFoundError: No module named ",
-      "user_feature_request",
-      "capability_gap",
-      "high_tool_usage:exec"
+      "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Error: Get home timeline failed: {\\\"statusCode\\\":429,\\\"error\\\":{\\\"account_id\\\":2003793972045746200,\\\"product_name\\\":\\\"standard-basic\\\",\\\"title\\\":\\\"UsageCapExceeded\\\",\\\"period\\\":\\\"Monthly\\\",\\\"scope\\"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1774094410299",
+      "id": "mut_1774137613523",
       "category": "repair",
       "trigger_signals": [
         "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Traceback (most recent call last):\\n File \\\"/root/openclaw/skills/nano-banana-pro/scripts/generate_image.py\\\", line 23, in <module>\\n from google import genai\\nModuleNotFoundError: No module named",
-        "user_feature_request",
-        "capability_gap",
-        "high_tool_usage:exec"
+        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"Error: Get home timeline failed: {\\\"statusCode\\\":429,\\\"error\\\":{\\\"account_id\\\":2003793972045746200,\\\"product_name\\\":\\\"standard-basic\\\",\\\"title\\\":\\\"UsageCapExceeded\\\",\\\"period\\\":\\\"Monthly\\\",\\\"scope\\"
       ],
-      "target": "gene:gene_gep_innovate_from_opportunity",
+      "target": "gene:gene_gep_repair_from_errors",
       "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
       "risk_level": "low"
     },
-    "mutation_id": "mut_1774094410299",
+    "mutation_id": "mut_1774137613523",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -60,18 +51,18 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "68222d8eba2b1525d6ee36eff757e844dea00265",
+    "baseline_git_head": "9a766dfba491cbfba21476589be06edebb6d351f",
     "blast_radius_estimate": {
-      "files": 25,
-      "lines": 2000
+      "files": 20,
+      "lines": 1600
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1774094410303",
-    "at": "2026-03-21T12:01:06.236Z",
-    "event_id": "evt_1774094466236",
+    "run_id": "run_1774137613525",
+    "at": "2026-03-22T00:05:07.965Z",
+    "event_id": "evt_1774137907965",
     "capsule_id": "capsule_1770477654236",
     "outcome": {
       "status": "success",

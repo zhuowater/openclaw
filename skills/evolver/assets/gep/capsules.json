@@ -12,18 +12,18 @@
         "windows_shell_incompatible",
         "perf_bottleneck"
       ],
-      "gene": "gene_gep_innovate_from_opportunity",
+      "gene": "gene_gep_repair_from_errors",
       "summary": "Harden all 7 unprotected r.json() calls in trade.py with _safe_json wrapper to prevent recurring JSONDecodeError/KeyError crashes",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 4
+        "files": 6,
+        "lines": 108
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 8,
+      "success_streak": 10,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -40,9 +40,9 @@
       "source_type": "generated",
       "reused_asset_id": null,
       "a2a": {
-        "eligible_to_broadcast": true
+        "eligible_to_broadcast": false
       },
-      "asset_id": "sha256:15d99831ea0698e5509841e63238be30baf25d0829e8dbfcfca21514c4f1270a"
+      "asset_id": "sha256:9572dac72bdd7ec455cf33968ed2e6b542952133439481f623f0737e7a636a82"
     },
     {
       "type": "Capsule",
