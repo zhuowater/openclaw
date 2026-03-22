@@ -90,18 +90,18 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_gep_innovate_from_opportunity",
+      "gene": "gene_gep_optimize_prompt_and_assets",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 6
+        "files": 2,
+        "lines": 36
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 12,
+      "success_streak": 11,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -120,7 +120,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:fa33f4e87b15e0022a6e208fb411246011537a53a5c4889f69c736be5e351db6"
+      "asset_id": "sha256:e4b2cf72018bd7589c32f729cec79c46d267b3e2c988397c732678d88f7e72a2"
     },
     {
       "type": "Capsule",
