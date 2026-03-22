@@ -1,12 +1,50 @@
 const crypto = require('crypto');
 const https = require('https');
+const fs = require('fs');
+const path = require('path');
 const { SocksProxyAgent } = require('socks-proxy-agent');
+
+/**
+ * Rate limit lockfile for monthly/daily usage cap exceeded (429 UsageCapExceeded).
+ * When X API returns UsageCapExceeded, we write a lockfile with the reset date.
+ * Subsequent calls check this file and fail fast without hitting the API.
+ */
+const RATE_LOCK_PATH = path.join(__dirname, '..', '.x-rate-lock.json');
+
+function isRateLocked() {
+  try {
+    if (!fs.existsSync(RATE_LOCK_PATH)) return false;
+    const lock = JSON.parse(fs.readFileSync(RATE_LOCK_PATH, 'utf8'));
+    // Lock expires at the start of next month (or explicit reset time)
+    if (lock.expiresAt && Date.now() < lock.expiresAt) {
+      return lock;
+    }
+    // Expired, clean up
+    try { fs.unlinkSync(RATE_LOCK_PATH); } catch {}
+    return false;
+  } catch { return false; }
+}
+
+function writeRateLock(error) {
+  try {
+    // Default: lock until start of next month
+    const now = new Date();
+    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
+    const lock = {
+      lockedAt: now.toISOString(),
+      expiresAt: nextMonth.getTime(),
+      reason: 'UsageCapExceeded',
+      detail: error?.error?.detail || error?.message || 'Monthly usage cap exceeded'
+    };
+    fs.writeFileSync(RATE_LOCK_PATH, JSON.stringify(lock, null, 2));
+  } catch {}
+}
 
 /**
  * X API Client with OAuth 1.0a signing and SOCKS5 proxy support
  */
 class XAPIClient {
-  constructor() {
+  constructor({ skipRateLockCheck = false } = {}) {
     this.apiKey = process.env.X_API_KEY;
     this.apiSecret = process.env.X_API_SECRET;
     this.accessToken = process.env.X_ACCESS_TOKEN;
@@ -20,6 +58,15 @@ class XAPIClient {
     
     if (!this.apiKey || !this.apiSecret || !this.accessToken || !this.accessTokenSecret) {
       throw new Error('Missing required X API credentials. Set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET');
+    }
+
+    // Fast-fail if monthly usage cap is locked (unless explicitly skipped for write ops)
+    if (!skipRateLockCheck) {
+      const lock = isRateLocked();
+      if (lock) {
+        const expires = new Date(lock.expiresAt).toISOString().slice(0, 10);
+        throw new Error(`X API monthly cap exceeded (locked until ${expires}). ${lock.detail || ''}`);
+      }
     }
   }
 
@@ -165,12 +212,20 @@ class XAPIClient {
         const isServerError = err && err.statusCode && err.statusCode >= 500;
         const isRateLimit = err && err.statusCode === 429;
 
-        if (isRateLimit && attempt < XAPIClient.MAX_RETRIES) {
-          // Respect Retry-After header or use exponential backoff
-          const retryAfterSec = err.retryAfter || (15 * Math.pow(2, attempt));
-          const waitMs = Math.min(retryAfterSec * 1000, XAPIClient.RATE_LIMIT_MAX_WAIT_MS);
-          await new Promise(r => setTimeout(r, waitMs));
-          continue;
+        if (isRateLimit) {
+          // Check if this is a monthly/daily usage cap (not retryable)
+          const errTitle = err.error?.error?.title || err.error?.title || '';
+          if (errTitle === 'UsageCapExceeded' || (err.error?.error?.detail || '').includes('Usage cap exceeded')) {
+            writeRateLock(err.error?.error || err.error || err);
+            throw err; // Don't retry — cap won't reset for weeks
+          }
+          // Normal rate limit — respect Retry-After header or backoff
+          if (attempt < XAPIClient.MAX_RETRIES) {
+            const retryAfterSec = err.retryAfter || (15 * Math.pow(2, attempt));
+            const waitMs = Math.min(retryAfterSec * 1000, XAPIClient.RATE_LIMIT_MAX_WAIT_MS);
+            await new Promise(r => setTimeout(r, waitMs));
+            continue;
+          }
         }
 
         if ((isRetryable || isServerError) && attempt < XAPIClient.MAX_RETRIES) {
@@ -384,3 +439,4 @@ class XAPIClient {
 }
 
 module.exports = XAPIClient;
+module.exports.isRateLocked = isRateLocked;

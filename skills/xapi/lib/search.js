@@ -1,4 +1,5 @@
 const XAPIClient = require('./client');
+const { isRateLocked } = require('./client');
 
 /**
  * Attach media includes to tweet objects for easier access.
@@ -20,6 +21,12 @@ function attachMediaToTweets(apiResult) {
  * Search tweets by keyword/hashtag
  */
 async function searchTweets(query, options = {}) {
+  // Fast-fail if monthly cap is locked
+  const lock = isRateLocked();
+  if (lock) {
+    const expires = new Date(lock.expiresAt).toISOString().slice(0, 10);
+    throw new Error(`Search: X API monthly cap exceeded (locked until ${expires}). Skipping to save resources.`);
+  }
   const client = new XAPIClient();
   const { limit = 10, startTime, endTime } = options;
 

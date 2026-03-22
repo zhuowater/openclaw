@@ -22,7 +22,7 @@ function serializeError(error) {
  * Post a tweet (supports Premium long tweets up to 25,000 chars)
  */
 async function postTweet(text, options = {}) {
-  const client = new XAPIClient();
+  const client = new XAPIClient({ skipRateLockCheck: true });
   const { mediaPath, replyToId, quoteTweetId } = options;
 
   const body = { text };
@@ -137,7 +137,7 @@ async function postArticle(title, content, options = {}) {
  * Delete a tweet
  */
 async function deleteTweet(tweetId) {
-  const client = new XAPIClient();
+  const client = new XAPIClient({ skipRateLockCheck: true });
 
   try {
     const result = await client.request('DELETE', `/2/tweets/${tweetId}`);

@@ -1,4 +1,16 @@
 const XAPIClient = require('./client');
+const { isRateLocked } = require('./client');
+
+/**
+ * Fast-fail helper: throws immediately if monthly usage cap is locked.
+ */
+function checkRateLock(operation) {
+  const lock = isRateLocked();
+  if (lock) {
+    const expires = new Date(lock.expiresAt).toISOString().slice(0, 10);
+    throw new Error(`${operation}: X API monthly cap exceeded (locked until ${expires}). Skipping to save resources.`);
+  }
+}
 
 /**
  * Attach media includes to tweet objects for easier access.
@@ -29,6 +41,7 @@ function attachMediaToTweets(apiResult) {
  * Get user ID by username
  */
 async function getUserByUsername(username) {
+  checkRateLock('getUserByUsername');
   const client = new XAPIClient();
   
   // Remove @ if present
@@ -53,6 +66,7 @@ async function getUserByUsername(username) {
  * Get user's timeline (tweets)
  */
 async function getUserTimeline(username, options = {}) {
+  checkRateLock('getUserTimeline');
   const client = new XAPIClient();
   const { limit = 10 } = options;
 
@@ -90,6 +104,7 @@ async function getUserTimeline(username, options = {}) {
  * This is what X recommends to the authenticated user.
  */
 async function getHomeTimeline(userId, options = {}) {
+  checkRateLock('getHomeTimeline');
   const client = new XAPIClient();
   const { limit = 20 } = options;
 
