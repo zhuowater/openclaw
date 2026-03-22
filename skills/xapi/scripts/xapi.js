@@ -244,6 +244,25 @@ async function main() {
   const command = args[0];
   const commandArgs = args.slice(1);
 
+  // Early exit if X API rate lock is active (monthly cap exceeded).
+  // Commands that only read local data (like 'me') still need the client,
+  // so we only gate commands that hit timeline/engagement endpoints.
+  const RATE_GATED_COMMANDS = ['feed', 'timeline', 'search', 'like', 'unlike', 'retweet', 'undo-retweet', 'reply', 'follow', 'unfollow', 'followers', 'following', 'bookmark', 'bookmarks', 'grab-media'];
+  if (command && RATE_GATED_COMMANDS.includes(command)) {
+    const { isRateLocked } = require('../lib/client');
+    const lock = isRateLocked();
+    if (lock) {
+      const expires = new Date(lock.expiresAt).toISOString().slice(0, 10);
+      console.log(JSON.stringify({
+        status: 'skipped',
+        reason: 'rate_locked',
+        message: `X API monthly cap exceeded. Locked until ${expires}. Skipping ${command}.`,
+        expires
+      }));
+      process.exit(0); // Exit 0 so cron/agent doesn't treat this as an error
+    }
+  }
+
   if (!command || !commands[command]) {
     console.error('X (Twitter) API CLI — Premium Enhanced');
     console.error('');
