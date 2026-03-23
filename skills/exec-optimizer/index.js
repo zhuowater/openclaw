@@ -1426,6 +1426,58 @@ async function main() {
     return;
   }
 
+  if (cmd === 'batch') {
+    // Run multiple named sub-commands in one call
+    // Usage: node index.js batch health,evo,memory
+    const subcmds = (process.argv[3] || '').split(',').map(s => s.trim()).filter(Boolean);
+    if (!subcmds.length) {
+      console.log('Usage: node index.js batch health,evo,memory,diag,preflight,cron,disk,git');
+      return;
+    }
+    const results = {};
+    for (const sub of subcmds) {
+      try {
+        if (sub === 'health') results.health = await systemHealth();
+        else if (sub === 'evo') results.evo = await evolutionStats();
+        else if (sub === 'memory') results.memory = await memoryStats();
+        else if (sub === 'diag') results.diag = await quickDiag({ evo: false });
+        else if (sub === 'preflight') results.preflight = await evolverPreflight();
+        else if (sub === 'cron') results.cron = await cronStats();
+        else if (sub === 'disk') results.disk = await diskUsage();
+        else if (sub === 'git') results.git = await gitStatus();
+        else results[sub] = { error: `Unknown sub-command: ${sub}` };
+      } catch (e) {
+        results[sub] = { error: e.message };
+      }
+    }
+    console.log(JSON.stringify(results, null, 2));
+    return;
+  }
+
+  if (cmd === 'suggest') {
+    // Analyze a command string and suggest exec-optimizer alternative
+    const target = process.argv.slice(3).join(' ');
+    if (!target) {
+      console.log('Usage: node index.js suggest "git status && df -h"');
+      return;
+    }
+    const suggestions = [];
+    if (/\bgit\s+status\b/.test(target)) suggestions.push('Use: node index.js diag (includes git status)');
+    if (/\bdf\b/.test(target)) suggestions.push('Use: node index.js disk');
+    if (/\bfree\b/.test(target)) suggestions.push('Use: node index.js health');
+    if (/\bgrep\s+-r\b/.test(target)) suggestions.push('Use: node index.js grep <dir> <pattern>');
+    if (/\bls\s+-t\b/.test(target)) suggestions.push('Use: node index.js latest <dir>');
+    if (/\btail\b/.test(target)) suggestions.push('Use: node index.js tail <file> [lines]');
+    if (/\bcat\b.*\.json\b/.test(target)) suggestions.push('Use: node index.js json <file>');
+    if (/\bcurl\b/.test(target)) suggestions.push('Use: node index.js fetch <url>');
+    if (/\bgit\s+add\b.*\bgit\s+commit\b/.test(target)) suggestions.push('Use: node index.js commit "message"');
+    if (/\bwc\s+-l\b/.test(target)) suggestions.push('Use read tool with line counting or node index.js grep');
+    if (/\bdu\b/.test(target)) suggestions.push('Use: node index.js disk');
+    if (suggestions.length === 0) suggestions.push('No exec-optimizer substitution found for this command. Use exec.');
+    console.log(JSON.stringify({ command: target, suggestions }, null, 2));
+    return;
+  }
+
   // Default: list capabilities
   console.log('exec-optimizer loaded successfully');
   console.log('Available functions:', Object.keys(module.exports).filter(k => k !== 'main'));

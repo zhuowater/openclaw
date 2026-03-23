@@ -30,3 +30,5 @@ Use `node skills/exec-optimizer/index.js <cmd>` for all of these.
 | Safe disk cleanup                 | `cleanup` or `cleanup --dry-run`    | 5-10 calls |
 | GEP asset maintenance             | `gep-maintain`                      | 3-5 calls |
 | Analyze exec usage                | `exec-analysis [count]`             | 5-10 calls |
+| Multiple checks at once           | `batch health,evo,git`              | N→1 calls |
+| Find substitution for a command   | `suggest "git status && df -h"`     | learning tool |
