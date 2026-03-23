@@ -1,0 +1,5 @@
+{
+  "name": "evo-pre-flight",
+  "version": "1.0.0",
+  "description": "Pre-flight checks and auto-maintenance before evolution cycles"
+}

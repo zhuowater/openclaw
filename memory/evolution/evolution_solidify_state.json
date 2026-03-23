@@ -1,40 +1,40 @@
 {
   "last_run": {
-    "run_id": "run_1774202408529",
-    "created_at": "2026-03-22T18:00:08.539Z",
-    "parent_event_id": "evt_1774180999646",
-    "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
-    "selected_capsule_id": "capsule_1771747065506",
+    "run_id": "run_1774224014315",
+    "created_at": "2026-03-23T00:00:14.325Z",
+    "parent_event_id": "evt_1774202526444",
+    "selected_gene_id": "gene_gep_innovate_from_opportunity",
+    "selected_capsule_id": "capsule_1770477654236",
     "selector": {
-      "selected": "gene_gep_optimize_prompt_and_assets",
+      "selected": "gene_gep_innovate_from_opportunity",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: protocol_drift, repeated_tool_usage:exec",
-        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.627",
+        "signals: protocol_drift, perf_bottleneck",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.812",
         "drift_intensity: 0.447"
       ],
       "alternatives": [
-        "gene_auto_7f294d19"
+        "gene_gep_optimize_prompt_and_assets"
       ]
     },
     "signals": [
       "protocol_drift",
-      "repeated_tool_usage:exec"
+      "perf_bottleneck"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1774202408527",
+      "id": "mut_1774224014313",
       "category": "innovate",
       "trigger_signals": [
         "protocol_drift",
-        "repeated_tool_usage:exec"
+        "perf_bottleneck"
       ],
-      "target": "gene:gene_gep_optimize_prompt_and_assets",
+      "target": "gene:gene_gep_innovate_from_opportunity",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1774202408527",
+    "mutation_id": "mut_1774224014313",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -53,19 +53,19 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "3a41c2c3eb5e82559bed4137e5a74056ee1d90b9",
+    "baseline_git_head": "8e6db5894ba00726b3b77e20e5240e8e6b4197c6",
     "blast_radius_estimate": {
-      "files": 20,
-      "lines": 1600
+      "files": 25,
+      "lines": 2000
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1774202408529",
-    "at": "2026-03-22T18:02:06.444Z",
-    "event_id": "evt_1774202526444",
-    "capsule_id": "capsule_1771747065506",
+    "run_id": "run_1774224014315",
+    "at": "2026-03-23T00:02:51.767Z",
+    "event_id": "evt_1774224171767",
+    "capsule_id": "capsule_1770477654236",
     "outcome": {
       "status": "success",
       "score": 0.85
