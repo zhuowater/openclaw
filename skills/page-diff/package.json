@@ -1,0 +1,6 @@
+{
+  "name": "page-diff",
+  "version": "1.0.0",
+  "description": "Monitor web pages for content changes. Stores snapshots and reports diffs.",
+  "main": "index.js"
+}
