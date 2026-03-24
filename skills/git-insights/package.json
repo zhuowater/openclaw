@@ -1,0 +1,6 @@
+{
+  "name": "git-insights",
+  "version": "1.0.0",
+  "description": "Analyze git history for change hotspots, coupling, and velocity trends",
+  "main": "index.js"
+}
