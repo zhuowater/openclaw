@@ -1,0 +1,7 @@
+{
+  "name": "data-convert",
+  "version": "1.0.0",
+  "description": "Convert between CSV, JSON, TSV, and Markdown table formats",
+  "main": "index.js",
+  "keywords": ["csv", "json", "tsv", "markdown", "convert", "data"]
+}
