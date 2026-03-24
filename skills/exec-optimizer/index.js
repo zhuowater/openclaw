@@ -1426,6 +1426,12 @@ async function main() {
     return;
   }
 
+  if (cmd === 'heartbeat-check' || cmd === 'hb') {
+    const result = await heartbeatCheck();
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
   if (cmd === 'batch') {
     // Run multiple named sub-commands in one call
     // Usage: node index.js batch health,evo,memory
@@ -1445,6 +1451,7 @@ async function main() {
         else if (sub === 'cron') results.cron = await cronStats();
         else if (sub === 'disk') results.disk = await diskUsage();
         else if (sub === 'git') results.git = await gitStatus();
+        else if (sub === 'hb' || sub === 'heartbeat') results.heartbeat = await heartbeatCheck();
         else results[sub] = { error: `Unknown sub-command: ${sub}` };
       } catch (e) {
         results[sub] = { error: e.message };
@@ -1513,6 +1520,7 @@ async function main() {
   console.log('  node index.js exec-analysis [n] - Analyze exec patterns in recent sessions');
   console.log('  node index.js signal-trend [n] - GEP signal trend analysis (replaces 3-4 exec grep calls)');
   console.log('  node index.js skill-audit [--deep] - Batch audit all skills (replaces manual dir scanning)');
+  console.log('  node index.js heartbeat-check - Unified heartbeat check (replaces 3-5 calls, outputs HEARTBEAT_OK or issues)');
 }
 
 /**
@@ -1831,6 +1839,93 @@ async function gepMaintain(options = {}) {
   return result;
 }
 
+/**
+ * Heartbeat Check - Unified heartbeat diagnostic in a single call.
+ * Replaces 3-5 exec/tool calls that heartbeat sessions typically make.
+ * Outputs a clear recommendation: HEARTBEAT_OK or a list of issues.
+ * Checks: disk, memory, git dirty, evolution health, cron staleness, today's note.
+ * @returns {Promise<Object>} - { ok, issues, metrics, recommendation }
+ */
+async function heartbeatCheck() {
+  const issues = [];
+  const metrics = {};
+  const ws = '/root/openclaw';
+
+  // 1. Disk usage
+  try {
+    const diskInfo = await diskUsage();
+    const pct = parseInt(diskInfo.usedPercent) || 0;
+    metrics.disk = `${pct}%`;
+    if (pct >= 90) issues.push(`🔴 Disk critical: ${pct}% used`);
+    else if (pct >= 80) issues.push(`🟡 Disk high: ${pct}% used`);
+  } catch { metrics.disk = 'unknown'; }
+
+  // 2. System memory
+  try {
+    const os = require('os');
+    const totalMB = Math.round(os.totalmem() / 1048576);
+    const freeMB = Math.round(os.freemem() / 1048576);
+    const usedPct = Math.round((1 - os.freemem() / os.totalmem()) * 100);
+    metrics.memory = `${usedPct}% (${freeMB}MB free / ${totalMB}MB)`;
+    if (usedPct >= 95) issues.push(`🔴 Memory critical: ${usedPct}% used`);
+    else if (usedPct >= 85) issues.push(`🟡 Memory high: ${usedPct}% used`);
+  } catch { metrics.memory = 'unknown'; }
+
+  // 3. Git dirty files
+  try {
+    const gs = await gitStatus();
+    const dirty = (gs.staged || []).length + (gs.modified || []).length + (gs.untracked || []).length;
+    metrics.gitDirty = dirty;
+    if (dirty >= 50) issues.push(`🟡 Git: ${dirty} uncommitted files (consider committing)`);
+  } catch { metrics.gitDirty = 'unknown'; }
+
+  // 4. Today's daily note
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const notePath = path.join(ws, `memory/${today}.md`);
+    const exists = await fs.access(notePath).then(() => true).catch(() => false);
+    metrics.todayNote = exists;
+    if (!exists) issues.push(`📝 No daily note for ${today}`);
+  } catch { metrics.todayNote = 'unknown'; }
+
+  // 5. Evolution health (lightweight)
+  try {
+    const evoStats = await evolutionStats();
+    metrics.evoSuccessRate = evoStats.successRate;
+    metrics.evoStreak = evoStats.consecutiveSuccesses;
+    if (evoStats.successRate < 50) issues.push(`🟡 Evolution success rate low: ${evoStats.successRate}%`);
+  } catch { metrics.evoSuccessRate = 'unknown'; }
+
+  // 6. Heartbeat state staleness
+  try {
+    const cronInfo = await cronStats();
+    const staleChecks = cronInfo.staleChecks || [];
+    if (staleChecks.length > 0) {
+      metrics.staleHeartbeats = staleChecks.length;
+      // Only flag if >3 stale (minor staleness is normal)
+      if (staleChecks.length >= 3) {
+        issues.push(`🟡 ${staleChecks.length} stale heartbeat checks`);
+      }
+    }
+  } catch { /* non-critical */ }
+
+  // 7. Uptime
+  try {
+    const uptime = require('os').uptime();
+    const hours = Math.round(uptime / 3600 * 10) / 10;
+    metrics.uptime = `${hours}h`;
+  } catch {}
+
+  const ok = issues.length === 0;
+  return {
+    ok,
+    recommendation: ok ? 'HEARTBEAT_OK' : `${issues.length} issue(s) found`,
+    issues,
+    metrics,
+    timestamp: new Date().toISOString()
+  };
+}
+
 module.exports = {
   gitStatus,
   gitLog,
@@ -1863,6 +1958,7 @@ module.exports = {
   sessionExecAnalysis,
   signalTrend,
   gepMaintain,
+  heartbeatCheck,
   main
 };
 

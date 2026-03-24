@@ -28,6 +28,7 @@ All commands: `node skills/exec-optimizer/index.js <cmd>`
 | `gep-maintain [--dry-run]` | dedup candidates + archive events + clean old prompts | 3-5 → 1 call |
 | `exec-analysis [count]` | analyze exec patterns | 5-10 → 1 call |
 | `skill <name>` | check skill integrity | 2-3 → 1 call |
+| `heartbeat-check` / `hb` | disk + memory + git + evo + cron staleness | 3-5 → 1 call |
 | `batch cmd1,cmd2,...` | combine multiple checks in one call | N → 1 call |
 | `suggest "cmd"` | suggest exec-optimizer alternative for a command | learning tool |
 
