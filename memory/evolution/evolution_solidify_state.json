@@ -1,8 +1,8 @@
 {
   "last_run": {
-    "run_id": "run_1774418413764",
-    "created_at": "2026-03-25T06:00:13.778Z",
-    "parent_event_id": "evt_1774396888436",
+    "run_id": "run_1774440012208",
+    "created_at": "2026-03-25T12:00:12.219Z",
+    "parent_event_id": "evt_1774418612880",
     "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
     "selected_capsule_id": "capsule_1771747065506",
     "selector": {
@@ -11,7 +11,7 @@
         "signals match gene.signals_match",
         "capsule trigger matches signals",
         "signals: protocol_drift",
-        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.600",
+        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.667",
         "drift_intensity: 0.447"
       ],
       "alternatives": []
@@ -21,7 +21,7 @@
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1774418413761",
+      "id": "mut_1774440012205",
       "category": "innovate",
       "trigger_signals": [
         "protocol_drift"
@@ -30,7 +30,7 @@
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1774418413761",
+    "mutation_id": "mut_1774440012205",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -45,11 +45,11 @@
     "drift": false,
     "selected_by": "memory_graph+selector",
     "source_type": "reference",
-    "reused_asset_id": "sha256:30bba9c018afa9d66820dc9bc7796b34fd3e62ee68aa757aaaa8947d42f0b6d7",
-    "reused_source_node": "node_09531e720900",
+    "reused_asset_id": "sha256:784d7a74e5ba66c21da01ecfdf15f9634d43dcd95eadaaba0462521a7cf419d7",
+    "reused_source_node": "node_76df29f0fdf9",
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "2d93e04a0bd6456a9347d78b0b97f84204a3a4e8",
+    "baseline_git_head": "a40a449567d3b98b10cbcb666b35f609ec593230",
     "blast_radius_estimate": {
       "files": 20,
       "lines": 1600
@@ -58,9 +58,9 @@
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1774418413764",
-    "at": "2026-03-25T06:03:32.880Z",
-    "event_id": "evt_1774418612880",
+    "run_id": "run_1774440012208",
+    "at": "2026-03-25T12:04:57.244Z",
+    "event_id": "evt_1774440297244",
     "capsule_id": "capsule_1771747065506",
     "outcome": {
       "status": "success",

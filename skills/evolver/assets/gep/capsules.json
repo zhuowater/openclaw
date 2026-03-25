@@ -103,7 +103,7 @@
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 11,
+      "success_streak": 12,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -118,11 +118,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:30bba9c018afa9d66820dc9bc7796b34fd3e62ee68aa757aaaa8947d42f0b6d7",
+      "reused_asset_id": "sha256:784d7a74e5ba66c21da01ecfdf15f9634d43dcd95eadaaba0462521a7cf419d7",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:bf2e7938f9a98da7347cdaf6392bc646c500ac017ed39818ea05035a4abc1eb9"
+      "asset_id": "sha256:f1aba37cc5aa1876614fa362321c7f53f940743533a44f7a0ce4dbe38ff9f91d"
     },
     {
       "type": "Capsule",
