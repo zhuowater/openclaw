@@ -90,18 +90,18 @@
         "repeated_tool_usage:exec",
         "force_innovation_after_repair_loop"
       ],
-      "gene": "gene_auto_7f294d19",
+      "gene": "gene_gep_optimize_prompt_and_assets",
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 23
+        "files": 1,
+        "lines": 30
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 12,
+      "success_streak": 10,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -115,12 +115,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "generated",
-      "reused_asset_id": null,
+      "source_type": "reference",
+      "reused_asset_id": "sha256:30bba9c018afa9d66820dc9bc7796b34fd3e62ee68aa757aaaa8947d42f0b6d7",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:523b10535a3d937aaee32bbaeb32b2923317120e90efdd3150729aa072d92f88"
+      "asset_id": "sha256:2a20b8c081f8ce38a01bf99279d01200e7cc191c3b8903c93578e07df2e734b0"
     },
     {
       "type": "Capsule",
