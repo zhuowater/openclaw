@@ -46,7 +46,7 @@
     },
     {
       "type": "Capsule",
-      "schema_version": "1.5.0",
+      "schema_version": "1.6.0",
       "id": "capsule_1770478341769",
       "trigger": [
         "log_error",
@@ -76,6 +76,8 @@
         "cwd": ".",
         "captured_at": "2026-02-07T15:32:21.678Z"
       },
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": false
       },
@@ -94,14 +96,14 @@
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 1,
-        "lines": 30
+        "files": 0,
+        "lines": 0
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 10,
+      "success_streak": 11,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -120,11 +122,11 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:2a20b8c081f8ce38a01bf99279d01200e7cc191c3b8903c93578e07df2e734b0"
+      "asset_id": "sha256:bf2e7938f9a98da7347cdaf6392bc646c500ac017ed39818ea05035a4abc1eb9"
     },
     {
       "type": "Capsule",
-      "schema_version": "1.5.0",
+      "schema_version": "1.6.0",
       "id": "capsule_1771747069554",
       "trigger": [
         "protocol_drift",

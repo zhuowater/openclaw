@@ -1,8 +1,8 @@
 {
   "last_run": {
-    "run_id": "run_1774396810374",
-    "created_at": "2026-03-25T00:00:10.385Z",
-    "parent_event_id": "evt_1774375441027",
+    "run_id": "run_1774418413764",
+    "created_at": "2026-03-25T06:00:13.778Z",
+    "parent_event_id": "evt_1774396888436",
     "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
     "selected_capsule_id": "capsule_1771747065506",
     "selector": {
@@ -11,7 +11,7 @@
         "signals match gene.signals_match",
         "capsule trigger matches signals",
         "signals: protocol_drift",
-        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.867",
+        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.600",
         "drift_intensity: 0.447"
       ],
       "alternatives": []
@@ -21,7 +21,7 @@
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1774396810371",
+      "id": "mut_1774418413761",
       "category": "innovate",
       "trigger_signals": [
         "protocol_drift"
@@ -30,7 +30,7 @@
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1774396810371",
+    "mutation_id": "mut_1774418413761",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -49,7 +49,7 @@
     "reused_source_node": "node_09531e720900",
     "reused_chain_id": null,
     "baseline_untracked": [],
-    "baseline_git_head": "45b12268bbb1ad12787e15b3a5a4270a2dfb29da",
+    "baseline_git_head": "2d93e04a0bd6456a9347d78b0b97f84204a3a4e8",
     "blast_radius_estimate": {
       "files": 20,
       "lines": 1600
@@ -58,9 +58,9 @@
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1774396810374",
-    "at": "2026-03-25T00:01:28.436Z",
-    "event_id": "evt_1774396888436",
+    "run_id": "run_1774418413764",
+    "at": "2026-03-25T06:03:32.880Z",
+    "event_id": "evt_1774418612880",
     "capsule_id": "capsule_1771747065506",
     "outcome": {
       "status": "success",
