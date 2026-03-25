@@ -1,0 +1,6 @@
+{
+  "name": "proxy-health",
+  "version": "1.0.0",
+  "description": "Check health and latency of configured proxy endpoints (SOCKS5, HTTP/HTTPS)",
+  "main": "index.js"
+}
