@@ -1,0 +1,7 @@
+{
+  "name": "string-toolkit",
+  "version": "1.0.0",
+  "description": "Swiss-army-knife for string encoding, decoding, hashing, and analysis",
+  "main": "index.js",
+  "bin": "index.js"
+}
