@@ -1,0 +1,6 @@
+{
+  "name": "commit-review",
+  "version": "1.0.0",
+  "description": "Automated pre-commit code review with security focus and risk scoring",
+  "main": "index.js"
+}
