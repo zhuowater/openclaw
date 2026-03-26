@@ -1,0 +1,6 @@
+{
+  "name": "incident-response",
+  "version": "1.0.0",
+  "description": "Security incident response playbook engine with NIST-aligned phases",
+  "main": "index.js"
+}
