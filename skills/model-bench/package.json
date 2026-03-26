@@ -1,0 +1,6 @@
+{
+  "name": "model-bench",
+  "version": "1.0.0",
+  "description": "LLM model benchmarking tool — compare latency, throughput, and quality across endpoints",
+  "main": "index.js"
+}
