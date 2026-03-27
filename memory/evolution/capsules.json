@@ -1,9 +1,9 @@
 {
-  "version": 1,
+  "version": 2,
   "capsules": [
     {
       "type": "Capsule",
-      "schema_version": "1.5.0",
+      "schema_version": "1.6.0",
       "id": "capsule_1770477654236",
       "trigger": [
         "log_error",
@@ -12,26 +12,28 @@
         "windows_shell_incompatible",
         "perf_bottleneck"
       ],
-      "gene": "gene_gep_repair_from_errors",
-      "summary": "固化：gene_gep_repair_from_errors 命中信号 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck，变更 1 文件 / 2 行。",
+      "gene": "gene_gep_innovate_from_opportunity",
+      "summary": "Harden all 7 unprotected r.json() calls in trade.py with _safe_json wrapper to prevent recurring JSONDecodeError/KeyError crashes",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 2,
+        "lines": 102
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 2,
+      "success_streak": 9,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
         "platform": "linux",
         "arch": "x64",
         "os_release": "6.8.0-55-generic",
-        "hostname": "iv-yeenc3rdhcwh2yr5rps2",
-        "evolver_version": "1.15.0",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
@@ -40,11 +42,11 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:dd3559dc37470c22e07d7f5f5aaea9e136e57f39a55c5d793ce73dba129ea4c4"
+      "asset_id": "sha256:6054c8d323799262359c6445125d15fae4fc67bffecf18c30e9b98704e29711a"
     },
     {
       "type": "Capsule",
-      "schema_version": "1.5.0",
+      "schema_version": "1.6.0",
       "id": "capsule_1770478341769",
       "trigger": [
         "log_error",
@@ -54,7 +56,7 @@
         "perf_bottleneck"
       ],
       "gene": "gene_gep_repair_from_errors",
-      "summary": "固化：gene_gep_repair_from_errors 命中信号 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck，变更 2 文件 / 44 行。",
+      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 2 \u6587\u4ef6 / 44 \u884c\u3002",
       "confidence": 0.85,
       "blast_radius": {
         "files": 2,
@@ -74,10 +76,214 @@
         "cwd": ".",
         "captured_at": "2026-02-07T15:32:21.678Z"
       },
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": false
       },
       "asset_id": "sha256:20d971a3c4cb2b75f9c045376d1aa003361c12a6b89a4b47b7e81dbd4f4d8fe8"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1771747065506",
+      "trigger": [
+        "protocol_drift",
+        "repeated_tool_usage:exec",
+        "force_innovation_after_repair_loop"
+      ],
+      "gene": "gene_gep_optimize_prompt_and_assets",
+      "summary": "\u56fa\u5316\uff1agene_gep_optimize_prompt_and_assets \u547d\u4e2d\u4fe1\u53f7 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop\uff0c\u53d8\u66f4 0 \u6587\u4ef6 / 0 \u884c\u3002",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 12,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "reference",
+      "reused_asset_id": "sha256:784d7a74e5ba66c21da01ecfdf15f9634d43dcd95eadaaba0462521a7cf419d7",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "asset_id": "sha256:f1aba37cc5aa1876614fa362321c7f53f940743533a44f7a0ce4dbe38ff9f91d"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1771747069554",
+      "trigger": [
+        "protocol_drift",
+        "repeated_tool_usage:exec",
+        "force_innovation_after_repair_loop"
+      ],
+      "gene": "gene_gep_optimize_prompt_and_assets",
+      "summary": "\u56fa\u5316\uff1agene_gep_optimize_prompt_and_assets \u547d\u4e2d\u4fe1\u53f7 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop\uff0c\u53d8\u66f4 0 \u6587\u4ef6 / 0 \u884c\u3002",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 1,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "iv-yeenc3rdhcwh2yr5rps2",
+        "evolver_version": "1.15.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "reference",
+      "reused_asset_id": "sha256:c3aacac13a1850a16a88e5852b52bfbfedbaa2e789683de7b9c7847a53e56c55",
+      "a2a": {
+        "eligible_to_broadcast": false
+      },
+      "asset_id": "sha256:bef1a6a8a679958382f6eacf7fe669d50b3df11f76ba2a419b2cf60075c4f9c7"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1771789444749",
+      "trigger": [
+        "high_tool_usage:exec",
+        "evolution_saturation"
+      ],
+      "gene": "gene_auto_a46bf5e7",
+      "summary": "\u56fa\u5316\uff1agene_auto_a46bf5e7 \u547d\u4e2d\u4fe1\u53f7 high_tool_usage:exec, evolution_saturation\uff0c\u53d8\u66f4 0 \u6587\u4ef6 / 0 \u884c\u3002",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 5,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "generated",
+      "reused_asset_id": null,
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "asset_id": "sha256:5580297961223ad9602d17c05553d22dc0cedaed426a8399388d0bc548ca018e"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1772024430697",
+      "trigger": [
+        "evolution_stagnation_detected",
+        "stable_success_plateau",
+        "empty_cycle_loop_detected"
+      ],
+      "gene": "gene_gep_innovate_from_opportunity",
+      "summary": "\u56fa\u5316\uff1agene_gep_innovate_from_opportunity \u547d\u4e2d\u4fe1\u53f7 evolution_stagnation_detected, stable_success_plateau, empty_cycle_loop_detected\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 60 \u884c\u3002",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 1,
+        "lines": 2
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 15,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "reference",
+      "reused_asset_id": "sha256:474edbe62a98e0cb9058584cc27708b204a5cd31b720783fd788b2f0ae8f5923",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "asset_id": "sha256:3ce8cc79658eb3cbaf3743ca8e7d05ef9f8e3079b5688d8784e15726900e658b"
+    },
+    {
+      "type": "Capsule",
+      "schema_version": "1.6.0",
+      "id": "capsule_1773705836837",
+      "trigger": [
+        "user_feature_request"
+      ],
+      "gene": "gene_gep_innovate_from_opportunity",
+      "summary": "\u56fa\u5316\uff1agene_gep_innovate_from_opportunity \u547d\u4e2d\u4fe1\u53f7 user_feature_request\uff0c\u53d8\u66f4 0 \u6587\u4ef6 / 0 \u884c\u3002",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 0,
+        "lines": 0
+      },
+      "outcome": {
+        "status": "success",
+        "score": 0.85
+      },
+      "success_streak": 3,
+      "env_fingerprint": {
+        "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
+        "node_version": "v22.22.0",
+        "platform": "linux",
+        "arch": "x64",
+        "os_release": "6.8.0-55-generic",
+        "hostname": "830d846bcd56",
+        "evolver_version": "1.19.0",
+        "client": "evolver",
+        "client_version": "1.19.0",
+        "cwd": "/root/openclaw/skills/evolver",
+        "container": false
+      },
+      "source_type": "reference",
+      "reused_asset_id": "sha256:2cd80e8c57c0af65a0b4112c28553e7acd131c6ea767fbee6cbaed29088b051c",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "asset_id": "sha256:97cb794b26a70d15943c0eef0a17910c03fb13d91b7d1f55ebddb854d8993cc0"
     }
-  ]
+  ],
+  "synced_from": "skills/evolver/assets/gep/capsules.json",
+  "synced_at": "2026-03-28T02:00:00Z"
 }
