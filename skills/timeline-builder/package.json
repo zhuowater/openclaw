@@ -1,0 +1,5 @@
+{
+  "name": "timeline-builder",
+  "version": "1.0.0",
+  "description": "Extract events from memory files and build structured chronological timelines"
+}
