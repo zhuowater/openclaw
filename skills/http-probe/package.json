@@ -1,0 +1,7 @@
+{
+  "name": "http-probe",
+  "version": "1.0.0",
+  "description": "Probe HTTP endpoints for health, security headers, SSL info, response times, and redirect chains",
+  "main": "index.js",
+  "license": "MIT"
+}
