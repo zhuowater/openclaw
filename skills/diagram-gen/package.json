@@ -1,0 +1,6 @@
+{
+  "name": "diagram-gen",
+  "version": "1.0.0",
+  "description": "Generate Mermaid diagrams from structured data or descriptions",
+  "main": "index.js"
+}
