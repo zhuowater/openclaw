@@ -223,7 +223,7 @@
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 15,
+      "success_streak": 18,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -238,11 +238,11 @@
         "container": false
       },
       "source_type": "reference",
-      "reused_asset_id": "sha256:474edbe62a98e0cb9058584cc27708b204a5cd31b720783fd788b2f0ae8f5923",
+      "reused_asset_id": "sha256:d8e878b65fb4e763468c653e671937e442d4db3ef67a650d18fc5e95bf244e65",
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:3ce8cc79658eb3cbaf3743ca8e7d05ef9f8e3079b5688d8784e15726900e658b"
+      "asset_id": "sha256:c54284831234ec454866e91599a0b0d343a6c5c4a9f9b91cf5e274a6887eb7d9"
     },
     {
       "type": "Capsule",
@@ -255,14 +255,14 @@
       "summary": "固化：gene_gep_innovate_from_opportunity 命中信号 user_feature_request，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 1,
+        "lines": 2
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 3,
+      "success_streak": 2,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -276,12 +276,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:2cd80e8c57c0af65a0b4112c28553e7acd131c6ea767fbee6cbaed29088b051c",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:97cb794b26a70d15943c0eef0a17910c03fb13d91b7d1f55ebddb854d8993cc0"
+      "asset_id": "sha256:a06f17bc9398bf43926f2ad224f7e04210afca035347fa050593c069fb5b1ca3"
     }
   ]
 }

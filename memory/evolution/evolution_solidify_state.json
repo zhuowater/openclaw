@@ -1,36 +1,36 @@
 {
   "last_run": {
-    "run_id": "run_1774634409042",
-    "created_at": "2026-03-27T18:00:09.058Z",
-    "parent_event_id": "evt_1774613203900",
-    "selected_gene_id": "gene_gep_optimize_prompt_and_assets",
-    "selected_capsule_id": "capsule_1771747065506",
+    "run_id": "run_1774720819412",
+    "created_at": "2026-03-28T18:00:19.423Z",
+    "parent_event_id": "evt_1774699455723",
+    "selected_gene_id": "gene_gep_innovate_from_opportunity",
+    "selected_capsule_id": "capsule_1773705836837",
     "selector": {
-      "selected": "gene_gep_optimize_prompt_and_assets",
+      "selected": "gene_gep_innovate_from_opportunity",
       "reason": [
         "signals match gene.signals_match",
         "capsule trigger matches signals",
-        "signals: protocol_drift",
-        "memory_graph: memory_prefer:gene_gep_optimize_prompt_and_assets | gene_prior:0.646",
+        "signals: user_feature_request",
+        "memory_graph: memory_prefer:gene_gep_innovate_from_opportunity | gene_prior:0.909",
         "drift_intensity: 0.447"
       ],
       "alternatives": []
     },
     "signals": [
-      "protocol_drift"
+      "user_feature_request"
     ],
     "mutation": {
       "type": "Mutation",
-      "id": "mut_1774634409037",
+      "id": "mut_1774720819410",
       "category": "innovate",
       "trigger_signals": [
-        "protocol_drift"
+        "user_feature_request"
       ],
-      "target": "gene:gene_gep_optimize_prompt_and_assets",
+      "target": "gene:gene_gep_innovate_from_opportunity",
       "expected_effect": "explore new strategy combinations to escape local optimum",
       "risk_level": "medium"
     },
-    "mutation_id": "mut_1774634409037",
+    "mutation_id": "mut_1774720819410",
     "personality_state": {
       "type": "PersonalityState",
       "rigor": 0.7,
@@ -49,22 +49,22 @@
     "reused_source_node": null,
     "reused_chain_id": null,
     "baseline_untracked": [
-      "logs/status_0085.json",
-      "logs/status_0090.json"
+      "logs/status_0091.json",
+      "logs/status_0093.json"
     ],
-    "baseline_git_head": "5e9a10b96ae50803cfab024594d4a0934feed4b7",
+    "baseline_git_head": "10cefac5abc7d5eedc79045c7dcecb09fbb1033f",
     "blast_radius_estimate": {
-      "files": 20,
-      "lines": 1600
+      "files": 25,
+      "lines": 2000
     },
     "active_task_id": null,
     "active_task_title": null
   },
   "last_solidify": {
-    "run_id": "run_1774634409042",
-    "at": "2026-03-27T18:02:46.426Z",
-    "event_id": "evt_1774634566426",
-    "capsule_id": "capsule_1771747065506",
+    "run_id": "run_1774720819412",
+    "at": "2026-03-28T18:05:25.836Z",
+    "event_id": "evt_1774721125836",
+    "capsule_id": "capsule_1773705836837",
     "outcome": {
       "status": "success",
       "score": 0.85

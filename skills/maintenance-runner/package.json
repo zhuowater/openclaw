@@ -1,0 +1,6 @@
+{
+  "name": "maintenance-runner",
+  "version": "1.0.0",
+  "description": "Unified system maintenance orchestrator",
+  "main": "index.js"
+}
