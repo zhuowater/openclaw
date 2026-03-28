@@ -1,0 +1,6 @@
+{
+  "name": "cron-optimizer",
+  "version": "1.0.0",
+  "description": "Analyze and optimize OpenClaw cron job scheduling",
+  "main": "index.js"
+}
