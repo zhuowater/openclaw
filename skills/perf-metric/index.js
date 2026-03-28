@@ -356,9 +356,201 @@ function report(assetsDir) {
   return lines.join('\n');
 }
 
-// CLI entry
-if (require.main === module) {
-  console.log(report());
+/**
+ * Generate actionable recommendations based on performance analysis.
+ * Cross-references evolution patterns with skill inventory to produce
+ * concrete, high-value suggestions for breaking stagnation.
+ * @param {string} [assetsDir]
+ * @returns {object} { recommendations: Array, stagnationDiagnosis: object }
+ */
+function diagnose(assetsDir) {
+  const m = analyze(assetsDir);
+  const recommendations = [];
+  const skillsDir = path.resolve(__dirname, '..');
+
+  // Gather skill inventory for cross-referencing
+  let skillCount = 0;
+  let brokenSkills = 0;
+  let skillNames = [];
+  try {
+    const entries = fs.readdirSync(skillsDir, { withFileTypes: true });
+    for (const e of entries) {
+      if (!e.isDirectory()) continue;
+      skillNames.push(e.name);
+      skillCount++;
+      const hasIndex = fs.existsSync(path.join(skillsDir, e.name, 'index.js'));
+      if (!hasIndex) brokenSkills++;
+    }
+  } catch { /* ignore */ }
+
+  // Analyze which genes actually produce substantive changes
+  const geneSubstantive = {};
+  const sortedEvents = m.timeline;
+  for (const t of sortedEvents) {
+    const gene = t.gene || 'unknown';
+    if (!geneSubstantive[gene]) geneSubstantive[gene] = { substantive: 0, hollow: 0 };
+    if (t.lines > 4) geneSubstantive[gene].substantive++;
+    else geneSubstantive[gene].hollow++;
+  }
+
+  // R1: Hollow rate diagnosis
+  if (m.hollowCycles.rate > 0.4) {
+    const worstGenes = Object.entries(geneSubstantive)
+      .filter(([, v]) => v.hollow > v.substantive && (v.hollow + v.substantive) >= 3)
+      .map(([gene, v]) => `${gene} (${v.hollow}/${v.hollow + v.substantive} hollow)`)
+      .slice(0, 3);
+
+    recommendations.push({
+      priority: 'high',
+      category: 'stagnation',
+      title: 'Hollow cycle epidemic',
+      detail: `${(m.hollowCycles.rate * 100).toFixed(0)}% of cycles produce ≤4 lines of change. ` +
+        `${m.hollowCycles.recentStreak} consecutive hollow cycles detected.`,
+      action: worstGenes.length > 0
+        ? `Consider retiring or refactoring genes with high hollow rates: ${worstGenes.join('; ')}`
+        : 'The innovation catalyst suggestions may need refreshing — current ideas match existing skills.',
+      impact: 'Reduces wasted compute and token burn from no-op evolution cycles'
+    });
+  }
+
+  // R2: Signal recycling
+  if (m.signalRepetitions.recycledPatternCount > 0) {
+    const topRecycled = m.signalRepetitions.patterns
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 3)
+      .map(p => `[${p.signals.join(', ')}] ×${p.count}`);
+
+    recommendations.push({
+      priority: 'medium',
+      category: 'signal_diversity',
+      title: 'Signal pattern exhaustion',
+      detail: `${m.signalRepetitions.recycledPatternCount} signal pattern(s) repeated 3+ times.`,
+      action: `Top recycled: ${topRecycled.join(' | ')}. Add new signal sources or adjust detection thresholds.`,
+      impact: 'Increases evolution diversity and reduces repetitive gene selection'
+    });
+  }
+
+  // R3: Gene diversity
+  const activeGenes = Object.keys(m.geneEffectiveness);
+  const innovateGenes = activeGenes.filter(g => {
+    // Cross-reference with loaded genes data
+    return g.includes('innovate');
+  });
+  if (innovateGenes.length <= 1 && m.summary.total > 20) {
+    recommendations.push({
+      priority: 'medium',
+      category: 'gene_diversity',
+      title: 'Low gene diversity for innovation',
+      detail: `Only ${innovateGenes.length} innovation gene(s) active across ${m.summary.total} cycles.`,
+      action: 'Create specialized innovation genes for different domains (security, tooling, automation).',
+      impact: 'Broader innovation coverage, less reliance on single generic gene'
+    });
+  }
+
+  // R4: Skill saturation check
+  if (skillCount > 100 && brokenSkills > skillCount * 0.3) {
+    recommendations.push({
+      priority: 'high',
+      category: 'skill_health',
+      title: 'Skill inventory bloat',
+      detail: `${skillCount} skills installed, ${brokenSkills} missing index.js (${((brokenSkills / skillCount) * 100).toFixed(0)}%).`,
+      action: 'Focus evolution on enhancing existing skills rather than creating new ones. ' +
+        'Run skill-health-monitor to identify and fix/remove broken skills.',
+      impact: 'Cleaner workspace, faster skill scanning, less confusion for the agent'
+    });
+  }
+
+  // R5: Effective success rate vs reported success rate
+  if (m.summary.successRate > 0.9 && m.effectiveSuccessRate < 0.5) {
+    recommendations.push({
+      priority: 'high',
+      category: 'metrics_integrity',
+      title: 'Misleading success metrics',
+      detail: `Reported success rate ${(m.summary.successRate * 100).toFixed(0)}% but effective (substantive) rate only ${(m.effectiveSuccessRate * 100).toFixed(0)}%.`,
+      action: 'Consider failing hollow cycles instead of marking them as success to get honest metrics.',
+      impact: 'More accurate health assessment, honest stagnation detection'
+    });
+  }
+
+  // R6: Intent distribution
+  const intents = m.intentBreakdown;
+  const innovateRatio = intents.innovate ? intents.innovate.total / m.summary.total : 0;
+  const repairRatio = intents.repair ? intents.repair.total / m.summary.total : 0;
+  if (innovateRatio > 0.7 && m.hollowCycles.rate > 0.4) {
+    recommendations.push({
+      priority: 'medium',
+      category: 'intent_balance',
+      title: 'Innovation fatigue',
+      detail: `${(innovateRatio * 100).toFixed(0)}% innovation intent but ${(m.hollowCycles.rate * 100).toFixed(0)}% hollow rate suggests forced innovation without real targets.`,
+      action: 'Allow optimize/repair intents when innovation has no clear target. Quality > quantity.',
+      impact: 'Reduces hollow cycles by matching intent to actual need'
+    });
+  }
+
+  // Stagnation diagnosis summary
+  const stagnationDiagnosis = {
+    isStagnating: m.hollowCycles.recentStreak >= 5,
+    severity: m.hollowCycles.recentStreak >= 10 ? 'critical' : m.hollowCycles.recentStreak >= 5 ? 'warning' : 'ok',
+    hollowRate: m.hollowCycles.rate,
+    recentHollowStreak: m.hollowCycles.recentStreak,
+    recycledSignals: m.signalRepetitions.recycledPatternCount,
+    effectiveRate: m.effectiveSuccessRate,
+    geneSubstantiveRatio: geneSubstantive,
+    topRecommendation: recommendations.length > 0 ? recommendations[0].title : 'No issues detected'
+  };
+
+  return { recommendations, stagnationDiagnosis, metrics: m };
 }
 
-module.exports = { analyze, report };
+/**
+ * Generate diagnosis report as markdown
+ * @param {string} [assetsDir]
+ * @returns {string}
+ */
+function diagnoseReport(assetsDir) {
+  const { recommendations, stagnationDiagnosis } = diagnose(assetsDir);
+  const lines = [];
+
+  lines.push('# Evolution Diagnosis Report\n');
+
+  // Stagnation status
+  const icon = stagnationDiagnosis.severity === 'critical' ? '🔴' :
+    stagnationDiagnosis.severity === 'warning' ? '🟡' : '🟢';
+  lines.push(`## Stagnation Status: ${icon} ${stagnationDiagnosis.severity.toUpperCase()}`);
+  lines.push(`- Hollow rate: ${(stagnationDiagnosis.hollowRate * 100).toFixed(0)}%`);
+  lines.push(`- Recent hollow streak: ${stagnationDiagnosis.recentHollowStreak}`);
+  lines.push(`- Effective success rate: ${(stagnationDiagnosis.effectiveRate * 100).toFixed(0)}%`);
+  lines.push(`- Recycled signal patterns: ${stagnationDiagnosis.recycledSignals}`);
+  lines.push('');
+
+  // Recommendations
+  if (recommendations.length > 0) {
+    lines.push(`## Recommendations (${recommendations.length})\n`);
+    for (const r of recommendations) {
+      const pri = r.priority === 'high' ? '🔴' : r.priority === 'medium' ? '🟡' : '🟢';
+      lines.push(`### ${pri} ${r.title}`);
+      lines.push(`**Category:** ${r.category}`);
+      lines.push(`**Detail:** ${r.detail}`);
+      lines.push(`**Action:** ${r.action}`);
+      lines.push(`**Impact:** ${r.impact}`);
+      lines.push('');
+    }
+  } else {
+    lines.push('## No Issues Found\n');
+    lines.push('Evolution system is healthy. Continue current patterns.');
+  }
+
+  return lines.join('\n');
+}
+
+// CLI entry
+if (require.main === module) {
+  const arg = process.argv[2];
+  if (arg === '--diagnose' || arg === '-d') {
+    console.log(diagnoseReport());
+  } else {
+    console.log(report());
+  }
+}
+
+module.exports = { analyze, report, diagnose, diagnoseReport };
