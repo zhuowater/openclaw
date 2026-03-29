@@ -1,0 +1,6 @@
+{
+  "name": "report-builder",
+  "version": "1.0.0",
+  "description": "Build structured reports from templates with multiple data sections",
+  "main": "index.js"
+}
