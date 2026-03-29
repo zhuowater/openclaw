@@ -96,14 +96,14 @@
       "summary": "固化：gene_gep_optimize_prompt_and_assets 命中信号 protocol_drift, repeated_tool_usage:exec, force_innovation_after_repair_loop，变更 0 文件 / 0 行。",
       "confidence": 0.85,
       "blast_radius": {
-        "files": 0,
-        "lines": 0
+        "files": 1,
+        "lines": 48
       },
       "outcome": {
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 13,
+      "success_streak": 3,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -122,7 +122,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:026cf8965ffb9a85000784cfb72b8dc6824fd163a407752516dc0faae6fe0be7"
+      "asset_id": "sha256:12c77a7374f70095deb945b7a7d96151933e8c7b122821b55d01b85457a4c2c6"
     },
     {
       "type": "Capsule",

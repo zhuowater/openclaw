@@ -11,11 +11,14 @@ const EVENTS = path.join(WORKSPACE, 'skills/evolver/assets/gep/events.jsonl');
 const EVENTS_ARCHIVE = path.join(WORKSPACE, 'skills/evolver/assets/gep/events_archive.jsonl');
 const PROMPT_DIR = path.join(WORKSPACE, 'memory/evolution');
 
+const CANDIDATES = path.join(WORKSPACE, 'skills/evolver/assets/gep/candidates.jsonl');
+
 const DAY_MS = 24 * 60 * 60 * 1000;
 const GRAPH_MAX_AGE_DAYS = 7;
-const EVENTS_MAX_AGE_DAYS = 14;
+const EVENTS_MAX_AGE_DAYS = 7;
 const EVENTS_KEEP_RECENT = 20;
 const PROMPT_MAX_AGE_DAYS = 3;
+const CANDIDATES_MAX_AGE_DAYS = 10;
 
 function readJsonl(filePath) {
   if (!fs.existsSync(filePath)) return [];
@@ -139,6 +142,39 @@ function compactEvents(dryRun) {
   };
 }
 
+function compactCandidates(dryRun) {
+  const entries = readJsonl(CANDIDATES);
+  if (entries.length === 0) return { kept: 0, removed: 0, sizeBeforeKB: 0, sizeAfterKB: 0, savedKB: 0 };
+
+  const sizeBefore = fs.existsSync(CANDIDATES) ? fs.statSync(CANDIDATES).size : 0;
+  const cutoff = Date.now() - (CANDIDATES_MAX_AGE_DAYS * DAY_MS);
+
+  const keep = [];
+  const remove = [];
+  for (const c of entries) {
+    const ts = getTimestamp(c);
+    if (ts > cutoff || ts === 0) {
+      keep.push(c);
+    } else {
+      remove.push(c);
+    }
+  }
+
+  if (!dryRun && remove.length > 0) {
+    writeJsonl(CANDIDATES, keep);
+  }
+
+  const sizeAfter = dryRun ? sizeBefore : (keep.length > 0 ? Buffer.byteLength(keep.map(i => JSON.stringify(i)).join('\n') + '\n') : 0);
+
+  return {
+    kept: keep.length,
+    removed: remove.length,
+    sizeBeforeKB: Math.round(sizeBefore / 1024),
+    sizeAfterKB: Math.round(sizeAfter / 1024),
+    savedKB: Math.round((sizeBefore - sizeAfter) / 1024)
+  };
+}
+
 function cleanPromptFiles(dryRun) {
   if (!fs.existsSync(PROMPT_DIR)) return { deleted: 0, kept: 0, savedKB: 0 };
 
@@ -182,11 +218,13 @@ function main() {
     timestamp: new Date().toISOString(),
     memory_graph: compactMemoryGraph(dryRun),
     events: compactEvents(dryRun),
+    candidates: compactCandidates(dryRun),
     prompt_files: cleanPromptFiles(dryRun),
   };
 
   results.total_saved_KB = (results.memory_graph.savedKB || 0)
     + (results.events.savedKB || 0)
+    + (results.candidates.savedKB || 0)
     + (results.prompt_files.savedKB || 0);
 
   if (jsonOutput) {
@@ -216,12 +254,18 @@ function main() {
   console.log(`   Deleted: ${pf.deleted}, Kept: ${pf.kept}`);
   console.log(`   Freed: ${pf.savedKB} KB`);
 
+  const cd = results.candidates;
+  console.log(`\n🎯 candidates.jsonl:`);
+  console.log(`   Before: ${cd.sizeBeforeKB} KB`);
+  console.log(`   Kept: ${cd.kept}, Removed: ${cd.removed}`);
+  if (!dryRun) console.log(`   After: ${cd.sizeAfterKB} KB (saved ${cd.savedKB} KB)`);
+
   console.log(`\n💾 Total ${dryRun ? 'potential ' : ''}savings: ${results.total_saved_KB} KB`);
   if (dryRun) console.log(`\n💡 Run with --compact to apply changes.`);
 }
 
 // Exports for programmatic use
-module.exports = { compactMemoryGraph, compactEvents, cleanPromptFiles, main };
+module.exports = { compactMemoryGraph, compactEvents, compactCandidates, cleanPromptFiles, main };
 
 // CLI execution
 if (require.main === module) {

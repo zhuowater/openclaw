@@ -1,6 +1,6 @@
 ---
 name: evo-compactor
-description: Compact and optimize evolution data files (memory_graph.jsonl, events.jsonl, prompt files). Reduces evolver scan time and token usage. Use when disk usage is high, evolution is slow, or during periodic maintenance. Triggers on "compact evolution", "evolution cleanup", "optimize evolver data".
+description: Compact and optimize evolution data files (memory_graph.jsonl, events.jsonl, candidates.jsonl, prompt files). Reduces evolver scan time and token usage. Use when disk usage is high, evolution is slow, or during periodic maintenance. Triggers on "compact evolution", "evolution cleanup", "optimize evolver data".
 ---
 
 # evo-compactor
@@ -10,9 +10,10 @@ Compresses evolution data to reduce scan overhead and LLM token consumption.
 ## What It Does
 
 1. **memory_graph.jsonl**: Archives entries older than 7 days, keeping only recent active data
-2. **events.jsonl**: Archives events older than 14 days (keeps last 20 in working set)
-3. **GEP prompt files**: Removes prompt files older than 3 days (they're one-shot artifacts)
-4. **Deduplication**: Removes duplicate memory_graph entries (same gene+signal combination)
+2. **events.jsonl**: Archives events older than 7 days (keeps last 20 in working set)
+3. **candidates.jsonl**: Removes candidates older than 10 days (stale capability candidates)
+4. **GEP prompt files**: Removes prompt files older than 3 days (they're one-shot artifacts)
+5. **Deduplication**: Removes duplicate memory_graph entries (same gene+signal combination)
 
 ## Usage
 
