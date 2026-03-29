@@ -1,0 +1,6 @@
+{
+  "name": "port-scan",
+  "version": "1.0.0",
+  "description": "Lightweight TCP port scanner in pure Node.js",
+  "main": "index.js"
+}
