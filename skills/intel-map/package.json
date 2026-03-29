@@ -1,0 +1,5 @@
+{
+  "name": "intel-map",
+  "version": "1.0.0",
+  "description": "Generate interactive threat/intelligence maps from structured data"
+}

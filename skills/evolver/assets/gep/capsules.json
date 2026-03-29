@@ -262,7 +262,7 @@
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 2,
+      "success_streak": 4,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -281,7 +281,7 @@
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:a06f17bc9398bf43926f2ad224f7e04210afca035347fa050593c069fb5b1ca3"
+      "asset_id": "sha256:c7aefca2b0e270cda83db8d599d9950351d35df9eaae8cac0ee195c36f13c4fb"
     }
   ]
 }
