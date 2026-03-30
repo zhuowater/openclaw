@@ -1,0 +1,6 @@
+{
+  "name": "intel-retro",
+  "version": "1.0.0",
+  "description": "Intelligence retrospective: measure prediction accuracy, detect bias, improve calibration",
+  "main": "index.js"
+}
