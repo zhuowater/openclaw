@@ -1,0 +1,6 @@
+{
+  "name": "process-watchdog",
+  "version": "1.0.0",
+  "description": "Monitor critical background processes and systemd services",
+  "main": "index.js"
+}

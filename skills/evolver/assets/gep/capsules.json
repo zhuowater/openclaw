@@ -223,7 +223,7 @@
         "status": "success",
         "score": 0.85
       },
-      "success_streak": 18,
+      "success_streak": 13,
       "env_fingerprint": {
         "device_id": "044a9098929fd9626a00ba3e05c0cbfe",
         "node_version": "v22.22.0",
@@ -237,12 +237,12 @@
         "cwd": "/root/openclaw/skills/evolver",
         "container": false
       },
-      "source_type": "reference",
-      "reused_asset_id": "sha256:d8e878b65fb4e763468c653e671937e442d4db3ef67a650d18fc5e95bf244e65",
+      "source_type": "generated",
+      "reused_asset_id": null,
       "a2a": {
         "eligible_to_broadcast": true
       },
-      "asset_id": "sha256:c54284831234ec454866e91599a0b0d343a6c5c4a9f9b91cf5e274a6887eb7d9"
+      "asset_id": "sha256:22dc9c74b0eae74eeab1f694441b93c917ade80c772bd377860ae2ca6b0ab7d1"
     },
     {
       "type": "Capsule",
