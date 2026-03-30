@@ -1,0 +1,6 @@
+{
+  "name": "quick-brief",
+  "version": "1.0.0",
+  "description": "Rapid situational awareness briefing from multiple sources",
+  "main": "index.js"
+}
