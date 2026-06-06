@@ -1,3 +1,7 @@
 
 # MCP config contains API keys
 config/mcporter.json
+
+# Python bytecode
+__pycache__/
+*.py[cod]
